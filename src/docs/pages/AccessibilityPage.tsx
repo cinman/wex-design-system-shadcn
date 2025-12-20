@@ -449,6 +449,51 @@ interface KpiTileProps {
   variant?: "success" | "warning" | "destructive";
 }
 
+// Decorative SVG patterns for each KPI card variant
+function KpiPattern({ variant }: { variant?: "success" | "warning" | "destructive" }) {
+  // Default: Dot grid (systematic, data-driven)
+  if (!variant) {
+    return (
+      <svg className="absolute right-0 top-0 h-full w-1/2 opacity-[0.08]" viewBox="0 0 100 80" preserveAspectRatio="xMaxYMid slice">
+        <pattern id="dots" x="0" y="0" width="12" height="12" patternUnits="userSpaceOnUse">
+          <circle cx="2" cy="2" r="1.5" fill="currentColor" />
+        </pattern>
+        <rect x="0" y="0" width="100" height="80" fill="url(#dots)" />
+      </svg>
+    );
+  }
+  
+  // Success: Gentle wave (calm, flowing)
+  if (variant === "success") {
+    return (
+      <svg className="absolute right-0 bottom-0 h-full w-2/3 text-success opacity-[0.12]" viewBox="0 0 120 80" preserveAspectRatio="xMaxYMax slice">
+        <path d="M0,60 Q30,40 60,50 T120,40 L120,80 L0,80 Z" fill="currentColor" />
+        <path d="M0,70 Q40,55 80,65 T120,55 L120,80 L0,80 Z" fill="currentColor" opacity="0.5" />
+      </svg>
+    );
+  }
+  
+  // Warning: Diagonal stripes (in-between, transitional)
+  if (variant === "warning") {
+    return (
+      <svg className="absolute right-0 top-0 h-full w-1/2 text-warning opacity-[0.15]" viewBox="0 0 100 80" preserveAspectRatio="xMaxYMid slice">
+        <pattern id="stripes" x="0" y="0" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+          <line x1="0" y1="0" x2="0" y2="8" stroke="currentColor" strokeWidth="3" />
+        </pattern>
+        <rect x="0" y="0" width="100" height="80" fill="url(#stripes)" />
+      </svg>
+    );
+  }
+  
+  // Destructive: Angular chevrons (attention, urgency)
+  return (
+    <svg className="absolute right-0 top-0 h-full w-1/2 text-destructive opacity-[0.12]" viewBox="0 0 100 80" preserveAspectRatio="xMaxYMid slice">
+      <path d="M60,0 L80,20 L60,40 L80,60 L60,80 L50,80 L70,60 L50,40 L70,20 L50,0 Z" fill="currentColor" />
+      <path d="M80,0 L100,20 L80,40 L100,60 L80,80 L70,80 L90,60 L70,40 L90,20 L70,0 Z" fill="currentColor" opacity="0.6" />
+    </svg>
+  );
+}
+
 function KpiTile({ label, value, icon, variant }: KpiTileProps) {
   const config = {
     success: {
@@ -483,8 +528,8 @@ function KpiTile({ label, value, icon, variant }: KpiTileProps) {
 
   return (
     <div className={`relative overflow-hidden rounded-xl border ${config.border} ${config.bg} p-3`}>
-      {/* Decorative circle in background */}
-      <div className={`absolute -right-4 -top-4 h-16 w-16 rounded-full ${config.iconBg} opacity-50`} />
+      {/* Unique decorative pattern per variant */}
+      <KpiPattern variant={variant} />
       
       <div className="relative flex items-center gap-3">
         {/* Icon container */}

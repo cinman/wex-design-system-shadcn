@@ -8,7 +8,7 @@
       "light",
       "dark"
     ],
-    "lastUpdated": "2025-12-20T06:09:06.859Z",
+    "lastUpdated": "2025-12-20T17:38:54.308Z",
     "totalComponents": 54
   },
   "accordion": {
@@ -16,7 +16,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-20T06:08:11.554Z",
+    "testedAt": "2025-12-20T17:37:59.349Z",
     "scope": "component-examples-only",
     "examplesFound": 3,
     "scenariosTested": [
@@ -47,7 +47,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-20T06:08:20.640Z",
+    "testedAt": "2025-12-20T17:38:07.990Z",
     "scope": "component-examples-only",
     "examplesFound": 3,
     "scenariosTested": [
@@ -75,11 +75,11 @@
   },
   "alert": {
     "status": "fail",
-    "violations": 5,
+    "violations": 4,
     "issues": [
       "color-contrast"
     ],
-    "testedAt": "2025-12-20T06:08:17.288Z",
+    "testedAt": "2025-12-20T17:38:04.547Z",
     "scope": "component-examples-only",
     "examplesFound": 6,
     "scenariosTested": [
@@ -102,7 +102,7 @@
       },
       "dark": {
         "status": "fail",
-        "violations": 4,
+        "violations": 3,
         "issues": [
           "color-contrast"
         ],
@@ -115,7 +115,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-20T06:08:24.487Z",
+    "testedAt": "2025-12-20T17:38:11.936Z",
     "scope": "component-examples-only",
     "examplesFound": 4,
     "scenariosTested": [
@@ -147,7 +147,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-20T06:08:28.923Z",
+    "testedAt": "2025-12-20T17:38:16.415Z",
     "scope": "component-examples-only",
     "examplesFound": 4,
     "scenariosTested": [
@@ -180,7 +180,7 @@
     "issues": [
       "color-contrast"
     ],
-    "testedAt": "2025-12-20T06:08:35.701Z",
+    "testedAt": "2025-12-20T17:38:22.848Z",
     "scope": "component-examples-only",
     "examplesFound": 9,
     "scenariosTested": [
@@ -219,7 +219,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-20T06:08:38.558Z",
+    "testedAt": "2025-12-20T17:38:25.880Z",
     "scope": "component-examples-only",
     "examplesFound": 2,
     "scenariosTested": [
@@ -249,7 +249,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-20T06:08:50.558Z",
+    "testedAt": "2025-12-20T17:38:37.876Z",
     "scope": "component-examples-only",
     "examplesFound": 4,
     "scenariosTested": [
@@ -277,12 +277,13 @@
     }
   },
   "button": {
-    "status": "fail",
+    "status": "partial",
+    "levelAchieved": "A",
     "violations": 5,
     "issues": [
       "color-contrast"
     ],
-    "testedAt": "2025-12-20T06:08:46.643Z",
+    "testedAt": "2025-12-20T17:38:33.949Z",
     "scope": "component-examples-only",
     "examplesFound": 12,
     "scenariosTested": [
@@ -319,12 +320,13 @@
     }
   },
   "calendar": {
-    "status": "fail",
+    "status": "partial",
+    "levelAchieved": "A",
     "violations": 5,
     "issues": [
       "color-contrast"
     ],
-    "testedAt": "2025-12-20T06:09:01.006Z",
+    "testedAt": "2025-12-20T17:38:48.290Z",
     "scope": "component-examples-only",
     "examplesFound": 8,
     "scenariosTested": [
@@ -362,7 +364,7 @@
     "issues": [
       "color-contrast"
     ],
-    "testedAt": "2025-12-20T06:09:06.677Z",
+    "testedAt": "2025-12-20T17:38:54.074Z",
     "scope": "component-examples-only",
     "examplesFound": 9,
     "scenariosTested": [
@@ -401,7 +403,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-20T06:08:10.506Z",
+    "testedAt": "2025-12-20T17:37:58.282Z",
     "scope": "component-examples-only",
     "examplesFound": 1,
     "scenariosTested": [
@@ -431,7 +433,7 @@
     "issues": [
       "svg-img-alt"
     ],
-    "testedAt": "2025-12-20T06:08:15.882Z",
+    "testedAt": "2025-12-20T17:38:03.370Z",
     "scope": "component-examples-only",
     "examplesFound": 5,
     "scenariosTested": [
@@ -466,7 +468,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-20T06:08:21.693Z",
+    "testedAt": "2025-12-20T17:38:09.474Z",
     "scope": "component-examples-only",
     "examplesFound": 8,
     "scenariosTested": [
@@ -502,7 +504,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-20T06:08:24.098Z",
+    "testedAt": "2025-12-20T17:38:11.877Z",
     "scope": "component-examples-only",
     "examplesFound": 1,
     "scenariosTested": [
@@ -532,7 +534,7 @@
     "issues": [
       "aria-required-children"
     ],
-    "testedAt": "2025-12-20T06:08:27.092Z",
+    "testedAt": "2025-12-20T17:38:14.964Z",
     "scope": "component-examples-only",
     "examplesFound": 2,
     "scenariosTested": [
@@ -564,7 +566,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-20T06:08:29.849Z",
+    "testedAt": "2025-12-20T17:38:17.819Z",
     "scope": "component-examples-only",
     "examplesFound": 2,
     "scenariosTested": [
@@ -594,7 +596,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-20T06:08:35.084Z",
+    "testedAt": "2025-12-20T17:38:22.827Z",
     "scope": "component-examples-only",
     "examplesFound": 6,
     "scenariosTested": [
@@ -628,7 +630,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-20T06:08:39.453Z",
+    "testedAt": "2025-12-20T17:38:27.523Z",
     "scope": "component-examples-only",
     "examplesFound": 5,
     "scenariosTested": [
@@ -661,7 +663,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-20T06:08:45.130Z",
+    "testedAt": "2025-12-20T17:38:32.973Z",
     "scope": "component-examples-only",
     "examplesFound": 7,
     "scenariosTested": [
@@ -692,12 +694,13 @@
     }
   },
   "empty": {
-    "status": "fail",
+    "status": "partial",
+    "levelAchieved": "A",
     "violations": 1,
     "issues": [
       "color-contrast"
     ],
-    "testedAt": "2025-12-20T06:08:48.553Z",
+    "testedAt": "2025-12-20T17:38:36.357Z",
     "scope": "component-examples-only",
     "examplesFound": 3,
     "scenariosTested": [
@@ -725,12 +728,13 @@
     }
   },
   "field": {
-    "status": "fail",
+    "status": "partial",
+    "levelAchieved": "A",
     "violations": 1,
     "issues": [
       "color-contrast"
     ],
-    "testedAt": "2025-12-20T06:08:53.157Z",
+    "testedAt": "2025-12-20T17:38:40.852Z",
     "scope": "component-examples-only",
     "examplesFound": 5,
     "scenariosTested": [
@@ -760,12 +764,13 @@
     }
   },
   "form": {
-    "status": "fail",
+    "status": "partial",
+    "levelAchieved": "A",
     "violations": 2,
     "issues": [
       "color-contrast"
     ],
-    "testedAt": "2025-12-20T06:08:20.032Z",
+    "testedAt": "2025-12-20T17:38:07.592Z",
     "scope": "component-examples-only",
     "examplesFound": 18,
     "scenariosTested": [
@@ -808,12 +813,13 @@
     }
   },
   "hover-card": {
-    "status": "fail",
+    "status": "partial",
+    "levelAchieved": "A",
     "violations": 4,
     "issues": [
       "color-contrast"
     ],
-    "testedAt": "2025-12-20T06:08:24.437Z",
+    "testedAt": "2025-12-20T17:38:12.118Z",
     "scope": "component-examples-only",
     "examplesFound": 5,
     "scenariosTested": [
@@ -847,7 +853,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-20T06:08:39.425Z",
+    "testedAt": "2025-12-20T17:38:27.088Z",
     "scope": "component-examples-only",
     "examplesFound": 5,
     "scenariosTested": [
@@ -880,7 +886,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-20T06:08:41.939Z",
+    "testedAt": "2025-12-20T17:38:29.501Z",
     "scope": "component-examples-only",
     "examplesFound": 1,
     "scenariosTested": [
@@ -909,7 +915,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-20T06:08:35.014Z",
+    "testedAt": "2025-12-20T17:38:22.678Z",
     "scope": "component-examples-only",
     "examplesFound": 17,
     "scenariosTested": [
@@ -954,7 +960,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-20T06:08:45.901Z",
+    "testedAt": "2025-12-20T17:38:33.432Z",
     "scope": "component-examples-only",
     "examplesFound": 4,
     "scenariosTested": [
@@ -986,7 +992,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-20T06:08:49.776Z",
+    "testedAt": "2025-12-20T17:38:37.303Z",
     "scope": "component-examples-only",
     "examplesFound": 4,
     "scenariosTested": [
@@ -1018,7 +1024,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-20T06:08:53.347Z",
+    "testedAt": "2025-12-20T17:38:40.635Z",
     "scope": "component-examples-only",
     "examplesFound": 3,
     "scenariosTested": [
@@ -1049,7 +1055,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-20T06:08:56.101Z",
+    "testedAt": "2025-12-20T17:38:43.407Z",
     "scope": "component-examples-only",
     "examplesFound": 2,
     "scenariosTested": [
@@ -1079,7 +1085,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-20T06:08:58.937Z",
+    "testedAt": "2025-12-20T17:38:46.212Z",
     "scope": "component-examples-only",
     "examplesFound": 2,
     "scenariosTested": [
@@ -1109,7 +1115,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-20T06:09:01.912Z",
+    "testedAt": "2025-12-20T17:38:49.068Z",
     "scope": "component-examples-only",
     "examplesFound": 2,
     "scenariosTested": [
@@ -1139,7 +1145,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-20T06:08:13.732Z",
+    "testedAt": "2025-12-20T17:38:01.482Z",
     "scope": "component-examples-only",
     "examplesFound": 7,
     "scenariosTested": [
@@ -1170,12 +1176,13 @@
     }
   },
   "progress": {
-    "status": "fail",
+    "status": "partial",
+    "levelAchieved": "A",
     "violations": 1,
     "issues": [
       "color-contrast"
     ],
-    "testedAt": "2025-12-20T06:08:19.258Z",
+    "testedAt": "2025-12-20T17:38:06.482Z",
     "scope": "component-examples-only",
     "examplesFound": 6,
     "scenariosTested": [
@@ -1210,7 +1217,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-20T06:08:21.589Z",
+    "testedAt": "2025-12-20T17:38:08.942Z",
     "scope": "component-examples-only",
     "examplesFound": 1,
     "scenariosTested": [
@@ -1240,7 +1247,7 @@
     "issues": [
       "aria-allowed-attr"
     ],
-    "testedAt": "2025-12-20T06:08:23.949Z",
+    "testedAt": "2025-12-20T17:38:11.307Z",
     "scope": "component-examples-only",
     "examplesFound": 1,
     "scenariosTested": [
@@ -1271,7 +1278,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-20T06:08:26.261Z",
+    "testedAt": "2025-12-20T17:38:13.655Z",
     "scope": "component-examples-only",
     "examplesFound": 1,
     "scenariosTested": [
@@ -1300,7 +1307,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-20T06:08:32.201Z",
+    "testedAt": "2025-12-20T17:38:19.577Z",
     "scope": "component-examples-only",
     "examplesFound": 8,
     "scenariosTested": [
@@ -1336,7 +1343,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-20T06:08:36.031Z",
+    "testedAt": "2025-12-20T17:38:22.889Z",
     "scope": "component-examples-only",
     "examplesFound": 3,
     "scenariosTested": [
@@ -1367,7 +1374,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-20T06:08:39.943Z",
+    "testedAt": "2025-12-20T17:38:26.999Z",
     "scope": "component-examples-only",
     "examplesFound": 4,
     "scenariosTested": [
@@ -1399,7 +1406,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-20T06:08:43.012Z",
+    "testedAt": "2025-12-20T17:38:30.114Z",
     "scope": "component-examples-only",
     "examplesFound": 2,
     "scenariosTested": [
@@ -1429,7 +1436,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-20T06:08:46.283Z",
+    "testedAt": "2025-12-20T17:38:33.396Z",
     "scope": "component-examples-only",
     "examplesFound": 3,
     "scenariosTested": [
@@ -1461,7 +1468,7 @@
     "issues": [
       "aria-input-field-name"
     ],
-    "testedAt": "2025-12-20T06:08:53.103Z",
+    "testedAt": "2025-12-20T17:38:39.981Z",
     "scope": "component-examples-only",
     "examplesFound": 9,
     "scenariosTested": [
@@ -1500,7 +1507,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-20T06:08:12.629Z",
+    "testedAt": "2025-12-20T17:38:00.552Z",
     "scope": "component-examples-only",
     "examplesFound": 5,
     "scenariosTested": [
@@ -1533,7 +1540,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-20T06:08:17.197Z",
+    "testedAt": "2025-12-20T17:38:04.524Z",
     "scope": "component-examples-only",
     "examplesFound": 4,
     "scenariosTested": [
@@ -1565,7 +1572,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-20T06:08:22.105Z",
+    "testedAt": "2025-12-20T17:38:09.498Z",
     "scope": "component-examples-only",
     "examplesFound": 6,
     "scenariosTested": [
@@ -1595,12 +1602,13 @@
     }
   },
   "table": {
-    "status": "fail",
+    "status": "partial",
+    "levelAchieved": "A",
     "violations": 1,
     "issues": [
       "color-contrast"
     ],
-    "testedAt": "2025-12-20T06:08:25.534Z",
+    "testedAt": "2025-12-20T17:38:13.159Z",
     "scope": "component-examples-only",
     "examplesFound": 3,
     "scenariosTested": [
@@ -1628,12 +1636,13 @@
     }
   },
   "tabs": {
-    "status": "fail",
+    "status": "partial",
+    "levelAchieved": "A",
     "violations": 1,
     "issues": [
       "color-contrast"
     ],
-    "testedAt": "2025-12-20T06:08:30.058Z",
+    "testedAt": "2025-12-20T17:38:17.810Z",
     "scope": "component-examples-only",
     "examplesFound": 5,
     "scenariosTested": [
@@ -1667,7 +1676,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-20T06:08:37.925Z",
+    "testedAt": "2025-12-20T17:38:25.410Z",
     "scope": "component-examples-only",
     "examplesFound": 11,
     "scenariosTested": [
@@ -1706,7 +1715,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-20T06:08:44.441Z",
+    "testedAt": "2025-12-20T17:38:31.860Z",
     "scope": "component-examples-only",
     "examplesFound": 9,
     "scenariosTested": [
@@ -1743,7 +1752,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-20T06:08:55.909Z",
+    "testedAt": "2025-12-20T17:38:43.377Z",
     "scope": "component-examples-only",
     "examplesFound": 3,
     "scenariosTested": [
@@ -1774,7 +1783,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-20T06:08:52.619Z",
+    "testedAt": "2025-12-20T17:38:40.018Z",
     "scope": "component-examples-only",
     "examplesFound": 12,
     "scenariosTested": [
@@ -1814,7 +1823,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-20T06:08:59.885Z",
+    "testedAt": "2025-12-20T17:38:47.085Z",
     "scope": "component-examples-only",
     "examplesFound": 4,
     "scenariosTested": [
