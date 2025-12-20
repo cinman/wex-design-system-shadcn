@@ -154,7 +154,7 @@ export default function StoryPage() {
             </p>
             <p>
               Given the timeline (roughly 16 hours total) and the fact that
-              this was driven by a single engineer using AI as a
+              this was driven by a single design engineer using AI as a
               collaborator, the amount of ground covered is significant—but
               there's still work to do, especially around accessibility.
             </p>

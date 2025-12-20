@@ -43,6 +43,74 @@ interface ComplianceEntry {
 
 type ComplianceData = Record<string, ComplianceEntry | { description: string }>;
 
+/**
+ * Issue Fixability Reference
+ * 
+ * Provides context about each known issue type to help developers understand:
+ * - What the issue is and why it occurs
+ * - Whether it's fixable at our level
+ * - How to address it (if applicable)
+ */
+interface IssueInfo {
+  title: string;
+  description: string;
+  fixable: "yes" | "partial" | "no" | "workaround";
+  fixableLabel: string;
+  guidance: string;
+}
+
+const ISSUE_REFERENCE: Record<string, IssueInfo> = {
+  "svg-img-alt": {
+    title: "SVG Image Alt Text",
+    description: "SVG elements with role=\"img\" must have an accessible name via aria-label, aria-labelledby, or title element.",
+    fixable: "yes",
+    fixableLabel: "Fixable",
+    guidance: "Add aria-label or title element to the SVG. For decorative SVGs, use aria-hidden=\"true\".",
+  },
+  "aria-required-children": {
+    title: "ARIA Required Children",
+    description: "Certain ARIA roles require specific child roles. This often occurs with third-party libraries (e.g., cmdk) that use ARIA roles without proper structure.",
+    fixable: "no",
+    fixableLabel: "Third-party library",
+    guidance: "This issue originates from an upstream library (cmdk). Monitor for library updates or consider filing an issue with the maintainers.",
+  },
+  "aria-allowed-attr": {
+    title: "ARIA Allowed Attributes",
+    description: "An ARIA attribute is used on an element where it's not permitted. Often caused by third-party libraries applying ARIA attributes incorrectly.",
+    fixable: "workaround",
+    fixableLabel: "Workaround available",
+    guidance: "Add appropriate aria-label to provide context. The underlying issue is in react-resizable-panels library.",
+  },
+  "aria-input-field-name": {
+    title: "ARIA Input Field Name",
+    description: "Input elements (including sliders) must have an accessible name via aria-label, aria-labelledby, or associated label element.",
+    fixable: "yes",
+    fixableLabel: "Fixable",
+    guidance: "Add aria-label to the Slider component or associate it with a visible label using aria-labelledby.",
+  },
+  "color-contrast": {
+    title: "Color Contrast",
+    description: "Text or UI elements don't meet WCAG contrast ratio requirements (4.5:1 for normal text, 3:1 for large text).",
+    fixable: "yes",
+    fixableLabel: "Fixable",
+    guidance: "Adjust foreground/background color pairings using semantic tokens. Often requires updating --muted-foreground or component variant colors.",
+  },
+  "button-name": {
+    title: "Button Name",
+    description: "Button elements must have discernible text that describes the action. Icon-only buttons need aria-label.",
+    fixable: "yes",
+    fixableLabel: "Fixable",
+    guidance: "Add aria-label to icon-only buttons or associate with a visible label using aria-labelledby.",
+  },
+  "scrollable-region-focusable": {
+    title: "Scrollable Region Focusable",
+    description: "Scrollable content areas must be keyboard accessible so users can scroll without a mouse.",
+    fixable: "yes",
+    fixableLabel: "Fixable",
+    guidance: "Add tabIndex={0} to the scrollable container to make it focusable.",
+  },
+};
+
 // Extract metadata and component data
 const allData = complianceData as ComplianceData;
 const meta = allData._meta as { lastUpdated?: string; totalComponents?: number; modes?: string[] } | undefined;
@@ -533,18 +601,44 @@ function ComponentDetailContent({ registryKey, data, info, onClose }: ComponentD
           ) : null;
         })()}
 
-        {/* Issues Found */}
+        {/* Issues Found with Fixability Info */}
         {data.issues.length > 0 && (
           <div>
-            <p className="text-xs text-muted-foreground mb-2">Issues Found (all modes)</p>
-            <ul className="space-y-1.5">
-              {data.issues.map((issue) => (
-                <li key={issue} className="flex items-center gap-2 text-sm text-foreground">
-                  <X className="h-3 w-3 text-destructive flex-shrink-0" />
-                  <code className="bg-muted px-1.5 py-0.5 rounded text-xs">{issue}</code>
-                </li>
-              ))}
-            </ul>
+            <p className="text-xs text-muted-foreground mb-3">Issues Found (all modes)</p>
+            <div className="space-y-4">
+              {data.issues.map((issue) => {
+                const info = ISSUE_REFERENCE[issue];
+                return (
+                  <div key={issue} className="p-3 rounded-lg border border-border bg-card">
+                    <div className="flex items-start justify-between gap-2 mb-2">
+                      <div className="flex items-center gap-2">
+                        <X className="h-4 w-4 text-destructive flex-shrink-0" />
+                        <code className="bg-muted px-1.5 py-0.5 rounded text-xs font-mono">{issue}</code>
+                      </div>
+                      {info && (
+                        <FixabilityBadge fixable={info.fixable} label={info.fixableLabel} />
+                      )}
+                    </div>
+                    {info ? (
+                      <div className="ml-6 space-y-2">
+                        <p className="text-sm font-medium text-foreground">{info.title}</p>
+                        <p className="text-xs text-muted-foreground">{info.description}</p>
+                        <div className="pt-2 border-t border-border/50">
+                          <p className="text-xs text-muted-foreground">
+                            <span className="font-medium text-foreground">How to address: </span>
+                            {info.guidance}
+                          </p>
+                        </div>
+                      </div>
+                    ) : (
+                      <p className="ml-6 text-xs text-muted-foreground">
+                        No additional information available for this issue type.
+                      </p>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
           </div>
         )}
 
@@ -576,6 +670,26 @@ function ComponentDetailContent({ registryKey, data, info, onClose }: ComponentD
         </WexDialog.Close>
       </WexDialog.Footer>
     </>
+  );
+}
+
+interface FixabilityBadgeProps {
+  fixable: IssueInfo["fixable"];
+  label: string;
+}
+
+function FixabilityBadge({ fixable, label }: FixabilityBadgeProps) {
+  const config = {
+    yes: { className: "bg-success/10 text-success border-success/30" },
+    partial: { className: "bg-warning/10 text-warning border-warning/30" },
+    workaround: { className: "bg-info/10 text-info border-info/30" },
+    no: { className: "bg-muted text-muted-foreground border-border" },
+  }[fixable];
+
+  return (
+    <span className={`inline-flex items-center px-2 py-0.5 text-[10px] font-medium rounded border ${config.className}`}>
+      {label}
+    </span>
   );
 }
 
