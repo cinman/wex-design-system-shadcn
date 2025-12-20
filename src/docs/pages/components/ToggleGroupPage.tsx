@@ -1,0 +1,98 @@
+import { ComponentPage } from "@/docs/components/ComponentPage";
+import { Section } from "@/docs/components/Section";
+import { ExampleCard } from "@/docs/components/ExampleCard";
+import { CodeBlock } from "@/docs/components/CodeBlock";
+import { WexToggleGroup } from "@/components/wex";
+
+export default function ToggleGroupPage() {
+  return (
+    <ComponentPage
+      title="Toggle Group"
+      description="A set of two-state buttons that can be toggled on or off."
+      status="stable"
+      registryKey="toggle-group"
+    >
+      <Section title="Overview">
+        <ExampleCard>
+          <WexToggleGroup type="single" defaultValue="center">
+            <WexToggleGroup.Item value="left" aria-label="Align left">
+              L
+            </WexToggleGroup.Item>
+            <WexToggleGroup.Item value="center" aria-label="Align center">
+              C
+            </WexToggleGroup.Item>
+            <WexToggleGroup.Item value="right" aria-label="Align right">
+              R
+            </WexToggleGroup.Item>
+          </WexToggleGroup>
+        </ExampleCard>
+      </Section>
+
+      <Section title="Types" description="Toggle groups support single and multiple selection.">
+        <div className="space-y-4">
+          <ExampleCard title="Single" description="Only one item can be selected.">
+            <WexToggleGroup type="single">
+              <WexToggleGroup.Item value="a">A</WexToggleGroup.Item>
+              <WexToggleGroup.Item value="b">B</WexToggleGroup.Item>
+              <WexToggleGroup.Item value="c">C</WexToggleGroup.Item>
+            </WexToggleGroup>
+          </ExampleCard>
+
+          <ExampleCard title="Multiple" description="Multiple items can be selected.">
+            <WexToggleGroup type="multiple">
+              <WexToggleGroup.Item value="a">A</WexToggleGroup.Item>
+              <WexToggleGroup.Item value="b">B</WexToggleGroup.Item>
+              <WexToggleGroup.Item value="c">C</WexToggleGroup.Item>
+            </WexToggleGroup>
+          </ExampleCard>
+        </div>
+      </Section>
+
+      <Section title="Accessibility">
+        <div className="space-y-4 text-foreground">
+          <div className="rounded-lg border border-border bg-card p-4">
+            <h3 className="font-medium mb-2">WCAG 2.2 Level AA Compliant</h3>
+            <p className="text-sm text-muted-foreground">
+              This component meets WCAG 2.2 Level AA accessibility requirements.
+            </p>
+          </div>
+          <div className="rounded-lg border border-border bg-card p-4">
+            <h3 className="font-medium mb-2">ARIA Requirements</h3>
+            <ul className="text-sm text-muted-foreground list-disc list-inside space-y-1">
+              <li><code className="bg-muted px-1 rounded">aria-label</code>: Required for icon-only toggle items</li>
+              <li><code className="bg-muted px-1 rounded">role="group"</code>: Automatically applied</li>
+              <li><code className="bg-muted px-1 rounded">aria-pressed</code>: Managed by Radix UI</li>
+            </ul>
+          </div>
+          <div className="rounded-lg border border-border bg-card p-4">
+            <h3 className="font-medium mb-2">Keyboard Navigation</h3>
+            <ul className="text-sm text-muted-foreground list-disc list-inside space-y-1">
+              <li>Tab: Focus the toggle group</li>
+              <li>Arrow keys: Navigate between items</li>
+              <li>Space or Enter: Toggle item state</li>
+            </ul>
+          </div>
+        </div>
+      </Section>
+
+      <Section title="Usage">
+        <CodeBlock
+          code={`import { WexToggleGroup } from "@/components/wex";
+
+// Single selection
+<WexToggleGroup type="single">
+  <WexToggleGroup.Item value="a">A</WexToggleGroup.Item>
+  <WexToggleGroup.Item value="b">B</WexToggleGroup.Item>
+</WexToggleGroup>
+
+// Multiple selection
+<WexToggleGroup type="multiple">
+  <WexToggleGroup.Item value="a">A</WexToggleGroup.Item>
+  <WexToggleGroup.Item value="b">B</WexToggleGroup.Item>
+</WexToggleGroup>`}
+        />
+      </Section>
+    </ComponentPage>
+  );
+}
+

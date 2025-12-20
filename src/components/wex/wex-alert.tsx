@@ -1,0 +1,88 @@
+import * as React from "react";
+import { cva, type VariantProps } from "class-variance-authority";
+import { cn } from "@/lib/utils";
+
+/**
+ * WexAlert - WEX Design System Alert Component
+ *
+ * Displays important messages to users with semantic intent variants.
+ *
+ * VARIANT GAPS:
+ * - success: BLOCKED - requires --wex-success token (design decision required)
+ * - warning: BLOCKED - requires --wex-warning token (design decision required)
+ * - info: BLOCKED - requires --wex-info token (design decision required)
+ *
+ * @example
+ * <WexAlert intent="default">
+ *   <WexAlert.Title>Heads up!</WexAlert.Title>
+ *   <WexAlert.Description>Important information here.</WexAlert.Description>
+ * </WexAlert>
+ */
+
+const wexAlertVariants = cva(
+  "relative w-full rounded-lg border px-4 py-3 text-sm [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg]:text-foreground [&>svg~*]:pl-7",
+  {
+    variants: {
+      intent: {
+        default: "bg-background text-foreground",
+        destructive:
+          "border-destructive/50 text-destructive dark:border-destructive [&>svg]:text-destructive",
+        // success: BLOCKED - requires --wex-success token
+        // warning: BLOCKED - requires --wex-warning token
+        // info: BLOCKED - requires --wex-info token
+      },
+    },
+    defaultVariants: {
+      intent: "default",
+    },
+  }
+);
+
+export interface WexAlertProps
+  extends React.HTMLAttributes<HTMLDivElement>,
+    VariantProps<typeof wexAlertVariants> {}
+
+const WexAlertRoot = React.forwardRef<HTMLDivElement, WexAlertProps>(
+  ({ className, intent, ...props }, ref) => (
+    <div
+      ref={ref}
+      role="alert"
+      className={cn(wexAlertVariants({ intent }), className)}
+      {...props}
+    />
+  )
+);
+WexAlertRoot.displayName = "WexAlert";
+
+const WexAlertTitle = React.forwardRef<
+  HTMLParagraphElement,
+  React.HTMLAttributes<HTMLHeadingElement>
+>(({ className, ...props }, ref) => (
+  <h5
+    ref={ref}
+    className={cn("mb-1 font-medium leading-none tracking-tight", className)}
+    {...props}
+  />
+));
+WexAlertTitle.displayName = "WexAlert.Title";
+
+const WexAlertDescription = React.forwardRef<
+  HTMLParagraphElement,
+  React.HTMLAttributes<HTMLParagraphElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn("text-sm [&_p]:leading-relaxed", className)}
+    {...props}
+  />
+));
+WexAlertDescription.displayName = "WexAlert.Description";
+
+// Namespace pattern: WexAlert.Title, WexAlert.Description
+export const WexAlert = Object.assign(WexAlertRoot, {
+  Title: WexAlertTitle,
+  Description: WexAlertDescription,
+});
+
+export { wexAlertVariants };
+

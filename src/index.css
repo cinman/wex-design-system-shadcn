@@ -1,0 +1,80 @@
+@import "./styles/wex.tokens.css";
+@import "./styles/wex.shadcn-bridge.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* ============================================================
+   SONNER TOAST OVERRIDES
+   ============================================================
+   Sonner has internal styling with high specificity.
+   These overrides ensure proper text contrast for all toast variants.
+   Uses semantic tokens only (no raw colors).
+   ============================================================ */
+@layer components {
+  /* Error/Destructive toast - white text on red background */
+  [data-sonner-toast][data-type="error"] {
+    --normal-bg: hsl(var(--destructive));
+    --normal-border: hsl(var(--destructive));
+    --normal-text: hsl(var(--destructive-foreground));
+    background: var(--normal-bg) !important;
+    border-color: var(--normal-border) !important;
+    color: var(--normal-text) !important;
+  }
+  [data-sonner-toast][data-type="error"] [data-title],
+  [data-sonner-toast][data-type="error"] [data-description] {
+    color: hsl(var(--destructive-foreground)) !important;
+  }
+
+  /* Success toast - white text on green background */
+  [data-sonner-toast][data-type="success"] {
+    --normal-bg: hsl(var(--success));
+    --normal-border: hsl(var(--success));
+    --normal-text: hsl(var(--success-foreground));
+    background: var(--normal-bg) !important;
+    border-color: var(--normal-border) !important;
+    color: var(--normal-text) !important;
+  }
+  [data-sonner-toast][data-type="success"] [data-title],
+  [data-sonner-toast][data-type="success"] [data-description] {
+    color: hsl(var(--success-foreground)) !important;
+  }
+
+  /* Warning toast - black text on amber background */
+  [data-sonner-toast][data-type="warning"] {
+    --normal-bg: hsl(var(--warning));
+    --normal-border: hsl(var(--warning));
+    --normal-text: hsl(var(--warning-foreground));
+    background: var(--normal-bg) !important;
+    border-color: var(--normal-border) !important;
+    color: var(--normal-text) !important;
+  }
+  [data-sonner-toast][data-type="warning"] [data-title],
+  [data-sonner-toast][data-type="warning"] [data-description] {
+    color: hsl(var(--warning-foreground)) !important;
+  }
+
+  /* Info toast - white text on blue background */
+  [data-sonner-toast][data-type="info"] {
+    --normal-bg: hsl(var(--info));
+    --normal-border: hsl(var(--info));
+    --normal-text: hsl(var(--info-foreground));
+    background: var(--normal-bg) !important;
+    border-color: var(--normal-border) !important;
+    color: var(--normal-text) !important;
+  }
+  [data-sonner-toast][data-type="info"] [data-title],
+  [data-sonner-toast][data-type="info"] [data-description] {
+    color: hsl(var(--info-foreground)) !important;
+  }
+}
