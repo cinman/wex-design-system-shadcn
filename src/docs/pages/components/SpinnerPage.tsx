@@ -2,7 +2,14 @@ import { ComponentPage } from "@/docs/components/ComponentPage";
 import { Section } from "@/docs/components/Section";
 import { ExampleCard } from "@/docs/components/ExampleCard";
 import { CodeBlock } from "@/docs/components/CodeBlock";
+import { TokenReference, type TokenRow } from "@/docs/components/TokenReference";
 import { WexSpinner, WexButton } from "@/components/wex";
+
+// Token mappings for WexSpinner
+const spinnerTokens: TokenRow[] = [
+  { element: "Spinner", property: "Color", token: "--primary" },
+  { element: "Animation", property: "Type", token: "spin (CSS animation)" },
+];
 
 export default function SpinnerPage() {
   return (
@@ -79,6 +86,8 @@ export default function SpinnerPage() {
 </div>`}
         />
       </Section>
+
+      <TokenReference tokens={spinnerTokens} className="mt-12" />
     </ComponentPage>
   );
 }

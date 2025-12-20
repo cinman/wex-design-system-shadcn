@@ -4,7 +4,14 @@ import { Section } from "@/docs/components/Section";
 import { ExampleCard } from "@/docs/components/ExampleCard";
 import { CodeBlock } from "@/docs/components/CodeBlock";
 import { Guidance } from "@/docs/components/ProseBlock";
+import { TokenReference, type TokenRow } from "@/docs/components/TokenReference";
 import { WexProgress, WexButton } from "@/components/wex";
+
+// Token mappings for WexProgress
+const progressTokens: TokenRow[] = [
+  { element: "Track", property: "Background", token: "--primary (10% opacity)" },
+  { element: "Indicator", property: "Background", token: "--primary" },
+];
 
 export default function ProgressPage() {
   const [progress, setProgress] = React.useState(13);
@@ -196,6 +203,8 @@ useEffect(() => {
 <WexProgress value={progress} />`}
         />
       </Section>
+
+      <TokenReference tokens={progressTokens} className="mt-12" />
     </ComponentPage>
   );
 }

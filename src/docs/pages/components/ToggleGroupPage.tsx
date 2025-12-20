@@ -2,7 +2,17 @@ import { ComponentPage } from "@/docs/components/ComponentPage";
 import { Section } from "@/docs/components/Section";
 import { ExampleCard } from "@/docs/components/ExampleCard";
 import { CodeBlock } from "@/docs/components/CodeBlock";
+import { TokenReference, type TokenRow } from "@/docs/components/TokenReference";
 import { WexToggleGroup } from "@/components/wex";
+
+// Token mappings for WexToggleGroup
+const toggleGroupTokens: TokenRow[] = [
+  { element: "Container", property: "Gap", token: "(flex container)" },
+  { element: "Item", property: "Background", token: "transparent" },
+  { element: "Item (hover)", property: "Background", token: "--muted" },
+  { element: "Item (active)", property: "Background", token: "--accent" },
+  { element: "Item (active)", property: "Text", token: "--accent-foreground" },
+];
 
 export default function ToggleGroupPage() {
   return (
@@ -92,6 +102,8 @@ export default function ToggleGroupPage() {
 </WexToggleGroup>`}
         />
       </Section>
+
+      <TokenReference tokens={toggleGroupTokens} className="mt-12" />
     </ComponentPage>
   );
 }

@@ -4,7 +4,17 @@ import { Section } from "@/docs/components/Section";
 import { ExampleCard } from "@/docs/components/ExampleCard";
 import { CodeBlock } from "@/docs/components/CodeBlock";
 import { Guidance } from "@/docs/components/ProseBlock";
+import { TokenReference, type TokenRow } from "@/docs/components/TokenReference";
 import { WexTabs, WexCard, WexButton, WexInput, WexLabel } from "@/components/wex";
+
+// Token mappings for WexTabs
+const tabsTokens: TokenRow[] = [
+  { element: "Tab List", property: "Background", token: "--muted" },
+  { element: "Trigger", property: "Text", token: "--muted-foreground" },
+  { element: "Trigger (active)", property: "Background", token: "--background" },
+  { element: "Trigger (active)", property: "Text", token: "--foreground" },
+  { element: "Focus Ring", property: "Color", token: "--ring" },
+];
 
 export default function TabsPage() {
   const [activeTab, setActiveTab] = React.useState("account");
@@ -171,6 +181,8 @@ const [tab, setTab] = useState("home");
 </WexTabs>`}
         />
       </Section>
+
+      <TokenReference tokens={tabsTokens} className="mt-12" />
     </ComponentPage>
   );
 }

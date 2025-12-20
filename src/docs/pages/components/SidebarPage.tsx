@@ -3,7 +3,19 @@ import { Section } from "@/docs/components/Section";
 import { ExampleCard } from "@/docs/components/ExampleCard";
 import { CodeBlock } from "@/docs/components/CodeBlock";
 import { Guidance } from "@/docs/components/ProseBlock";
+import { TokenReference, type TokenRow } from "@/docs/components/TokenReference";
 import { Home, Settings, User, FileText, Mail, Calendar } from "lucide-react";
+
+// Token mappings for WexSidebar
+const sidebarTokens: TokenRow[] = [
+  { element: "Container", property: "Background", token: "--sidebar" },
+  { element: "Container", property: "Border", token: "--sidebar-border" },
+  { element: "Item", property: "Text", token: "--sidebar-foreground" },
+  { element: "Item (hover)", property: "Background", token: "--sidebar-accent" },
+  { element: "Item (hover)", property: "Text", token: "--sidebar-accent-foreground" },
+  { element: "Item (active)", property: "Background", token: "--sidebar-accent" },
+  { element: "Focus Ring", property: "Color", token: "--sidebar-ring" },
+];
 
 // Note: WexSidebar is shown in code examples; visual demos use semantic classes directly
 
@@ -160,6 +172,8 @@ export default function SidebarPage() {
 </WexSidebar>`}
         />
       </Section>
+
+      <TokenReference tokens={sidebarTokens} className="mt-12" />
     </ComponentPage>
   );
 }

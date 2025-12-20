@@ -2,7 +2,18 @@ import { ComponentPage } from "@/docs/components/ComponentPage";
 import { Section } from "@/docs/components/Section";
 import { ExampleCard } from "@/docs/components/ExampleCard";
 import { CodeBlock } from "@/docs/components/CodeBlock";
+import { TokenReference, type TokenRow } from "@/docs/components/TokenReference";
 import { WexContextMenu } from "@/components/wex";
+
+// Token mappings for WexContextMenu
+const contextMenuTokens: TokenRow[] = [
+  { element: "Content", property: "Background", token: "--popover" },
+  { element: "Content", property: "Border", token: "--border" },
+  { element: "Item", property: "Text", token: "--popover-foreground" },
+  { element: "Item (focus)", property: "Background", token: "--accent" },
+  { element: "Item (focus)", property: "Text", token: "--accent-foreground" },
+  { element: "Separator", property: "Color", token: "--muted" },
+];
 
 export default function ContextMenuPage() {
   return (
@@ -90,6 +101,8 @@ export default function ContextMenuPage() {
 </WexContextMenu>`}
         />
       </Section>
+
+      <TokenReference tokens={contextMenuTokens} className="mt-12" />
     </ComponentPage>
   );
 }

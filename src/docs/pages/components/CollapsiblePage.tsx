@@ -3,8 +3,15 @@ import { ComponentPage } from "@/docs/components/ComponentPage";
 import { Section } from "@/docs/components/Section";
 import { ExampleCard } from "@/docs/components/ExampleCard";
 import { CodeBlock } from "@/docs/components/CodeBlock";
+import { TokenReference, type TokenRow } from "@/docs/components/TokenReference";
 import { WexCollapsible, WexButton } from "@/components/wex";
 import { ChevronsUpDown } from "lucide-react";
+
+// Token mappings for WexCollapsible
+const collapsibleTokens: TokenRow[] = [
+  { element: "Note", property: "", token: "Headless component - no default styling" },
+  { element: "Trigger", property: "", token: "Use WexButton tokens or custom styling" },
+];
 
 export default function CollapsiblePage() {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -97,6 +104,8 @@ const [isOpen, setIsOpen] = useState(false);
 </WexCollapsible>`}
         />
       </Section>
+
+      <TokenReference tokens={collapsibleTokens} className="mt-12" />
     </ComponentPage>
   );
 }

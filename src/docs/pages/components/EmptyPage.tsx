@@ -2,8 +2,17 @@ import { ComponentPage } from "@/docs/components/ComponentPage";
 import { Section } from "@/docs/components/Section";
 import { ExampleCard } from "@/docs/components/ExampleCard";
 import { CodeBlock } from "@/docs/components/CodeBlock";
+import { TokenReference, type TokenRow } from "@/docs/components/TokenReference";
 import { WexEmpty, WexButton } from "@/components/wex";
 import { FileQuestion, Search, InboxIcon } from "lucide-react";
+
+// Token mappings for WexEmpty
+const emptyTokens: TokenRow[] = [
+  { element: "Container", property: "Background", token: "--background" },
+  { element: "Icon", property: "Color", token: "--muted-foreground" },
+  { element: "Title", property: "Text", token: "--foreground" },
+  { element: "Description", property: "Text", token: "--muted-foreground" },
+];
 
 export default function EmptyPage() {
   return (
@@ -97,6 +106,8 @@ import { InboxIcon } from "lucide-react";
 </WexEmpty>`}
         />
       </Section>
+
+      <TokenReference tokens={emptyTokens} className="mt-12" />
     </ComponentPage>
   );
 }

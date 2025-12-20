@@ -2,7 +2,16 @@ import { ComponentPage } from "@/docs/components/ComponentPage";
 import { Section } from "@/docs/components/Section";
 import { ExampleCard } from "@/docs/components/ExampleCard";
 import { CodeBlock } from "@/docs/components/CodeBlock";
+import { TokenReference, type TokenRow } from "@/docs/components/TokenReference";
 import { WexAccordion } from "@/components/wex";
+
+// Token mappings for WexAccordion
+const accordionTokens: TokenRow[] = [
+  { element: "Item", property: "Border", token: "--border" },
+  { element: "Trigger", property: "Text", token: "--foreground" },
+  { element: "Trigger", property: "Hover", token: "underline" },
+  { element: "Content", property: "Text", token: "--muted-foreground" },
+];
 
 export default function AccordionPage() {
   return (
@@ -99,6 +108,8 @@ export default function AccordionPage() {
 </WexAccordion>`}
         />
       </Section>
+
+      <TokenReference tokens={accordionTokens} className="mt-12" />
     </ComponentPage>
   );
 }

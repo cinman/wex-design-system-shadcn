@@ -2,7 +2,15 @@ import { ComponentPage } from "@/docs/components/ComponentPage";
 import { Section } from "@/docs/components/Section";
 import { ExampleCard } from "@/docs/components/ExampleCard";
 import { CodeBlock } from "@/docs/components/CodeBlock";
+import { TokenReference, type TokenRow } from "@/docs/components/TokenReference";
 import { WexKbd } from "@/components/wex";
+
+// Token mappings for WexKbd
+const kbdTokens: TokenRow[] = [
+  { element: "Key", property: "Background", token: "--muted" },
+  { element: "Key", property: "Border", token: "--border" },
+  { element: "Key", property: "Text", token: "--muted-foreground" },
+];
 
 export default function KbdPage() {
   return (
@@ -91,6 +99,8 @@ export default function KbdPage() {
 </WexKbd.Group>`}
         />
       </Section>
+
+      <TokenReference tokens={kbdTokens} className="mt-12" />
     </ComponentPage>
   );
 }

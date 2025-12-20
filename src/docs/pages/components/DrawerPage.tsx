@@ -4,7 +4,18 @@ import { Section } from "@/docs/components/Section";
 import { ExampleCard } from "@/docs/components/ExampleCard";
 import { CodeBlock } from "@/docs/components/CodeBlock";
 import { Guidance } from "@/docs/components/ProseBlock";
+import { TokenReference, type TokenRow } from "@/docs/components/TokenReference";
 import { WexDrawer, WexButton, WexInput, WexLabel } from "@/components/wex";
+
+// Token mappings for WexDrawer
+const drawerTokens: TokenRow[] = [
+  { element: "Overlay", property: "Background", token: "--background (80% opacity)" },
+  { element: "Content", property: "Background", token: "--background" },
+  { element: "Content", property: "Border", token: "--border" },
+  { element: "Handle", property: "Background", token: "--muted" },
+  { element: "Title", property: "Text", token: "--foreground" },
+  { element: "Description", property: "Text", token: "--muted-foreground" },
+];
 
 export default function DrawerPage() {
   const [open, setOpen] = React.useState(false);
@@ -248,6 +259,8 @@ const [open, setOpen] = useState(false);
 </WexDrawer>`}
         />
       </Section>
+
+      <TokenReference tokens={drawerTokens} className="mt-12" />
     </ComponentPage>
   );
 }

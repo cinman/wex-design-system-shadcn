@@ -3,8 +3,32 @@ import { Section } from "@/docs/components/Section";
 import { ExampleCard } from "@/docs/components/ExampleCard";
 import { CodeBlock } from "@/docs/components/CodeBlock";
 import { Guidance } from "@/docs/components/ProseBlock";
+import { TokenReference, type TokenRow } from "@/docs/components/TokenReference";
 import { WexButton } from "@/components/wex";
 import { toast } from "sonner";
+
+// Token mappings for Toast (Sonner) variants
+const toastTokens: TokenRow[] = [
+  // Default
+  { element: "Default", property: "Background", token: "--background" },
+  { element: "Default", property: "Text", token: "--foreground" },
+  { element: "Default", property: "Border", token: "--border" },
+  // Success
+  { element: "Success", property: "Background", token: "--success" },
+  { element: "Success", property: "Text", token: "--success-foreground" },
+  // Error
+  { element: "Error", property: "Background", token: "--destructive" },
+  { element: "Error", property: "Text", token: "--destructive-foreground" },
+  // Warning
+  { element: "Warning", property: "Background", token: "--warning" },
+  { element: "Warning", property: "Text", token: "--warning-foreground" },
+  // Info
+  { element: "Info", property: "Background", token: "--info" },
+  { element: "Info", property: "Text", token: "--info-foreground" },
+  // Action Button
+  { element: "Action Button", property: "Background", token: "--primary" },
+  { element: "Action Button", property: "Text", token: "--primary-foreground" },
+];
 
 export default function ToastPage() {
   return (
@@ -202,6 +226,8 @@ wexToast.dismiss(); // All
 wexToast.dismiss(id); // Specific`}
         />
       </Section>
+
+      <TokenReference tokens={toastTokens} className="mt-12" />
     </ComponentPage>
   );
 }

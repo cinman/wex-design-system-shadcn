@@ -2,7 +2,17 @@ import { ComponentPage } from "@/docs/components/ComponentPage";
 import { Section } from "@/docs/components/Section";
 import { ExampleCard } from "@/docs/components/ExampleCard";
 import { CodeBlock } from "@/docs/components/CodeBlock";
+import { TokenReference, type TokenRow } from "@/docs/components/TokenReference";
 import { WexSwitch, WexLabel } from "@/components/wex";
+
+// Token mappings for WexSwitch
+const switchTokens: TokenRow[] = [
+  { element: "Track (off)", property: "Background", token: "--input" },
+  { element: "Track (on)", property: "Background", token: "--primary" },
+  { element: "Thumb", property: "Background", token: "--background" },
+  { element: "Focus Ring", property: "Color", token: "--ring" },
+  { element: "Disabled", property: "Opacity", token: "50%" },
+];
 
 export default function SwitchPage() {
   return (
@@ -161,6 +171,8 @@ const [enabled, setEnabled] = useState(false);
 </div>`}
         />
       </Section>
+
+      <TokenReference tokens={switchTokens} className="mt-12" />
     </ComponentPage>
   );
 }

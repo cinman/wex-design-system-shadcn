@@ -2,7 +2,17 @@ import { ComponentPage } from "@/docs/components/ComponentPage";
 import { Section } from "@/docs/components/Section";
 import { ExampleCard } from "@/docs/components/ExampleCard";
 import { CodeBlock } from "@/docs/components/CodeBlock";
+import { TokenReference, type TokenRow } from "@/docs/components/TokenReference";
 import { WexPagination } from "@/components/wex";
+
+// Token mappings for WexPagination
+const paginationTokens: TokenRow[] = [
+  { element: "Link", property: "Text", token: "--foreground" },
+  { element: "Link (hover)", property: "Background", token: "--accent" },
+  { element: "Link (active)", property: "Background", token: "--primary" },
+  { element: "Link (active)", property: "Text", token: "--primary-foreground" },
+  { element: "Ellipsis", property: "Color", token: "--muted-foreground" },
+];
 
 export default function PaginationPage() {
   return (
@@ -114,6 +124,8 @@ export default function PaginationPage() {
 </WexPagination>`}
         />
       </Section>
+
+      <TokenReference tokens={paginationTokens} className="mt-12" />
     </ComponentPage>
   );
 }

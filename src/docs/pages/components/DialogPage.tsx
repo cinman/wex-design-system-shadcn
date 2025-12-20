@@ -4,7 +4,19 @@ import { Section } from "@/docs/components/Section";
 import { ExampleCard } from "@/docs/components/ExampleCard";
 import { CodeBlock } from "@/docs/components/CodeBlock";
 import { Guidance } from "@/docs/components/ProseBlock";
+import { TokenReference, type TokenRow } from "@/docs/components/TokenReference";
 import { WexDialog, WexButton, WexInput, WexLabel } from "@/components/wex";
+
+// Token mappings for WexDialog
+const dialogTokens: TokenRow[] = [
+  { element: "Overlay", property: "Background", token: "--background (80% opacity)" },
+  { element: "Content", property: "Background", token: "--background" },
+  { element: "Content", property: "Border", token: "--border" },
+  { element: "Content", property: "Shadow", token: "--shadow (lg)" },
+  { element: "Title", property: "Text", token: "--foreground" },
+  { element: "Description", property: "Text", token: "--muted-foreground" },
+  { element: "Close Button", property: "Color", token: "--muted-foreground" },
+];
 
 export default function DialogPage() {
   const [open, setOpen] = React.useState(false);
@@ -273,6 +285,8 @@ const [open, setOpen] = useState(false);
 </WexDialog>`}
         />
       </Section>
+
+      <TokenReference tokens={dialogTokens} className="mt-12" />
     </ComponentPage>
   );
 }

@@ -4,9 +4,18 @@ import { Section } from "@/docs/components/Section";
 import { ExampleCard } from "@/docs/components/ExampleCard";
 import { CodeBlock } from "@/docs/components/CodeBlock";
 import { Guidance } from "@/docs/components/ProseBlock";
+import { TokenReference, type TokenRow } from "@/docs/components/TokenReference";
 import { WexPopover, WexButton, WexInput, WexLabel, WexCalendar } from "@/components/wex";
 import { format } from "date-fns";
 import { CalendarIcon, Settings, User } from "lucide-react";
+
+// Token mappings for WexPopover
+const popoverTokens: TokenRow[] = [
+  { element: "Content", property: "Background", token: "--popover" },
+  { element: "Content", property: "Border", token: "--border" },
+  { element: "Content", property: "Text", token: "--popover-foreground" },
+  { element: "Content", property: "Shadow", token: "--shadow (md)" },
+];
 
 export default function PopoverPage() {
   const [date, setDate] = React.useState<Date>();
@@ -257,6 +266,8 @@ export default function PopoverPage() {
 </WexPopover>`}
         />
       </Section>
+
+      <TokenReference tokens={popoverTokens} className="mt-12" />
     </ComponentPage>
   );
 }

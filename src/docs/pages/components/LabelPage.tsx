@@ -2,7 +2,14 @@ import { ComponentPage } from "@/docs/components/ComponentPage";
 import { Section } from "@/docs/components/Section";
 import { ExampleCard } from "@/docs/components/ExampleCard";
 import { CodeBlock } from "@/docs/components/CodeBlock";
+import { TokenReference, type TokenRow } from "@/docs/components/TokenReference";
 import { WexLabel, WexInput } from "@/components/wex";
+
+// Token mappings for WexLabel
+const labelTokens: TokenRow[] = [
+  { element: "Label", property: "Text", token: "--foreground" },
+  { element: "Disabled", property: "Opacity", token: "70%" },
+];
 
 export default function LabelPage() {
   return (
@@ -66,6 +73,8 @@ export default function LabelPage() {
 <WexInput id="required" required />`}
         />
       </Section>
+
+      <TokenReference tokens={labelTokens} className="mt-12" />
     </ComponentPage>
   );
 }

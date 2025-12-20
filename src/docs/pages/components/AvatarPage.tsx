@@ -2,7 +2,14 @@ import { ComponentPage } from "@/docs/components/ComponentPage";
 import { Section } from "@/docs/components/Section";
 import { ExampleCard } from "@/docs/components/ExampleCard";
 import { CodeBlock } from "@/docs/components/CodeBlock";
+import { TokenReference, type TokenRow } from "@/docs/components/TokenReference";
 import { WexAvatar } from "@/components/wex";
+
+// Token mappings for WexAvatar
+const avatarTokens: TokenRow[] = [
+  { element: "Container", property: "Background", token: "--muted" },
+  { element: "Fallback", property: "Text", token: "--muted-foreground" },
+];
 
 export default function AvatarPage() {
   return (
@@ -110,6 +117,8 @@ export default function AvatarPage() {
 </WexAvatar>`}
         />
       </Section>
+
+      <TokenReference tokens={avatarTokens} className="mt-12" />
     </ComponentPage>
   );
 }

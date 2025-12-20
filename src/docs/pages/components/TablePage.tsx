@@ -4,7 +4,18 @@ import { Section } from "@/docs/components/Section";
 import { ExampleCard } from "@/docs/components/ExampleCard";
 import { CodeBlock } from "@/docs/components/CodeBlock";
 import { Guidance } from "@/docs/components/ProseBlock";
+import { TokenReference, type TokenRow } from "@/docs/components/TokenReference";
 import { WexTable, WexBadge, WexButton, WexCheckbox } from "@/components/wex";
+
+// Token mappings for WexTable
+const tableTokens: TokenRow[] = [
+  { element: "Header", property: "Background", token: "--muted (50% opacity)" },
+  { element: "Header", property: "Text", token: "--muted-foreground" },
+  { element: "Row", property: "Border", token: "--border" },
+  { element: "Row (hover)", property: "Background", token: "--muted (50% opacity)" },
+  { element: "Cell", property: "Text", token: "--foreground" },
+  { element: "Footer", property: "Background", token: "--muted (50% opacity)" },
+];
 
 const invoices = [
   { invoice: "INV001", status: "Paid", amount: "$250.00", method: "Credit Card" },
@@ -178,6 +189,8 @@ export default function TablePage() {
 </WexTable>`}
         />
       </Section>
+
+      <TokenReference tokens={tableTokens} className="mt-12" />
     </ComponentPage>
   );
 }

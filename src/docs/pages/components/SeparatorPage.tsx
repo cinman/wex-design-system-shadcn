@@ -2,7 +2,13 @@ import { ComponentPage } from "@/docs/components/ComponentPage";
 import { Section } from "@/docs/components/Section";
 import { ExampleCard } from "@/docs/components/ExampleCard";
 import { CodeBlock } from "@/docs/components/CodeBlock";
+import { TokenReference, type TokenRow } from "@/docs/components/TokenReference";
 import { WexSeparator } from "@/components/wex";
+
+// Token mappings for WexSeparator
+const separatorTokens: TokenRow[] = [
+  { element: "Line", property: "Color", token: "--border" },
+];
 
 export default function SeparatorPage() {
   return (
@@ -76,6 +82,8 @@ export default function SeparatorPage() {
 <WexSeparator orientation="vertical" />`}
         />
       </Section>
+
+      <TokenReference tokens={separatorTokens} className="mt-12" />
     </ComponentPage>
   );
 }

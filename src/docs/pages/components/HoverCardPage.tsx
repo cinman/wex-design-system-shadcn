@@ -3,8 +3,17 @@ import { Section } from "@/docs/components/Section";
 import { ExampleCard } from "@/docs/components/ExampleCard";
 import { CodeBlock } from "@/docs/components/CodeBlock";
 import { Guidance } from "@/docs/components/ProseBlock";
+import { TokenReference, type TokenRow } from "@/docs/components/TokenReference";
 import { WexHoverCard, WexButton, WexAvatar } from "@/components/wex";
 import { CalendarDays, ExternalLink, Github, Mail } from "lucide-react";
+
+// Token mappings for WexHoverCard
+const hoverCardTokens: TokenRow[] = [
+  { element: "Content", property: "Background", token: "--popover" },
+  { element: "Content", property: "Border", token: "--border" },
+  { element: "Content", property: "Text", token: "--popover-foreground" },
+  { element: "Content", property: "Shadow", token: "--shadow (md)" },
+];
 
 export default function HoverCardPage() {
   return (
@@ -245,6 +254,8 @@ export default function HoverCardPage() {
 </WexHoverCard>`}
         />
       </Section>
+
+      <TokenReference tokens={hoverCardTokens} className="mt-12" />
     </ComponentPage>
   );
 }

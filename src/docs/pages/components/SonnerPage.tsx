@@ -3,8 +3,21 @@ import { Section } from "@/docs/components/Section";
 import { ExampleCard } from "@/docs/components/ExampleCard";
 import { CodeBlock } from "@/docs/components/CodeBlock";
 import { Guidance } from "@/docs/components/ProseBlock";
+import { TokenReference, type TokenRow } from "@/docs/components/TokenReference";
 import { WexButton, wexToast } from "@/components/wex";
 import { AccessibilitySection } from "@/docs/components/AccessibilitySection";
+
+// Token mappings for WexSonner (Toast)
+const sonnerTokens: TokenRow[] = [
+  { element: "Toast", property: "Background", token: "--background" },
+  { element: "Toast", property: "Border", token: "--border" },
+  { element: "Toast", property: "Text", token: "--foreground" },
+  { element: "Success", property: "Icon", token: "--success" },
+  { element: "Error", property: "Icon", token: "--destructive" },
+  { element: "Warning", property: "Icon", token: "--warning" },
+  { element: "Info", property: "Icon", token: "--info" },
+  { element: "Action Button", property: "Background", token: "--primary" },
+];
 
 /**
  * Sonner - An opinionated toast component for React
@@ -308,6 +321,8 @@ wexToast.error("Failed to save", { id: toastId });`}
           </div>
         </div>
       </Section>
+
+      <TokenReference tokens={sonnerTokens} className="mt-12" />
     </ComponentPage>
   );
 }

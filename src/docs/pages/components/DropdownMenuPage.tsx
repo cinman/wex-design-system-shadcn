@@ -4,7 +4,19 @@ import { Section } from "@/docs/components/Section";
 import { ExampleCard } from "@/docs/components/ExampleCard";
 import { CodeBlock } from "@/docs/components/CodeBlock";
 import { Guidance } from "@/docs/components/ProseBlock";
+import { TokenReference, type TokenRow } from "@/docs/components/TokenReference";
 import { WexDropdownMenu, WexButton } from "@/components/wex";
+
+// Token mappings for WexDropdownMenu
+const dropdownMenuTokens: TokenRow[] = [
+  { element: "Content", property: "Background", token: "--popover" },
+  { element: "Content", property: "Border", token: "--border" },
+  { element: "Item", property: "Text", token: "--popover-foreground" },
+  { element: "Item (focus)", property: "Background", token: "--accent" },
+  { element: "Item (focus)", property: "Text", token: "--accent-foreground" },
+  { element: "Separator", property: "Color", token: "--muted" },
+  { element: "Shortcut", property: "Text", token: "--muted-foreground" },
+];
 
 export default function DropdownMenuPage() {
   const [showStatusBar, setShowStatusBar] = React.useState(true);
@@ -263,6 +275,8 @@ const [value, setValue] = useState("a");
 </WexDropdownMenu.Item>`}
         />
       </Section>
+
+      <TokenReference tokens={dropdownMenuTokens} className="mt-12" />
     </ComponentPage>
   );
 }

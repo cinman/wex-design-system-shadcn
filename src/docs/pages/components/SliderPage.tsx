@@ -3,7 +3,17 @@ import { ComponentPage } from "@/docs/components/ComponentPage";
 import { Section } from "@/docs/components/Section";
 import { ExampleCard } from "@/docs/components/ExampleCard";
 import { CodeBlock } from "@/docs/components/CodeBlock";
+import { TokenReference, type TokenRow } from "@/docs/components/TokenReference";
 import { WexSlider, WexLabel } from "@/components/wex";
+
+// Token mappings for WexSlider
+const sliderTokens: TokenRow[] = [
+  { element: "Track", property: "Background", token: "--primary (20% opacity)" },
+  { element: "Range", property: "Background", token: "--primary" },
+  { element: "Thumb", property: "Background", token: "--background" },
+  { element: "Thumb", property: "Border", token: "--primary" },
+  { element: "Focus Ring", property: "Color", token: "--ring" },
+];
 
 export default function SliderPage() {
   const [volume, setVolume] = React.useState([50]);
@@ -161,6 +171,8 @@ const [value, setValue] = useState([50]);
 </div>`}
         />
       </Section>
+
+      <TokenReference tokens={sliderTokens} className="mt-12" />
     </ComponentPage>
   );
 }

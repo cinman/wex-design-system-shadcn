@@ -2,7 +2,18 @@ import { ComponentPage } from "@/docs/components/ComponentPage";
 import { Section } from "@/docs/components/Section";
 import { ExampleCard } from "@/docs/components/ExampleCard";
 import { CodeBlock } from "@/docs/components/CodeBlock";
+import { TokenReference, type TokenRow } from "@/docs/components/TokenReference";
 import { WexInput, WexLabel } from "@/components/wex";
+
+// Token mappings for WexInput
+const inputTokens: TokenRow[] = [
+  { element: "Input", property: "Background", token: "--background" },
+  { element: "Input", property: "Border", token: "--input" },
+  { element: "Input", property: "Text", token: "--foreground" },
+  { element: "Input", property: "Placeholder", token: "--muted-foreground" },
+  { element: "Focus Ring", property: "Color", token: "--ring" },
+  { element: "Disabled", property: "Opacity", token: "50%" },
+];
 
 export default function InputPage() {
   return (
@@ -206,6 +217,8 @@ const [value, setValue] = useState("");
 </div>`}
         />
       </Section>
+
+      <TokenReference tokens={inputTokens} className="mt-12" />
     </ComponentPage>
   );
 }

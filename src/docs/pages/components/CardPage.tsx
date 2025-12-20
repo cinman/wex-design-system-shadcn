@@ -3,6 +3,7 @@ import { Section } from "@/docs/components/Section";
 import { ExampleCard } from "@/docs/components/ExampleCard";
 import { CodeBlock } from "@/docs/components/CodeBlock";
 import { Guidance } from "@/docs/components/ProseBlock";
+import { TokenReference, type TokenRow } from "@/docs/components/TokenReference";
 import {
   WexCard,
   WexButton,
@@ -12,6 +13,15 @@ import {
   WexAvatar,
 } from "@/components/wex";
 import { Bell, CreditCard, Settings, User } from "lucide-react";
+
+// Token mappings for WexCard
+const cardTokens: TokenRow[] = [
+  { element: "Container", property: "Background", token: "--card" },
+  { element: "Container", property: "Border", token: "--border" },
+  { element: "Container", property: "Shadow", token: "--shadow (sm)" },
+  { element: "Title", property: "Text", token: "--card-foreground" },
+  { element: "Description", property: "Text", token: "--muted-foreground" },
+];
 
 export default function CardPage() {
   return (
@@ -272,6 +282,8 @@ export default function CardPage() {
 </WexCard>`}
         />
       </Section>
+
+      <TokenReference tokens={cardTokens} className="mt-12" />
     </ComponentPage>
   );
 }

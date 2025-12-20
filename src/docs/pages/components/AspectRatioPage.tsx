@@ -2,7 +2,14 @@ import { ComponentPage } from "@/docs/components/ComponentPage";
 import { Section } from "@/docs/components/Section";
 import { ExampleCard } from "@/docs/components/ExampleCard";
 import { CodeBlock } from "@/docs/components/CodeBlock";
+import { TokenReference, type TokenRow } from "@/docs/components/TokenReference";
 import { WexAspectRatio } from "@/components/wex";
+
+// Token mappings for WexAspectRatio
+const aspectRatioTokens: TokenRow[] = [
+  { element: "Container", property: "Position", token: "(relative wrapper)" },
+  { element: "Note", property: "", token: "No color tokens - layout utility only" },
+];
 
 export default function AspectRatioPage() {
   return (
@@ -92,6 +99,8 @@ export default function AspectRatioPage() {
 </WexAspectRatio>`}
         />
       </Section>
+
+      <TokenReference tokens={aspectRatioTokens} className="mt-12" />
     </ComponentPage>
   );
 }

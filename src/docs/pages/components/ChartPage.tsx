@@ -3,11 +3,24 @@ import { Section } from "@/docs/components/Section";
 import { Guidance } from "@/docs/components/ProseBlock";
 import { CodeBlock } from "@/docs/components/CodeBlock";
 import { ExampleCard } from "@/docs/components/ExampleCard";
+import { TokenReference, type TokenRow } from "@/docs/components/TokenReference";
 import { WexChart, type WexChartConfig } from "@/components/wex/wex-chart";
 import {
   Bar,
   BarChart,
   Line,
+
+// Token mappings for WexChart
+const chartTokens: TokenRow[] = [
+  { element: "Chart 1", property: "Fill", token: "--chart-1" },
+  { element: "Chart 2", property: "Fill", token: "--chart-2" },
+  { element: "Chart 3", property: "Fill", token: "--chart-3" },
+  { element: "Chart 4", property: "Fill", token: "--chart-4" },
+  { element: "Chart 5", property: "Fill", token: "--chart-5" },
+  { element: "Tooltip", property: "Background", token: "--popover" },
+  { element: "Tooltip", property: "Border", token: "--border" },
+  { element: "Axis", property: "Color", token: "--muted-foreground" },
+];
   LineChart,
   Pie,
   PieChart,
@@ -188,6 +201,8 @@ function MyChart() {
 }`}
         />
       </Section>
+
+      <TokenReference tokens={chartTokens} className="mt-12" />
     </ComponentPage>
   );
 }

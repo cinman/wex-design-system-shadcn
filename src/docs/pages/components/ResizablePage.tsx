@@ -2,7 +2,15 @@ import { ComponentPage } from "@/docs/components/ComponentPage";
 import { Section } from "@/docs/components/Section";
 import { ExampleCard } from "@/docs/components/ExampleCard";
 import { CodeBlock } from "@/docs/components/CodeBlock";
+import { TokenReference, type TokenRow } from "@/docs/components/TokenReference";
 import { WexResizable } from "@/components/wex";
+
+// Token mappings for WexResizable
+const resizableTokens: TokenRow[] = [
+  { element: "Handle", property: "Background", token: "--border" },
+  { element: "Handle (hover)", property: "Background", token: "--ring" },
+  { element: "Handle", property: "Width", token: "1px (vertical) / height (horizontal)" },
+];
 
 export default function ResizablePage() {
   return (
@@ -68,6 +76,8 @@ export default function ResizablePage() {
 </WexResizable.Group>`}
         />
       </Section>
+
+      <TokenReference tokens={resizableTokens} className="mt-12" />
     </ComponentPage>
   );
 }

@@ -2,7 +2,17 @@ import { ComponentPage } from "@/docs/components/ComponentPage";
 import { Section } from "@/docs/components/Section";
 import { ExampleCard } from "@/docs/components/ExampleCard";
 import { CodeBlock } from "@/docs/components/CodeBlock";
+import { TokenReference, type TokenRow } from "@/docs/components/TokenReference";
 import { WexTextarea, WexLabel } from "@/components/wex";
+
+// Token mappings for WexTextarea
+const textareaTokens: TokenRow[] = [
+  { element: "Textarea", property: "Background", token: "--background" },
+  { element: "Textarea", property: "Border", token: "--input" },
+  { element: "Textarea", property: "Text", token: "--foreground" },
+  { element: "Placeholder", property: "Text", token: "--muted-foreground" },
+  { element: "Focus Ring", property: "Color", token: "--ring" },
+];
 
 export default function TextareaPage() {
   return (
@@ -172,6 +182,8 @@ const [value, setValue] = useState("");
 <WexTextarea maxLength={500} />`}
         />
       </Section>
+
+      <TokenReference tokens={textareaTokens} className="mt-12" />
     </ComponentPage>
   );
 }

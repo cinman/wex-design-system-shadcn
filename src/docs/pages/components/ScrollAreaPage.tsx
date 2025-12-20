@@ -2,7 +2,15 @@ import { ComponentPage } from "@/docs/components/ComponentPage";
 import { Section } from "@/docs/components/Section";
 import { ExampleCard } from "@/docs/components/ExampleCard";
 import { CodeBlock } from "@/docs/components/CodeBlock";
+import { TokenReference, type TokenRow } from "@/docs/components/TokenReference";
 import { WexScrollArea } from "@/components/wex";
+
+// Token mappings for WexScrollArea
+const scrollAreaTokens: TokenRow[] = [
+  { element: "Scrollbar", property: "Track", token: "--muted (transparent)" },
+  { element: "Scrollbar", property: "Thumb", token: "--border" },
+  { element: "Scrollbar", property: "Thumb (hover)", token: "--border-hover" },
+];
 
 export default function ScrollAreaPage() {
   return (
@@ -61,6 +69,8 @@ export default function ScrollAreaPage() {
 </WexScrollArea>`}
         />
       </Section>
+
+      <TokenReference tokens={scrollAreaTokens} className="mt-12" />
     </ComponentPage>
   );
 }

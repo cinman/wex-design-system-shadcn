@@ -2,7 +2,15 @@ import { ComponentPage } from "@/docs/components/ComponentPage";
 import { Section } from "@/docs/components/Section";
 import { ExampleCard } from "@/docs/components/ExampleCard";
 import { CodeBlock } from "@/docs/components/CodeBlock";
+import { TokenReference, type TokenRow } from "@/docs/components/TokenReference";
 import { WexButtonGroup, WexButton } from "@/components/wex";
+
+// Token mappings for WexButtonGroup
+const buttonGroupTokens: TokenRow[] = [
+  { element: "Container", property: "Gap", token: "(flex container)" },
+  { element: "Separator", property: "Color", token: "--border" },
+  { element: "Note", property: "", token: "Individual buttons use WexButton tokens" },
+];
 
 export default function ButtonGroupPage() {
   return (
@@ -85,6 +93,8 @@ export default function ButtonGroupPage() {
 </WexButtonGroup>`}
         />
       </Section>
+
+      <TokenReference tokens={buttonGroupTokens} className="mt-12" />
     </ComponentPage>
   );
 }

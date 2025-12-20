@@ -3,6 +3,7 @@ import { Section } from "@/docs/components/Section";
 import { ExampleCard } from "@/docs/components/ExampleCard";
 import { CodeBlock } from "@/docs/components/CodeBlock";
 import { Guidance } from "@/docs/components/ProseBlock";
+import { TokenReference, type TokenRow } from "@/docs/components/TokenReference";
 import {
   WexInput,
   WexLabel,
@@ -13,6 +14,14 @@ import {
   WexSelect,
   WexButton,
 } from "@/components/wex";
+
+// Token mappings for WexForm
+const formTokens: TokenRow[] = [
+  { element: "Label", property: "Text", token: "--foreground" },
+  { element: "Description", property: "Text", token: "--muted-foreground" },
+  { element: "Error Message", property: "Text", token: "--destructive" },
+  { element: "Note", property: "", token: "Form items use respective component tokens" },
+];
 
 export default function FormPage() {
   return (
@@ -371,6 +380,8 @@ function MyForm() {
 }`}
         />
       </Section>
+
+      <TokenReference tokens={formTokens} className="mt-12" />
     </ComponentPage>
   );
 }

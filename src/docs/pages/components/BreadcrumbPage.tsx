@@ -2,7 +2,16 @@ import { ComponentPage } from "@/docs/components/ComponentPage";
 import { Section } from "@/docs/components/Section";
 import { ExampleCard } from "@/docs/components/ExampleCard";
 import { CodeBlock } from "@/docs/components/CodeBlock";
+import { TokenReference, type TokenRow } from "@/docs/components/TokenReference";
 import { WexBreadcrumb } from "@/components/wex";
+
+// Token mappings for WexBreadcrumb
+const breadcrumbTokens: TokenRow[] = [
+  { element: "Link", property: "Text", token: "--muted-foreground" },
+  { element: "Link (hover)", property: "Text", token: "--foreground" },
+  { element: "Current Page", property: "Text", token: "--foreground" },
+  { element: "Separator", property: "Color", token: "--muted-foreground" },
+];
 
 export default function BreadcrumbDocPage() {
   return (
@@ -83,6 +92,8 @@ export default function BreadcrumbDocPage() {
 </WexBreadcrumb>`}
         />
       </Section>
+
+      <TokenReference tokens={breadcrumbTokens} className="mt-12" />
     </ComponentPage>
   );
 }

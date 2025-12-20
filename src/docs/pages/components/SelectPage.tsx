@@ -2,7 +2,20 @@ import { ComponentPage } from "@/docs/components/ComponentPage";
 import { Section } from "@/docs/components/Section";
 import { ExampleCard } from "@/docs/components/ExampleCard";
 import { CodeBlock } from "@/docs/components/CodeBlock";
+import { TokenReference, type TokenRow } from "@/docs/components/TokenReference";
 import { WexLabel, WexSelect } from "@/components/wex";
+
+// Token mappings for WexSelect
+const selectTokens: TokenRow[] = [
+  { element: "Trigger", property: "Background", token: "--background" },
+  { element: "Trigger", property: "Border", token: "--input" },
+  { element: "Trigger", property: "Text", token: "--foreground" },
+  { element: "Content", property: "Background", token: "--popover" },
+  { element: "Content", property: "Border", token: "--border" },
+  { element: "Item", property: "Hover Background", token: "--accent" },
+  { element: "Item", property: "Text", token: "--popover-foreground" },
+  { element: "Focus Ring", property: "Color", token: "--ring" },
+];
 
 export default function SelectPage() {
   return (
@@ -231,6 +244,8 @@ const [value, setValue] = useState("");
 </WexSelect>`}
         />
       </Section>
+
+      <TokenReference tokens={selectTokens} className="mt-12" />
     </ComponentPage>
   );
 }

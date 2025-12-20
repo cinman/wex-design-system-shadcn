@@ -2,7 +2,16 @@ import { ComponentPage } from "@/docs/components/ComponentPage";
 import { Section } from "@/docs/components/Section";
 import { ExampleCard } from "@/docs/components/ExampleCard";
 import { CodeBlock } from "@/docs/components/CodeBlock";
+import { TokenReference, type TokenRow } from "@/docs/components/TokenReference";
 import { WexRadioGroup, WexLabel } from "@/components/wex";
+
+// Token mappings for WexRadioGroup
+const radioGroupTokens: TokenRow[] = [
+  { element: "Radio", property: "Border", token: "--primary" },
+  { element: "Radio (selected)", property: "Fill", token: "--primary" },
+  { element: "Focus Ring", property: "Color", token: "--ring" },
+  { element: "Disabled", property: "Opacity", token: "50%" },
+];
 
 export default function RadioGroupPage() {
   return (
@@ -53,6 +62,8 @@ export default function RadioGroupPage() {
 </WexRadioGroup>`}
         />
       </Section>
+
+      <TokenReference tokens={radioGroupTokens} className="mt-12" />
     </ComponentPage>
   );
 }

@@ -2,7 +2,19 @@ import { ComponentPage } from "@/docs/components/ComponentPage";
 import { Section } from "@/docs/components/Section";
 import { ExampleCard } from "@/docs/components/ExampleCard";
 import { CodeBlock } from "@/docs/components/CodeBlock";
+import { TokenReference, type TokenRow } from "@/docs/components/TokenReference";
 import { WexAlertDialog, WexButton } from "@/components/wex";
+
+// Token mappings for WexAlertDialog
+const alertDialogTokens: TokenRow[] = [
+  { element: "Overlay", property: "Background", token: "--background (80% opacity)" },
+  { element: "Content", property: "Background", token: "--background" },
+  { element: "Content", property: "Border", token: "--border" },
+  { element: "Title", property: "Text", token: "--foreground" },
+  { element: "Description", property: "Text", token: "--muted-foreground" },
+  { element: "Action Button", property: "Background", token: "--primary" },
+  { element: "Cancel Button", property: "Border", token: "--input" },
+];
 
 export default function AlertDialogPage() {
   return (
@@ -124,6 +136,8 @@ export default function AlertDialogPage() {
 </WexAlertDialog>`}
         />
       </Section>
+
+      <TokenReference tokens={alertDialogTokens} className="mt-12" />
     </ComponentPage>
   );
 }

@@ -2,8 +2,18 @@ import { ComponentPage } from "@/docs/components/ComponentPage";
 import { Section } from "@/docs/components/Section";
 import { ExampleCard } from "@/docs/components/ExampleCard";
 import { CodeBlock } from "@/docs/components/CodeBlock";
+import { TokenReference, type TokenRow } from "@/docs/components/TokenReference";
 import { WexInputGroup } from "@/components/wex";
 import { Search, Mail, Eye } from "lucide-react";
+
+// Token mappings for WexInputGroup
+const inputGroupTokens: TokenRow[] = [
+  { element: "Input", property: "Background", token: "--background" },
+  { element: "Input", property: "Border", token: "--input" },
+  { element: "Addon", property: "Background", token: "--muted" },
+  { element: "Addon", property: "Text", token: "--muted-foreground" },
+  { element: "Button", property: "", token: "Uses WexButton tokens" },
+];
 
 export default function InputGroupPage() {
   return (
@@ -106,6 +116,8 @@ import { Search, Mail } from "lucide-react";
 </WexInputGroup>`}
         />
       </Section>
+
+      <TokenReference tokens={inputGroupTokens} className="mt-12" />
     </ComponentPage>
   );
 }

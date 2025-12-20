@@ -3,7 +3,14 @@ import { Section } from "@/docs/components/Section";
 import { ExampleCard } from "@/docs/components/ExampleCard";
 import { CodeBlock } from "@/docs/components/CodeBlock";
 import { Guidance } from "@/docs/components/ProseBlock";
+import { TokenReference, type TokenRow } from "@/docs/components/TokenReference";
 import { WexTooltip, WexButton } from "@/components/wex";
+
+// Token mappings for WexTooltip
+const tooltipTokens: TokenRow[] = [
+  { element: "Content", property: "Background", token: "--primary" },
+  { element: "Content", property: "Text", token: "--primary-foreground" },
+];
 
 export default function TooltipPage() {
   return (
@@ -173,6 +180,8 @@ export default function TooltipPage() {
 </WexTooltip.Provider>`}
         />
       </Section>
+
+      <TokenReference tokens={tooltipTokens} className="mt-12" />
     </ComponentPage>
   );
 }

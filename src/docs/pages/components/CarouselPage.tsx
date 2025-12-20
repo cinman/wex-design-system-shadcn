@@ -2,7 +2,15 @@ import { ComponentPage } from "@/docs/components/ComponentPage";
 import { Section } from "@/docs/components/Section";
 import { ExampleCard } from "@/docs/components/ExampleCard";
 import { CodeBlock } from "@/docs/components/CodeBlock";
+import { TokenReference, type TokenRow } from "@/docs/components/TokenReference";
 import { WexCarousel, WexCard } from "@/components/wex";
+
+// Token mappings for WexCarousel
+const carouselTokens: TokenRow[] = [
+  { element: "Navigation Button", property: "Border", token: "--input" },
+  { element: "Navigation Button", property: "Background", token: "--background" },
+  { element: "Navigation Button (hover)", property: "Background", token: "--accent" },
+];
 
 export default function CarouselPage() {
   return (
@@ -57,6 +65,8 @@ export default function CarouselPage() {
 </WexCarousel>`}
         />
       </Section>
+
+      <TokenReference tokens={carouselTokens} className="mt-12" />
     </ComponentPage>
   );
 }

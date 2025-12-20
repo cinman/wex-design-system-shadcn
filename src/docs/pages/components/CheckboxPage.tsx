@@ -2,7 +2,17 @@ import { ComponentPage } from "@/docs/components/ComponentPage";
 import { Section } from "@/docs/components/Section";
 import { ExampleCard } from "@/docs/components/ExampleCard";
 import { CodeBlock } from "@/docs/components/CodeBlock";
+import { TokenReference, type TokenRow } from "@/docs/components/TokenReference";
 import { WexCheckbox, WexLabel } from "@/components/wex";
+
+// Token mappings for WexCheckbox
+const checkboxTokens: TokenRow[] = [
+  { element: "Box", property: "Border", token: "--primary" },
+  { element: "Box", property: "Background (checked)", token: "--primary" },
+  { element: "Checkmark", property: "Color", token: "--primary-foreground" },
+  { element: "Focus Ring", property: "Color", token: "--ring" },
+  { element: "Disabled", property: "Opacity", token: "50%" },
+];
 
 export default function CheckboxPage() {
   return (
@@ -188,6 +198,8 @@ const [checked, setChecked] = useState(false);
 </div>`}
         />
       </Section>
+
+      <TokenReference tokens={checkboxTokens} className="mt-12" />
     </ComponentPage>
   );
 }

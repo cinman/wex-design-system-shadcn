@@ -2,7 +2,16 @@ import { ComponentPage } from "@/docs/components/ComponentPage";
 import { Section } from "@/docs/components/Section";
 import { ExampleCard } from "@/docs/components/ExampleCard";
 import { CodeBlock } from "@/docs/components/CodeBlock";
+import { TokenReference, type TokenRow } from "@/docs/components/TokenReference";
 import { WexField, WexInput } from "@/components/wex";
+
+// Token mappings for WexField
+const fieldTokens: TokenRow[] = [
+  { element: "Label", property: "Text", token: "--foreground" },
+  { element: "Description", property: "Text", token: "--muted-foreground" },
+  { element: "Error", property: "Text", token: "--destructive" },
+  { element: "Required (*)", property: "Color", token: "--destructive" },
+];
 
 export default function FieldPage() {
   return (
@@ -118,6 +127,8 @@ export default function FieldPage() {
 </WexField.Group>`}
         />
       </Section>
+
+      <TokenReference tokens={fieldTokens} className="mt-12" />
     </ComponentPage>
   );
 }

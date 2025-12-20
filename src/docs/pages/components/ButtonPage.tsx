@@ -3,8 +3,37 @@ import { Section } from "@/docs/components/Section";
 import { ExampleCard } from "@/docs/components/ExampleCard";
 import { CodeBlock } from "@/docs/components/CodeBlock";
 import { Guidance } from "@/docs/components/ProseBlock";
+import { TokenReference, type TokenRow } from "@/docs/components/TokenReference";
 import { WexButton } from "@/components/wex";
 import { Loader2, Mail, Plus } from "lucide-react";
+
+// Token mappings for WexButton variants
+const buttonTokens: TokenRow[] = [
+  // Primary
+  { element: "Primary", property: "Background", token: "--primary" },
+  { element: "Primary", property: "Text", token: "--primary-foreground" },
+  { element: "Primary", property: "Hover", token: "--primary-hover" },
+  // Secondary
+  { element: "Secondary", property: "Background", token: "--secondary" },
+  { element: "Secondary", property: "Text", token: "--secondary-foreground" },
+  { element: "Secondary", property: "Hover", token: "--secondary-hover" },
+  // Ghost
+  { element: "Ghost", property: "Background", token: "(transparent)" },
+  { element: "Ghost", property: "Hover Background", token: "--accent" },
+  { element: "Ghost", property: "Hover Text", token: "--accent-foreground" },
+  // Destructive
+  { element: "Destructive", property: "Background", token: "--destructive" },
+  { element: "Destructive", property: "Text", token: "--destructive-foreground" },
+  { element: "Destructive", property: "Hover", token: "--destructive-hover" },
+  // Outline
+  { element: "Outline", property: "Background", token: "--background" },
+  { element: "Outline", property: "Border", token: "--input" },
+  { element: "Outline", property: "Hover Background", token: "--accent" },
+  // Focus Ring (all variants)
+  { element: "Focus Ring", property: "Color", token: "--ring" },
+  { element: "Focus Ring", property: "Width", token: "--wex-focus-ring-width" },
+  { element: "Focus Ring", property: "Offset", token: "--wex-focus-ring-offset" },
+];
 
 export default function ButtonPage() {
   return (
@@ -192,6 +221,8 @@ import { Mail, Plus, Loader2 } from "lucide-react";
           </ul>
         </div>
       </Section>
+
+      <TokenReference tokens={buttonTokens} className="mt-12" />
     </ComponentPage>
   );
 }

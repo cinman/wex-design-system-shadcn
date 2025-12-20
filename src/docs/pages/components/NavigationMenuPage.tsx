@@ -3,8 +3,19 @@ import { Section } from "@/docs/components/Section";
 import { ExampleCard } from "@/docs/components/ExampleCard";
 import { CodeBlock } from "@/docs/components/CodeBlock";
 import { Guidance } from "@/docs/components/ProseBlock";
+import { TokenReference, type TokenRow } from "@/docs/components/TokenReference";
 import { WexNavigationMenu, wexNavigationMenuTriggerStyle } from "@/components/wex";
 import { cn } from "@/lib/utils";
+
+// Token mappings for WexNavigationMenu
+const navigationMenuTokens: TokenRow[] = [
+  { element: "Trigger", property: "Background", token: "--background" },
+  { element: "Trigger (hover)", property: "Background", token: "--accent" },
+  { element: "Trigger (hover)", property: "Text", token: "--accent-foreground" },
+  { element: "Content", property: "Background", token: "--popover" },
+  { element: "Content", property: "Border", token: "--border" },
+  { element: "Indicator", property: "Color", token: "--muted-foreground" },
+];
 
 export default function NavigationMenuPage() {
   return (
@@ -181,6 +192,8 @@ export default function NavigationMenuPage() {
 </WexNavigationMenu>`}
         />
       </Section>
+
+      <TokenReference tokens={navigationMenuTokens} className="mt-12" />
     </ComponentPage>
   );
 }

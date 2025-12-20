@@ -3,9 +3,22 @@ import { ComponentPage } from "@/docs/components/ComponentPage";
 import { Section } from "@/docs/components/Section";
 import { ExampleCard } from "@/docs/components/ExampleCard";
 import { CodeBlock } from "@/docs/components/CodeBlock";
+import { TokenReference, type TokenRow } from "@/docs/components/TokenReference";
 import { WexCalendar } from "@/components/wex";
 import type { DateRange } from "react-day-picker";
 import { addDays } from "date-fns";
+
+// Token mappings for WexCalendar
+const calendarTokens: TokenRow[] = [
+  { element: "Container", property: "Background", token: "--background" },
+  { element: "Day", property: "Text", token: "--foreground" },
+  { element: "Day (hover)", property: "Background", token: "--accent" },
+  { element: "Day (selected)", property: "Background", token: "--primary" },
+  { element: "Day (selected)", property: "Text", token: "--primary-foreground" },
+  { element: "Day (outside)", property: "Text", token: "--muted-foreground" },
+  { element: "Day (disabled)", property: "Opacity", token: "50%" },
+  { element: "Navigation", property: "Color", token: "--muted-foreground" },
+];
 
 export default function CalendarPage() {
   const [singleDate, setSingleDate] = React.useState<Date | undefined>(new Date());
@@ -192,6 +205,8 @@ const [range, setRange] = useState<DateRange | undefined>();
 />`}
         />
       </Section>
+
+      <TokenReference tokens={calendarTokens} className="mt-12" />
     </ComponentPage>
   );
 }

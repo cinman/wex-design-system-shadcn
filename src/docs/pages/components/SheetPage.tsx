@@ -4,7 +4,18 @@ import { Section } from "@/docs/components/Section";
 import { ExampleCard } from "@/docs/components/ExampleCard";
 import { CodeBlock } from "@/docs/components/CodeBlock";
 import { Guidance } from "@/docs/components/ProseBlock";
+import { TokenReference, type TokenRow } from "@/docs/components/TokenReference";
 import { WexSheet, WexButton, WexInput, WexLabel } from "@/components/wex";
+
+// Token mappings for WexSheet
+const sheetTokens: TokenRow[] = [
+  { element: "Overlay", property: "Background", token: "--background (80% opacity)" },
+  { element: "Content", property: "Background", token: "--background" },
+  { element: "Content", property: "Border", token: "--border" },
+  { element: "Title", property: "Text", token: "--foreground" },
+  { element: "Description", property: "Text", token: "--muted-foreground" },
+  { element: "Close Button", property: "Color", token: "--muted-foreground" },
+];
 
 export default function SheetPage() {
   const [open, setOpen] = React.useState(false);
@@ -244,6 +255,8 @@ const [open, setOpen] = useState(false);
 </WexSheet>`}
         />
       </Section>
+
+      <TokenReference tokens={sheetTokens} className="mt-12" />
     </ComponentPage>
   );
 }

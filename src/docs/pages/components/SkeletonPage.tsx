@@ -2,7 +2,14 @@ import { ComponentPage } from "@/docs/components/ComponentPage";
 import { Section } from "@/docs/components/Section";
 import { ExampleCard } from "@/docs/components/ExampleCard";
 import { CodeBlock } from "@/docs/components/CodeBlock";
+import { TokenReference, type TokenRow } from "@/docs/components/TokenReference";
 import { WexSkeleton } from "@/components/wex";
+
+// Token mappings for WexSkeleton
+const skeletonTokens: TokenRow[] = [
+  { element: "Skeleton", property: "Background", token: "--muted" },
+  { element: "Animation", property: "Type", token: "pulse (CSS animation)" },
+];
 
 export default function SkeletonPage() {
   return (
@@ -77,6 +84,8 @@ export default function SkeletonPage() {
 <WexSkeleton className="h-12 w-12 rounded-full" />`}
         />
       </Section>
+
+      <TokenReference tokens={skeletonTokens} className="mt-12" />
     </ComponentPage>
   );
 }

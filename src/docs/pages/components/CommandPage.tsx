@@ -3,8 +3,20 @@ import { ComponentPage } from "@/docs/components/ComponentPage";
 import { Section } from "@/docs/components/Section";
 import { ExampleCard } from "@/docs/components/ExampleCard";
 import { CodeBlock } from "@/docs/components/CodeBlock";
+import { TokenReference, type TokenRow } from "@/docs/components/TokenReference";
 import { WexCommand, WexButton } from "@/components/wex";
 import { Calculator, Calendar, CreditCard, Settings, Smile, User } from "lucide-react";
+
+// Token mappings for WexCommand
+const commandTokens: TokenRow[] = [
+  { element: "Container", property: "Background", token: "--popover" },
+  { element: "Container", property: "Border", token: "--border" },
+  { element: "Input", property: "Border", token: "--border" },
+  { element: "Item", property: "Text", token: "--popover-foreground" },
+  { element: "Item (selected)", property: "Background", token: "--accent" },
+  { element: "Item (selected)", property: "Text", token: "--accent-foreground" },
+  { element: "Group Heading", property: "Text", token: "--muted-foreground" },
+];
 
 export default function CommandPage() {
   const [open, setOpen] = React.useState(false);
@@ -161,6 +173,8 @@ const [open, setOpen] = useState(false);
 </WexCommand.Dialog>`}
         />
       </Section>
+
+      <TokenReference tokens={commandTokens} className="mt-12" />
     </ComponentPage>
   );
 }

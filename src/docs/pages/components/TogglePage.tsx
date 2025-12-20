@@ -4,8 +4,18 @@ import { Section } from "@/docs/components/Section";
 import { ExampleCard } from "@/docs/components/ExampleCard";
 import { CodeBlock } from "@/docs/components/CodeBlock";
 import { Guidance } from "@/docs/components/ProseBlock";
+import { TokenReference, type TokenRow } from "@/docs/components/TokenReference";
 import { WexToggle } from "@/components/wex";
 import { Bold, Italic, Underline, AlignLeft, AlignCenter, AlignRight, Star } from "lucide-react";
+
+// Token mappings for WexToggle
+const toggleTokens: TokenRow[] = [
+  { element: "Toggle", property: "Background", token: "transparent" },
+  { element: "Toggle (hover)", property: "Background", token: "--muted" },
+  { element: "Toggle (pressed)", property: "Background", token: "--accent" },
+  { element: "Toggle (pressed)", property: "Text", token: "--accent-foreground" },
+  { element: "Focus Ring", property: "Color", token: "--ring" },
+];
 
 export default function TogglePage() {
   const [isPressed, setIsPressed] = useState(false);
@@ -236,6 +246,8 @@ const [pressed, setPressed] = useState(false);
 </WexToggle>`}
         />
       </Section>
+
+      <TokenReference tokens={toggleTokens} className="mt-12" />
     </ComponentPage>
   );
 }

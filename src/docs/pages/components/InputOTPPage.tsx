@@ -2,7 +2,17 @@ import { ComponentPage } from "@/docs/components/ComponentPage";
 import { Section } from "@/docs/components/Section";
 import { ExampleCard } from "@/docs/components/ExampleCard";
 import { CodeBlock } from "@/docs/components/CodeBlock";
+import { TokenReference, type TokenRow } from "@/docs/components/TokenReference";
 import { WexInputOTP } from "@/components/wex";
+
+// Token mappings for WexInputOTP
+const inputOTPTokens: TokenRow[] = [
+  { element: "Slot", property: "Border", token: "--input" },
+  { element: "Slot", property: "Background", token: "--background" },
+  { element: "Slot (active)", property: "Border", token: "--ring" },
+  { element: "Caret", property: "Color", token: "--foreground" },
+  { element: "Disabled", property: "Opacity", token: "50%" },
+];
 
 export default function InputOTPPage() {
   return (
@@ -58,6 +68,8 @@ export default function InputOTPPage() {
 </WexInputOTP>`}
         />
       </Section>
+
+      <TokenReference tokens={inputOTPTokens} className="mt-12" />
     </ComponentPage>
   );
 }

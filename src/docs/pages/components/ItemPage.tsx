@@ -2,8 +2,18 @@ import { ComponentPage } from "@/docs/components/ComponentPage";
 import { Section } from "@/docs/components/Section";
 import { ExampleCard } from "@/docs/components/ExampleCard";
 import { CodeBlock } from "@/docs/components/CodeBlock";
+import { TokenReference, type TokenRow } from "@/docs/components/TokenReference";
 import { WexItem, WexButton, WexAvatar } from "@/components/wex";
 import { MoreHorizontal } from "lucide-react";
+
+// Token mappings for WexItem
+const itemTokens: TokenRow[] = [
+  { element: "Container", property: "Background", token: "--background" },
+  { element: "Container (hover)", property: "Background", token: "--accent" },
+  { element: "Title", property: "Text", token: "--foreground" },
+  { element: "Description", property: "Text", token: "--muted-foreground" },
+  { element: "Separator", property: "Color", token: "--border" },
+];
 
 export default function ItemPage() {
   return (
@@ -135,6 +145,8 @@ export default function ItemPage() {
 </WexItem.Group>`}
         />
       </Section>
+
+      <TokenReference tokens={itemTokens} className="mt-12" />
     </ComponentPage>
   );
 }

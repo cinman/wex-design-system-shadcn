@@ -2,7 +2,20 @@ import { ComponentPage } from "@/docs/components/ComponentPage";
 import { Section } from "@/docs/components/Section";
 import { ExampleCard } from "@/docs/components/ExampleCard";
 import { CodeBlock } from "@/docs/components/CodeBlock";
+import { TokenReference, type TokenRow } from "@/docs/components/TokenReference";
 import { WexMenubar } from "@/components/wex";
+
+// Token mappings for WexMenubar
+const menubarTokens: TokenRow[] = [
+  { element: "Bar", property: "Background", token: "--background" },
+  { element: "Bar", property: "Border", token: "--border" },
+  { element: "Trigger", property: "Text", token: "--foreground" },
+  { element: "Trigger (active)", property: "Background", token: "--accent" },
+  { element: "Content", property: "Background", token: "--popover" },
+  { element: "Content", property: "Border", token: "--border" },
+  { element: "Item (focus)", property: "Background", token: "--accent" },
+  { element: "Separator", property: "Color", token: "--muted" },
+];
 
 export default function MenubarPage() {
   return (
@@ -115,6 +128,8 @@ export default function MenubarPage() {
 </WexMenubar>`}
         />
       </Section>
+
+      <TokenReference tokens={menubarTokens} className="mt-12" />
     </ComponentPage>
   );
 }
