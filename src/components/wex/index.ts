@@ -81,7 +81,8 @@ export { WexToggleGroup } from "./wex-toggle-group";
 export { WexButtonGroup } from "./wex-button-group";
 
 // ===== FEEDBACK COMPONENTS =====
-export { WexToaster, wexToast } from "./wex-sonner";
+export { WexToaster } from "./wex-sonner";
+export { wexToast, type WexToastOptions } from "./wex-toast";
 
 // ===== DATA VISUALIZATION =====
 export { WexChart, type WexChartConfig } from "./wex-chart";

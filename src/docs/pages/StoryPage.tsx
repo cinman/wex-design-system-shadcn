@@ -153,8 +153,8 @@ export default function StoryPage() {
               away. If something fails, it shows up as a fail.
             </p>
             <p>
-              Given the timeline (roughly ten hours total) and the fact that
-              this was driven by a single former developer using AI as a
+              Given the timeline (roughly 16 hours total) and the fact that
+              this was driven by a single engineer using AI as a
               collaborator, the amount of ground covered is significant—but
               there's still work to do, especially around accessibility.
             </p>
