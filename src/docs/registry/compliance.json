@@ -8,7 +8,7 @@
       "light",
       "dark"
     ],
-    "lastUpdated": "2025-12-20T17:38:54.308Z",
+    "lastUpdated": "2025-12-20T19:05:07.219Z",
     "totalComponents": 54
   },
   "accordion": {
@@ -16,7 +16,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-20T17:37:59.349Z",
+    "testedAt": "2025-12-20T19:04:11.380Z",
     "scope": "component-examples-only",
     "examplesFound": 3,
     "scenariosTested": [
@@ -47,7 +47,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-20T17:38:07.990Z",
+    "testedAt": "2025-12-20T19:04:20.757Z",
     "scope": "component-examples-only",
     "examplesFound": 3,
     "scenariosTested": [
@@ -74,39 +74,41 @@
     }
   },
   "alert": {
-    "status": "fail",
-    "violations": 4,
+    "status": "partial",
+    "levelAchieved": "A",
+    "violations": 2,
     "issues": [
       "color-contrast"
     ],
-    "testedAt": "2025-12-20T17:38:04.547Z",
+    "testedAt": "2025-12-20T19:04:17.457Z",
     "scope": "component-examples-only",
-    "examplesFound": 6,
+    "examplesFound": 8,
     "scenariosTested": [
       "example-_r_1_",
       "default",
       "destructive",
-      "success-warning-info",
+      "success",
+      "warning",
+      "info",
       "with-icons",
       "without-title"
     ],
     "subject": "Component examples for Alert",
     "modes": {
       "light": {
-        "status": "fail",
-        "violations": 1,
-        "issues": [
-          "color-contrast"
-        ],
-        "examplesFound": 6
+        "status": "pass",
+        "levelAchieved": "AA",
+        "violations": 0,
+        "issues": [],
+        "examplesFound": 8
       },
       "dark": {
         "status": "fail",
-        "violations": 3,
+        "violations": 2,
         "issues": [
           "color-contrast"
         ],
-        "examplesFound": 6
+        "examplesFound": 8
       }
     }
   },
@@ -115,7 +117,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-20T17:38:11.936Z",
+    "testedAt": "2025-12-20T19:04:24.519Z",
     "scope": "component-examples-only",
     "examplesFound": 4,
     "scenariosTested": [
@@ -147,7 +149,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-20T17:38:16.415Z",
+    "testedAt": "2025-12-20T19:04:29.074Z",
     "scope": "component-examples-only",
     "examplesFound": 4,
     "scenariosTested": [
@@ -175,21 +177,24 @@
     }
   },
   "badge": {
-    "status": "fail",
-    "violations": 7,
+    "status": "partial",
+    "levelAchieved": "A",
+    "violations": 5,
     "issues": [
       "color-contrast"
     ],
-    "testedAt": "2025-12-20T17:38:22.848Z",
+    "testedAt": "2025-12-20T19:04:36.347Z",
     "scope": "component-examples-only",
-    "examplesFound": 9,
+    "examplesFound": 11,
     "scenariosTested": [
       "example-_r_1_",
       "default",
       "secondary",
       "outline",
       "destructive",
-      "success-warning-info",
+      "success",
+      "warning",
+      "info",
       "interactive-badge",
       "with-count",
       "grouped-badges"
@@ -197,20 +202,19 @@
     "subject": "Component examples for Badge",
     "modes": {
       "light": {
-        "status": "fail",
-        "violations": 1,
-        "issues": [
-          "color-contrast"
-        ],
-        "examplesFound": 9
+        "status": "pass",
+        "levelAchieved": "AA",
+        "violations": 0,
+        "issues": [],
+        "examplesFound": 11
       },
       "dark": {
         "status": "fail",
-        "violations": 6,
+        "violations": 5,
         "issues": [
           "color-contrast"
         ],
-        "examplesFound": 9
+        "examplesFound": 11
       }
     }
   },
@@ -219,7 +223,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-20T17:38:25.880Z",
+    "testedAt": "2025-12-20T19:04:39.389Z",
     "scope": "component-examples-only",
     "examplesFound": 2,
     "scenariosTested": [
@@ -249,7 +253,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-20T17:38:37.876Z",
+    "testedAt": "2025-12-20T19:04:51.213Z",
     "scope": "component-examples-only",
     "examplesFound": 4,
     "scenariosTested": [
@@ -283,7 +287,7 @@
     "issues": [
       "color-contrast"
     ],
-    "testedAt": "2025-12-20T17:38:33.949Z",
+    "testedAt": "2025-12-20T19:04:47.175Z",
     "scope": "component-examples-only",
     "examplesFound": 12,
     "scenariosTested": [
@@ -326,7 +330,7 @@
     "issues": [
       "color-contrast"
     ],
-    "testedAt": "2025-12-20T17:38:48.290Z",
+    "testedAt": "2025-12-20T19:05:01.296Z",
     "scope": "component-examples-only",
     "examplesFound": 8,
     "scenariosTested": [
@@ -364,7 +368,7 @@
     "issues": [
       "color-contrast"
     ],
-    "testedAt": "2025-12-20T17:38:54.074Z",
+    "testedAt": "2025-12-20T19:05:07.061Z",
     "scope": "component-examples-only",
     "examplesFound": 9,
     "scenariosTested": [
@@ -403,7 +407,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-20T17:37:58.282Z",
+    "testedAt": "2025-12-20T19:04:10.285Z",
     "scope": "component-examples-only",
     "examplesFound": 1,
     "scenariosTested": [
@@ -433,7 +437,7 @@
     "issues": [
       "svg-img-alt"
     ],
-    "testedAt": "2025-12-20T17:38:03.370Z",
+    "testedAt": "2025-12-20T19:04:15.237Z",
     "scope": "component-examples-only",
     "examplesFound": 5,
     "scenariosTested": [
@@ -468,7 +472,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-20T17:38:09.474Z",
+    "testedAt": "2025-12-20T19:04:21.086Z",
     "scope": "component-examples-only",
     "examplesFound": 8,
     "scenariosTested": [
@@ -504,7 +508,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-20T17:38:11.877Z",
+    "testedAt": "2025-12-20T19:04:23.442Z",
     "scope": "component-examples-only",
     "examplesFound": 1,
     "scenariosTested": [
@@ -534,7 +538,7 @@
     "issues": [
       "aria-required-children"
     ],
-    "testedAt": "2025-12-20T17:38:14.964Z",
+    "testedAt": "2025-12-20T19:04:26.399Z",
     "scope": "component-examples-only",
     "examplesFound": 2,
     "scenariosTested": [
@@ -566,7 +570,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-20T17:38:17.819Z",
+    "testedAt": "2025-12-20T19:04:29.232Z",
     "scope": "component-examples-only",
     "examplesFound": 2,
     "scenariosTested": [
@@ -596,7 +600,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-20T17:38:22.827Z",
+    "testedAt": "2025-12-20T19:04:34.148Z",
     "scope": "component-examples-only",
     "examplesFound": 6,
     "scenariosTested": [
@@ -630,7 +634,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-20T17:38:27.523Z",
+    "testedAt": "2025-12-20T19:04:38.583Z",
     "scope": "component-examples-only",
     "examplesFound": 5,
     "scenariosTested": [
@@ -663,7 +667,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-20T17:38:32.973Z",
+    "testedAt": "2025-12-20T19:04:43.972Z",
     "scope": "component-examples-only",
     "examplesFound": 7,
     "scenariosTested": [
@@ -700,7 +704,7 @@
     "issues": [
       "color-contrast"
     ],
-    "testedAt": "2025-12-20T17:38:36.357Z",
+    "testedAt": "2025-12-20T19:04:47.393Z",
     "scope": "component-examples-only",
     "examplesFound": 3,
     "scenariosTested": [
@@ -734,7 +738,7 @@
     "issues": [
       "color-contrast"
     ],
-    "testedAt": "2025-12-20T17:38:40.852Z",
+    "testedAt": "2025-12-20T19:04:52.059Z",
     "scope": "component-examples-only",
     "examplesFound": 5,
     "scenariosTested": [
@@ -770,7 +774,7 @@
     "issues": [
       "color-contrast"
     ],
-    "testedAt": "2025-12-20T17:38:07.592Z",
+    "testedAt": "2025-12-20T19:04:19.423Z",
     "scope": "component-examples-only",
     "examplesFound": 18,
     "scenariosTested": [
@@ -819,7 +823,7 @@
     "issues": [
       "color-contrast"
     ],
-    "testedAt": "2025-12-20T17:38:12.118Z",
+    "testedAt": "2025-12-20T19:04:23.845Z",
     "scope": "component-examples-only",
     "examplesFound": 5,
     "scenariosTested": [
@@ -853,7 +857,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-20T17:38:27.088Z",
+    "testedAt": "2025-12-20T19:04:38.758Z",
     "scope": "component-examples-only",
     "examplesFound": 5,
     "scenariosTested": [
@@ -886,7 +890,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-20T17:38:29.501Z",
+    "testedAt": "2025-12-20T19:04:41.196Z",
     "scope": "component-examples-only",
     "examplesFound": 1,
     "scenariosTested": [
@@ -915,7 +919,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-20T17:38:22.678Z",
+    "testedAt": "2025-12-20T19:04:34.219Z",
     "scope": "component-examples-only",
     "examplesFound": 17,
     "scenariosTested": [
@@ -960,7 +964,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-20T17:38:33.432Z",
+    "testedAt": "2025-12-20T19:04:45.126Z",
     "scope": "component-examples-only",
     "examplesFound": 4,
     "scenariosTested": [
@@ -992,7 +996,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-20T17:38:37.303Z",
+    "testedAt": "2025-12-20T19:04:48.967Z",
     "scope": "component-examples-only",
     "examplesFound": 4,
     "scenariosTested": [
@@ -1024,7 +1028,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-20T17:38:40.635Z",
+    "testedAt": "2025-12-20T19:04:52.354Z",
     "scope": "component-examples-only",
     "examplesFound": 3,
     "scenariosTested": [
@@ -1055,7 +1059,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-20T17:38:43.407Z",
+    "testedAt": "2025-12-20T19:04:55.088Z",
     "scope": "component-examples-only",
     "examplesFound": 2,
     "scenariosTested": [
@@ -1085,7 +1089,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-20T17:38:46.212Z",
+    "testedAt": "2025-12-20T19:04:57.855Z",
     "scope": "component-examples-only",
     "examplesFound": 2,
     "scenariosTested": [
@@ -1115,7 +1119,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-20T17:38:49.068Z",
+    "testedAt": "2025-12-20T19:05:00.582Z",
     "scope": "component-examples-only",
     "examplesFound": 2,
     "scenariosTested": [
@@ -1145,7 +1149,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-20T17:38:01.482Z",
+    "testedAt": "2025-12-20T19:04:13.500Z",
     "scope": "component-examples-only",
     "examplesFound": 7,
     "scenariosTested": [
@@ -1182,7 +1186,7 @@
     "issues": [
       "color-contrast"
     ],
-    "testedAt": "2025-12-20T17:38:06.482Z",
+    "testedAt": "2025-12-20T19:04:18.425Z",
     "scope": "component-examples-only",
     "examplesFound": 6,
     "scenariosTested": [
@@ -1217,7 +1221,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-20T17:38:08.942Z",
+    "testedAt": "2025-12-20T19:04:20.801Z",
     "scope": "component-examples-only",
     "examplesFound": 1,
     "scenariosTested": [
@@ -1247,7 +1251,7 @@
     "issues": [
       "aria-allowed-attr"
     ],
-    "testedAt": "2025-12-20T17:38:11.307Z",
+    "testedAt": "2025-12-20T19:04:23.179Z",
     "scope": "component-examples-only",
     "examplesFound": 1,
     "scenariosTested": [
@@ -1278,7 +1282,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-20T17:38:13.655Z",
+    "testedAt": "2025-12-20T19:04:25.520Z",
     "scope": "component-examples-only",
     "examplesFound": 1,
     "scenariosTested": [
@@ -1307,7 +1311,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-20T17:38:19.577Z",
+    "testedAt": "2025-12-20T19:04:31.386Z",
     "scope": "component-examples-only",
     "examplesFound": 8,
     "scenariosTested": [
@@ -1343,7 +1347,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-20T17:38:22.889Z",
+    "testedAt": "2025-12-20T19:04:34.795Z",
     "scope": "component-examples-only",
     "examplesFound": 3,
     "scenariosTested": [
@@ -1374,7 +1378,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-20T17:38:26.999Z",
+    "testedAt": "2025-12-20T19:04:38.685Z",
     "scope": "component-examples-only",
     "examplesFound": 4,
     "scenariosTested": [
@@ -1406,7 +1410,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-20T17:38:30.114Z",
+    "testedAt": "2025-12-20T19:04:41.792Z",
     "scope": "component-examples-only",
     "examplesFound": 2,
     "scenariosTested": [
@@ -1436,7 +1440,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-20T17:38:33.396Z",
+    "testedAt": "2025-12-20T19:04:45.051Z",
     "scope": "component-examples-only",
     "examplesFound": 3,
     "scenariosTested": [
@@ -1468,7 +1472,7 @@
     "issues": [
       "aria-input-field-name"
     ],
-    "testedAt": "2025-12-20T17:38:39.981Z",
+    "testedAt": "2025-12-20T19:04:51.679Z",
     "scope": "component-examples-only",
     "examplesFound": 9,
     "scenariosTested": [
@@ -1507,7 +1511,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-20T17:38:00.552Z",
+    "testedAt": "2025-12-20T19:04:12.749Z",
     "scope": "component-examples-only",
     "examplesFound": 5,
     "scenariosTested": [
@@ -1540,7 +1544,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-20T17:38:04.524Z",
+    "testedAt": "2025-12-20T19:04:16.603Z",
     "scope": "component-examples-only",
     "examplesFound": 4,
     "scenariosTested": [
@@ -1572,7 +1576,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-20T17:38:09.498Z",
+    "testedAt": "2025-12-20T19:04:21.392Z",
     "scope": "component-examples-only",
     "examplesFound": 6,
     "scenariosTested": [
@@ -1608,7 +1612,7 @@
     "issues": [
       "color-contrast"
     ],
-    "testedAt": "2025-12-20T17:38:13.159Z",
+    "testedAt": "2025-12-20T19:04:24.900Z",
     "scope": "component-examples-only",
     "examplesFound": 3,
     "scenariosTested": [
@@ -1642,7 +1646,7 @@
     "issues": [
       "color-contrast"
     ],
-    "testedAt": "2025-12-20T17:38:17.810Z",
+    "testedAt": "2025-12-20T19:04:29.626Z",
     "scope": "component-examples-only",
     "examplesFound": 5,
     "scenariosTested": [
@@ -1676,7 +1680,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-20T17:38:25.410Z",
+    "testedAt": "2025-12-20T19:04:37.007Z",
     "scope": "component-examples-only",
     "examplesFound": 11,
     "scenariosTested": [
@@ -1715,7 +1719,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-20T17:38:31.860Z",
+    "testedAt": "2025-12-20T19:04:43.271Z",
     "scope": "component-examples-only",
     "examplesFound": 9,
     "scenariosTested": [
@@ -1752,7 +1756,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-20T17:38:43.377Z",
+    "testedAt": "2025-12-20T19:04:54.730Z",
     "scope": "component-examples-only",
     "examplesFound": 3,
     "scenariosTested": [
@@ -1783,7 +1787,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-20T17:38:40.018Z",
+    "testedAt": "2025-12-20T19:04:51.448Z",
     "scope": "component-examples-only",
     "examplesFound": 12,
     "scenariosTested": [
@@ -1823,7 +1827,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-20T17:38:47.085Z",
+    "testedAt": "2025-12-20T19:04:58.398Z",
     "scope": "component-examples-only",
     "examplesFound": 4,
     "scenariosTested": [

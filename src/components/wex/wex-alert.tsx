@@ -7,11 +7,6 @@ import { cn } from "@/lib/utils";
  *
  * Displays important messages to users with semantic intent variants.
  *
- * VARIANT GAPS:
- * - success: BLOCKED - requires --wex-success token (design decision required)
- * - warning: BLOCKED - requires --wex-warning token (design decision required)
- * - info: BLOCKED - requires --wex-info token (design decision required)
- *
  * @example
  * <WexAlert intent="default">
  *   <WexAlert.Title>Heads up!</WexAlert.Title>
@@ -27,9 +22,12 @@ const wexAlertVariants = cva(
         default: "bg-background text-foreground",
         destructive:
           "border-destructive/50 text-destructive dark:border-destructive [&>svg]:text-destructive",
-        // success: BLOCKED - requires --wex-success token
-        // warning: BLOCKED - requires --wex-warning token
-        // info: BLOCKED - requires --wex-info token
+        success:
+          "border-success/50 bg-success/10 text-success dark:border-success [&>svg]:text-success",
+        warning:
+          "border-warning/50 bg-warning/10 text-warning-foreground dark:border-warning [&>svg]:text-warning",
+        info:
+          "border-info/50 bg-info/10 text-info dark:border-info [&>svg]:text-info",
       },
     },
     defaultVariants: {

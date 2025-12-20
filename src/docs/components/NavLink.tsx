@@ -37,10 +37,10 @@ export const DocsNavLink = React.forwardRef<HTMLAnchorElement, DocsNavLinkProps>
             level === 3 && "px-3 py-1.5 pl-5", // indented for hierarchy
             // Text color
             "text-foreground",
-            // Hover state
-            "hover:bg-accent hover:text-accent-foreground",
-            // Active state
-            isActive && "bg-accent text-accent-foreground",
+            // Hover state - light blue tint matching brand
+            "hover:bg-primary/10 hover:text-primary",
+            // Active state - slightly more prominent blue
+            isActive && "bg-primary/15 text-primary",
             isActive && level === 2 && "font-semibold",
             isActive && level === 3 && "font-medium",
             // Focus ring - matches WexButton pattern

@@ -4,7 +4,7 @@ import { ExampleCard } from "@/docs/components/ExampleCard";
 import { CodeBlock } from "@/docs/components/CodeBlock";
 import { Guidance } from "@/docs/components/ProseBlock";
 import { WexAlert } from "@/components/wex";
-import { AlertCircle, Info, Terminal, AlertTriangle } from "lucide-react";
+import { AlertCircle, Info, Terminal, AlertTriangle, CheckCircle } from "lucide-react";
 
 export default function AlertPage() {
   return (
@@ -53,17 +53,34 @@ export default function AlertPage() {
             </WexAlert>
           </ExampleCard>
 
-          <ExampleCard 
-            title="Success / Warning / Info" 
-            description="BLOCKED: Requires design decision"
-          >
-            <div className="max-w-md p-4 border border-dashed rounded-lg opacity-50">
-              <p className="text-sm text-muted-foreground">
-                Success, warning, and info intents require additional WEX tokens 
-                (--wex-success, --wex-warning, --wex-info) that are not yet defined.
-                Contact the design team to define these semantic colors.
-              </p>
-            </div>
+          <ExampleCard title="Success" description="Use for positive outcomes or confirmations.">
+            <WexAlert intent="success" className="max-w-md">
+              <CheckCircle className="h-4 w-4" />
+              <WexAlert.Title>Success</WexAlert.Title>
+              <WexAlert.Description>
+                Your changes have been saved successfully.
+              </WexAlert.Description>
+            </WexAlert>
+          </ExampleCard>
+
+          <ExampleCard title="Warning" description="Use for cautionary messages that need attention.">
+            <WexAlert intent="warning" className="max-w-md">
+              <AlertTriangle className="h-4 w-4" />
+              <WexAlert.Title>Warning</WexAlert.Title>
+              <WexAlert.Description>
+                Your session will expire in 5 minutes. Save your work.
+              </WexAlert.Description>
+            </WexAlert>
+          </ExampleCard>
+
+          <ExampleCard title="Info" description="Use for neutral informational messages.">
+            <WexAlert intent="info" className="max-w-md">
+              <Info className="h-4 w-4" />
+              <WexAlert.Title>Information</WexAlert.Title>
+              <WexAlert.Description>
+                A new version is available. Refresh to update.
+              </WexAlert.Description>
+            </WexAlert>
           </ExampleCard>
         </div>
       </Section>
@@ -157,7 +174,7 @@ export default function AlertPage() {
       <Section title="Usage">
         <CodeBlock
           code={`import { WexAlert } from "@/components/wex";
-import { Info, AlertCircle } from "lucide-react";
+import { Info, AlertCircle, CheckCircle, AlertTriangle } from "lucide-react";
 
 // Default alert with icon
 <WexAlert>
@@ -172,25 +189,35 @@ import { Info, AlertCircle } from "lucide-react";
 <WexAlert intent="destructive">
   <AlertCircle className="h-4 w-4" />
   <WexAlert.Title>Error</WexAlert.Title>
-  <WexAlert.Description>
-    Something went wrong.
-  </WexAlert.Description>
+  <WexAlert.Description>Something went wrong.</WexAlert.Description>
 </WexAlert>
 
-// Simple alert without title
-<WexAlert>
+// Success alert
+<WexAlert intent="success">
+  <CheckCircle className="h-4 w-4" />
+  <WexAlert.Title>Success</WexAlert.Title>
+  <WexAlert.Description>Your changes have been saved.</WexAlert.Description>
+</WexAlert>
+
+// Warning alert
+<WexAlert intent="warning">
+  <AlertTriangle className="h-4 w-4" />
+  <WexAlert.Title>Warning</WexAlert.Title>
+  <WexAlert.Description>This action cannot be undone.</WexAlert.Description>
+</WexAlert>
+
+// Info alert
+<WexAlert intent="info">
   <Info className="h-4 w-4" />
-  <WexAlert.Description>
-    Your preferences have been saved.
-  </WexAlert.Description>
+  <WexAlert.Title>Info</WexAlert.Title>
+  <WexAlert.Description>A new version is available.</WexAlert.Description>
 </WexAlert>`}
         />
         <div className="mt-4 text-sm text-muted-foreground">
           <p><strong>Props:</strong></p>
           <ul className="list-disc list-inside mt-2 space-y-1">
             <li>
-              <code className="bg-muted px-1 rounded">intent</code>: "default" | "destructive" 
-              (success/warning/info blocked - requires tokens)
+              <code className="bg-muted px-1 rounded">intent</code>: "default" | "destructive" | "success" | "warning" | "info"
             </li>
             <li>
               <code className="bg-muted px-1 rounded">className</code>: Additional CSS classes

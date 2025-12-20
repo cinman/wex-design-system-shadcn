@@ -16,6 +16,24 @@ export default function ChangelogPage() {
 
       <div className="space-y-8">
         <ChangelogEntry
+          version="0.8.0"
+          date="December 21, 2024"
+          title="Semantic Variants & Navigation"
+          changes={[
+            "Components: Added success, warning, and info intent variants to WexAlert",
+            "Components: Added success, warning, and info intent variants to WexBadge",
+            "Tokens: Unlocked semantic color tokens (success, warning, info) that were previously blocked",
+            "Docs: Updated AlertPage with live examples for all new intent variants",
+            "Docs: Updated BadgePage with live examples for all new intent variants",
+            "Navigation: Reorganized sidebar - moved Accessibility and Story to new 'About' section before Foundations",
+            "Navigation: Added visual separation between nav sections with border and accent indicator",
+            "Navigation: Changed hover/active states from gray to blue tint matching brand",
+            "Layout: Improved Section component with className prop support and better spacing",
+            "A11y: Known issue - dark mode Alert variants have color-contrast warnings (investigating)",
+          ]}
+        />
+
+        <ChangelogEntry
           version="0.7.0"
           date="December 20, 2024"
           title="Unit Test Suite"

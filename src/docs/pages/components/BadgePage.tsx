@@ -19,6 +19,9 @@ export default function BadgePage() {
             <WexBadge intent="secondary">Secondary</WexBadge>
             <WexBadge intent="outline">Outline</WexBadge>
             <WexBadge intent="destructive">Destructive</WexBadge>
+            <WexBadge intent="success">Success</WexBadge>
+            <WexBadge intent="warning">Warning</WexBadge>
+            <WexBadge intent="info">Info</WexBadge>
           </div>
         </ExampleCard>
       </Section>
@@ -41,16 +44,16 @@ export default function BadgePage() {
             <WexBadge intent="destructive">Destructive</WexBadge>
           </ExampleCard>
 
-          <ExampleCard 
-            title="Success / Warning / Info" 
-            description="BLOCKED: Requires design decision"
-          >
-            <div className="max-w-md p-4 border border-dashed rounded-lg opacity-50">
-              <p className="text-sm text-muted-foreground">
-                Success, warning, and info intents require additional WEX tokens 
-                (--wex-success, --wex-warning, --wex-info) that are not yet defined.
-              </p>
-            </div>
+          <ExampleCard title="Success" description="Use for positive states or confirmations.">
+            <WexBadge intent="success">Success</WexBadge>
+          </ExampleCard>
+
+          <ExampleCard title="Warning" description="Use for cautionary states that need attention.">
+            <WexBadge intent="warning">Warning</WexBadge>
+          </ExampleCard>
+
+          <ExampleCard title="Info" description="Use for neutral informational labels.">
+            <WexBadge intent="info">Info</WexBadge>
           </ExampleCard>
         </div>
       </Section>
@@ -111,6 +114,15 @@ export default function BadgePage() {
 // Destructive badge
 <WexBadge intent="destructive">Error</WexBadge>
 
+// Success badge
+<WexBadge intent="success">Success</WexBadge>
+
+// Warning badge
+<WexBadge intent="warning">Warning</WexBadge>
+
+// Info badge
+<WexBadge intent="info">Info</WexBadge>
+
 // With custom styling
 <WexBadge className="cursor-pointer">Click me</WexBadge>`}
         />
@@ -118,7 +130,7 @@ export default function BadgePage() {
           <p><strong>Props:</strong></p>
           <ul className="list-disc list-inside mt-2 space-y-1">
             <li>
-              <code className="bg-muted px-1 rounded">intent</code>: "default" | "secondary" | "outline" | "destructive"
+              <code className="bg-muted px-1 rounded">intent</code>: "default" | "secondary" | "outline" | "destructive" | "success" | "warning" | "info"
             </li>
             <li>
               <code className="bg-muted px-1 rounded">className</code>: Additional CSS classes

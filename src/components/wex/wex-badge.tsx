@@ -7,11 +7,6 @@ import { cn } from "@/lib/utils";
  *
  * Small status descriptor for UI elements with semantic intent variants.
  *
- * VARIANT GAPS:
- * - success: BLOCKED - requires --wex-success token (design decision required)
- * - warning: BLOCKED - requires --wex-warning token (design decision required)
- * - info: BLOCKED - requires --wex-info token (design decision required)
- *
  * @example
  * <WexBadge intent="default">New</WexBadge>
  * <WexBadge intent="destructive">Error</WexBadge>
@@ -29,9 +24,12 @@ const wexBadgeVariants = cva(
         destructive:
           "border-transparent bg-destructive text-destructive-foreground shadow hover:bg-destructive/80",
         outline: "text-foreground",
-        // success: BLOCKED - requires --wex-success token
-        // warning: BLOCKED - requires --wex-warning token
-        // info: BLOCKED - requires --wex-info token
+        success:
+          "border-transparent bg-success text-success-foreground shadow hover:bg-success/80",
+        warning:
+          "border-transparent bg-warning text-warning-foreground shadow hover:bg-warning/80",
+        info:
+          "border-transparent bg-info text-info-foreground shadow hover:bg-info/80",
       },
     },
     defaultVariants: {
