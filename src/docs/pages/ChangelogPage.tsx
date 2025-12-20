@@ -16,6 +16,22 @@ export default function ChangelogPage() {
 
       <div className="space-y-8">
         <ChangelogEntry
+          version="0.9.0"
+          date="December 21, 2024"
+          title="Contributing Components Guide"
+          changes={[
+            "Docs: Added CONTRIBUTING.md with step-by-step guide for creating WEX components",
+            "Docs: Added /contributing page under Resources with visual workflow documentation",
+            "Docs: Includes simple and compound component templates with CVA patterns",
+            "Docs: Technical requirements checklist referencing WEX_COMPONENT_RULES.md",
+            "Docs: Unit test template and validation commands",
+            "Docs: PR checklist for component submissions",
+            "Docs: RFC submission workflow for Design System Team approval",
+            "Navigation: Added Contributing link to Resources section",
+          ]}
+        />
+
+        <ChangelogEntry
           version="0.8.0"
           date="December 21, 2024"
           title="Semantic Variants & Navigation"
