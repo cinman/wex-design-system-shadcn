@@ -8,6 +8,9 @@
 
 import "@testing-library/jest-dom/vitest";
 
+// Mock Element.scrollIntoView (used by cmdk/Command component)
+Element.prototype.scrollIntoView = function () {};
+
 // Mock window.matchMedia for components that use theme detection
 Object.defineProperty(window, "matchMedia", {
   writable: true,

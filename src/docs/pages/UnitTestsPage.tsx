@@ -176,28 +176,28 @@ export default function UnitTestsPage() {
       </header>
 
       {/* Summary Stats */}
-      <Section title="Test Summary" className="mb-8">
-        <div className="flex items-center gap-2 mb-4 text-sm text-muted-foreground">
+      <Section title="Test Summary" className="mb-12">
+        <div className="flex items-center gap-2 mb-6 text-sm text-muted-foreground">
           <Clock className="h-4 w-4" />
           Last run: {testedAt}
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-          <WexCard className="text-center py-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
+          <WexCard className="text-center py-5">
             <p className="text-3xl font-bold text-foreground">{data.totals.tests}</p>
-            <p className="text-sm text-muted-foreground">Total Tests</p>
+            <p className="text-sm text-muted-foreground mt-1">Total Tests</p>
           </WexCard>
-          <WexCard className="text-center py-4">
+          <WexCard className="text-center py-5">
             <p className="text-3xl font-bold text-success">{data.totals.passed}</p>
-            <p className="text-sm text-muted-foreground">Passed</p>
+            <p className="text-sm text-muted-foreground mt-1">Passed</p>
           </WexCard>
-          <WexCard className="text-center py-4">
+          <WexCard className="text-center py-5">
             <p className="text-3xl font-bold text-destructive">{data.totals.failed}</p>
-            <p className="text-sm text-muted-foreground">Failed</p>
+            <p className="text-sm text-muted-foreground mt-1">Failed</p>
           </WexCard>
-          <WexCard className="text-center py-4">
+          <WexCard className="text-center py-5">
             <p className="text-3xl font-bold text-foreground">{data.totals.passRate}%</p>
-            <p className="text-sm text-muted-foreground">Pass Rate</p>
+            <p className="text-sm text-muted-foreground mt-1">Pass Rate</p>
           </WexCard>
         </div>
 
@@ -205,8 +205,8 @@ export default function UnitTestsPage() {
       </Section>
 
       {/* Category Breakdown */}
-      <Section title="Test Categories" className="mb-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <Section title="Test Categories" className="mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <CategoryCard 
             title="Components" 
             icon={Layers} 
@@ -226,7 +226,7 @@ export default function UnitTestsPage() {
       </Section>
 
       {/* Test Files */}
-      <Section title="Test Files" className="mb-8">
+      <Section title="Test Files" className="mb-12">
         <WexTabs defaultValue="components" className="w-full">
           <WexTabs.List className="mb-4">
             <WexTabs.Trigger value="components">
@@ -285,8 +285,8 @@ export default function UnitTestsPage() {
       </Section>
 
       {/* How to Run */}
-      <Section title="How to Run Tests">
-        <div className="space-y-4">
+      <Section title="How to Run Tests" className="mb-8">
+        <div className="space-y-6">
           <p className="text-muted-foreground">
             Run unit tests locally using the following commands:
           </p>
