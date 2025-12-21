@@ -16,6 +16,29 @@ export default function ChangelogPage() {
 
       <div className="space-y-8">
         <ChangelogEntry
+          version="0.15.0"
+          date="December 21, 2025"
+          title="Theme Builder V4 - Clean Rebuild with Two-Layer Architecture"
+          changes={[
+            "Architecture: Two distinct layers - Palette Ramps (mode-agnostic) and Semantic Tokens (mode-specific)",
+            "Palette Ramps: Set a 500 base color, system auto-generates full 50-900 ramp",
+            "Palette Ramps: Affects both light and dark modes (source of truth for colors)",
+            "Semantic Editor: Assign palette shades to semantic tokens per mode",
+            "Semantic Editor: Dropdown shows all available shades from all palettes",
+            "Semantic Editor: Light/Dark toggle switches which assignments you're editing",
+            "Cascade Display: Visual chain showing palette → semantic → component flow",
+            "Cascade Display: Lists all affected components including transparency variants",
+            "Live Preview: Real-time component updates with buttons, badges, progress, switches",
+            "Live Preview: Includes checkbox, radio, skeleton components",
+            "Left Nav: Inline palette swatches with mode-aware usage indicators",
+            "Left Nav: Dots on swatches show which shades are in use for current mode",
+            "Utils: Created ramp-generator.ts for 50-900 ramp generation from base color",
+            "UX: Clean workspace with Palette Ramps / Semantic Tokens view toggle",
+            "UX: Removed cluttered Palette/Semantic tabs from previous version",
+          ]}
+        />
+
+        <ChangelogEntry
           version="0.14.0"
           date="December 21, 2025"
           title="Theme Builder V4 - Simplified Navigation & Real-Time A11y"
