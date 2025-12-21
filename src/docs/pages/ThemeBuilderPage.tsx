@@ -169,6 +169,8 @@ export default function ThemeBuilderPage() {
           onSelectToken={handleSelectToken}
           assignments={assignments}
           onAssignmentChange={handleAssignmentChange}
+          setToken={setToken}
+          editMode={editMode}
           onExport={handleExport}
           onReset={() => setShowResetDialog(true)}
           hasUnsavedChanges={hasOverrides}
@@ -184,6 +186,14 @@ export default function ThemeBuilderPage() {
           onValueChange={
             selectedToken
               ? (value) => handleAssignmentChange(selectedToken, value)
+              : undefined
+          }
+          onRampChange={
+            selectedToken === "--wex-palette-ramps"
+              ? (rampName, hslValue) => {
+                  const token500 = `--wex-palette-${rampName}-500`;
+                  setToken(token500, hslValue, editMode);
+                }
               : undefined
           }
           fullWidth

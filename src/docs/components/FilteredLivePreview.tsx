@@ -39,6 +39,7 @@ import { PALETTE_RAMPS } from "@/docs/data/tokenRegistry";
 import { addDays } from "date-fns";
 import type { DateRange } from "react-day-picker";
 import { PaletteSwatchPicker, SwatchDisplay, formatPaletteValue } from "./PaletteSwatchPicker";
+import { hexToHSL, formatHSL, hslToHex, parseHSL } from "@/docs/utils/color-convert";
 
 // =============================================================================
 // EDIT CONTROL COMPONENT
@@ -94,6 +95,7 @@ export function FilteredLivePreview({
   selectedToken, 
   currentValue,
   onValueChange,
+  onRampChange,
   className,
   fullWidth = false,
 }: FilteredLivePreviewProps) {
@@ -113,12 +115,18 @@ export function FilteredLivePreview({
           <div className="flex items-center justify-between max-w-5xl mx-auto">
             <div>
               <h2 className="text-lg font-semibold">
-                {mapping ? mapping.label : "Live Preview"}
+                {selectedToken === "--wex-palette-ramps" 
+                  ? "Palette Ramps"
+                  : mapping 
+                    ? mapping.label 
+                    : "Live Preview"}
               </h2>
               <p className="text-sm text-muted-foreground">
-                {mapping 
-                  ? `${easyUsages.length} components, ${hardUsages.length} hover/focus states`
-                  : "Select a token from the left panel to see affected components"
+                {selectedToken === "--wex-palette-ramps"
+                  ? "Edit base colors for all palette ramps. Changes cascade to all shades."
+                  : mapping 
+                    ? `${easyUsages.length} components, ${hardUsages.length} hover/focus states`
+                    : "Select a token from the left panel to see affected components"
                 }
               </p>
             </div>
@@ -159,8 +167,18 @@ export function FilteredLivePreview({
             {selectedToken === "--wex-warning-foreground" && <WarningForegroundPreview />}
             {selectedToken === "--wex-info-foreground" && <InfoForegroundPreview />}
 
-            {/* Palette tokens */}
-            {selectedToken?.startsWith("--wex-palette-") && (
+            {/* All Palette Ramps */}
+            {selectedToken === "--wex-palette-ramps" && (
+              <AllPaletteRampsPreview 
+                currentValue={currentValue}
+                onValueChange={onValueChange}
+                onRampChange={onRampChange}
+              />
+            )}
+
+            {/* Individual palette tokens */}
+            {selectedToken?.startsWith("--wex-palette-") && 
+             selectedToken !== "--wex-palette-ramps" && (
               <PaletteTokenPreview tokenName={selectedToken} />
             )}
 
@@ -1340,6 +1358,285 @@ function InfoPreviewFullWidth() {
         </div>
       </PreviewCard>
     </PreviewGrid>
+  );
+}
+
+/**
+ * Preview for all palette ramps (when clicking "Palette Ramps" in nav)
+ */
+interface AllPaletteRampsPreviewProps {
+  currentValue?: string;
+  onValueChange?: (value: string) => void;
+  onRampChange?: (rampName: string, hslValue: string) => void;
+}
+
+function AllPaletteRampsPreview({ currentValue, onValueChange, onRampChange }: AllPaletteRampsPreviewProps) {
+  const [editingRamp, setEditingRamp] = React.useState<string | null>(null);
+  const [tempColorValue, setTempColorValue] = React.useState<Record<string, string>>({});
+  const [rampValues, setRampValues] = React.useState<Record<string, { h: number; s: number; l: number }>>({});
+
+  // Read current CSS variable values from DOM
+  const readRampFromCSS = React.useCallback((rampName: string) => {
+    if (typeof window === 'undefined') return null;
+    
+    const token500 = `--wex-palette-${rampName}-500`;
+    const cssValue = getComputedStyle(document.documentElement)
+      .getPropertyValue(token500)
+      .trim();
+    
+    if (!cssValue) return null;
+    
+    // Parse HSL value like "208 100% 32%"
+    const hsl = parseHSL(cssValue);
+    return hsl;
+  }, []);
+
+  // Update ramp values from CSS variables
+  React.useEffect(() => {
+    const values: Record<string, { h: number; s: number; l: number }> = {};
+    
+    PALETTE_RAMPS.forEach((ramp) => {
+      const hsl = readRampFromCSS(ramp.name);
+      if (hsl) {
+        values[ramp.name] = hsl;
+      } else {
+        // Fallback to static data if CSS variable not found
+        const shade500 = ramp.shades.find((s) => s.shade === 500);
+        values[ramp.name] = shade500
+          ? { h: ramp.hue, s: ramp.saturation, l: shade500.lightness }
+          : { h: 0, s: 0, l: 50 };
+      }
+    });
+    
+    setRampValues(values);
+  }, [readRampFromCSS, currentValue]); // Re-read when currentValue changes (after save)
+
+  // Also listen for CSS variable changes (MutationObserver or periodic check)
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      const values: Record<string, { h: number; s: number; l: number }> = {};
+      PALETTE_RAMPS.forEach((ramp) => {
+        const hsl = readRampFromCSS(ramp.name);
+        if (hsl) {
+          values[ramp.name] = hsl;
+        }
+      });
+      setRampValues((prev) => {
+        // Only update if values actually changed
+        const changed = Object.keys(values).some(
+          (key) => !prev[key] || 
+          prev[key].h !== values[key].h || 
+          prev[key].s !== values[key].s || 
+          prev[key].l !== values[key].l
+        );
+        return changed ? { ...prev, ...values } : prev;
+      });
+    }, 100); // Check every 100ms
+
+    return () => clearInterval(interval);
+  }, [readRampFromCSS]);
+
+  const handleColorChange = React.useCallback((rampName: string, hexColor: string) => {
+    // Store the temporary color value while editing (don't apply yet)
+    setTempColorValue((prev) => ({ ...prev, [rampName]: hexColor }));
+  }, []);
+
+  const handleSave = React.useCallback((rampName: string) => {
+    const hexColor = tempColorValue[rampName];
+    if (hexColor) {
+      const hsl = hexToHSL(hexColor);
+      if (hsl) {
+        const hslValue = formatHSL(hsl);
+        // Apply the change
+        if (onRampChange) {
+          onRampChange(rampName, hslValue);
+        } else if (onValueChange) {
+          onValueChange(hslValue);
+        }
+        
+        // Update local state immediately (optimistic update)
+        setRampValues((prev) => ({
+          ...prev,
+          [rampName]: hsl,
+        }));
+      }
+    }
+    // Clear temp value and close edit mode
+    setTempColorValue((prev) => {
+      const next = { ...prev };
+      delete next[rampName];
+      return next;
+    });
+    setEditingRamp(null);
+  }, [tempColorValue, onValueChange, onRampChange]);
+
+  const handleCancel = React.useCallback((rampName: string) => {
+    // Clear temp value and close edit mode
+    setTempColorValue((prev) => {
+      const next = { ...prev };
+      delete next[rampName];
+      return next;
+    });
+    setEditingRamp(null);
+  }, []);
+
+  return (
+    <div className="space-y-6">
+      <div>
+        <h2 className="text-lg font-semibold mb-1">Palette Ramps</h2>
+        <p className="text-sm text-muted-foreground">
+          Edit the base color (500 shade) for each palette. All shades will be generated automatically.
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {PALETTE_RAMPS.map((ramp) => {
+          // Get current HSL from CSS variables (or fallback to static)
+          const currentHsl = rampValues[ramp.name] || (() => {
+            const shade500 = ramp.shades.find((s) => s.shade === 500);
+            return shade500
+              ? { h: ramp.hue, s: ramp.saturation, l: shade500.lightness }
+              : { h: 0, s: 0, l: 50 };
+          })();
+          
+          const isEditing = editingRamp === ramp.name;
+          // Use temp color if editing, otherwise use current from CSS
+          const displayHex = isEditing && tempColorValue[ramp.name] 
+            ? tempColorValue[ramp.name]
+            : hslToHex({ h: currentHsl.h, s: currentHsl.s, l: currentHsl.l });
+          
+          // Compute preview HSL from temp color if editing
+          const previewHsl = isEditing && tempColorValue[ramp.name]
+            ? hexToHSL(tempColorValue[ramp.name]) || currentHsl
+            : currentHsl;
+
+          return (
+            <div
+              key={ramp.name}
+              className="rounded-lg border border-border bg-card p-4 space-y-3"
+            >
+              {/* Ramp header */}
+              <div className="flex items-center justify-between">
+                <div>
+                  <h3 className="font-medium text-sm">{ramp.label}</h3>
+                  <p className="text-xs text-muted-foreground mt-0.5">
+                    Base: {Math.round(previewHsl.h)}° {Math.round(previewHsl.s)}% {Math.round(previewHsl.l)}%
+                  </p>
+                </div>
+                {!isEditing && (
+                  <button
+                    onClick={() => setEditingRamp(ramp.name)}
+                    className="p-1.5 rounded hover:bg-muted transition-colors"
+                    title="Edit ramp"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="text-muted-foreground"
+                    >
+                      <path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z" />
+                      <path d="m15 5 4 4" />
+                    </svg>
+                  </button>
+                )}
+              </div>
+
+              {/* Full ramp preview - update in real-time when editing */}
+              <div className="flex gap-px rounded overflow-hidden border border-border/30">
+                {[50, 100, 200, 300, 400, 500, 600, 700, 800, 900].map((shade) => {
+                  const shadeData = ramp.shades.find((s) => s.shade === shade);
+                  // If editing, use the new hue/saturation from previewHsl, keep lightness from shade
+                  const l = shadeData?.lightness ?? 50;
+                  const displayHue = isEditing ? previewHsl.h : ramp.hue;
+                  const displaySat = isEditing ? previewHsl.s : ramp.saturation;
+                  return (
+                    <div
+                      key={shade}
+                      className="h-12 flex-1 relative group"
+                      style={{
+                        backgroundColor: `hsl(${displayHue} ${displaySat}% ${l}%)`,
+                      }}
+                      title={`${ramp.label} ${shade}`}
+                    >
+                      {shade === 500 && (
+                        <div className="absolute inset-0 border-2 border-foreground/20 pointer-events-none" />
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* Edit controls */}
+              {isEditing && (
+                <div className="space-y-2 pt-2 border-t border-border">
+                  <label className="text-xs font-medium">Base Color (500)</label>
+                  <div className="flex items-center gap-2">
+                    <div
+                      className="w-12 h-12 rounded border border-border/50 flex-shrink-0"
+                      style={{
+                        backgroundColor: displayHex,
+                      }}
+                    />
+                    <input
+                      type="color"
+                      value={displayHex}
+                      onChange={(e) => handleColorChange(ramp.name, e.target.value)}
+                      className="flex-1 h-8 rounded border border-border cursor-pointer"
+                    />
+                    <button
+                      onClick={() => handleSave(ramp.name)}
+                      className="px-3 py-1.5 text-xs rounded bg-primary text-primary-foreground hover:bg-primary/90"
+                    >
+                      Save
+                    </button>
+                    <button
+                      onClick={() => handleCancel(ramp.name)}
+                      className="px-3 py-1.5 text-xs rounded border border-border hover:bg-muted"
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Neutrals section */}
+      <div className="rounded-lg border border-border bg-card p-4">
+        <h3 className="font-medium text-sm mb-3">Neutrals</h3>
+        <div className="flex gap-4">
+          <div className="flex items-center gap-2">
+            <div
+              className="w-12 h-12 rounded border border-border/50"
+              style={{ backgroundColor: "hsl(0 0% 100%)" }}
+            />
+            <div>
+              <div className="text-sm font-medium">White</div>
+              <div className="text-xs text-muted-foreground">hsl(0 0% 100%)</div>
+            </div>
+          </div>
+          <div className="flex items-center gap-2">
+            <div
+              className="w-12 h-12 rounded border border-border/50"
+              style={{ backgroundColor: "hsl(0 0% 0%)" }}
+            />
+            <div>
+              <div className="text-sm font-medium">Black</div>
+              <div className="text-xs text-muted-foreground">hsl(0 0% 0%)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 
