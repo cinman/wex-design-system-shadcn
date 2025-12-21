@@ -24,7 +24,9 @@ import {
   WexLabel,
   WexCollapsible,
 } from "@/components/wex";
-import { Download, RotateCcw, Sun, Moon, ChevronDown, Info, CheckCircle, AlertTriangle } from "lucide-react";
+import { Download, RotateCcw, Sun, Moon, ChevronDown, Info, CheckCircle, AlertTriangle, Link2, Wrench } from "lucide-react";
+import { parseHSL } from "@/docs/utils/color-convert";
+import { ContrastPreview } from "@/docs/components/ContrastPreview";
 import { cn } from "@/lib/utils";
 
 // Token definitions for the editor
@@ -90,7 +92,7 @@ const PALETTE_RAMPS = ["blue", "green", "amber", "red", "slate"] as const;
 const PALETTE_STEPS = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900] as const;
 
 export default function ThemeBuilderPage() {
-  const { setToken, getToken, resetAll, hasOverrides, exportAsJSON, isLoaded } = useThemeOverrides();
+  const { setToken, getToken, resetAll, hasOverrides, exportAsJSON, isLoaded, cascadePalette } = useThemeOverrides();
   const [editMode, setEditMode] = React.useState<"light" | "dark">("light");
   const [expandedPalettes, setExpandedPalettes] = React.useState<Set<string>>(new Set());
 
@@ -143,7 +145,7 @@ export default function ThemeBuilderPage() {
   }
 
   return (
-    <article>
+    <article className="max-w-none">
       <header className="mb-8 pb-6 border-b border-border">
         <h1 className="text-3xl font-display font-bold text-foreground mb-2">
           Theme Builder
@@ -153,267 +155,301 @@ export default function ThemeBuilderPage() {
         </p>
       </header>
 
-      <div className="space-y-8">
-        {/* Instructions */}
-        <WexAlert intent="info">
-          <Info className="h-4 w-4" />
-          <WexAlert.Title>How to use</WexAlert.Title>
-          <WexAlert.Description>
-            Edit colors below using the color picker, hex input, or HSL values. 
-            Changes are saved locally and applied instantly. When ready, export 
-            as JSON to integrate with your build pipeline.
-          </WexAlert.Description>
-        </WexAlert>
-
-        {/* Controls */}
-        <div className="flex flex-wrap items-center justify-between gap-4 p-4 rounded-lg border border-border bg-muted/30">
-          <div className="flex items-center gap-4">
-            {/* Mode toggle */}
-            <div className="flex items-center gap-2">
-              <Sun className="h-4 w-4 text-muted-foreground" />
-              <WexSwitch
-                checked={editMode === "dark"}
-                onCheckedChange={(checked) => setEditMode(checked ? "dark" : "light")}
-              />
-              <Moon className="h-4 w-4 text-muted-foreground" />
-              <WexLabel className="text-sm text-muted-foreground ml-2">
-                Editing {editMode} mode
-              </WexLabel>
-            </div>
-          </div>
-          
+      {/* Controls Bar */}
+      <div className="flex flex-wrap items-center justify-between gap-4 p-4 rounded-lg border border-border bg-muted/30 mb-8">
+        <div className="flex items-center gap-4">
+          {/* Mode toggle */}
           <div className="flex items-center gap-2">
-            {hasOverrides && (
-              <WexBadge intent="secondary" className="mr-2">
-                Unsaved changes
-              </WexBadge>
-            )}
-            <WexButton intent="outline" size="sm" onClick={resetAll} disabled={!hasOverrides}>
-              <RotateCcw className="h-4 w-4 mr-2" />
-              Reset All
-            </WexButton>
-            <WexButton size="sm" onClick={handleExport}>
-              <Download className="h-4 w-4 mr-2" />
-              Export JSON
-            </WexButton>
+            <Sun className="h-4 w-4 text-muted-foreground" />
+            <WexSwitch
+              checked={editMode === "dark"}
+              onCheckedChange={(checked) => setEditMode(checked ? "dark" : "light")}
+            />
+            <Moon className="h-4 w-4 text-muted-foreground" />
+            <WexLabel className="text-sm text-muted-foreground ml-2">
+              Editing {editMode} mode
+            </WexLabel>
           </div>
         </div>
+        
+        <div className="flex items-center gap-2">
+          {hasOverrides && (
+            <WexBadge intent="secondary" className="mr-2">
+              Unsaved changes
+            </WexBadge>
+          )}
+          <WexButton intent="outline" size="sm" onClick={resetAll} disabled={!hasOverrides} className="gap-1.5">
+            <RotateCcw className="h-3.5 w-3.5" />
+            Reset All
+          </WexButton>
+          <WexButton size="sm" onClick={handleExport} className="gap-1.5">
+            <Download className="h-3.5 w-3.5" />
+            Export JSON
+          </WexButton>
+        </div>
+      </div>
 
-        {/* Semantic Colors */}
-        <Section
-          title="Semantic Colors"
-          description="Core design tokens used by components. Edit these to change the overall theme."
-        >
-          <WexTabs defaultValue="primary">
-            <WexTabs.List className="mb-6">
-              {Object.entries(SEMANTIC_TOKENS).map(([key, group]) => (
-                <WexTabs.Trigger key={key} value={key}>
-                  {group.label}
-                </WexTabs.Trigger>
-              ))}
-            </WexTabs.List>
-            
-            {Object.entries(SEMANTIC_TOKENS).map(([key, group]) => (
-              <WexTabs.Content key={key} value={key}>
-                <div className="space-y-6">
-                  {group.tokens.map((tokenDef) => (
-                    <ColorInput
-                      key={tokenDef.token}
-                      token={tokenDef.token}
-                      label={tokenDef.label}
-                      description={tokenDef.description}
-                      value={getTokenValue(tokenDef.token)}
-                      onChange={(value) => handleTokenChange(tokenDef.token, value)}
-                    />
-                  ))}
-                </div>
-              </WexTabs.Content>
-            ))}
-          </WexTabs>
-        </Section>
+      {/* 3-Column Layout */}
+      <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr_360px] gap-8">
+        {/* LEFT COLUMN: Instructions */}
+        <aside className="space-y-6 lg:order-1">
+          <div className="rounded-lg border border-border bg-card p-4">
+            <h3 className="font-semibold text-foreground mb-3 flex items-center gap-2">
+              <Info className="h-4 w-4 text-info" />
+              How to Use
+            </h3>
+            <div className="space-y-3 text-sm text-muted-foreground">
+              <p>
+                <strong className="text-foreground">1.</strong> Select a token category or palette ramp from the editor panel.
+              </p>
+              <p>
+                <strong className="text-foreground">2.</strong> Use the color picker, hex input, or HSL values to customize.
+              </p>
+              <p>
+                <strong className="text-foreground">3.</strong> Preview changes live in the center panel.
+              </p>
+              <p>
+                <strong className="text-foreground">4.</strong> Export as JSON when ready.
+              </p>
+            </div>
+          </div>
 
-        {/* Palette Ramps */}
-        <Section
-          title="Palette Ramps (50-900)"
-          description="Extended color scales for subtle UI variations. Click to expand each ramp."
-        >
-          <div className="space-y-3">
-            {PALETTE_RAMPS.map((rampName) => (
-              <WexCollapsible
-                key={rampName}
-                open={expandedPalettes.has(rampName)}
-                onOpenChange={() => togglePalette(rampName)}
-              >
-                <WexCollapsible.Trigger asChild>
-                  <button className="w-full flex items-center justify-between p-4 rounded-lg border border-border bg-card hover:bg-muted/30 transition-colors">
-                    <div className="flex items-center gap-3">
-                      <div className="flex gap-0.5">
-                        {PALETTE_STEPS.slice(0, 5).map((step) => (
-                          <div
-                            key={step}
-                            className="w-4 h-4 rounded-sm border border-border/50"
-                            style={{ backgroundColor: `hsl(var(--wex-palette-${rampName}-${step}))` }}
-                          />
-                        ))}
-                      </div>
-                      <span className="font-medium capitalize">{rampName}</span>
-                    </div>
-                    <ChevronDown className={cn(
-                      "h-4 w-4 text-muted-foreground transition-transform",
-                      expandedPalettes.has(rampName) && "rotate-180"
-                    )} />
-                  </button>
-                </WexCollapsible.Trigger>
-                <WexCollapsible.Content>
-                  <div className="p-4 pt-2">
-                    <div className="flex gap-2 justify-between">
-                      {PALETTE_STEPS.map((step) => {
-                        const token = `--wex-palette-${rampName}-${step}`;
-                        return (
-                          <CompactColorInput
-                            key={step}
-                            step={step}
-                            value={getTokenValue(token)}
-                            onChange={(value) => handleTokenChange(token, value)}
-                          />
-                        );
-                      })}
-                    </div>
+          <div className="rounded-lg border border-border bg-card p-4">
+            <h3 className="font-semibold text-foreground mb-3">Integration Steps</h3>
+            <ol className="space-y-2 text-sm text-muted-foreground list-decimal list-inside">
+              <li>Export your theme overrides</li>
+              <li>Place in <code className="bg-muted px-1 py-0.5 rounded text-xs">/tokens/</code></li>
+              <li>Run the package build</li>
+              <li>Deploy updated tokens</li>
+            </ol>
+          </div>
+
+          <WexAlert intent="warning">
+            <AlertTriangle className="h-4 w-4" />
+            <WexAlert.Title className="text-sm">Local Storage Only</WexAlert.Title>
+            <WexAlert.Description className="text-xs">
+              Changes are stored in your browser. Export to persist permanently.
+            </WexAlert.Description>
+          </WexAlert>
+        </aside>
+
+        {/* CENTER COLUMN: Live Preview */}
+        <main className="space-y-6 lg:order-2">
+          <Section
+            title="Live Preview"
+            description="See how your changes affect actual components."
+          >
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {/* Buttons */}
+              <WexCard>
+                <WexCard.Header className="pb-2">
+                  <WexCard.Title className="text-sm">Buttons</WexCard.Title>
+                </WexCard.Header>
+                <WexCard.Content className="flex flex-wrap gap-2">
+                  <WexButton size="sm">Primary</WexButton>
+                  <WexButton intent="secondary" size="sm">Secondary</WexButton>
+                  <WexButton intent="destructive" size="sm">Destructive</WexButton>
+                  <WexButton intent="outline" size="sm">Outline</WexButton>
+                  <WexButton intent="ghost" size="sm">Ghost</WexButton>
+                </WexCard.Content>
+              </WexCard>
+
+              {/* Badges */}
+              <WexCard>
+                <WexCard.Header className="pb-2">
+                  <WexCard.Title className="text-sm">Badges</WexCard.Title>
+                </WexCard.Header>
+                <WexCard.Content className="flex flex-wrap gap-2">
+                  <WexBadge>Default</WexBadge>
+                  <WexBadge intent="secondary">Secondary</WexBadge>
+                  <WexBadge intent="destructive">Destructive</WexBadge>
+                  <WexBadge intent="success">Success</WexBadge>
+                  <WexBadge intent="warning">Warning</WexBadge>
+                  <WexBadge intent="info">Info</WexBadge>
+                </WexCard.Content>
+              </WexCard>
+
+              {/* Alerts */}
+              <WexCard className="md:col-span-2">
+                <WexCard.Header className="pb-2">
+                  <WexCard.Title className="text-sm">Alerts</WexCard.Title>
+                </WexCard.Header>
+                <WexCard.Content className="space-y-2">
+                  <WexAlert>
+                    <Info className="h-4 w-4" />
+                    <WexAlert.Title>Default Alert</WexAlert.Title>
+                  </WexAlert>
+                  <WexAlert intent="success">
+                    <CheckCircle className="h-4 w-4" />
+                    <WexAlert.Title>Success</WexAlert.Title>
+                  </WexAlert>
+                  <WexAlert intent="warning">
+                    <AlertTriangle className="h-4 w-4" />
+                    <WexAlert.Title>Warning</WexAlert.Title>
+                  </WexAlert>
+                  <WexAlert intent="destructive">
+                    <AlertTriangle className="h-4 w-4" />
+                    <WexAlert.Title>Error</WexAlert.Title>
+                  </WexAlert>
+                </WexCard.Content>
+              </WexCard>
+
+              {/* Form Elements */}
+              <WexCard className="md:col-span-2">
+                <WexCard.Header className="pb-2">
+                  <WexCard.Title className="text-sm">Form Elements</WexCard.Title>
+                </WexCard.Header>
+                <WexCard.Content className="flex flex-wrap items-end gap-4">
+                  <div className="space-y-1">
+                    <WexLabel className="text-xs">Input</WexLabel>
+                    <WexInput placeholder="Type something..." className="h-9" />
                   </div>
-                </WexCollapsible.Content>
-              </WexCollapsible>
-            ))}
-          </div>
-        </Section>
-
-        {/* Live Preview */}
-        <Section
-          title="Live Preview"
-          description="See how your changes affect actual components."
-        >
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Buttons */}
-            <WexCard>
-              <WexCard.Header>
-                <WexCard.Title>Buttons</WexCard.Title>
-              </WexCard.Header>
-              <WexCard.Content className="flex flex-wrap gap-2">
-                <WexButton>Primary</WexButton>
-                <WexButton intent="secondary">Secondary</WexButton>
-                <WexButton intent="destructive">Destructive</WexButton>
-                <WexButton intent="outline">Outline</WexButton>
-                <WexButton intent="ghost">Ghost</WexButton>
-              </WexCard.Content>
-            </WexCard>
-
-            {/* Badges */}
-            <WexCard>
-              <WexCard.Header>
-                <WexCard.Title>Badges</WexCard.Title>
-              </WexCard.Header>
-              <WexCard.Content className="flex flex-wrap gap-2">
-                <WexBadge>Default</WexBadge>
-                <WexBadge intent="secondary">Secondary</WexBadge>
-                <WexBadge intent="destructive">Destructive</WexBadge>
-                <WexBadge intent="success">Success</WexBadge>
-                <WexBadge intent="warning">Warning</WexBadge>
-                <WexBadge intent="info">Info</WexBadge>
-              </WexCard.Content>
-            </WexCard>
-
-            {/* Alerts */}
-            <WexCard className="md:col-span-2">
-              <WexCard.Header>
-                <WexCard.Title>Alerts</WexCard.Title>
-              </WexCard.Header>
-              <WexCard.Content className="space-y-3">
-                <WexAlert>
-                  <Info className="h-4 w-4" />
-                  <WexAlert.Title>Default Alert</WexAlert.Title>
-                  <WexAlert.Description>This is a default alert message.</WexAlert.Description>
-                </WexAlert>
-                <WexAlert intent="success">
-                  <CheckCircle className="h-4 w-4" />
-                  <WexAlert.Title>Success</WexAlert.Title>
-                  <WexAlert.Description>Operation completed successfully.</WexAlert.Description>
-                </WexAlert>
-                <WexAlert intent="warning">
-                  <AlertTriangle className="h-4 w-4" />
-                  <WexAlert.Title>Warning</WexAlert.Title>
-                  <WexAlert.Description>Please review before proceeding.</WexAlert.Description>
-                </WexAlert>
-                <WexAlert intent="destructive">
-                  <AlertTriangle className="h-4 w-4" />
-                  <WexAlert.Title>Error</WexAlert.Title>
-                  <WexAlert.Description>Something went wrong.</WexAlert.Description>
-                </WexAlert>
-              </WexCard.Content>
-            </WexCard>
-
-            {/* Form Elements */}
-            <WexCard className="md:col-span-2">
-              <WexCard.Header>
-                <WexCard.Title>Form Elements</WexCard.Title>
-              </WexCard.Header>
-              <WexCard.Content className="flex flex-wrap items-end gap-4">
-                <div className="space-y-2">
-                  <WexLabel>Input</WexLabel>
-                  <WexInput placeholder="Type something..." />
-                </div>
-                <div className="flex items-center gap-2">
-                  <WexSwitch id="preview-switch" />
-                  <WexLabel htmlFor="preview-switch">Toggle</WexLabel>
-                </div>
-              </WexCard.Content>
-            </WexCard>
-          </div>
-        </Section>
-
-        {/* Contrast Warnings */}
-        <ContrastWarningsSection />
-
-        {/* Export Instructions */}
-        <Section
-          title="Integration Instructions"
-          description="How to use your exported theme in the @wex/design-tokens package."
-        >
-          <div className="space-y-4">
-            <div className="rounded-lg border border-border bg-card p-4">
-              <h4 className="font-semibold text-foreground mb-2">Step 1: Export</h4>
-              <p className="text-sm text-muted-foreground">
-                Click the "Export JSON" button above to download your theme overrides as 
-                <code className="bg-muted px-1.5 py-0.5 rounded mx-1">theme-overrides.json</code>.
-              </p>
+                  <div className="flex items-center gap-2">
+                    <WexSwitch id="preview-switch" />
+                    <WexLabel htmlFor="preview-switch" className="text-xs">Toggle</WexLabel>
+                  </div>
+                </WexCard.Content>
+              </WexCard>
             </div>
-            
-            <div className="rounded-lg border border-border bg-card p-4">
-              <h4 className="font-semibold text-foreground mb-2">Step 2: Add to Repository</h4>
-              <p className="text-sm text-muted-foreground">
-                Place the exported file in your tokens directory:
-                <code className="bg-muted px-1.5 py-0.5 rounded mx-1 block mt-2">
-                  /tokens/theme-overrides.json
-                </code>
-              </p>
-            </div>
-            
-            <div className="rounded-lg border border-border bg-card p-4">
-              <h4 className="font-semibold text-foreground mb-2">Step 3: Build Package</h4>
-              <p className="text-sm text-muted-foreground">
-                Run the package build command. The build script will merge your overrides 
-                with the base tokens to generate the final CSS output.
-              </p>
-            </div>
-            
-            <WexAlert intent="warning">
-              <AlertTriangle className="h-4 w-4" />
-              <WexAlert.Title>Important</WexAlert.Title>
-              <WexAlert.Description>
-                Changes made here are stored in your browser's localStorage. To persist 
-                them permanently, you must export and commit the JSON file to your repository.
-              </WexAlert.Description>
-            </WexAlert>
+          </Section>
+
+          {/* Contrast Warnings in center */}
+          <ContrastWarningsSection />
+        </main>
+
+        {/* RIGHT COLUMN: Editor (sticky) */}
+        <aside className="lg:order-3">
+          <div className="lg:sticky lg:top-20 space-y-6">
+            {/* Semantic Colors */}
+            <Section
+              title="Semantic Colors"
+              description="Core design tokens used by components."
+            >
+              <WexTabs defaultValue="primary">
+                <WexTabs.List className="mb-4 flex-wrap">
+                  {Object.entries(SEMANTIC_TOKENS).map(([key, group]) => (
+                    <WexTabs.Trigger key={key} value={key} className="text-xs px-2 py-1">
+                      {group.label}
+                    </WexTabs.Trigger>
+                  ))}
+                </WexTabs.List>
+                
+                {Object.entries(SEMANTIC_TOKENS).map(([key, group]) => (
+                  <WexTabs.Content key={key} value={key}>
+                    <div className="space-y-4">
+                      {group.tokens.map((tokenDef) => (
+                        <ColorInput
+                          key={tokenDef.token}
+                          token={tokenDef.token}
+                          label={tokenDef.label}
+                          description={tokenDef.description}
+                          value={getTokenValue(tokenDef.token)}
+                          onChange={(value) => handleTokenChange(tokenDef.token, value)}
+                        />
+                      ))}
+                    </div>
+                  </WexTabs.Content>
+                ))}
+              </WexTabs>
+            </Section>
+
+            {/* Palette Ramps */}
+            <Section
+              title="Palette Ramps"
+              description="Extended color scales (50-900)."
+            >
+              <div className="space-y-2">
+                {PALETTE_RAMPS.map((rampName) => {
+                  const anchorToken = `--wex-palette-${rampName}-500`;
+                  const anchorValue = getTokenValue(anchorToken);
+                  const anchorHsl = parseHSL(anchorValue);
+                  
+                  return (
+                    <WexCollapsible
+                      key={rampName}
+                      open={expandedPalettes.has(rampName)}
+                      onOpenChange={() => togglePalette(rampName)}
+                    >
+                      <WexCollapsible.Trigger asChild>
+                        <button className="w-full flex items-center justify-between p-3 rounded-lg border border-border bg-card hover:bg-muted/30 transition-colors">
+                          <div className="flex items-center gap-2">
+                            <div className="flex gap-0.5">
+                              {PALETTE_STEPS.slice(0, 5).map((step) => (
+                                <div
+                                  key={step}
+                                  className="w-3 h-3 rounded-sm border border-border/50"
+                                  style={{ backgroundColor: `hsl(var(--wex-palette-${rampName}-${step}))` }}
+                                />
+                              ))}
+                            </div>
+                            <span className="text-sm font-medium capitalize">{rampName}</span>
+                          </div>
+                          <ChevronDown className={cn(
+                            "h-3.5 w-3.5 text-muted-foreground transition-transform",
+                            expandedPalettes.has(rampName) && "rotate-180"
+                          )} />
+                        </button>
+                      </WexCollapsible.Trigger>
+                      <WexCollapsible.Content>
+                        <div className="p-3 pt-2 space-y-3">
+                          {/* Cascade controls */}
+                          <div className="flex items-center gap-2 p-2 rounded bg-muted/30 border border-border/50">
+                            <Link2 className="h-3.5 w-3.5 text-primary flex-shrink-0" />
+                            <div className="flex items-center gap-2 flex-1">
+                              <div className="flex flex-col gap-0.5">
+                                <span className="text-[9px] text-muted-foreground">H°</span>
+                                <WexInput
+                                  type="number"
+                                  min={0}
+                                  max={360}
+                                  value={anchorHsl?.h ?? 0}
+                                  onChange={(e) => {
+                                    const h = parseInt(e.target.value, 10) || 0;
+                                    cascadePalette(rampName, h, anchorHsl?.s ?? 100, editMode);
+                                  }}
+                                  className="w-14 h-7 text-xs text-center font-mono"
+                                />
+                              </div>
+                              <div className="flex flex-col gap-0.5">
+                                <span className="text-[9px] text-muted-foreground">S%</span>
+                                <WexInput
+                                  type="number"
+                                  min={0}
+                                  max={100}
+                                  value={anchorHsl?.s ?? 100}
+                                  onChange={(e) => {
+                                    const s = parseInt(e.target.value, 10) || 0;
+                                    cascadePalette(rampName, anchorHsl?.h ?? 200, s, editMode);
+                                  }}
+                                  className="w-14 h-7 text-xs text-center font-mono"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                          
+                          {/* Individual step editors */}
+                          <div className="flex gap-1 justify-between">
+                            {PALETTE_STEPS.map((step) => {
+                              const token = `--wex-palette-${rampName}-${step}`;
+                              return (
+                                <CompactColorInput
+                                  key={step}
+                                  step={step}
+                                  value={getTokenValue(token)}
+                                  onChange={(value) => handleTokenChange(token, value)}
+                                />
+                              );
+                            })}
+                          </div>
+                        </div>
+                      </WexCollapsible.Content>
+                    </WexCollapsible>
+                  );
+                })}
+              </div>
+            </Section>
           </div>
-        </Section>
+        </aside>
       </div>
     </article>
   );
@@ -430,9 +466,28 @@ const CONTRAST_PAIRINGS = [
   { label: "Muted Text on Content Background", fg: "--wex-text-muted", bg: "--wex-content-bg" },
 ];
 
+// Map contrast pairings to component examples for visualization
+const COMPONENT_EXAMPLES: Record<string, React.ReactNode> = {
+  "Primary Contrast on Primary": (
+    <WexButton size="sm">Primary Button</WexButton>
+  ),
+  "Danger Foreground on Danger": (
+    <WexButton intent="destructive" size="sm">Destructive</WexButton>
+  ),
+  "Success Foreground on Success": (
+    <WexBadge intent="success">Success Badge</WexBadge>
+  ),
+  "Warning Foreground on Warning": (
+    <WexBadge intent="warning">Warning Badge</WexBadge>
+  ),
+  "Info Foreground on Info": (
+    <WexBadge intent="info">Info Badge</WexBadge>
+  ),
+};
+
 function ContrastWarningsSection() {
   const [contrastResults, setContrastResults] = React.useState<
-    Array<{ label: string; ratio: number; rating: ContrastRating; passes: boolean }>
+    Array<{ label: string; fg: string; bg: string; ratio: number; rating: ContrastRating; passes: boolean }>
   >([]);
 
   React.useEffect(() => {
@@ -441,6 +496,8 @@ function ContrastWarningsSection() {
         const data = getContrastData(pairing.fg, pairing.bg);
         return {
           label: pairing.label,
+          fg: pairing.fg,
+          bg: pairing.bg,
           ratio: data?.ratio ?? 0,
           rating: data?.rating ?? "Fail" as ContrastRating,
           passes: data ? data.rating !== "Fail" : false,
@@ -465,66 +522,95 @@ function ContrastWarningsSection() {
   }, []);
 
   const failingPairings = contrastResults.filter((r) => !r.passes);
-  const passingPairings = contrastResults.filter((r) => r.passes);
 
   return (
-    <Section
-      title="Contrast Validation"
-      description="WCAG contrast checks for common text/background pairings."
-    >
+    <div className="space-y-6">
+      <Section
+        title="Contrast Validation"
+        description="WCAG contrast checks for common text/background pairings."
+      >
+        {failingPairings.length > 0 && (
+          <WexAlert intent="destructive" className="mb-4">
+            <AlertTriangle className="h-4 w-4" />
+            <WexAlert.Title>Accessibility Warning</WexAlert.Title>
+            <WexAlert.Description>
+              {failingPairings.length} color pairing(s) fail WCAG contrast requirements.
+            </WexAlert.Description>
+          </WexAlert>
+        )}
+
+        {/* Visual contrast previews */}
+        <div className="space-y-2">
+          {contrastResults.map((result) => (
+            <ContrastPreview
+              key={result.label}
+              label={result.label}
+              fgToken={result.fg}
+              bgToken={result.bg}
+              compact
+            />
+          ))}
+        </div>
+
+        {failingPairings.length === 0 && contrastResults.length > 0 && (
+          <WexAlert intent="success" className="mt-4">
+            <CheckCircle className="h-4 w-4" />
+            <WexAlert.Title>All checks passing</WexAlert.Title>
+            <WexAlert.Description>
+              All color pairings meet WCAG contrast requirements.
+            </WexAlert.Description>
+          </WexAlert>
+        )}
+      </Section>
+
+      {/* Fix Accessibility Issues section - only shows if there are failures */}
       {failingPairings.length > 0 && (
-        <WexAlert intent="destructive" className="mb-4">
-          <AlertTriangle className="h-4 w-4" />
-          <WexAlert.Title>Accessibility Warning</WexAlert.Title>
-          <WexAlert.Description>
-            {failingPairings.length} color pairing(s) fail WCAG contrast requirements.
-            Consider adjusting the colors to improve readability.
-          </WexAlert.Description>
-        </WexAlert>
-      )}
-
-      <div className="space-y-2">
-        {contrastResults.map((result) => (
-          <div
-            key={result.label}
-            className={cn(
-              "flex items-center justify-between p-3 rounded-lg border",
-              result.passes
-                ? "border-border bg-card"
-                : "border-destructive/50 bg-destructive/5"
-            )}
-          >
-            <span className="text-sm text-foreground">{result.label}</span>
-            <div className="flex items-center gap-3">
-              <span className="text-xs text-muted-foreground font-mono">
-                {formatContrastRatio(result.ratio)}
-              </span>
-              <WexBadge
-                intent={
-                  result.rating === "AAA" || result.rating === "AA"
-                    ? "success"
-                    : result.rating === "AA-large"
-                    ? "warning"
-                    : "destructive"
-                }
-              >
-                {result.rating}
-              </WexBadge>
-            </div>
+        <Section
+          title="Fix Accessibility Issues"
+          description="Components affected by failing contrast. Adjust colors in the editor to fix."
+        >
+          <div className="space-y-4">
+            {failingPairings.map((pairing) => {
+              const componentExample = COMPONENT_EXAMPLES[pairing.label];
+              
+              return (
+                <div
+                  key={pairing.label}
+                  className="p-4 rounded-lg border border-destructive/50 bg-destructive/5 space-y-3"
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <Wrench className="h-4 w-4 text-destructive" />
+                      <span className="text-sm font-medium text-foreground">{pairing.label}</span>
+                    </div>
+                    <WexBadge intent="destructive">
+                      {formatContrastRatio(pairing.ratio)} - {pairing.rating}
+                    </WexBadge>
+                  </div>
+                  
+                  {/* Show affected component */}
+                  {componentExample && (
+                    <div className="flex items-center gap-3 p-3 rounded bg-card border border-border">
+                      <span className="text-xs text-muted-foreground">Affected:</span>
+                      {componentExample}
+                    </div>
+                  )}
+                  
+                  {/* Token info */}
+                  <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                    <span>Adjust:</span>
+                    <code className="bg-muted px-1.5 py-0.5 rounded">{pairing.fg}</code>
+                    <span>or</span>
+                    <code className="bg-muted px-1.5 py-0.5 rounded">{pairing.bg}</code>
+                    <span>in the editor</span>
+                  </div>
+                </div>
+              );
+            })}
           </div>
-        ))}
-      </div>
-
-      {failingPairings.length === 0 && contrastResults.length > 0 && (
-        <WexAlert intent="success" className="mt-4">
-          <CheckCircle className="h-4 w-4" />
-          <WexAlert.Title>All checks passing</WexAlert.Title>
-          <WexAlert.Description>
-            All color pairings meet WCAG contrast requirements.
-          </WexAlert.Description>
-        </WexAlert>
+        </Section>
       )}
-    </Section>
+    </div>
   );
 }
 

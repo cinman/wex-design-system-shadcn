@@ -4,11 +4,131 @@
  * Manages theme token overrides with localStorage persistence.
  * Provides methods to get, set, and reset individual tokens,
  * and applies changes live to CSS variables.
+ * 
+ * Includes smart cascade logic:
+ * - Primary tokens auto-derive hover and contrast
+ * - Semantic tokens auto-derive foreground based on luminance
+ * - Palette ramps can cascade from hue/saturation changes
  */
 
 import * as React from "react";
+import { parseHSL, formatHSL } from "@/docs/utils/color-convert";
 
 const STORAGE_KEY = "wex-theme-overrides";
+
+/**
+ * Cascade rules: which derived tokens should auto-update when base tokens change
+ */
+interface CascadeRule {
+  baseToken: string;
+  derivedTokens: Array<{
+    token: string;
+    derive: (baseHsl: { h: number; s: number; l: number }) => { h: number; s: number; l: number };
+  }>;
+}
+
+const CASCADE_RULES: CascadeRule[] = [
+  {
+    baseToken: "--wex-primary",
+    derivedTokens: [
+      {
+        token: "--wex-primary-hover",
+        derive: (hsl) => ({ ...hsl, l: Math.max(0, hsl.l - 10) }), // 10% darker
+      },
+      {
+        token: "--wex-primary-contrast",
+        derive: (hsl) => {
+          // Auto-select white or black based on luminance
+          // Luminance approximation: if L > 50%, use dark text
+          return hsl.l > 50 ? { h: 0, s: 0, l: 10 } : { h: 0, s: 0, l: 100 };
+        },
+      },
+    ],
+  },
+  {
+    baseToken: "--wex-danger-bg",
+    derivedTokens: [
+      {
+        token: "--wex-danger-hover",
+        derive: (hsl) => ({ ...hsl, l: Math.max(0, hsl.l - 10) }),
+      },
+      {
+        token: "--wex-danger-fg",
+        derive: (hsl) => (hsl.l > 50 ? { h: 0, s: 0, l: 10 } : { h: 0, s: 0, l: 100 }),
+      },
+    ],
+  },
+  {
+    baseToken: "--wex-success-bg",
+    derivedTokens: [
+      {
+        token: "--wex-success-hover",
+        derive: (hsl) => ({ ...hsl, l: Math.max(0, hsl.l - 10) }),
+      },
+      {
+        token: "--wex-success-fg",
+        derive: (hsl) => (hsl.l > 50 ? { h: 0, s: 0, l: 10 } : { h: 0, s: 0, l: 100 }),
+      },
+    ],
+  },
+  {
+    baseToken: "--wex-warning-bg",
+    derivedTokens: [
+      {
+        token: "--wex-warning-hover",
+        derive: (hsl) => ({ ...hsl, l: Math.max(0, hsl.l - 10) }),
+      },
+      {
+        token: "--wex-warning-fg",
+        derive: (hsl) => (hsl.l > 50 ? { h: 0, s: 0, l: 10 } : { h: 0, s: 0, l: 100 }),
+      },
+    ],
+  },
+  {
+    baseToken: "--wex-info-bg",
+    derivedTokens: [
+      {
+        token: "--wex-info-hover",
+        derive: (hsl) => ({ ...hsl, l: Math.max(0, hsl.l - 10) }),
+      },
+      {
+        token: "--wex-info-fg",
+        derive: (hsl) => (hsl.l > 50 ? { h: 0, s: 0, l: 10 } : { h: 0, s: 0, l: 100 }),
+      },
+    ],
+  },
+];
+
+/**
+ * Standard lightness values for palette ramps (50-900)
+ */
+const PALETTE_LIGHTNESS_STEPS: Record<number, number> = {
+  50: 97,
+  100: 93,
+  200: 85,
+  300: 72,
+  400: 56,
+  500: 45,
+  600: 38,
+  700: 32,
+  800: 26,
+  900: 20,
+};
+
+/**
+ * Derive all palette steps from a given hue and saturation
+ */
+function derivePaletteRamp(
+  paletteBaseName: string,
+  h: number,
+  s: number
+): Record<string, string> {
+  const derived: Record<string, string> = {};
+  Object.entries(PALETTE_LIGHTNESS_STEPS).forEach(([step, l]) => {
+    derived[`--wex-palette-${paletteBaseName}-${step}`] = formatHSL({ h, s, l });
+  });
+  return derived;
+}
 
 export interface ThemeOverrides {
   light: Record<string, string>;
@@ -111,9 +231,14 @@ export function useThemeOverrides() {
   }, [overrides, isLoaded]);
 
   /**
-   * Set a single token value
+   * Set a single token value, with optional cascade to derived tokens
    */
-  const setToken = React.useCallback((token: string, value: string, mode: "light" | "dark") => {
+  const setToken = React.useCallback((
+    token: string, 
+    value: string, 
+    mode: "light" | "dark",
+    cascade: boolean = true
+  ) => {
     setOverrides((prev) => {
       const next = {
         ...prev,
@@ -122,6 +247,34 @@ export function useThemeOverrides() {
           [token]: value,
         },
       };
+      
+      // Apply cascade rules if enabled
+      if (cascade) {
+        const rule = CASCADE_RULES.find((r) => r.baseToken === token);
+        if (rule) {
+          const baseHsl = parseHSL(value);
+          if (baseHsl) {
+            rule.derivedTokens.forEach((derived) => {
+              const derivedHsl = derived.derive(baseHsl);
+              next[mode][derived.token] = formatHSL(derivedHsl);
+            });
+          }
+        }
+        
+        // Check for palette ramp cascade
+        const paletteMatch = token.match(/^--wex-palette-(\w+)-500$/);
+        if (paletteMatch) {
+          const paletteName = paletteMatch[1];
+          const baseHsl = parseHSL(value);
+          if (baseHsl) {
+            const derived = derivePaletteRamp(paletteName, baseHsl.h, baseHsl.s);
+            Object.entries(derived).forEach(([derivedToken, derivedValue]) => {
+              next[mode][derivedToken] = derivedValue;
+            });
+          }
+        }
+      }
+      
       saveToStorage(next);
       applyToDOM(next);
       return next;
@@ -203,6 +356,27 @@ export function useThemeOverrides() {
     return JSON.stringify(styleDictionary, null, 2);
   }, [overrides]);
 
+  /**
+   * Cascade an entire palette from a given hue and saturation
+   */
+  const cascadePalette = React.useCallback((
+    paletteName: string,
+    h: number,
+    s: number,
+    mode: "light" | "dark"
+  ) => {
+    setOverrides((prev) => {
+      const next = { ...prev, [mode]: { ...prev[mode] } };
+      const derived = derivePaletteRamp(paletteName, h, s);
+      Object.entries(derived).forEach(([token, value]) => {
+        next[mode][token] = value;
+      });
+      saveToStorage(next);
+      applyToDOM(next);
+      return next;
+    });
+  }, []);
+
   return {
     overrides,
     isLoaded,
@@ -213,6 +387,7 @@ export function useThemeOverrides() {
     getAllOverrides,
     hasOverrides,
     exportAsJSON,
+    cascadePalette,
   };
 }
 
