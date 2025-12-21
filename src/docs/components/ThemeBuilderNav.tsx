@@ -421,8 +421,8 @@ function TokenRow({
   // Get current color for swatch
   const getSwatchColor = () => {
     if (value) {
-      // It's a palette reference like "blue-700"
-      return `var(--wex-palette-${value})`;
+      // It's a palette reference like "blue-700" - wrap in hsl() since CSS vars are raw values
+      return `hsl(var(--wex-palette-${value}))`;
     }
     // Fall back to the token's default value
     const hsl =
