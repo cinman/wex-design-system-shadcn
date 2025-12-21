@@ -32,7 +32,6 @@ import {
   WexCheckbox,
   WexSeparator,
   WexTooltip,
-  WexScrollArea,
 } from "@/components/wex";
 import { 
   Download, RotateCcw, Sun, Moon, ChevronDown, ChevronRight, Info, CheckCircle, 
@@ -199,18 +198,18 @@ export default function ThemeBuilderPage() {
 
   if (!isLoaded) {
     return (
-      <div className="fixed inset-0 flex items-center justify-center bg-background">
+      <div className="flex items-center justify-center min-h-[400px]">
         <div className="text-muted-foreground">Loading Theme Builder...</div>
       </div>
     );
   }
 
   return (
-    <div className="fixed inset-0 top-14 flex flex-col bg-background overflow-hidden">
+    <div className="flex flex-col min-h-[calc(100vh-3.5rem)] bg-background">
       {/* ============================================================
           TOP BAR
           ============================================================ */}
-      <header className="flex-shrink-0 h-12 border-b border-border bg-card flex items-center px-4 gap-4">
+      <header className="sticky top-0 z-20 h-12 border-b border-border bg-card flex items-center px-4 gap-4">
         {/* Title */}
         <div className="flex items-center gap-2">
           <Grid3X3 className="h-4 w-4 text-primary" />
@@ -322,19 +321,17 @@ export default function ThemeBuilderPage() {
           </div>
 
           {/* Workspace Content */}
-          <WexScrollArea className="flex-1">
-            <div className="p-6">
-              {activeTab === "preview" ? (
-                <PreviewWorkspace />
-              ) : (
-                <A11yWorkspace 
-                  showOnlyFailures={showOnlyFailures} 
-                  setShowOnlyFailures={setShowOnlyFailures}
-                  editMode={editMode}
-                />
-              )}
-            </div>
-          </WexScrollArea>
+          <div className="flex-1 overflow-y-auto p-6">
+            {activeTab === "preview" ? (
+              <PreviewWorkspace />
+            ) : (
+              <A11yWorkspace 
+                showOnlyFailures={showOnlyFailures} 
+                setShowOnlyFailures={setShowOnlyFailures}
+                editMode={editMode}
+              />
+            )}
+          </div>
         </div>
 
         {/* RIGHT PROPERTIES PANEL */}
@@ -343,9 +340,8 @@ export default function ThemeBuilderPage() {
             <h2 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Properties</h2>
           </div>
           
-          <WexScrollArea className="flex-1">
-            <div className="p-3 space-y-1">
-              {/* Semantic Colors */}
+          <div className="flex-1 overflow-y-auto p-3 space-y-1">
+            {/* Semantic Colors */}
               <PropertiesSection title="Semantic Colors" defaultOpen>
                 {Object.entries(SEMANTIC_TOKENS).map(([key, group]) => (
                   <TokenGroup
@@ -393,8 +389,7 @@ export default function ThemeBuilderPage() {
                   />
                 ))}
               </PropertiesSection>
-            </div>
-          </WexScrollArea>
+          </div>
 
           {/* Export Instructions */}
           <div className="flex-shrink-0 p-3 border-t border-border bg-muted/30">
