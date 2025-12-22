@@ -16,8 +16,8 @@ interface PaletteSwatchPickerProps {
   value: string;
   /** Callback when a shade is selected */
   onSelect: (value: string) => void;
-  /** Trigger element */
-  children: React.ReactNode;
+  /** Trigger element - if not provided, renders just the content (for use inside other popovers) */
+  children?: React.ReactNode;
   /** Optional className for the trigger wrapper */
   className?: string;
 }
@@ -45,6 +45,106 @@ export function PaletteSwatchPicker({
     setOpen(false);
   }, [onSelect]);
 
+  const handleNeutralSelect = React.useCallback((neutralName: string) => {
+    onSelect(neutralName);
+    setOpen(false);
+  }, [onSelect]);
+
+  // The swatch content (used in both popover and standalone modes)
+  const swatchContent = (
+    <div className="space-y-3">
+      <div className="text-sm font-medium text-foreground">
+        Select Palette Shade
+      </div>
+      
+      {/* Neutral colors (white/black) */}
+      <div className="space-y-1">
+        <div className="text-xs text-muted-foreground font-medium">Neutrals</div>
+        <div className="flex gap-1">
+          {NEUTRAL_TOKENS.map((neutral) => {
+            const isSelected = value === neutral.name;
+            return (
+              <button
+                key={neutral.name}
+                type="button"
+                onClick={() => handleNeutralSelect(neutral.name)}
+                title={neutral.label}
+                className={cn(
+                  "w-6 h-6 rounded-sm transition-all border",
+                  "hover:scale-110 hover:z-10 hover:ring-2 hover:ring-foreground/20",
+                  "focus:outline-none focus:ring-2 focus:ring-primary",
+                  isSelected && "ring-2 ring-primary ring-offset-1",
+                  neutral.name === "white" && "border-border"
+                )}
+                style={{ 
+                  backgroundColor: `hsl(${neutral.value})` 
+                }}
+              >
+                <span className="sr-only">{neutral.label}</span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {PALETTE_RAMPS.map((ramp) => (
+        <div key={ramp.name} className="space-y-1">
+          {/* Ramp label */}
+          <div className="text-xs text-muted-foreground font-medium">
+            {ramp.label}
+          </div>
+          
+          {/* Shade swatches */}
+          <div className="flex gap-1">
+            {ramp.shades.map((shade) => {
+              const isSelected = parsed?.name === ramp.name && parsed?.shade === shade.shade;
+              
+              return (
+                <button
+                  key={shade.shade}
+                  type="button"
+                  onClick={() => handleSelect(ramp.name, shade.shade)}
+                  title={`${ramp.label} ${shade.shade}`}
+                  className={cn(
+                    "w-6 h-6 rounded-sm transition-all",
+                    "hover:scale-110 hover:z-10 hover:ring-2 hover:ring-foreground/20",
+                    "focus:outline-none focus:ring-2 focus:ring-primary",
+                    isSelected && "ring-2 ring-primary ring-offset-1"
+                  )}
+                  style={{ 
+                    backgroundColor: `hsl(var(${shade.token}))` 
+                  }}
+                >
+                  <span className="sr-only">
+                    {ramp.label} {shade.shade}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+          
+          {/* Shade labels */}
+          <div className="flex gap-1">
+            {ramp.shades.map((shade) => (
+              <div 
+                key={shade.shade} 
+                className="w-6 text-center text-[8px] text-muted-foreground"
+              >
+                {shade.shade}
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+
+  // If no children provided, render just the content (for use inside other popovers)
+  if (!children) {
+    return <div className="p-3">{swatchContent}</div>;
+  }
+
+  // Otherwise, render with popover wrapper
   return (
     <WexPopover open={open} onOpenChange={setOpen}>
       <WexPopover.Trigger asChild>
@@ -55,94 +155,7 @@ export function PaletteSwatchPicker({
         align="start"
         sideOffset={8}
       >
-        <div className="space-y-3">
-          <div className="text-sm font-medium text-foreground">
-            Select Palette Shade
-          </div>
-          
-          {/* Neutral colors (white/black) */}
-          <div className="space-y-1">
-            <div className="text-xs text-muted-foreground font-medium">Neutrals</div>
-            <div className="flex gap-1">
-              {NEUTRAL_TOKENS.map((neutral) => {
-                const isSelected = value === neutral.name;
-                return (
-                  <button
-                    key={neutral.name}
-                    type="button"
-                    onClick={() => {
-                      onSelect(neutral.name);
-                      setOpen(false);
-                    }}
-                    title={neutral.label}
-                    className={cn(
-                      "w-6 h-6 rounded-sm transition-all border",
-                      "hover:scale-110 hover:z-10 hover:ring-2 hover:ring-foreground/20",
-                      "focus:outline-none focus:ring-2 focus:ring-primary",
-                      isSelected && "ring-2 ring-primary ring-offset-1",
-                      neutral.name === "white" && "border-border"
-                    )}
-                    style={{ 
-                      backgroundColor: `hsl(${neutral.value})` 
-                    }}
-                  >
-                    <span className="sr-only">{neutral.label}</span>
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-
-          {PALETTE_RAMPS.map((ramp) => (
-            <div key={ramp.name} className="space-y-1">
-              {/* Ramp label */}
-              <div className="text-xs text-muted-foreground font-medium">
-                {ramp.label}
-              </div>
-              
-              {/* Shade swatches */}
-              <div className="flex gap-1">
-                {ramp.shades.map((shade) => {
-                  const isSelected = parsed?.name === ramp.name && parsed?.shade === shade.shade;
-                  
-                  return (
-                    <button
-                      key={shade.shade}
-                      type="button"
-                      onClick={() => handleSelect(ramp.name, shade.shade)}
-                      title={`${ramp.label} ${shade.shade}`}
-                      className={cn(
-                        "w-6 h-6 rounded-sm transition-all",
-                        "hover:scale-110 hover:z-10 hover:ring-2 hover:ring-foreground/20",
-                        "focus:outline-none focus:ring-2 focus:ring-primary",
-                        isSelected && "ring-2 ring-primary ring-offset-1"
-                      )}
-                      style={{ 
-                        backgroundColor: `hsl(var(${shade.token}))` 
-                      }}
-                    >
-                      <span className="sr-only">
-                        {ramp.label} {shade.shade}
-                      </span>
-                    </button>
-                  );
-                })}
-              </div>
-              
-              {/* Shade labels */}
-              <div className="flex gap-1">
-                {ramp.shades.map((shade) => (
-                  <div 
-                    key={shade.shade} 
-                    className="w-6 text-center text-[8px] text-muted-foreground"
-                  >
-                    {shade.shade}
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
+        {swatchContent}
       </WexPopover.Content>
     </WexPopover>
   );

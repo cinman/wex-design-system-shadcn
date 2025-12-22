@@ -149,6 +149,8 @@ interface FilteredLivePreviewProps {
   currentValue?: string;
   /** Callback when the value is changed via the edit control */
   onValueChange?: (value: string) => void;
+  /** Callback when a palette ramp color is changed */
+  onRampChange?: (rampName: string, hslValue: string) => void;
   /** Optional className */
   className?: string;
   /** Full width mode for main workspace */
@@ -1524,7 +1526,7 @@ function PrimaryPreviewFullWidth() {
           <div className="flex flex-wrap gap-2">
             <WexButton>Primary</WexButton>
             <WexButton disabled>Disabled</WexButton>
-            <WexButton intent="link">Link Style</WexButton>
+            <WexButton intent="ghost">Ghost Style</WexButton>
           </div>
         </PreviewCard>
 

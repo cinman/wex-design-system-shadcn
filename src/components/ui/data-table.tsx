@@ -2,8 +2,10 @@
 
 import * as React from "react"
 import {
+  type Column,
   type ColumnDef,
   type ColumnFiltersState,
+  type Row,
   type SortingState,
   type VisibilityState,
   flexRender,
@@ -149,7 +151,7 @@ export function DataTable<TData, TValue>({
 
 interface DataTableColumnHeaderProps<TData, TValue>
   extends React.HTMLAttributes<HTMLDivElement> {
-  column: ColumnDef<TData, TValue>
+  column: Column<TData, TValue>
   title: string
 }
 
@@ -279,7 +281,7 @@ export function DataTablePagination<TData>({
 }
 
 interface DataTableRowActionsProps<TData> {
-  row: TanstackTable<TData>["getRowModel"]["rows"][number]
+  row: Row<TData>
   actions?: Array<{
     label: string
     onClick: (row: TData) => void

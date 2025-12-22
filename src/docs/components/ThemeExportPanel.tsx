@@ -7,7 +7,6 @@
 import * as React from "react";
 import { Copy, Download, Check } from "lucide-react";
 import { WexButton } from "@/components/wex";
-import { cn } from "@/lib/utils";
 
 interface ThemeExportPanelProps {
   cssCode: string;
@@ -66,7 +65,7 @@ export function ThemeExportPanel({
             </div>
             <div className="flex items-center gap-1">
               <WexButton
-                variant="ghost"
+                intent="ghost"
                 size="sm"
                 onClick={handleCopyCSS}
                 className="h-7 px-2"
@@ -79,7 +78,7 @@ export function ThemeExportPanel({
               </WexButton>
               {onExportCSS && (
                 <WexButton
-                  variant="ghost"
+                  intent="ghost"
                   size="sm"
                   onClick={onExportCSS}
                   className="h-7 px-2"
@@ -107,7 +106,7 @@ export function ThemeExportPanel({
             </div>
             <div className="flex items-center gap-1">
               <WexButton
-                variant="ghost"
+                intent="ghost"
                 size="sm"
                 onClick={handleCopyJSON}
                 className="h-7 px-2"
@@ -120,7 +119,7 @@ export function ThemeExportPanel({
               </WexButton>
               {onExportJSON && (
                 <WexButton
-                  variant="ghost"
+                  intent="ghost"
                   size="sm"
                   onClick={onExportJSON}
                   className="h-7 px-2"

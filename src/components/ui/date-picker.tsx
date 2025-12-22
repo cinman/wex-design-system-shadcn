@@ -20,8 +20,9 @@ export interface DatePickerProps {
   placeholder?: string
   disabled?: boolean
   className?: string
-  mode?: "single" | "range"
+  /** Minimum selectable date */
   fromDate?: Date
+  /** Maximum selectable date */
   toDate?: Date
 }
 
@@ -31,7 +32,6 @@ export function DatePicker({
   placeholder = "Pick a date",
   disabled = false,
   className,
-  mode = "single",
   fromDate,
   toDate,
 }: DatePickerProps) {
@@ -55,19 +55,17 @@ export function DatePicker({
       </PopoverTrigger>
       <PopoverContent className="w-auto p-0" align="start">
         <Calendar
-          mode={mode}
+          mode="single"
           selected={date}
-          onSelect={(selectedDate) => {
-            if (mode === "single") {
-              onDateChange?.(selectedDate as Date | undefined)
-              setOpen(false)
-            } else {
-              // For range mode, handle differently
-              onDateChange?.(selectedDate as Date | undefined)
-            }
+          onSelect={(selectedDate: Date | undefined) => {
+            onDateChange?.(selectedDate)
+            setOpen(false)
           }}
-          fromDate={fromDate}
-          toDate={toDate}
+          disabled={(d) => {
+            if (fromDate && d < fromDate) return true
+            if (toDate && d > toDate) return true
+            return false
+          }}
           initialFocus
         />
       </PopoverContent>

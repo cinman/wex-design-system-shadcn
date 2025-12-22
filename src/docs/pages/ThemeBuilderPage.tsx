@@ -13,11 +13,9 @@ import * as React from "react";
 import { useThemeBuilder } from "@/docs/context/ThemeBuilderContext";
 import { useThemeOverrides } from "@/docs/hooks/useThemeOverrides";
 import {
-  PALETTE_RAMPS,
   SEMANTIC_TOKENS,
   SURFACE_TOKENS,
   TEXT_TOKENS,
-  NEUTRAL_TOKENS,
 } from "@/docs/data/tokenRegistry";
 import { WexAlertDialog } from "@/components/wex";
 import { ThemeBuilderNav } from "@/docs/components/ThemeBuilderNav";
@@ -188,7 +186,7 @@ export default function ThemeBuilderPage() {
             }
             onRampChange={
               selectedToken === "--wex-palette-ramps"
-                ? (rampName, hslValue) => {
+                ? (rampName: string, hslValue: string) => {
                     const token500 = `--wex-palette-${rampName}-500`;
                     setToken(token500, hslValue, editMode);
                   }
