@@ -16,6 +16,26 @@ export default function ChangelogPage() {
 
       <div className="space-y-8">
         <ChangelogEntry
+          version="0.18.0"
+          date="December 22, 2025"
+          title="WexTabs Underline Variant (Prime-Style)"
+          changes={[
+            "Tabs: Added new 'underline' variant inspired by PrimeNG tabs component",
+            "Tabs: variant='underline' on WexTabs.List enables bottom border indicator style",
+            "Tabs: Active tab shows primary-colored underline instead of background fill",
+            "Tabs: Variant context pattern - set variant on List, triggers inherit automatically",
+            "Tabs: CVA architecture for scalable variant system (wexTabsListVariants, wexTabsTriggerVariants)",
+            "Tabs: Full backward compatibility - default behavior unchanged (pill style)",
+            "Tabs: Both variants support disabled, controlled, and full-width configurations",
+            "Tabs: No new tokens required - uses existing --border, --primary, --foreground tokens",
+            "Docs: Updated TabsPage with side-by-side variant comparison",
+            "Docs: Added dedicated 'Underline Variant States' section with all interactive states",
+            "Docs: Updated token reference table with underline variant token mappings",
+            "Docs: Updated Usage code examples showing both variant syntaxes",
+          ]}
+        />
+
+        <ChangelogEntry
           version="0.17.0"
           date="December 21, 2025"
           title="WCAG Contrast Checker, Complete Component Coverage & NPM Package"
