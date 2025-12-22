@@ -26,22 +26,58 @@ const wexButtonVariants = cva(
     "focus-visible:ring-ring",
     "focus-visible:ring-offset-[length:var(--wex-focus-ring-offset)]",
     "focus-visible:ring-offset-background",
-    // Disabled state
-    "disabled:pointer-events-none disabled:opacity-50",
+    // Disabled state - pointer-events in base, colors per-variant
+    "disabled:pointer-events-none",
     // SVG handling
     "[&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   ],
   {
     variants: {
       intent: {
-        primary: "bg-primary text-primary-foreground hover:bg-primary-hover",
-        secondary:
-          "bg-secondary text-secondary-foreground hover:bg-secondary-hover",
-        ghost: "hover:bg-accent hover:text-accent-foreground",
-        destructive:
-          "bg-destructive text-destructive-foreground hover:bg-destructive-hover",
-        outline:
-          "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
+        // PRIMARY - Layer 3 tokens with explicit disabled colors
+        primary: [
+          "bg-wex-button-primary-bg",
+          "text-wex-button-primary-fg",
+          "border border-wex-button-primary-border",
+          "hover:bg-wex-button-primary-hover-bg",
+          "active:bg-wex-button-primary-active-bg",
+          "disabled:bg-wex-button-primary-disabled-bg",
+          "disabled:text-wex-button-primary-disabled-fg",
+          "disabled:opacity-[var(--wex-component-button-disabled-opacity)]",
+        ].join(" "),
+        // SECONDARY - Layer 3 tokens with explicit disabled colors
+        secondary: [
+          "bg-wex-button-secondary-bg",
+          "text-wex-button-secondary-fg",
+          "border border-wex-button-secondary-border",
+          "hover:bg-wex-button-secondary-hover-bg",
+          "active:bg-wex-button-secondary-active-bg",
+          "disabled:bg-wex-button-secondary-disabled-bg",
+          "disabled:text-wex-button-secondary-disabled-fg",
+          "disabled:opacity-[var(--wex-component-button-disabled-opacity)]",
+        ].join(" "),
+        // DESTRUCTIVE - Layer 3 tokens with explicit disabled colors
+        destructive: [
+          "bg-wex-button-destructive-bg",
+          "text-wex-button-destructive-fg",
+          "border border-wex-button-destructive-border",
+          "hover:bg-wex-button-destructive-hover-bg",
+          "active:bg-wex-button-destructive-active-bg",
+          "disabled:bg-wex-button-destructive-disabled-bg",
+          "disabled:text-wex-button-destructive-disabled-fg",
+          "disabled:opacity-[var(--wex-component-button-disabled-opacity)]",
+        ].join(" "),
+        // GHOST - Layer 2 (shadcn bridge) - no dedicated Layer 3 tokens yet
+        ghost: [
+          "hover:bg-accent hover:text-accent-foreground",
+          "disabled:opacity-50",
+        ].join(" "),
+        // OUTLINE - Layer 2 (shadcn bridge) - no dedicated Layer 3 tokens yet
+        outline: [
+          "border border-input bg-background",
+          "hover:bg-accent hover:text-accent-foreground",
+          "disabled:opacity-50",
+        ].join(" "),
       },
       size: {
         // sm: Compact button, no WCAG target requirement (for dense UIs)
