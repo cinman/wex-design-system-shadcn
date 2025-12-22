@@ -5,32 +5,36 @@ import { CodeBlock } from "@/docs/components/CodeBlock";
 import { Guidance } from "@/docs/components/ProseBlock";
 import { TokenReference, type TokenRow } from "@/docs/components/TokenReference";
 import { WexButton } from "@/components/wex";
-import { Loader2, Mail, Plus } from "lucide-react";
+import { Loader2, Mail, Plus, Trash2, Settings, Download } from "lucide-react";
 
-// Token mappings for WexButton variants
+// Token mappings for WexButton variants - using Layer 3 component tokens
 const buttonTokens: TokenRow[] = [
-  // Primary
-  { element: "Primary", property: "Background", token: "--primary" },
-  { element: "Primary", property: "Text", token: "--primary-foreground" },
-  { element: "Primary", property: "Hover", token: "--primary-hover" },
-  // Secondary
-  { element: "Secondary", property: "Background", token: "--secondary" },
-  { element: "Secondary", property: "Text", token: "--secondary-foreground" },
-  { element: "Secondary", property: "Hover", token: "--secondary-hover" },
-  // Ghost
-  { element: "Ghost", property: "Background", token: "(transparent)" },
+  // Primary (Layer 3)
+  { element: "Primary", property: "Background", token: "--wex-component-button-primary-bg" },
+  { element: "Primary", property: "Text", token: "--wex-component-button-primary-fg" },
+  { element: "Primary", property: "Hover", token: "--wex-component-button-primary-hover-bg" },
+  { element: "Primary", property: "Active", token: "--wex-component-button-primary-active-bg" },
+  { element: "Primary", property: "Focus Ring", token: "--wex-component-button-primary-focus-ring" },
+  { element: "Primary", property: "Disabled BG", token: "--wex-component-button-primary-disabled-bg" },
+  // Secondary (Layer 3)
+  { element: "Secondary", property: "Background", token: "--wex-component-button-secondary-bg" },
+  { element: "Secondary", property: "Text", token: "--wex-component-button-secondary-fg" },
+  { element: "Secondary", property: "Border", token: "--wex-component-button-secondary-border" },
+  { element: "Secondary", property: "Hover", token: "--wex-component-button-secondary-hover-bg" },
+  // Destructive (Layer 3)
+  { element: "Destructive", property: "Background", token: "--wex-component-button-destructive-bg" },
+  { element: "Destructive", property: "Text", token: "--wex-component-button-destructive-fg" },
+  { element: "Destructive", property: "Hover", token: "--wex-component-button-destructive-hover-bg" },
+  { element: "Destructive", property: "Active", token: "--wex-component-button-destructive-active-bg" },
+  // Tertiary (Layer 3 - tokens only, no CVA variant yet)
+  { element: "Tertiary", property: "Text", token: "--wex-component-button-tertiary-fg" },
+  { element: "Tertiary", property: "Hover BG", token: "--wex-component-button-tertiary-hover-bg" },
+  { element: "Tertiary", property: "Active BG", token: "--wex-component-button-tertiary-active-bg" },
+  // Ghost/Outline (still using Layer 2 shadcn bridge)
   { element: "Ghost", property: "Hover Background", token: "--accent" },
-  { element: "Ghost", property: "Hover Text", token: "--accent-foreground" },
-  // Destructive
-  { element: "Destructive", property: "Background", token: "--destructive" },
-  { element: "Destructive", property: "Text", token: "--destructive-foreground" },
-  { element: "Destructive", property: "Hover", token: "--destructive-hover" },
-  // Outline
-  { element: "Outline", property: "Background", token: "--background" },
   { element: "Outline", property: "Border", token: "--input" },
-  { element: "Outline", property: "Hover Background", token: "--accent" },
-  // Focus Ring (all variants)
-  { element: "Focus Ring", property: "Color", token: "--ring" },
+  // Shared
+  { element: "All Variants", property: "Disabled Opacity", token: "--wex-component-button-disabled-opacity" },
   { element: "Focus Ring", property: "Width", token: "--wex-focus-ring-width" },
   { element: "Focus Ring", property: "Offset", token: "--wex-focus-ring-offset" },
 ];
@@ -51,6 +55,63 @@ export default function ButtonPage() {
           WexButton is the foundational action element. It's hardened with 
           WCAG 2.5.5 compliant touch targets (44px minimum) and consistent 
           focus ring styling using WEX tokens.
+        </Guidance>
+      </Section>
+
+      <Section title="All Variants at a Glance" description="Complete overview of all button intents across all states.">
+        <div className="overflow-x-auto">
+          <table className="w-full border-collapse text-sm">
+            <thead>
+              <tr className="border-b border-border">
+                <th className="text-left py-3 px-4 font-medium text-muted-foreground">Intent</th>
+                <th className="text-left py-3 px-4 font-medium text-muted-foreground">Default</th>
+                <th className="text-left py-3 px-4 font-medium text-muted-foreground">Hover</th>
+                <th className="text-left py-3 px-4 font-medium text-muted-foreground">Disabled</th>
+                <th className="text-left py-3 px-4 font-medium text-muted-foreground">With Icon</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b border-border/50">
+                <td className="py-4 px-4 font-medium">Primary</td>
+                <td className="py-4 px-4"><WexButton intent="primary">Primary</WexButton></td>
+                <td className="py-4 px-4"><WexButton intent="primary" className="bg-primary-hover">Hover</WexButton></td>
+                <td className="py-4 px-4"><WexButton intent="primary" disabled>Disabled</WexButton></td>
+                <td className="py-4 px-4"><WexButton intent="primary"><Plus className="h-4 w-4" />Add</WexButton></td>
+              </tr>
+              <tr className="border-b border-border/50">
+                <td className="py-4 px-4 font-medium">Secondary</td>
+                <td className="py-4 px-4"><WexButton intent="secondary">Secondary</WexButton></td>
+                <td className="py-4 px-4"><WexButton intent="secondary" className="bg-secondary-hover">Hover</WexButton></td>
+                <td className="py-4 px-4"><WexButton intent="secondary" disabled>Disabled</WexButton></td>
+                <td className="py-4 px-4"><WexButton intent="secondary"><Mail className="h-4 w-4" />Email</WexButton></td>
+              </tr>
+              <tr className="border-b border-border/50">
+                <td className="py-4 px-4 font-medium">Destructive</td>
+                <td className="py-4 px-4"><WexButton intent="destructive">Destructive</WexButton></td>
+                <td className="py-4 px-4"><WexButton intent="destructive" className="bg-destructive-hover">Hover</WexButton></td>
+                <td className="py-4 px-4"><WexButton intent="destructive" disabled>Disabled</WexButton></td>
+                <td className="py-4 px-4"><WexButton intent="destructive"><Trash2 className="h-4 w-4" />Delete</WexButton></td>
+              </tr>
+              <tr className="border-b border-border/50">
+                <td className="py-4 px-4 font-medium">Ghost</td>
+                <td className="py-4 px-4"><WexButton intent="ghost">Ghost</WexButton></td>
+                <td className="py-4 px-4"><WexButton intent="ghost" className="bg-accent text-accent-foreground">Hover</WexButton></td>
+                <td className="py-4 px-4"><WexButton intent="ghost" disabled>Disabled</WexButton></td>
+                <td className="py-4 px-4"><WexButton intent="ghost"><Settings className="h-4 w-4" />Settings</WexButton></td>
+              </tr>
+              <tr className="border-b border-border/50">
+                <td className="py-4 px-4 font-medium">Outline</td>
+                <td className="py-4 px-4"><WexButton intent="outline">Outline</WexButton></td>
+                <td className="py-4 px-4"><WexButton intent="outline" className="bg-accent text-accent-foreground">Hover</WexButton></td>
+                <td className="py-4 px-4"><WexButton intent="outline" disabled>Disabled</WexButton></td>
+                <td className="py-4 px-4"><WexButton intent="outline"><Download className="h-4 w-4" />Export</WexButton></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <Guidance>
+          This table shows all 5 supported button intents with their default, hover, disabled, and icon states.
+          Each variant uses dedicated component slot tokens from Layer 3 for granular theming control.
         </Guidance>
       </Section>
 
