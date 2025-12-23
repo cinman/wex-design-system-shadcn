@@ -72,8 +72,65 @@
   --wex-component-button-tertiary-disabled-fg: var(--wex-text-muted);
   --wex-component-button-tertiary-disabled-border: transparent;
   
+  /* ----- Button: Success ----- */
+  --wex-component-button-success-bg: var(--wex-success);
+  --wex-component-button-success-fg: var(--wex-success-foreground);
+  --wex-component-button-success-border: var(--wex-success);
+  --wex-component-button-success-hover-bg: var(--wex-palette-green-600);
+  --wex-component-button-success-active-bg: var(--wex-palette-green-700);
+  --wex-component-button-success-focus-ring: var(--wex-success);
+  --wex-component-button-success-disabled-bg: var(--wex-success);
+  --wex-component-button-success-disabled-fg: var(--wex-success-foreground);
+  
+  /* ----- Button: Info ----- */
+  --wex-component-button-info-bg: var(--wex-info);
+  --wex-component-button-info-fg: var(--wex-info-foreground);
+  --wex-component-button-info-border: var(--wex-info);
+  --wex-component-button-info-hover-bg: var(--wex-palette-cyan-600);
+  --wex-component-button-info-active-bg: var(--wex-palette-cyan-700);
+  --wex-component-button-info-focus-ring: var(--wex-info);
+  --wex-component-button-info-disabled-bg: var(--wex-info);
+  --wex-component-button-info-disabled-fg: var(--wex-info-foreground);
+  
+  /* ----- Button: Warning ----- */
+  --wex-component-button-warning-bg: var(--wex-warning);
+  --wex-component-button-warning-fg: var(--wex-warning-foreground);
+  --wex-component-button-warning-border: var(--wex-warning);
+  --wex-component-button-warning-hover-bg: var(--wex-palette-amber-600);
+  --wex-component-button-warning-active-bg: var(--wex-palette-amber-700);
+  --wex-component-button-warning-focus-ring: var(--wex-warning);
+  --wex-component-button-warning-disabled-bg: var(--wex-warning);
+  --wex-component-button-warning-disabled-fg: var(--wex-warning-foreground);
+  
+  /* ----- Button: Help ----- */
+  --wex-component-button-help-bg: var(--wex-palette-purple-500);
+  --wex-component-button-help-fg: var(--wex-palette-white);
+  --wex-component-button-help-border: var(--wex-palette-purple-500);
+  --wex-component-button-help-hover-bg: var(--wex-palette-purple-600);
+  --wex-component-button-help-active-bg: var(--wex-palette-purple-700);
+  --wex-component-button-help-focus-ring: var(--wex-palette-purple-500);
+  --wex-component-button-help-disabled-bg: var(--wex-palette-purple-500);
+  --wex-component-button-help-disabled-fg: var(--wex-palette-white);
+  
+  /* ----- Button: Contrast ----- */
+  --wex-component-button-contrast-bg: var(--wex-palette-slate-900);
+  --wex-component-button-contrast-fg: var(--wex-palette-slate-50);
+  --wex-component-button-contrast-border: var(--wex-palette-slate-900);
+  --wex-component-button-contrast-hover-bg: var(--wex-palette-slate-800);
+  --wex-component-button-contrast-active-bg: var(--wex-palette-slate-700);
+  --wex-component-button-contrast-focus-ring: var(--wex-palette-slate-900);
+  --wex-component-button-contrast-disabled-bg: var(--wex-palette-slate-900);
+  --wex-component-button-contrast-disabled-fg: var(--wex-palette-slate-50);
+  
+  /* ----- Button: Link ----- */
+  --wex-component-button-link-fg: var(--wex-primary);
+  --wex-component-button-link-hover-fg: var(--wex-primary-hover);
+  --wex-component-button-link-active-fg: var(--wex-primary-active);
+  --wex-component-button-link-disabled-fg: var(--wex-text-muted);
+  
   /* ----- Button: Shared ----- */
   --wex-component-button-disabled-opacity: 0.5;
+  --wex-component-button-raised-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
 
   /* ============================================================
      INPUT
@@ -89,6 +146,17 @@
   --wex-component-input-disabled-fg: var(--wex-text-muted);
   --wex-component-input-disabled-border: var(--wex-content-border);
   --wex-component-input-disabled-opacity: 0.6;
+  /* ----- Input: Filled variant ----- */
+  --wex-component-input-filled-bg: var(--wex-surface-subtle);
+  --wex-component-input-filled-border: transparent;
+  --wex-component-input-filled-hover-bg: var(--wex-palette-slate-200);
+  /* ----- Input: Invalid state ----- */
+  --wex-component-input-invalid-border: var(--wex-destructive);
+  --wex-component-input-invalid-focus-ring: var(--wex-destructive);
+  /* ----- Input: Sizes ----- */
+  --wex-component-input-height-sm: 2rem;
+  --wex-component-input-height-md: 2.75rem;
+  --wex-component-input-height-lg: 3rem;
 
   /* ============================================================
      SELECT
@@ -452,6 +520,15 @@
    ============================================================ */
 
 .dark {
+  /* ----- Button: Contrast inverts in dark mode ----- */
+  --wex-component-button-contrast-bg: var(--wex-palette-slate-50);
+  --wex-component-button-contrast-fg: var(--wex-palette-slate-900);
+  --wex-component-button-contrast-border: var(--wex-palette-slate-50);
+  --wex-component-button-contrast-hover-bg: var(--wex-palette-slate-200);
+  --wex-component-button-contrast-active-bg: var(--wex-palette-slate-300);
+  --wex-component-button-contrast-disabled-bg: var(--wex-palette-slate-50);
+  --wex-component-button-contrast-disabled-fg: var(--wex-palette-slate-900);
+  
   /* ----- Input: border-hover needs explicit dark override ----- */
   --wex-component-input-border-hover: var(--wex-palette-slate-600);
   

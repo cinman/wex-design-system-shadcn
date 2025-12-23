@@ -1,8 +1,9 @@
 import * as React from "react"
-import { ChevronLeft, ChevronRight, MoreHorizontal } from "lucide-react"
-
+import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight, MoreHorizontal } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { type ButtonProps, buttonVariants } from "@/components/ui/button"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Input } from "@/components/ui/input"
 
 const Pagination = ({ className, ...props }: React.ComponentProps<"nav">) => (
   <nav
@@ -52,6 +53,7 @@ const PaginationLink = ({
         variant: isActive ? "outline" : "ghost",
         size,
       }),
+      isActive && "bg-wex-pagination-active-bg text-wex-pagination-active-fg pointer-events-none",
       className
     )}
     {...props}
@@ -91,6 +93,36 @@ const PaginationNext = ({
 )
 PaginationNext.displayName = "PaginationNext"
 
+const PaginationFirst = ({
+  className,
+  ...props
+}: React.ComponentProps<typeof PaginationLink>) => (
+  <PaginationLink
+    aria-label="Go to first page"
+    size="icon"
+    className={cn("", className)}
+    {...props}
+  >
+    <ChevronsLeft className="h-4 w-4" />
+  </PaginationLink>
+)
+PaginationFirst.displayName = "PaginationFirst"
+
+const PaginationLast = ({
+  className,
+  ...props
+}: React.ComponentProps<typeof PaginationLink>) => (
+  <PaginationLink
+    aria-label="Go to last page"
+    size="icon"
+    className={cn("", className)}
+    {...props}
+  >
+    <ChevronsRight className="h-4 w-4" />
+  </PaginationLink>
+)
+PaginationLast.displayName = "PaginationLast"
+
 const PaginationEllipsis = ({
   className,
   ...props
@@ -106,6 +138,124 @@ const PaginationEllipsis = ({
 )
 PaginationEllipsis.displayName = "PaginationEllipsis"
 
+// ============================================================
+// Enhanced Pagination Components
+// ============================================================
+
+interface RowsPerPageProps {
+  value: number
+  onChange: (value: number) => void
+  options?: number[]
+  className?: string
+}
+
+const RowsPerPage = ({
+  value,
+  onChange,
+  options = [10, 20, 30, 50, 100],
+  className,
+}: RowsPerPageProps) => (
+  <div className={cn("flex items-center gap-2", className)}>
+    <span className="text-sm text-muted-foreground">Rows per page</span>
+    <Select value={String(value)} onValueChange={(v) => onChange(Number(v))}>
+      <SelectTrigger className="h-8 w-[70px]">
+        <SelectValue />
+      </SelectTrigger>
+      <SelectContent>
+        {options.map((option) => (
+          <SelectItem key={option} value={String(option)}>
+            {option}
+          </SelectItem>
+        ))}
+      </SelectContent>
+    </Select>
+  </div>
+)
+RowsPerPage.displayName = "RowsPerPage"
+
+interface PageReportProps {
+  currentPage: number
+  totalPages: number
+  totalItems: number
+  pageSize: number
+  className?: string
+  /** Format: "{first}" for first item, "{last}" for last item, "{total}" for total items, "{page}" for current page, "{pages}" for total pages */
+  template?: string
+}
+
+const PageReport = ({
+  currentPage,
+  totalPages,
+  totalItems,
+  pageSize,
+  className,
+  template = "{first} - {last} of {total}",
+}: PageReportProps) => {
+  const first = (currentPage - 1) * pageSize + 1
+  const last = Math.min(currentPage * pageSize, totalItems)
+  
+  const text = template
+    .replace("{first}", String(first))
+    .replace("{last}", String(last))
+    .replace("{total}", String(totalItems))
+    .replace("{page}", String(currentPage))
+    .replace("{pages}", String(totalPages))
+
+  return (
+    <span className={cn("text-sm text-muted-foreground", className)}>
+      {text}
+    </span>
+  )
+}
+PageReport.displayName = "PageReport"
+
+interface JumpToPageProps {
+  currentPage: number
+  totalPages: number
+  onPageChange: (page: number) => void
+  className?: string
+}
+
+const JumpToPage = ({
+  currentPage,
+  totalPages,
+  onPageChange,
+  className,
+}: JumpToPageProps) => {
+  const [inputValue, setInputValue] = React.useState(String(currentPage))
+
+  React.useEffect(() => {
+    setInputValue(String(currentPage))
+  }, [currentPage])
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    const page = parseInt(inputValue, 10)
+    if (page >= 1 && page <= totalPages) {
+      onPageChange(page)
+    } else {
+      setInputValue(String(currentPage))
+    }
+  }
+
+  return (
+    <form onSubmit={handleSubmit} className={cn("flex items-center gap-2", className)}>
+      <span className="text-sm text-muted-foreground">Go to page</span>
+      <Input
+        type="number"
+        min={1}
+        max={totalPages}
+        value={inputValue}
+        onChange={(e) => setInputValue(e.target.value)}
+        className="h-8 w-16 text-center"
+        inputSize="sm"
+      />
+      <span className="text-sm text-muted-foreground">of {totalPages}</span>
+    </form>
+  )
+}
+JumpToPage.displayName = "JumpToPage"
+
 export {
   Pagination,
   PaginationContent,
@@ -113,5 +263,10 @@ export {
   PaginationItem,
   PaginationPrevious,
   PaginationNext,
+  PaginationFirst,
+  PaginationLast,
   PaginationEllipsis,
+  RowsPerPage,
+  PageReport,
+  JumpToPage,
 }

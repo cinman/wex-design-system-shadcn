@@ -10,10 +10,11 @@ import { cn } from "@/lib/utils";
  * @example
  * <WexBadge intent="default">New</WexBadge>
  * <WexBadge intent="destructive">Error</WexBadge>
+ * <WexBadge intent="success" size="lg" pill>Active</WexBadge>
  */
 
 const wexBadgeVariants = cva(
-  "inline-flex items-center rounded-md border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
+  "inline-flex items-center border font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
   {
     variants: {
       intent: {
@@ -34,7 +35,7 @@ const wexBadgeVariants = cva(
           "border-wex-badge-destructive-border",
         ].join(" "),
         // OUTLINE - Layer 2
-        outline: "text-foreground",
+        outline: "text-foreground bg-transparent",
         // SUCCESS - Layer 3 tokens
         success: [
           "shadow",
@@ -57,9 +58,20 @@ const wexBadgeVariants = cva(
           "border-wex-badge-info-border",
         ].join(" "),
       },
+      size: {
+        sm: "px-1.5 py-0.5 text-[10px]",
+        md: "px-2.5 py-0.5 text-xs",
+        lg: "px-3 py-1 text-sm",
+      },
+      pill: {
+        true: "rounded-full",
+        false: "rounded-md",
+      },
     },
     defaultVariants: {
       intent: "default",
+      size: "md",
+      pill: false,
     },
   }
 );
@@ -68,11 +80,10 @@ export interface WexBadgeProps
   extends React.HTMLAttributes<HTMLDivElement>,
     VariantProps<typeof wexBadgeVariants> {}
 
-function WexBadge({ className, intent, ...props }: WexBadgeProps) {
+function WexBadge({ className, intent, size, pill, ...props }: WexBadgeProps) {
   return (
-    <div className={cn(wexBadgeVariants({ intent }), className)} {...props} />
+    <div className={cn(wexBadgeVariants({ intent, size, pill }), className)} {...props} />
   );
 }
 
 export { WexBadge, wexBadgeVariants };
-

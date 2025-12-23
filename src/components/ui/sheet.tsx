@@ -38,13 +38,45 @@ const sheetVariants = cva(
         top: "inset-x-0 top-0 border-b border-wex-sheet-border data-[state=closed]:slide-out-to-top data-[state=open]:slide-in-from-top",
         bottom:
           "inset-x-0 bottom-0 border-t border-wex-sheet-border data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom",
-        left: "inset-y-0 left-0 h-full w-3/4 border-r border-wex-sheet-border data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left sm:max-w-sm",
+        left: "inset-y-0 left-0 h-full border-r border-wex-sheet-border data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left",
         right:
-          "inset-y-0 right-0 h-full w-3/4 border-l border-wex-sheet-border data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right sm:max-w-sm",
+          "inset-y-0 right-0 h-full border-l border-wex-sheet-border data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right",
+      },
+      size: {
+        sm: "",
+        md: "",
+        lg: "",
+        xl: "",
+        full: "",
       },
     },
+    compoundVariants: [
+      // Left/Right sizes
+      { side: "left", size: "sm", class: "w-64 max-w-[80vw]" },
+      { side: "left", size: "md", class: "w-80 max-w-[80vw]" },
+      { side: "left", size: "lg", class: "w-96 max-w-[80vw]" },
+      { side: "left", size: "xl", class: "w-[32rem] max-w-[80vw]" },
+      { side: "left", size: "full", class: "w-screen" },
+      { side: "right", size: "sm", class: "w-64 max-w-[80vw]" },
+      { side: "right", size: "md", class: "w-80 max-w-[80vw]" },
+      { side: "right", size: "lg", class: "w-96 max-w-[80vw]" },
+      { side: "right", size: "xl", class: "w-[32rem] max-w-[80vw]" },
+      { side: "right", size: "full", class: "w-screen" },
+      // Top/Bottom sizes
+      { side: "top", size: "sm", class: "h-48 max-h-[80vh]" },
+      { side: "top", size: "md", class: "h-64 max-h-[80vh]" },
+      { side: "top", size: "lg", class: "h-96 max-h-[80vh]" },
+      { side: "top", size: "xl", class: "h-[32rem] max-h-[80vh]" },
+      { side: "top", size: "full", class: "h-screen" },
+      { side: "bottom", size: "sm", class: "h-48 max-h-[80vh]" },
+      { side: "bottom", size: "md", class: "h-64 max-h-[80vh]" },
+      { side: "bottom", size: "lg", class: "h-96 max-h-[80vh]" },
+      { side: "bottom", size: "xl", class: "h-[32rem] max-h-[80vh]" },
+      { side: "bottom", size: "full", class: "h-screen" },
+    ],
     defaultVariants: {
       side: "right",
+      size: "md",
     },
   }
 )
@@ -56,12 +88,12 @@ interface SheetContentProps
 const SheetContent = React.forwardRef<
   React.ElementRef<typeof SheetPrimitive.Content>,
   SheetContentProps
->(({ side = "right", className, children, ...props }, ref) => (
+>(({ side = "right", size = "md", className, children, ...props }, ref) => (
   <SheetPortal>
     <SheetOverlay />
     <SheetPrimitive.Content
       ref={ref}
-      className={cn(sheetVariants({ side }), className)}
+      className={cn(sheetVariants({ side, size }), className)}
       {...props}
     >
       <SheetPrimitive.Close className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 hover:bg-wex-sheet-close-hover-bg focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none">

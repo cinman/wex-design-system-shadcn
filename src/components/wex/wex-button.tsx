@@ -2,6 +2,7 @@ import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
+import { Loader2 } from "lucide-react";
 
 /**
  * WexButton - WEX Design System Button Component
@@ -12,13 +13,15 @@ import { cn } from "@/lib/utils";
  * @example
  * <WexButton intent="primary">Save Changes</WexButton>
  * <WexButton intent="destructive" size="sm">Delete</WexButton>
+ * <WexButton intent="success" rounded>Complete</WexButton>
+ * <WexButton intent="primary" loading>Saving...</WexButton>
  */
 
 const wexButtonVariants = cva(
   // Base classes - hardened with accessibility requirements
   [
     "inline-flex items-center justify-center gap-2",
-    "whitespace-nowrap rounded-md text-sm font-medium",
+    "whitespace-nowrap text-sm font-medium",
     "transition-colors",
     // HARDENED: Focus ring - always visible on focus-visible
     "focus-visible:outline-none",
@@ -67,16 +70,92 @@ const wexButtonVariants = cva(
           "disabled:text-wex-button-destructive-disabled-fg",
           "disabled:opacity-[var(--wex-component-button-disabled-opacity)]",
         ].join(" "),
-        // GHOST - Layer 2 (shadcn bridge) - no dedicated Layer 3 tokens yet
-        ghost: [
-          "hover:bg-accent hover:text-accent-foreground",
-          "disabled:opacity-50",
+        // SUCCESS - Layer 3 tokens
+        success: [
+          "bg-wex-button-success-bg",
+          "text-wex-button-success-fg",
+          "border border-wex-button-success-border",
+          "hover:bg-wex-button-success-hover-bg",
+          "active:bg-wex-button-success-active-bg",
+          "disabled:bg-wex-button-success-disabled-bg",
+          "disabled:text-wex-button-success-disabled-fg",
+          "disabled:opacity-[var(--wex-component-button-disabled-opacity)]",
         ].join(" "),
-        // OUTLINE - Layer 2 (shadcn bridge) - no dedicated Layer 3 tokens yet
+        // INFO - Layer 3 tokens
+        info: [
+          "bg-wex-button-info-bg",
+          "text-wex-button-info-fg",
+          "border border-wex-button-info-border",
+          "hover:bg-wex-button-info-hover-bg",
+          "active:bg-wex-button-info-active-bg",
+          "disabled:bg-wex-button-info-disabled-bg",
+          "disabled:text-wex-button-info-disabled-fg",
+          "disabled:opacity-[var(--wex-component-button-disabled-opacity)]",
+        ].join(" "),
+        // WARNING - Layer 3 tokens
+        warning: [
+          "bg-wex-button-warning-bg",
+          "text-wex-button-warning-fg",
+          "border border-wex-button-warning-border",
+          "hover:bg-wex-button-warning-hover-bg",
+          "active:bg-wex-button-warning-active-bg",
+          "disabled:bg-wex-button-warning-disabled-bg",
+          "disabled:text-wex-button-warning-disabled-fg",
+          "disabled:opacity-[var(--wex-component-button-disabled-opacity)]",
+        ].join(" "),
+        // HELP - Layer 3 tokens
+        help: [
+          "bg-wex-button-help-bg",
+          "text-wex-button-help-fg",
+          "border border-wex-button-help-border",
+          "hover:bg-wex-button-help-hover-bg",
+          "active:bg-wex-button-help-active-bg",
+          "disabled:bg-wex-button-help-disabled-bg",
+          "disabled:text-wex-button-help-disabled-fg",
+          "disabled:opacity-[var(--wex-component-button-disabled-opacity)]",
+        ].join(" "),
+        // CONTRAST - Layer 3 tokens (inverts in dark mode)
+        contrast: [
+          "bg-wex-button-contrast-bg",
+          "text-wex-button-contrast-fg",
+          "border border-wex-button-contrast-border",
+          "hover:bg-wex-button-contrast-hover-bg",
+          "active:bg-wex-button-contrast-active-bg",
+          "disabled:bg-wex-button-contrast-disabled-bg",
+          "disabled:text-wex-button-contrast-disabled-fg",
+          "disabled:opacity-[var(--wex-component-button-disabled-opacity)]",
+        ].join(" "),
+        // GHOST - transparent background, hover shows bg
+        ghost: [
+          "bg-transparent",
+          "text-wex-button-tertiary-fg",
+          "border border-transparent",
+          "hover:bg-wex-button-tertiary-hover-bg",
+          "active:bg-wex-button-tertiary-active-bg",
+          "disabled:text-wex-button-tertiary-disabled-fg",
+          "disabled:opacity-[var(--wex-component-button-disabled-opacity)]",
+        ].join(" "),
+        // OUTLINE - border visible, transparent background
         outline: [
-          "border border-input bg-background",
-          "hover:bg-accent hover:text-accent-foreground",
-          "disabled:opacity-50",
+          "bg-transparent",
+          "text-wex-button-secondary-fg",
+          "border border-wex-button-secondary-border",
+          "hover:bg-wex-button-secondary-hover-bg",
+          "active:bg-wex-button-secondary-active-bg",
+          "disabled:text-wex-button-secondary-disabled-fg",
+          "disabled:opacity-[var(--wex-component-button-disabled-opacity)]",
+        ].join(" "),
+        // LINK - styled as hyperlink
+        link: [
+          "bg-transparent",
+          "text-wex-button-link-fg",
+          "border-transparent",
+          "underline-offset-4 hover:underline",
+          "hover:text-wex-button-link-hover-fg",
+          "active:text-wex-button-link-active-fg",
+          "disabled:text-wex-button-link-disabled-fg",
+          "disabled:no-underline",
+          "disabled:opacity-[var(--wex-component-button-disabled-opacity)]",
         ].join(" "),
       },
       size: {
@@ -89,10 +168,20 @@ const wexButtonVariants = cva(
         // icon: Square icon button, meets WCAG requirements
         icon: "h-11 w-11 min-h-target min-w-target",
       },
+      rounded: {
+        true: "rounded-full",
+        false: "rounded-md",
+      },
+      raised: {
+        true: "shadow-[var(--wex-component-button-raised-shadow)]",
+        false: "",
+      },
     },
     defaultVariants: {
       intent: "primary",
       size: "md",
+      rounded: false,
+      raised: false,
     },
   }
 );
@@ -101,21 +190,28 @@ export interface WexButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof wexButtonVariants> {
   asChild?: boolean;
+  loading?: boolean;
 }
 
 const WexButton = React.forwardRef<HTMLButtonElement, WexButtonProps>(
-  ({ className, intent, size, asChild = false, ...props }, ref) => {
+  ({ className, intent, size, rounded, raised, asChild = false, loading = false, disabled, children, ...props }, ref) => {
     const Comp = asChild ? Slot : "button";
+    const isDisabled = disabled || loading;
+    
     return (
       <Comp
-        className={cn(wexButtonVariants({ intent, size, className }))}
+        className={cn(wexButtonVariants({ intent, size, rounded, raised, className }))}
         ref={ref}
+        disabled={isDisabled}
+        aria-busy={loading}
         {...props}
-      />
+      >
+        {loading && <Loader2 className="animate-spin" />}
+        {children}
+      </Comp>
     );
   }
 );
 WexButton.displayName = "WexButton";
 
 export { WexButton, wexButtonVariants };
-

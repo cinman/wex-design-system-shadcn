@@ -2,12 +2,35 @@
 
 import * as React from "react"
 import * as TooltipPrimitive from "@radix-ui/react-tooltip"
-
 import { cn } from "@/lib/utils"
 
-const TooltipProvider = TooltipPrimitive.Provider
+interface TooltipProviderProps extends React.ComponentPropsWithoutRef<typeof TooltipPrimitive.Provider> {
+  /** Delay in ms before tooltip shows (default: 700) */
+  delayDuration?: number
+  /** Delay in ms before tooltip hides when moving between triggers (default: 300) */
+  skipDelayDuration?: number
+}
 
-const Tooltip = TooltipPrimitive.Root
+const TooltipProvider = ({
+  delayDuration = 400,
+  skipDelayDuration = 300,
+  ...props
+}: TooltipProviderProps) => (
+  <TooltipPrimitive.Provider
+    delayDuration={delayDuration}
+    skipDelayDuration={skipDelayDuration}
+    {...props}
+  />
+)
+
+interface TooltipProps extends React.ComponentPropsWithoutRef<typeof TooltipPrimitive.Root> {
+  /** Override the provider's delay for this specific tooltip */
+  delayDuration?: number
+}
+
+const Tooltip = ({ delayDuration, ...props }: TooltipProps) => (
+  <TooltipPrimitive.Root delayDuration={delayDuration} {...props} />
+)
 
 const TooltipTrigger = TooltipPrimitive.Trigger
 
