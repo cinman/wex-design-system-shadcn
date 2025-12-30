@@ -8,7 +8,7 @@
       "light",
       "dark"
     ],
-    "lastUpdated": "2025-12-30T19:09:53.263Z",
+    "lastUpdated": "2025-12-30T19:25:13.601Z",
     "totalComponents": 57
   },
   "accordion": {
@@ -16,7 +16,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-30T19:08:53.743Z",
+    "testedAt": "2025-12-30T19:24:00.466Z",
     "scope": "manifest-driven",
     "examplesFound": 2,
     "scenariosTested": [
@@ -86,7 +86,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-30T19:08:56.799Z",
+    "testedAt": "2025-12-30T19:24:03.520Z",
     "scope": "manifest-driven",
     "examplesFound": 2,
     "scenariosTested": [
@@ -156,7 +156,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-30T19:09:01.589Z",
+    "testedAt": "2025-12-30T19:24:08.057Z",
     "scope": "manifest-driven",
     "examplesFound": 5,
     "scenariosTested": [
@@ -271,7 +271,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-30T19:09:05.911Z",
+    "testedAt": "2025-12-30T19:24:12.573Z",
     "scope": "manifest-driven",
     "examplesFound": 3,
     "scenariosTested": [
@@ -362,17 +362,22 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-30T19:09:11.595Z",
+    "testedAt": "2025-12-30T19:24:21.169Z",
     "scope": "manifest-driven",
-    "examplesFound": 7,
+    "examplesFound": 12,
     "scenariosTested": [
+      "sizes-with-intents",
+      "default-vs-pill",
       "default",
       "secondary",
       "outline",
       "success",
       "warning",
       "destructive",
-      "info"
+      "info",
+      "status-indicators",
+      "counts",
+      "tags"
     ],
     "subject": "Component examples for WexBadge",
     "modes": {
@@ -381,9 +386,19 @@
         "levelAchieved": "AA",
         "violations": 0,
         "issues": [],
-        "examplesFound": 7,
+        "examplesFound": 12,
         "failingElements": [],
         "examples": {
+          "sizes-with-intents": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "default-vs-pill": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
           "default": {
             "status": "pass",
             "violations": 0,
@@ -418,27 +433,42 @@
             "status": "pass",
             "violations": 0,
             "issues": []
+          },
+          "status-indicators": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "counts": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "tags": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
           }
         },
         "examplesTested": [
+          "sizes-with-intents",
+          "default-vs-pill",
           "default",
           "secondary",
           "outline",
           "success",
           "warning",
           "destructive",
-          "info"
-        ],
-        "examplesSkipped": [
-          "all-sizes",
-          "sizes-with-intents",
-          "default-vs-pill",
-          "pill-with-sizes",
+          "info",
           "status-indicators",
           "counts",
           "tags"
         ],
-        "examplesPassed": 7,
+        "examplesSkipped": [
+          "all-sizes",
+          "pill-with-sizes"
+        ],
+        "examplesPassed": 12,
         "examplesFailed": 0
       },
       "dark": {
@@ -446,9 +476,19 @@
         "levelAchieved": "AA",
         "violations": 0,
         "issues": [],
-        "examplesFound": 7,
+        "examplesFound": 12,
         "failingElements": [],
         "examples": {
+          "sizes-with-intents": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "default-vs-pill": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
           "default": {
             "status": "pass",
             "violations": 0,
@@ -483,27 +523,42 @@
             "status": "pass",
             "violations": 0,
             "issues": []
+          },
+          "status-indicators": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "counts": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "tags": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
           }
         },
         "examplesTested": [
+          "sizes-with-intents",
+          "default-vs-pill",
           "default",
           "secondary",
           "outline",
           "success",
           "warning",
           "destructive",
-          "info"
-        ],
-        "examplesSkipped": [
-          "all-sizes",
-          "sizes-with-intents",
-          "default-vs-pill",
-          "pill-with-sizes",
+          "info",
           "status-indicators",
           "counts",
           "tags"
         ],
-        "examplesPassed": 7,
+        "examplesSkipped": [
+          "all-sizes",
+          "pill-with-sizes"
+        ],
+        "examplesPassed": 12,
         "examplesFailed": 0
       }
     }
@@ -513,7 +568,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-30T19:09:14.046Z",
+    "testedAt": "2025-12-30T19:24:23.626Z",
     "scope": "manifest-driven",
     "examplesFound": 2,
     "scenariosTested": [
@@ -570,7 +625,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-30T19:09:17.648Z",
+    "testedAt": "2025-12-30T19:24:27.144Z",
     "scope": "manifest-driven",
     "examplesFound": 3,
     "scenariosTested": [
@@ -653,9 +708,9 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-30T19:09:25.973Z",
+    "testedAt": "2025-12-30T19:24:43.438Z",
     "scope": "manifest-driven",
-    "examplesFound": 11,
+    "examplesFound": 28,
     "scenariosTested": [
       "primary",
       "secondary",
@@ -667,7 +722,24 @@
       "contrast",
       "ghost",
       "outline",
-      "link"
+      "link",
+      "rounded-pill",
+      "outline-primary",
+      "outline-secondary",
+      "outline-success",
+      "outline-info",
+      "outline-warning",
+      "outline-destructive",
+      "outline-help",
+      "outline-contrast",
+      "outline-primary-disabled",
+      "outline-secondary-disabled",
+      "outline-success-disabled",
+      "outline-info-disabled",
+      "outline-warning-disabled",
+      "outline-destructive-disabled",
+      "outline-help-disabled",
+      "outline-contrast-disabled"
     ],
     "subject": "Component examples for WexButton",
     "modes": {
@@ -676,7 +748,7 @@
         "levelAchieved": "AA",
         "violations": 0,
         "issues": [],
-        "examplesFound": 11,
+        "examplesFound": 28,
         "failingElements": [],
         "examples": {
           "primary": {
@@ -733,6 +805,91 @@
             "status": "pass",
             "violations": 0,
             "issues": []
+          },
+          "rounded-pill": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "outline-primary": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "outline-secondary": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "outline-success": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "outline-info": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "outline-warning": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "outline-destructive": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "outline-help": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "outline-contrast": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "outline-primary-disabled": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "outline-secondary-disabled": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "outline-success-disabled": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "outline-info-disabled": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "outline-warning-disabled": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "outline-destructive-disabled": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "outline-help-disabled": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "outline-contrast-disabled": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
           }
         },
         "examplesTested": [
@@ -746,14 +903,30 @@
           "contrast",
           "ghost",
           "outline",
-          "link"
+          "link",
+          "rounded-pill",
+          "outline-primary",
+          "outline-secondary",
+          "outline-success",
+          "outline-info",
+          "outline-warning",
+          "outline-destructive",
+          "outline-help",
+          "outline-contrast",
+          "outline-primary-disabled",
+          "outline-secondary-disabled",
+          "outline-success-disabled",
+          "outline-info-disabled",
+          "outline-warning-disabled",
+          "outline-destructive-disabled",
+          "outline-help-disabled",
+          "outline-contrast-disabled"
         ],
         "examplesSkipped": [
-          "rounded-pill",
           "loading-buttons",
           "icon-size"
         ],
-        "examplesPassed": 11,
+        "examplesPassed": 28,
         "examplesFailed": 0
       },
       "dark": {
@@ -761,7 +934,7 @@
         "levelAchieved": "AA",
         "violations": 0,
         "issues": [],
-        "examplesFound": 11,
+        "examplesFound": 28,
         "failingElements": [],
         "examples": {
           "primary": {
@@ -818,6 +991,91 @@
             "status": "pass",
             "violations": 0,
             "issues": []
+          },
+          "rounded-pill": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "outline-primary": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "outline-secondary": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "outline-success": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "outline-info": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "outline-warning": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "outline-destructive": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "outline-help": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "outline-contrast": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "outline-primary-disabled": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "outline-secondary-disabled": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "outline-success-disabled": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "outline-info-disabled": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "outline-warning-disabled": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "outline-destructive-disabled": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "outline-help-disabled": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "outline-contrast-disabled": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
           }
         },
         "examplesTested": [
@@ -831,14 +1089,30 @@
           "contrast",
           "ghost",
           "outline",
-          "link"
+          "link",
+          "rounded-pill",
+          "outline-primary",
+          "outline-secondary",
+          "outline-success",
+          "outline-info",
+          "outline-warning",
+          "outline-destructive",
+          "outline-help",
+          "outline-contrast",
+          "outline-primary-disabled",
+          "outline-secondary-disabled",
+          "outline-success-disabled",
+          "outline-info-disabled",
+          "outline-warning-disabled",
+          "outline-destructive-disabled",
+          "outline-help-disabled",
+          "outline-contrast-disabled"
         ],
         "examplesSkipped": [
-          "rounded-pill",
           "loading-buttons",
           "icon-size"
         ],
-        "examplesPassed": 11,
+        "examplesPassed": 28,
         "examplesFailed": 0
       }
     }
@@ -848,7 +1122,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-30T19:09:34.903Z",
+    "testedAt": "2025-12-30T19:24:51.548Z",
     "scope": "manifest-driven",
     "examplesFound": 6,
     "scenariosTested": [
@@ -974,7 +1248,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-30T19:09:40.486Z",
+    "testedAt": "2025-12-30T19:24:56.978Z",
     "scope": "manifest-driven",
     "examplesFound": 8,
     "scenariosTested": [
@@ -1122,7 +1396,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-30T19:09:42.783Z",
+    "testedAt": "2025-12-30T19:24:59.270Z",
     "scope": "manifest-driven",
     "examplesFound": 1,
     "scenariosTested": [
@@ -1175,28 +1449,56 @@
     }
   },
   "chart": {
-    "status": "pass",
-    "levelAchieved": "AA",
-    "violations": 0,
-    "issues": [],
-    "testedAt": "2025-12-30T19:09:46.743Z",
+    "status": "fail",
+    "violations": 2,
+    "issues": [
+      "svg-img-alt"
+    ],
+    "testedAt": "2025-12-30T19:25:03.922Z",
     "scope": "manifest-driven",
-    "examplesFound": 4,
+    "examplesFound": 5,
     "scenariosTested": [
       "basic-bar-chart",
       "line-chart",
       "multi-series-bar-chart",
-      "area-chart"
+      "area-chart",
+      "pie-chart"
     ],
     "subject": "Component examples for WexChart",
     "modes": {
       "light": {
-        "status": "pass",
-        "levelAchieved": "AA",
-        "violations": 0,
-        "issues": [],
-        "examplesFound": 4,
-        "failingElements": [],
+        "status": "fail",
+        "violations": 1,
+        "issues": [
+          "svg-img-alt"
+        ],
+        "examplesFound": 5,
+        "failingElements": [
+          {
+            "selector": "path[name=\"Desktop\"]",
+            "violationId": "svg-img-alt",
+            "impact": "serious",
+            "message": "Fix any of the following:\n  Element has no child that is a title\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute"
+          },
+          {
+            "selector": "path[name=\"Mobile\"]",
+            "violationId": "svg-img-alt",
+            "impact": "serious",
+            "message": "Fix any of the following:\n  Element has no child that is a title\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute"
+          },
+          {
+            "selector": "path[name=\"Tablet\"]",
+            "violationId": "svg-img-alt",
+            "impact": "serious",
+            "message": "Fix any of the following:\n  Element has no child that is a title\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute"
+          },
+          {
+            "selector": "path[name=\"Other\"]",
+            "violationId": "svg-img-alt",
+            "impact": "serious",
+            "message": "Fix any of the following:\n  Element has no child that is a title\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute"
+          }
+        ],
         "examples": {
           "basic-bar-chart": {
             "status": "pass",
@@ -1217,27 +1519,59 @@
             "status": "pass",
             "violations": 0,
             "issues": []
+          },
+          "pie-chart": {
+            "status": "fail",
+            "violations": 1,
+            "issues": [
+              "svg-img-alt"
+            ]
           }
         },
         "examplesTested": [
           "basic-bar-chart",
           "line-chart",
           "multi-series-bar-chart",
-          "area-chart"
-        ],
-        "examplesSkipped": [
+          "area-chart",
           "pie-chart"
         ],
+        "examplesSkipped": [],
         "examplesPassed": 4,
-        "examplesFailed": 0
+        "examplesFailed": 1
       },
       "dark": {
-        "status": "pass",
-        "levelAchieved": "AA",
-        "violations": 0,
-        "issues": [],
-        "examplesFound": 4,
-        "failingElements": [],
+        "status": "fail",
+        "violations": 1,
+        "issues": [
+          "svg-img-alt"
+        ],
+        "examplesFound": 5,
+        "failingElements": [
+          {
+            "selector": "path[name=\"Desktop\"]",
+            "violationId": "svg-img-alt",
+            "impact": "serious",
+            "message": "Fix any of the following:\n  Element has no child that is a title\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute"
+          },
+          {
+            "selector": "path[name=\"Mobile\"]",
+            "violationId": "svg-img-alt",
+            "impact": "serious",
+            "message": "Fix any of the following:\n  Element has no child that is a title\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute"
+          },
+          {
+            "selector": "path[name=\"Tablet\"]",
+            "violationId": "svg-img-alt",
+            "impact": "serious",
+            "message": "Fix any of the following:\n  Element has no child that is a title\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute"
+          },
+          {
+            "selector": "path[name=\"Other\"]",
+            "violationId": "svg-img-alt",
+            "impact": "serious",
+            "message": "Fix any of the following:\n  Element has no child that is a title\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute"
+          }
+        ],
         "examples": {
           "basic-bar-chart": {
             "status": "pass",
@@ -1258,19 +1592,25 @@
             "status": "pass",
             "violations": 0,
             "issues": []
+          },
+          "pie-chart": {
+            "status": "fail",
+            "violations": 1,
+            "issues": [
+              "svg-img-alt"
+            ]
           }
         },
         "examplesTested": [
           "basic-bar-chart",
           "line-chart",
           "multi-series-bar-chart",
-          "area-chart"
-        ],
-        "examplesSkipped": [
+          "area-chart",
           "pie-chart"
         ],
+        "examplesSkipped": [],
         "examplesPassed": 4,
-        "examplesFailed": 0
+        "examplesFailed": 1
       }
     }
   },
@@ -1279,7 +1619,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-30T19:08:54.782Z",
+    "testedAt": "2025-12-30T19:24:01.500Z",
     "scope": "manifest-driven",
     "examplesFound": 4,
     "scenariosTested": [
@@ -1381,7 +1721,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-30T19:08:57.411Z",
+    "testedAt": "2025-12-30T19:24:04.156Z",
     "scope": "manifest-driven",
     "examplesFound": 1,
     "scenariosTested": [
@@ -1438,7 +1778,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-30T19:08:59.892Z",
+    "testedAt": "2025-12-30T19:24:06.607Z",
     "scope": "manifest-driven",
     "examplesFound": 1,
     "scenariosTested": [
@@ -1501,7 +1841,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-30T19:09:02.502Z",
+    "testedAt": "2025-12-30T19:24:09.082Z",
     "scope": "manifest-driven",
     "examplesFound": 1,
     "scenariosTested": [
@@ -1558,7 +1898,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-30T19:09:04.942Z",
+    "testedAt": "2025-12-30T19:24:11.503Z",
     "scope": "manifest-driven",
     "examplesFound": 2,
     "scenariosTested": [
@@ -1615,7 +1955,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-30T19:09:07.645Z",
+    "testedAt": "2025-12-30T19:24:14.088Z",
     "scope": "manifest-driven",
     "examplesFound": 1,
     "scenariosTested": [
@@ -1672,7 +2012,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-30T19:09:11.137Z",
+    "testedAt": "2025-12-30T19:24:17.627Z",
     "scope": "manifest-driven",
     "examplesFound": 3,
     "scenariosTested": [
@@ -1759,7 +2099,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-30T19:09:13.628Z",
+    "testedAt": "2025-12-30T19:24:20.323Z",
     "scope": "manifest-driven",
     "examplesFound": 4,
     "scenariosTested": [
@@ -1816,7 +2156,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-30T19:09:17.124Z",
+    "testedAt": "2025-12-30T19:24:24.033Z",
     "scope": "manifest-driven",
     "examplesFound": 3,
     "scenariosTested": [
@@ -1903,7 +2243,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-30T19:09:22.089Z",
+    "testedAt": "2025-12-30T19:24:28.517Z",
     "scope": "manifest-driven",
     "examplesFound": 5,
     "scenariosTested": [
@@ -2016,7 +2356,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-30T19:09:25.173Z",
+    "testedAt": "2025-12-30T19:24:31.609Z",
     "scope": "manifest-driven",
     "examplesFound": 2,
     "scenariosTested": [
@@ -2086,7 +2426,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-30T19:09:29.191Z",
+    "testedAt": "2025-12-30T19:24:35.834Z",
     "scope": "manifest-driven",
     "examplesFound": 4,
     "scenariosTested": [
@@ -2178,28 +2518,41 @@
     }
   },
   "float-label": {
-    "status": "pass",
-    "levelAchieved": "AA",
-    "violations": 0,
-    "issues": [],
-    "testedAt": "2025-12-30T19:08:54.897Z",
+    "status": "fail",
+    "violations": 2,
+    "issues": [
+      "target-size"
+    ],
+    "testedAt": "2025-12-30T19:24:04.030Z",
     "scope": "manifest-driven",
-    "examplesFound": 4,
+    "examplesFound": 8,
     "scenariosTested": [
       "email",
       "password",
+      "number",
+      "left-icon",
+      "right-icon",
+      "both-icons",
       "invalid-state",
-      "disabled"
+      "password-with-toggle"
     ],
     "subject": "Component examples for WexFloatLabel",
     "modes": {
       "light": {
-        "status": "pass",
-        "levelAchieved": "AA",
-        "violations": 0,
-        "issues": [],
-        "examplesFound": 4,
-        "failingElements": [],
+        "status": "fail",
+        "violations": 1,
+        "issues": [
+          "target-size"
+        ],
+        "examplesFound": 8,
+        "failingElements": [
+          {
+            "selector": ".pointer-events-auto",
+            "violationId": "target-size",
+            "impact": "serious",
+            "message": "Fix any of the following:\n  Target has insufficient size (16px by 16px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 16px instead of at least 24px."
+          }
+        ],
         "examples": {
           "email": {
             "status": "pass",
@@ -2211,38 +2564,72 @@
             "violations": 0,
             "issues": []
           },
+          "number": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "left-icon": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "right-icon": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "both-icons": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
           "invalid-state": {
             "status": "pass",
             "violations": 0,
             "issues": []
           },
-          "disabled": {
-            "status": "pass",
-            "violations": 0,
-            "issues": []
+          "password-with-toggle": {
+            "status": "fail",
+            "violations": 1,
+            "issues": [
+              "target-size"
+            ]
           }
         },
         "examplesTested": [
           "email",
           "password",
+          "number",
+          "left-icon",
+          "right-icon",
+          "both-icons",
           "invalid-state",
-          "disabled"
+          "password-with-toggle"
         ],
         "examplesSkipped": [
           "all-sizes",
-          "number",
+          "disabled",
           "controlled"
         ],
-        "examplesPassed": 4,
-        "examplesFailed": 0
+        "examplesPassed": 7,
+        "examplesFailed": 1
       },
       "dark": {
-        "status": "pass",
-        "levelAchieved": "AA",
-        "violations": 0,
-        "issues": [],
-        "examplesFound": 4,
-        "failingElements": [],
+        "status": "fail",
+        "violations": 1,
+        "issues": [
+          "target-size"
+        ],
+        "examplesFound": 8,
+        "failingElements": [
+          {
+            "selector": ".pointer-events-auto",
+            "violationId": "target-size",
+            "impact": "serious",
+            "message": "Fix any of the following:\n  Target has insufficient size (16px by 16px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 16px instead of at least 24px."
+          }
+        ],
         "examples": {
           "email": {
             "status": "pass",
@@ -2254,30 +2641,56 @@
             "violations": 0,
             "issues": []
           },
+          "number": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "left-icon": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "right-icon": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "both-icons": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
           "invalid-state": {
             "status": "pass",
             "violations": 0,
             "issues": []
           },
-          "disabled": {
-            "status": "pass",
-            "violations": 0,
-            "issues": []
+          "password-with-toggle": {
+            "status": "fail",
+            "violations": 1,
+            "issues": [
+              "target-size"
+            ]
           }
         },
         "examplesTested": [
           "email",
           "password",
+          "number",
+          "left-icon",
+          "right-icon",
+          "both-icons",
           "invalid-state",
-          "disabled"
+          "password-with-toggle"
         ],
         "examplesSkipped": [
           "all-sizes",
-          "number",
+          "disabled",
           "controlled"
         ],
-        "examplesPassed": 4,
-        "examplesFailed": 0
+        "examplesPassed": 7,
+        "examplesFailed": 1
       }
     }
   },
@@ -2286,7 +2699,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-30T19:09:03.266Z",
+    "testedAt": "2025-12-30T19:24:11.938Z",
     "scope": "manifest-driven",
     "examplesFound": 11,
     "scenariosTested": [
@@ -2485,7 +2898,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-30T19:09:06.876Z",
+    "testedAt": "2025-12-30T19:24:15.412Z",
     "scope": "manifest-driven",
     "examplesFound": 3,
     "scenariosTested": [
@@ -2572,7 +2985,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-30T19:09:09.841Z",
+    "testedAt": "2025-12-30T19:24:18.405Z",
     "scope": "manifest-driven",
     "examplesFound": 2,
     "scenariosTested": [
@@ -2643,17 +3056,15 @@
       }
     }
   },
-  "input-otp": {
+  "input-o-t-p": {
     "status": "pass",
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-30T19:09:12.289Z",
+    "testedAt": "2025-12-30T19:24:20.211Z",
     "scope": "manifest-driven",
-    "examplesFound": 1,
-    "scenariosTested": [
-      "verification-code"
-    ],
+    "examplesFound": 0,
+    "scenariosTested": [],
     "subject": "Component examples for WexInputOTP",
     "modes": {
       "light": {
@@ -2661,20 +3072,12 @@
         "levelAchieved": "AA",
         "violations": 0,
         "issues": [],
-        "examplesFound": 1,
+        "examplesFound": 0,
         "failingElements": [],
-        "examples": {
-          "verification-code": {
-            "status": "pass",
-            "violations": 0,
-            "issues": []
-          }
-        },
-        "examplesTested": [
-          "verification-code"
-        ],
+        "examples": {},
+        "examplesTested": [],
         "examplesSkipped": [],
-        "examplesPassed": 1,
+        "examplesPassed": 0,
         "examplesFailed": 0
       },
       "dark": {
@@ -2682,20 +3085,12 @@
         "levelAchieved": "AA",
         "violations": 0,
         "issues": [],
-        "examplesFound": 1,
+        "examplesFound": 0,
         "failingElements": [],
-        "examples": {
-          "verification-code": {
-            "status": "pass",
-            "violations": 0,
-            "issues": []
-          }
-        },
-        "examplesTested": [
-          "verification-code"
-        ],
+        "examples": {},
+        "examplesTested": [],
         "examplesSkipped": [],
-        "examplesPassed": 1,
+        "examplesPassed": 0,
         "examplesFailed": 0
       }
     }
@@ -2705,7 +3100,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-30T19:09:20.967Z",
+    "testedAt": "2025-12-30T19:24:28.555Z",
     "scope": "manifest-driven",
     "examplesFound": 12,
     "scenariosTested": [
@@ -2917,7 +3312,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-30T19:09:24.052Z",
+    "testedAt": "2025-12-30T19:24:31.706Z",
     "scope": "manifest-driven",
     "examplesFound": 2,
     "scenariosTested": [
@@ -2991,7 +3386,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-30T19:09:27.577Z",
+    "testedAt": "2025-12-30T19:24:35.112Z",
     "scope": "manifest-driven",
     "examplesFound": 3,
     "scenariosTested": [
@@ -3074,7 +3469,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-30T19:09:30.530Z",
+    "testedAt": "2025-12-30T19:24:38.026Z",
     "scope": "manifest-driven",
     "examplesFound": 2,
     "scenariosTested": [
@@ -3144,7 +3539,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-30T19:09:32.971Z",
+    "testedAt": "2025-12-30T19:24:40.516Z",
     "scope": "manifest-driven",
     "examplesFound": 2,
     "scenariosTested": [
@@ -3201,7 +3596,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-30T19:09:35.334Z",
+    "testedAt": "2025-12-30T19:24:42.852Z",
     "scope": "manifest-driven",
     "examplesFound": 1,
     "scenariosTested": [
@@ -3258,7 +3653,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-30T19:09:37.869Z",
+    "testedAt": "2025-12-30T19:24:45.371Z",
     "scope": "manifest-driven",
     "examplesFound": 6,
     "scenariosTested": [
@@ -3315,7 +3710,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-30T19:08:54.800Z",
+    "testedAt": "2025-12-30T19:24:01.362Z",
     "scope": "manifest-driven",
     "examplesFound": 4,
     "scenariosTested": [
@@ -3411,7 +3806,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-30T19:08:59.682Z",
+    "testedAt": "2025-12-30T19:24:06.034Z",
     "scope": "manifest-driven",
     "examplesFound": 5,
     "scenariosTested": [
@@ -3526,7 +3921,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-30T19:09:02.248Z",
+    "testedAt": "2025-12-30T19:24:08.511Z",
     "scope": "manifest-driven",
     "examplesFound": 1,
     "scenariosTested": [
@@ -3587,7 +3982,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-30T19:09:04.706Z",
+    "testedAt": "2025-12-30T19:24:10.909Z",
     "scope": "manifest-driven",
     "examplesFound": 1,
     "scenariosTested": [
@@ -3644,7 +4039,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-30T19:09:07.284Z",
+    "testedAt": "2025-12-30T19:24:13.351Z",
     "scope": "manifest-driven",
     "examplesFound": 1,
     "scenariosTested": [
@@ -3701,7 +4096,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-30T19:09:11.336Z",
+    "testedAt": "2025-12-30T19:24:17.373Z",
     "scope": "manifest-driven",
     "examplesFound": 4,
     "scenariosTested": [
@@ -3805,7 +4200,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-30T19:09:14.366Z",
+    "testedAt": "2025-12-30T19:24:20.601Z",
     "scope": "manifest-driven",
     "examplesFound": 2,
     "scenariosTested": [
@@ -3875,7 +4270,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-30T19:09:16.810Z",
+    "testedAt": "2025-12-30T19:24:23.064Z",
     "scope": "manifest-driven",
     "examplesFound": 4,
     "scenariosTested": [
@@ -3932,7 +4327,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-30T19:09:19.620Z",
+    "testedAt": "2025-12-30T19:24:25.727Z",
     "scope": "manifest-driven",
     "examplesFound": 2,
     "scenariosTested": [
@@ -3989,7 +4384,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-30T19:09:27.557Z",
+    "testedAt": "2025-12-30T19:24:33.494Z",
     "scope": "manifest-driven",
     "examplesFound": 12,
     "scenariosTested": [
@@ -4189,7 +4584,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-30T19:09:31.568Z",
+    "testedAt": "2025-12-30T19:24:37.619Z",
     "scope": "manifest-driven",
     "examplesFound": 4,
     "scenariosTested": [
@@ -4291,7 +4686,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-30T19:09:33.977Z",
+    "testedAt": "2025-12-30T19:24:40.086Z",
     "scope": "manifest-driven",
     "examplesFound": 5,
     "scenariosTested": [
@@ -4348,7 +4743,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-30T19:08:53.166Z",
+    "testedAt": "2025-12-30T19:23:59.803Z",
     "scope": "manifest-driven",
     "examplesFound": 1,
     "scenariosTested": [
@@ -4411,7 +4806,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-30T19:08:56.051Z",
+    "testedAt": "2025-12-30T19:24:02.779Z",
     "scope": "manifest-driven",
     "examplesFound": 2,
     "scenariosTested": [
@@ -4487,15 +4882,16 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-30T19:09:01.892Z",
+    "testedAt": "2025-12-30T19:24:08.868Z",
     "scope": "manifest-driven",
-    "examplesFound": 6,
+    "examplesFound": 7,
     "scenariosTested": [
       "striped-table",
       "table-with-gridlines",
       "striped-with-gridlines",
       "small",
       "large",
+      "with-status-badges",
       "selectable-rows"
     ],
     "subject": "Component examples for WexTable",
@@ -4505,7 +4901,7 @@
         "levelAchieved": "AA",
         "violations": 0,
         "issues": [],
-        "examplesFound": 6,
+        "examplesFound": 7,
         "failingElements": [],
         "examples": {
           "striped-table": {
@@ -4533,6 +4929,11 @@
             "violations": 0,
             "issues": []
           },
+          "with-status-badges": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
           "selectable-rows": {
             "status": "pass",
             "violations": 0,
@@ -4545,12 +4946,11 @@
           "striped-with-gridlines",
           "small",
           "large",
+          "with-status-badges",
           "selectable-rows"
         ],
-        "examplesSkipped": [
-          "with-status-badges"
-        ],
-        "examplesPassed": 6,
+        "examplesSkipped": [],
+        "examplesPassed": 7,
         "examplesFailed": 0
       },
       "dark": {
@@ -4558,7 +4958,7 @@
         "levelAchieved": "AA",
         "violations": 0,
         "issues": [],
-        "examplesFound": 6,
+        "examplesFound": 7,
         "failingElements": [],
         "examples": {
           "striped-table": {
@@ -4586,6 +4986,11 @@
             "violations": 0,
             "issues": []
           },
+          "with-status-badges": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
           "selectable-rows": {
             "status": "pass",
             "violations": 0,
@@ -4598,43 +5003,59 @@
           "striped-with-gridlines",
           "small",
           "large",
+          "with-status-badges",
           "selectable-rows"
         ],
-        "examplesSkipped": [
-          "with-status-badges"
-        ],
-        "examplesPassed": 6,
+        "examplesSkipped": [],
+        "examplesPassed": 7,
         "examplesFailed": 0
       }
     }
   },
   "tabs": {
-    "status": "pass",
-    "levelAchieved": "AA",
-    "violations": 0,
-    "issues": [],
-    "testedAt": "2025-12-30T19:09:05.746Z",
+    "status": "fail",
+    "violations": 2,
+    "issues": [
+      "aria-required-children"
+    ],
+    "testedAt": "2025-12-30T19:24:13.272Z",
     "scope": "manifest-driven",
-    "examplesFound": 3,
+    "examplesFound": 4,
     "scenariosTested": [
       "scrollable-tab-list",
+      "closable-tabs",
       "full-width-tabs",
       "tabs-in-card"
     ],
     "subject": "Component examples for WexTabs",
     "modes": {
       "light": {
-        "status": "pass",
-        "levelAchieved": "AA",
-        "violations": 0,
-        "issues": [],
-        "examplesFound": 3,
-        "failingElements": [],
+        "status": "fail",
+        "violations": 1,
+        "issues": [
+          "aria-required-children"
+        ],
+        "examplesFound": 4,
+        "failingElements": [
+          {
+            "selector": "div[data-example-id=\"closable-tabs\"] > .max-w-md.w-full > div[dir=\"ltr\"][data-orientation=\"horizontal\"] > .border-wex-tabs-divider[role=\"tablist\"][aria-orientation=\"horizontal\"]",
+            "violationId": "aria-required-children",
+            "impact": "critical",
+            "message": "Fix any of the following:\n  Element has children which are not allowed: button[aria-label]"
+          }
+        ],
         "examples": {
           "scrollable-tab-list": {
             "status": "pass",
             "violations": 0,
             "issues": []
+          },
+          "closable-tabs": {
+            "status": "fail",
+            "violations": 1,
+            "issues": [
+              "aria-required-children"
+            ]
           },
           "full-width-tabs": {
             "status": "pass",
@@ -4649,29 +5070,44 @@
         },
         "examplesTested": [
           "scrollable-tab-list",
+          "closable-tabs",
           "full-width-tabs",
           "tabs-in-card"
         ],
         "examplesSkipped": [
-          "closable-tabs",
           "disabled-tab",
           "controlled-tabs"
         ],
         "examplesPassed": 3,
-        "examplesFailed": 0
+        "examplesFailed": 1
       },
       "dark": {
-        "status": "pass",
-        "levelAchieved": "AA",
-        "violations": 0,
-        "issues": [],
-        "examplesFound": 3,
-        "failingElements": [],
+        "status": "fail",
+        "violations": 1,
+        "issues": [
+          "aria-required-children"
+        ],
+        "examplesFound": 4,
+        "failingElements": [
+          {
+            "selector": "div[data-example-id=\"closable-tabs\"] > .max-w-md.w-full > div[dir=\"ltr\"][data-orientation=\"horizontal\"] > .border-wex-tabs-divider[role=\"tablist\"][aria-orientation=\"horizontal\"]",
+            "violationId": "aria-required-children",
+            "impact": "critical",
+            "message": "Fix any of the following:\n  Element has children which are not allowed: button[aria-label]"
+          }
+        ],
         "examples": {
           "scrollable-tab-list": {
             "status": "pass",
             "violations": 0,
             "issues": []
+          },
+          "closable-tabs": {
+            "status": "fail",
+            "violations": 1,
+            "issues": [
+              "aria-required-children"
+            ]
           },
           "full-width-tabs": {
             "status": "pass",
@@ -4686,16 +5122,16 @@
         },
         "examplesTested": [
           "scrollable-tab-list",
+          "closable-tabs",
           "full-width-tabs",
           "tabs-in-card"
         ],
         "examplesSkipped": [
-          "closable-tabs",
           "disabled-tab",
           "controlled-tabs"
         ],
         "examplesPassed": 3,
-        "examplesFailed": 0
+        "examplesFailed": 1
       }
     }
   },
@@ -4704,7 +5140,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-30T19:09:10.793Z",
+    "testedAt": "2025-12-30T19:24:18.268Z",
     "scope": "manifest-driven",
     "examplesFound": 6,
     "scenariosTested": [
@@ -4832,7 +5268,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-30T19:09:15.805Z",
+    "testedAt": "2025-12-30T19:24:23.752Z",
     "scope": "manifest-driven",
     "examplesFound": 6,
     "scenariosTested": [
@@ -4960,7 +5396,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-30T19:09:18.837Z",
+    "testedAt": "2025-12-30T19:24:26.763Z",
     "scope": "manifest-driven",
     "examplesFound": 2,
     "scenariosTested": [
@@ -5030,7 +5466,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-30T19:09:25.884Z",
+    "testedAt": "2025-12-30T19:24:33.600Z",
     "scope": "manifest-driven",
     "examplesFound": 9,
     "scenariosTested": [
@@ -5188,7 +5624,7 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-30T19:09:29.479Z",
+    "testedAt": "2025-12-30T19:24:37.180Z",
     "scope": "manifest-driven",
     "examplesFound": 3,
     "scenariosTested": [

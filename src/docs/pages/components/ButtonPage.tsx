@@ -224,30 +224,63 @@ export default function ButtonPage() {
 
       {/* ============================================================
           OUTLINE SEVERITIES - New feature!
+          Each outline button is in its own ExampleCard for a11y testing
           ============================================================ */}
       <Section title="Outline Severities" description="Outline variant available for all semantic intents with tinted hover states.">
-        <div className="overflow-x-auto">
-          <table className="w-full border-collapse text-sm">
-            <thead>
-              <tr className="border-b border-border">
-                <th className="text-left py-3 px-4 font-medium text-muted-foreground">Intent</th>
-                <th className="text-left py-3 px-4 font-medium text-muted-foreground">Outline</th>
-                <th className="text-left py-3 px-4 font-medium text-muted-foreground">Rounded</th>
-                <th className="text-left py-3 px-4 font-medium text-muted-foreground">Disabled</th>
-              </tr>
-            </thead>
-            <tbody>
-              {(["primary", "secondary", "success", "info", "warning", "destructive", "help", "contrast"] as const).map((intent) => (
-                <tr key={intent} className="border-b border-border/50">
-                  <td className="py-3 px-4 font-medium capitalize">{intent}</td>
-                  <td className="py-3 px-4"><WexButton intent={intent} variant="outline" size="sm">{intent}</WexButton></td>
-                  <td className="py-3 px-4"><WexButton intent={intent} variant="outline" size="sm" rounded>Pill</WexButton></td>
-                  <td className="py-3 px-4"><WexButton intent={intent} variant="outline" size="sm" disabled>Disabled</WexButton></td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <ExampleCard title="Outline Primary" exampleId="outline-primary">
+            <WexButton intent="primary" variant="outline">Primary</WexButton>
+          </ExampleCard>
+          <ExampleCard title="Outline Secondary" exampleId="outline-secondary">
+            <WexButton intent="secondary" variant="outline">Secondary</WexButton>
+          </ExampleCard>
+          <ExampleCard title="Outline Success" exampleId="outline-success">
+            <WexButton intent="success" variant="outline">Success</WexButton>
+          </ExampleCard>
+          <ExampleCard title="Outline Info" exampleId="outline-info">
+            <WexButton intent="info" variant="outline">Info</WexButton>
+          </ExampleCard>
+          <ExampleCard title="Outline Warning" exampleId="outline-warning">
+            <WexButton intent="warning" variant="outline">Warning</WexButton>
+          </ExampleCard>
+          <ExampleCard title="Outline Destructive" exampleId="outline-destructive">
+            <WexButton intent="destructive" variant="outline">Destructive</WexButton>
+          </ExampleCard>
+          <ExampleCard title="Outline Help" exampleId="outline-help">
+            <WexButton intent="help" variant="outline">Help</WexButton>
+          </ExampleCard>
+          <ExampleCard title="Outline Contrast" exampleId="outline-contrast">
+            <WexButton intent="contrast" variant="outline">Contrast</WexButton>
+          </ExampleCard>
         </div>
+        
+        <div className="mt-6 grid grid-cols-2 md:grid-cols-4 gap-4">
+          <ExampleCard title="Outline Primary Disabled" exampleId="outline-primary-disabled">
+            <WexButton intent="primary" variant="outline" disabled>Disabled</WexButton>
+          </ExampleCard>
+          <ExampleCard title="Outline Secondary Disabled" exampleId="outline-secondary-disabled">
+            <WexButton intent="secondary" variant="outline" disabled>Disabled</WexButton>
+          </ExampleCard>
+          <ExampleCard title="Outline Success Disabled" exampleId="outline-success-disabled">
+            <WexButton intent="success" variant="outline" disabled>Disabled</WexButton>
+          </ExampleCard>
+          <ExampleCard title="Outline Info Disabled" exampleId="outline-info-disabled">
+            <WexButton intent="info" variant="outline" disabled>Disabled</WexButton>
+          </ExampleCard>
+          <ExampleCard title="Outline Warning Disabled" exampleId="outline-warning-disabled">
+            <WexButton intent="warning" variant="outline" disabled>Disabled</WexButton>
+          </ExampleCard>
+          <ExampleCard title="Outline Destructive Disabled" exampleId="outline-destructive-disabled">
+            <WexButton intent="destructive" variant="outline" disabled>Disabled</WexButton>
+          </ExampleCard>
+          <ExampleCard title="Outline Help Disabled" exampleId="outline-help-disabled">
+            <WexButton intent="help" variant="outline" disabled>Disabled</WexButton>
+          </ExampleCard>
+          <ExampleCard title="Outline Contrast Disabled" exampleId="outline-contrast-disabled">
+            <WexButton intent="contrast" variant="outline" disabled>Disabled</WexButton>
+          </ExampleCard>
+        </div>
+        
         <Guidance>
           Outline buttons use transparent backgrounds with colored borders and text matching the intent.
           On hover, they show a subtle tinted background for visual feedback.
