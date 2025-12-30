@@ -189,55 +189,55 @@
 }
 
 .dark {
-  /* ===== SURFACES (dark overrides) - Now reference palette ===== */
+  /* ===== SURFACES (dark overrides) ===== */
   --wex-content-bg: var(--wex-palette-slate-900);
   --wex-content-border: var(--wex-palette-slate-700);
   --wex-surface-subtle: var(--wex-palette-slate-800);
 
-  /* ===== TEXT (dark overrides) - Now reference palette ===== */
+  /* ===== TEXT (dark overrides) ===== */
   --wex-text: var(--wex-palette-white);
   --wex-text-muted: var(--wex-palette-slate-200);
 
   /* ===== PRIMARY (dark overrides) ===== */
-  /* Note: Dark mode uses blue-600 for WCAG contrast compliance with white text */
-  --wex-primary: var(--wex-palette-blue-600);
-  --wex-primary-contrast: 0 0% 100%; /* White text on blue background */
-  --wex-primary-hover: var(--wex-palette-blue-500);
-  --wex-primary-active: var(--wex-palette-blue-700);
+  /* Brighter blue for visibility on dark backgrounds (callouts, accents, text) */
+  --wex-primary: var(--wex-palette-blue-400);
+  --wex-primary-contrast: 0 0% 0%; /* Dark text on bright blue */
+  --wex-primary-hover: var(--wex-palette-blue-300);
+  --wex-primary-active: var(--wex-palette-blue-500);
 
-  /* ===== LINK (dark overrides) - Brighter blue for contrast on dark backgrounds ===== */
+  /* ===== LINK (dark overrides) ===== */
   --wex-link: var(--wex-palette-blue-400);
   --wex-link-hover: var(--wex-palette-blue-300);
   --wex-link-active: var(--wex-palette-blue-500);
 
-  /* ===== INPUT (dark override) - Now references palette ===== */
+  /* ===== INPUT (dark override) ===== */
   --wex-input-border: var(--wex-palette-slate-700);
 
   /* ===== FOCUS RING (dark override) ===== */
-  --wex-focus-ring-color: var(--wex-palette-blue-500);
+  --wex-focus-ring-color: var(--wex-palette-blue-400);
 
   /* ===== DESTRUCTIVE (dark overrides) ===== */
-  --wex-destructive: var(--wex-palette-red-500);
+  /* Brighter red for visibility on dark backgrounds */
+  --wex-destructive: var(--wex-palette-red-400);
   --wex-destructive-foreground: 0 0% 100%;
-  --wex-destructive-hover: var(--wex-palette-red-600);
+  --wex-destructive-hover: var(--wex-palette-red-300);
 
   /* ===== SUCCESS (dark overrides) ===== */
-  /* Note: Dark mode uses green-700 for WCAG 4.5:1 contrast with white text */
-  --wex-success: var(--wex-palette-green-700);
-  --wex-success-foreground: 0 0% 100%;
-  --wex-success-hover: var(--wex-palette-green-600);
+  /* Brighter green for visibility on dark backgrounds */
+  --wex-success: var(--wex-palette-green-400);
+  --wex-success-foreground: 0 0% 0%; /* Dark text on bright green */
+  --wex-success-hover: var(--wex-palette-green-300);
 
   /* ===== WARNING (dark overrides) ===== */
-  /* Note: Dark mode uses amber-400 (slightly lighter) for better contrast */
   --wex-warning: var(--wex-palette-amber-400);
   --wex-warning-foreground: 0 0% 0%;
   --wex-warning-hover: var(--wex-palette-amber-500);
 
   /* ===== INFO (dark overrides) ===== */
-  /* Note: Dark mode uses cyan-700 for WCAG 4.5:1 contrast with white text */
-  --wex-info: var(--wex-palette-cyan-700);
-  --wex-info-foreground: 0 0% 100%;
-  --wex-info-hover: var(--wex-palette-cyan-500);
+  /* Brighter cyan for visibility on dark backgrounds */
+  --wex-info: var(--wex-palette-cyan-400);
+  --wex-info-foreground: 0 0% 0%; /* Dark text on bright cyan */
+  --wex-info-hover: var(--wex-palette-cyan-300);
 
   /* ===== HIGHLIGHT (dark overrides) ===== */
   --wex-highlight-bg: 201 74% 62%;
