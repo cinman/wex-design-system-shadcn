@@ -21,6 +21,7 @@ import {
   COMPONENT_TOKENS,
 } from "@/docs/data/tokenRegistry";
 import { parseHSL, formatHSL } from "@/docs/utils/color-convert";
+import { exportCompleteTheme } from "@/docs/utils/theme-export";
 
 // Standard lightness values for palette ramps
 const PALETTE_LIGHTNESS_STEPS: Record<number, number> = {
@@ -300,6 +301,7 @@ export function ThemeExportView(_props: ThemeExportViewProps) {
 
   const cssCode = React.useMemo(() => generateFullCSS(overrides), [overrides]);
   const jsonCode = React.useMemo(() => generateFullJSON(overrides), [overrides]);
+  const themeJsonCode = React.useMemo(() => exportCompleteTheme(overrides), [overrides]);
 
   // Generate highlighted HTML for CSS
   const highlightedCSS = React.useMemo(() => {
@@ -358,6 +360,16 @@ export function ThemeExportView(_props: ThemeExportViewProps) {
     a.click();
     URL.revokeObjectURL(url);
   }, [jsonCode]);
+
+  const handleExportThemeJSON = React.useCallback(() => {
+    const blob = new Blob([themeJsonCode], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "theme.json";
+    a.click();
+    URL.revokeObjectURL(url);
+  }, [themeJsonCode]);
 
   return (
     <>
@@ -429,6 +441,18 @@ export function ThemeExportView(_props: ThemeExportViewProps) {
       {/* Content */}
       <div className="flex-1 overflow-y-auto px-6 py-6">
         <div className="max-w-7xl mx-auto space-y-6">
+          {/* Export Theme JSON Button */}
+          <div className="flex justify-end">
+            <WexButton
+              onClick={handleExportThemeJSON}
+              variant="default"
+              size="default"
+            >
+              <Download className="h-4 w-4 mr-2" />
+              Export Theme JSON
+            </WexButton>
+          </div>
+
           {/* CSS Code Block */}
           <div className="rounded-lg border border-border bg-card overflow-hidden">
             <div className="flex items-center justify-between px-4 py-2 border-b border-border bg-muted/30">
