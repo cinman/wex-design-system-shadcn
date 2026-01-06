@@ -228,6 +228,7 @@
   
   /* ----- Button: Shared ----- */
   --wex-component-button-disabled-opacity: 0.5;
+  --wex-component-button-radius: var(--wex-radius-md);
 
   /* ============================================================
      INPUT
@@ -256,6 +257,7 @@
   --wex-component-input-height-sm: 2rem;
   --wex-component-input-height-md: 2.75rem;
   --wex-component-input-height-lg: 3rem;
+  --wex-component-input-radius: var(--wex-radius-md);
 
   /* ============================================================
      FLOAT LABEL
@@ -305,6 +307,7 @@
   --wex-component-card-border: var(--wex-content-border);
   --wex-component-card-header-fg: var(--wex-text);
   --wex-component-card-footer-fg: var(--wex-text-muted);
+  --wex-component-card-radius: var(--wex-radius-md);
   /* Note: shadow not tokenized in Phase 1 */
 
   /* ============================================================
@@ -348,6 +351,7 @@
   --wex-component-badge-destructive-bg: var(--wex-destructive);
   --wex-component-badge-destructive-fg: var(--wex-destructive-foreground);
   --wex-component-badge-destructive-border: var(--wex-destructive);
+  --wex-component-badge-radius: var(--wex-radius-sm);
 
   /* ============================================================
      ALERT
@@ -355,33 +359,39 @@
   
   /* ----- Alert: Default ----- */
   --wex-component-alert-default-bg: var(--wex-content-bg);
+  --wex-component-alert-default-title-fg: var(--wex-text);
   --wex-component-alert-default-fg: var(--wex-text);
   --wex-component-alert-default-border: var(--wex-content-border);
   --wex-component-alert-default-icon: var(--wex-text);
   
   /* ----- Alert: Info (tinted style) ----- */
   --wex-component-alert-info-bg: var(--wex-palette-cyan-50);
+  --wex-component-alert-info-title-fg: var(--wex-palette-cyan-700); /* Two shades darker for 4.5:1 contrast */
   --wex-component-alert-info-fg: var(--wex-palette-cyan-700); /* Two shades darker for 4.5:1 contrast */
   --wex-component-alert-info-border: var(--wex-palette-cyan-200);
   --wex-component-alert-info-icon: var(--wex-info);
   
   /* ----- Alert: Success (tinted style) ----- */
   --wex-component-alert-success-bg: var(--wex-palette-green-50);
+  --wex-component-alert-success-title-fg: var(--wex-palette-green-800); /* Two shades darker for 4.5:1 contrast */
   --wex-component-alert-success-fg: var(--wex-palette-green-800); /* Two shades darker for 4.5:1 contrast */
   --wex-component-alert-success-border: var(--wex-palette-green-200);
   --wex-component-alert-success-icon: var(--wex-success);
   
   /* ----- Alert: Warning (tinted style) ----- */
   --wex-component-alert-warning-bg: var(--wex-palette-amber-50);
+  --wex-component-alert-warning-title-fg: var(--wex-palette-amber-800); /* Three shades darker for 4.5:1 contrast */
   --wex-component-alert-warning-fg: var(--wex-palette-amber-800); /* Three shades darker for 4.5:1 contrast */
   --wex-component-alert-warning-border: var(--wex-palette-amber-200);
   --wex-component-alert-warning-icon: var(--wex-warning);
   
   /* ----- Alert: Destructive (tinted style) ----- */
   --wex-component-alert-destructive-bg: var(--wex-palette-red-50);
+  --wex-component-alert-destructive-title-fg: var(--wex-palette-red-600); /* One shade darker for contrast */
   --wex-component-alert-destructive-fg: var(--wex-palette-red-600); /* One shade darker for contrast */
   --wex-component-alert-destructive-border: var(--wex-palette-red-200);
   --wex-component-alert-destructive-icon: var(--wex-destructive);
+  --wex-component-alert-radius: var(--wex-radius-md);
 
   /* ============================================================
      TOAST
