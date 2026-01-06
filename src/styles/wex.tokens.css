@@ -79,8 +79,10 @@
   --wex-highlight-fg: 208 100% 32%;
   --wex-highlight-fg-alpha: 1;
 
-  /* ===== RADII (1 token) ===== */
+  /* ===== RADII (3 tokens) ===== */
+  --wex-radius-sm: 4px;
   --wex-radius-md: 6px;
+  --wex-radius-lg: 8px;
 
   /* ===== PALETTE RAMPS (50-900 scales) =====
      These are for subtle UI variations and should NOT be used

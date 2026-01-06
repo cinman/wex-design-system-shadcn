@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils"
 const inputVariants = cva(
   [
     // Layout
-    "flex w-full rounded-md px-3 py-2 text-sm shadow-sm transition-colors",
+    "flex w-full px-3 py-2 text-sm shadow-sm transition-colors",
     // Layer 3 tokens - text
     "text-wex-input-fg",
     // Layer 3 tokens - placeholder
@@ -70,6 +70,10 @@ export interface InputProps
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, type, variant, inputSize, invalid, leftIcon, rightIcon, ...props }, ref) => {
+    const inputStyle = React.useMemo(() => ({
+      borderRadius: 'var(--wex-component-input-radius)',
+    }), []);
+
     if (leftIcon || rightIcon) {
       return (
         <div className="relative flex items-center w-full">
@@ -86,6 +90,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
               rightIcon && "pr-10",
               className
             )}
+            style={inputStyle}
             ref={ref}
             aria-invalid={invalid || undefined}
             {...props}
@@ -103,6 +108,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       <input
         type={type}
         className={cn(inputVariants({ variant, inputSize, invalid }), className)}
+        style={inputStyle}
         ref={ref}
         aria-invalid={invalid || undefined}
         {...props}

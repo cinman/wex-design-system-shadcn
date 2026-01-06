@@ -318,30 +318,35 @@ const config: Config = {
           alert: {
             default: {
               bg: "hsl(var(--wex-component-alert-default-bg) / <alpha-value>)",
+              "title-fg": "hsl(var(--wex-component-alert-default-title-fg) / <alpha-value>)",
               fg: "hsl(var(--wex-component-alert-default-fg) / <alpha-value>)",
               border: "hsl(var(--wex-component-alert-default-border) / <alpha-value>)",
               icon: "hsl(var(--wex-component-alert-default-icon) / <alpha-value>)",
             },
             info: {
               bg: "hsl(var(--wex-component-alert-info-bg) / <alpha-value>)",
+              "title-fg": "hsl(var(--wex-component-alert-info-title-fg) / <alpha-value>)",
               fg: "hsl(var(--wex-component-alert-info-fg) / <alpha-value>)",
               border: "hsl(var(--wex-component-alert-info-border) / <alpha-value>)",
               icon: "hsl(var(--wex-component-alert-info-icon) / <alpha-value>)",
             },
             success: {
               bg: "hsl(var(--wex-component-alert-success-bg) / <alpha-value>)",
+              "title-fg": "hsl(var(--wex-component-alert-success-title-fg) / <alpha-value>)",
               fg: "hsl(var(--wex-component-alert-success-fg) / <alpha-value>)",
               border: "hsl(var(--wex-component-alert-success-border) / <alpha-value>)",
               icon: "hsl(var(--wex-component-alert-success-icon) / <alpha-value>)",
             },
             warning: {
               bg: "hsl(var(--wex-component-alert-warning-bg) / <alpha-value>)",
+              "title-fg": "hsl(var(--wex-component-alert-warning-title-fg) / <alpha-value>)",
               fg: "hsl(var(--wex-component-alert-warning-fg) / <alpha-value>)",
               border: "hsl(var(--wex-component-alert-warning-border) / <alpha-value>)",
               icon: "hsl(var(--wex-component-alert-warning-icon) / <alpha-value>)",
             },
             destructive: {
               bg: "hsl(var(--wex-component-alert-destructive-bg) / <alpha-value>)",
+              "title-fg": "hsl(var(--wex-component-alert-destructive-title-fg) / <alpha-value>)",
               fg: "hsl(var(--wex-component-alert-destructive-fg) / <alpha-value>)",
               border: "hsl(var(--wex-component-alert-destructive-border) / <alpha-value>)",
               icon: "hsl(var(--wex-component-alert-destructive-icon) / <alpha-value>)",

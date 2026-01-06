@@ -2,6 +2,9 @@ import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
+// Context to pass intent to child components
+const AlertContext = React.createContext<{ intent?: "default" | "destructive" | "success" | "warning" | "info" }>({});
+
 /**
  * WexAlert - WEX Design System Alert Component
  *
@@ -68,12 +71,14 @@ export interface WexAlertProps
 
 const WexAlertRoot = React.forwardRef<HTMLDivElement, WexAlertProps>(
   ({ className, intent, ...props }, ref) => (
-    <div
-      ref={ref}
-      role="alert"
-      className={cn(wexAlertVariants({ intent }), className)}
-      {...props}
-    />
+    <AlertContext.Provider value={{ intent }}>
+      <div
+        ref={ref}
+        role="alert"
+        className={cn(wexAlertVariants({ intent }), className)}
+        {...props}
+      />
+    </AlertContext.Provider>
   )
 );
 WexAlertRoot.displayName = "WexAlert";
@@ -81,13 +86,22 @@ WexAlertRoot.displayName = "WexAlert";
 const WexAlertTitle = React.forwardRef<
   HTMLParagraphElement,
   React.HTMLAttributes<HTMLHeadingElement>
->(({ className, ...props }, ref) => (
-  <h5
-    ref={ref}
-    className={cn("mb-1 font-medium leading-none tracking-tight", className)}
-    {...props}
-  />
-));
+>(({ className, ...props }, ref) => {
+  // Get the parent alert's intent to determine which title color token to use
+  const { intent } = React.useContext(AlertContext);
+  const titleColorVar = intent 
+    ? `--wex-component-alert-${intent}-title-fg`
+    : "--wex-component-alert-default-title-fg";
+  
+  return (
+    <h5
+      ref={ref}
+      className={cn("mb-1 font-medium leading-none tracking-tight", className)}
+      style={{ color: `hsl(var(${titleColorVar}))` }}
+      {...props}
+    />
+  );
+});
 WexAlertTitle.displayName = "WexAlert.Title";
 
 const WexAlertDescription = React.forwardRef<
