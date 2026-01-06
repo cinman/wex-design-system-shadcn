@@ -216,7 +216,7 @@ function ComponentPreview({ component, variant }: ComponentPreviewProps) {
       <div className="space-y-4">
         {component === "button" && variant && (
           <div className="flex flex-wrap gap-4">
-            <WexButton variant={variant as any}>{variant.charAt(0).toUpperCase() + variant.slice(1)}</WexButton>
+            <WexButton intent={variant as any}>{variant.charAt(0).toUpperCase() + variant.slice(1)}</WexButton>
           </div>
         )}
         {component === "card" && (
