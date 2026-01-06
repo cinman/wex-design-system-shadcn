@@ -8,8 +8,8 @@
       "light",
       "dark"
     ],
-    "lastUpdated": "2025-12-30T19:49:02.893Z",
-    "totalComponents": 57
+    "lastUpdated": "2026-01-06T01:34:05.459Z",
+    "totalComponents": 58
   },
   "accordion": {
     "status": "pass",
@@ -2430,60 +2430,59 @@
     "levelAchieved": "AA",
     "violations": 0,
     "issues": [],
-    "testedAt": "2025-12-30T19:47:57.790Z",
+    "testedAt": "2026-01-06T01:33:50.207Z",
     "scope": "manifest-driven",
-    "examplesFound": 8,
-    "scenariosTested": [
-      "email",
-      "password",
-      "number",
-      "left-icon",
-      "right-icon",
-      "both-icons",
-      "invalid-state",
-      "password-with-toggle"
-    ],
+    "examplesFound": 20,
+    "scenariosTested": [],
     "subject": "Component examples for WexFloatLabel",
     "modes": {
       "light": {
         "status": "pass",
-        "levelAchieved": "AA",
         "violations": 0,
         "issues": [],
-        "examplesFound": 8,
         "failingElements": [],
         "examples": {
-          "email": {
+          "text-input": {
             "status": "pass",
             "violations": 0,
             "issues": []
           },
-          "password": {
+          "email-input": {
             "status": "pass",
             "violations": 0,
             "issues": []
           },
-          "number": {
+          "input-number": {
             "status": "pass",
             "violations": 0,
             "issues": []
           },
-          "left-icon": {
+          "currency-input": {
             "status": "pass",
             "violations": 0,
             "issues": []
           },
-          "right-icon": {
+          "basic-number": {
             "status": "pass",
             "violations": 0,
             "issues": []
           },
-          "both-icons": {
+          "with-buttons-min-0-max-99": {
             "status": "pass",
             "violations": 0,
             "issues": []
           },
-          "invalid-state": {
+          "percentage": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "currency": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "textarea": {
             "status": "pass",
             "violations": 0,
             "issues": []
@@ -2495,62 +2494,71 @@
           }
         },
         "examplesTested": [
-          "email",
-          "password",
-          "number",
-          "left-icon",
-          "right-icon",
-          "both-icons",
-          "invalid-state",
+          "text-input",
+          "email-input",
+          "input-number",
+          "currency-input",
+          "basic-number",
+          "with-buttons-min-0-max-99",
+          "percentage",
+          "currency",
+          "textarea",
           "password-with-toggle"
         ],
         "examplesSkipped": [
           "all-sizes",
-          "disabled",
-          "controlled"
+          "controlled",
+          "controlled-inputnumber"
         ],
-        "examplesPassed": 8,
-        "examplesFailed": 0
+        "examplesFound": 10
       },
       "dark": {
         "status": "pass",
-        "levelAchieved": "AA",
         "violations": 0,
         "issues": [],
-        "examplesFound": 8,
         "failingElements": [],
         "examples": {
-          "email": {
+          "text-input": {
             "status": "pass",
             "violations": 0,
             "issues": []
           },
-          "password": {
+          "email-input": {
             "status": "pass",
             "violations": 0,
             "issues": []
           },
-          "number": {
+          "input-number": {
             "status": "pass",
             "violations": 0,
             "issues": []
           },
-          "left-icon": {
+          "currency-input": {
             "status": "pass",
             "violations": 0,
             "issues": []
           },
-          "right-icon": {
+          "basic-number": {
             "status": "pass",
             "violations": 0,
             "issues": []
           },
-          "both-icons": {
+          "with-buttons-min-0-max-99": {
             "status": "pass",
             "violations": 0,
             "issues": []
           },
-          "invalid-state": {
+          "percentage": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "currency": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "textarea": {
             "status": "pass",
             "violations": 0,
             "issues": []
@@ -2562,22 +2570,23 @@
           }
         },
         "examplesTested": [
-          "email",
-          "password",
-          "number",
-          "left-icon",
-          "right-icon",
-          "both-icons",
-          "invalid-state",
+          "text-input",
+          "email-input",
+          "input-number",
+          "currency-input",
+          "basic-number",
+          "with-buttons-min-0-max-99",
+          "percentage",
+          "currency",
+          "textarea",
           "password-with-toggle"
         ],
         "examplesSkipped": [
           "all-sizes",
-          "disabled",
-          "controlled"
+          "controlled",
+          "controlled-inputnumber"
         ],
-        "examplesPassed": 8,
-        "examplesFailed": 0
+        "examplesFound": 10
       }
     }
   },
@@ -5569,6 +5578,347 @@
         ],
         "examplesPassed": 3,
         "examplesFailed": 0
+      }
+    }
+  },
+  "input-number": {
+    "status": "pass",
+    "levelAchieved": "AA",
+    "violations": 0,
+    "issues": [],
+    "testedAt": "2026-01-06T01:34:05.459Z",
+    "scope": "manifest-driven",
+    "examplesFound": 50,
+    "scenariosTested": [],
+    "subject": "Component examples for WexInputNumber",
+    "modes": {
+      "light": {
+        "status": "pass",
+        "violations": 0,
+        "issues": [],
+        "failingElements": [],
+        "examples": {
+          "integer-only": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "without-grouping": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "fraction-digits": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "min-max-boundaries": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "us-dollars": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "euros": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "currency-code-display": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "japanese-yen": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "prefix-currency-symbol": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "suffix-distance": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "suffix-percentage": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "suffix-duration": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "both-prefix-suffix": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "suffix-weight": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "stacked-buttons": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "horizontal-buttons": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "with-step": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "currency-with-buttons": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "default": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "filled": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "basic-float-label": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "with-buttons-min-1-max-99": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "currency-float-label": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "filled-variant": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "invalid": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          }
+        },
+        "examplesTested": [
+          "integer-only",
+          "without-grouping",
+          "fraction-digits",
+          "min-max-boundaries",
+          "us-dollars",
+          "euros",
+          "currency-code-display",
+          "japanese-yen",
+          "prefix-currency-symbol",
+          "suffix-distance",
+          "suffix-percentage",
+          "suffix-duration",
+          "both-prefix-suffix",
+          "suffix-weight",
+          "stacked-buttons",
+          "horizontal-buttons",
+          "with-step",
+          "currency-with-buttons",
+          "default",
+          "filled",
+          "basic-float-label",
+          "with-buttons-min-1-max-99",
+          "currency-float-label",
+          "filled-variant",
+          "invalid"
+        ],
+        "examplesSkipped": [
+          "disabled"
+        ],
+        "examplesFound": 25
+      },
+      "dark": {
+        "status": "pass",
+        "violations": 0,
+        "issues": [],
+        "failingElements": [],
+        "examples": {
+          "integer-only": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "without-grouping": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "fraction-digits": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "min-max-boundaries": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "us-dollars": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "euros": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "currency-code-display": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "japanese-yen": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "prefix-currency-symbol": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "suffix-distance": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "suffix-percentage": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "suffix-duration": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "both-prefix-suffix": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "suffix-weight": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "stacked-buttons": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "horizontal-buttons": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "with-step": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "currency-with-buttons": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "default": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "filled": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "basic-float-label": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "with-buttons-min-1-max-99": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "currency-float-label": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "filled-variant": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "invalid": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          }
+        },
+        "examplesTested": [
+          "integer-only",
+          "without-grouping",
+          "fraction-digits",
+          "min-max-boundaries",
+          "us-dollars",
+          "euros",
+          "currency-code-display",
+          "japanese-yen",
+          "prefix-currency-symbol",
+          "suffix-distance",
+          "suffix-percentage",
+          "suffix-duration",
+          "both-prefix-suffix",
+          "suffix-weight",
+          "stacked-buttons",
+          "horizontal-buttons",
+          "with-step",
+          "currency-with-buttons",
+          "default",
+          "filled",
+          "basic-float-label",
+          "with-buttons-min-1-max-99",
+          "currency-float-label",
+          "filled-variant",
+          "invalid"
+        ],
+        "examplesSkipped": [
+          "disabled"
+        ],
+        "examplesFound": 25
       }
     }
   }

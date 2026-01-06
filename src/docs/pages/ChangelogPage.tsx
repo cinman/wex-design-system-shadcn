@@ -16,6 +16,34 @@ export default function ChangelogPage() {
 
       <div className="space-y-8">
         <ChangelogEntry
+          version="1.2.0"
+          date="January 5, 2026"
+          title="InputNumber Component"
+          changes={[
+            "Components: Added WexInputNumber - numeric input with increment/decrement buttons",
+            "Components: InputNumber supports decimal and currency modes with locale formatting",
+            "Components: InputNumber includes stacked and horizontal button layouts",
+            "Components: InputNumber supports prefix/suffix, min/max boundaries, step increments",
+            "Components: InputNumber includes sm/md/lg sizes and default/filled variants",
+            "Components: InputNumber provides proper spinbutton role with aria-valuenow/min/max",
+            "Components: InputNumber integrates with WexFloatLabel via floatLabel prop",
+            "Fix: Stacked buttons now use self-stretch for consistent height in all flex contexts",
+            "Fix: Removed border-r from input when stacked, added border-l to button container",
+            "Fix: Numeric input validation - filters non-numeric characters automatically",
+            "Docs: Added prefix examples ($, ↑) alongside suffix examples (%, mi, °C, months, kg)",
+            "Docs: Invalid state demo now dynamically validates based on value",
+            "Docs: All InputNumber examples now have proper accessibility labels (htmlFor/id pairs + aria-label)",
+            "A11y: Keyboard support with Arrow Up/Down, Home/End keys",
+            "A11y: InputNumber passes all accessibility tests in light and dark modes",
+            "A11y: Fixed FloatLabel color-contrast - floating label now uses text-foreground for better dark mode contrast",
+            "Testing: Added 6 unit tests for floatLabel prop integration",
+            "Docs: Added InputNumber documentation page with comprehensive examples",
+            "Registry: Added InputNumber to component registry",
+            "Parity: Updated PrimeNG parity page - InputNumber marked as complete",
+          ]}
+        />
+
+        <ChangelogEntry
           version="1.1.0"
           date="December 30, 2025"
           title="Button Outline Variants & A11y Fixes"

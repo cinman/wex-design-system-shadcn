@@ -132,6 +132,15 @@ export const componentRegistry: ComponentRegistryEntry[] = [
     tags: ["form", "input"],
   },
   {
+    name: "Input Number",
+    route: "/components/input-number",
+    importPath: "@/docs/pages/components/InputNumberPage",
+    description: "Numeric input with increment/decrement buttons",
+    status: "stable",
+    category: "form-inputs",
+    tags: ["form", "input", "number"],
+  },
+  {
     name: "Input OTP",
     route: "/components/input-otp",
     importPath: "@/docs/pages/components/InputOTPPage",

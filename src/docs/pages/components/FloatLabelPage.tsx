@@ -6,21 +6,25 @@ import { CodeBlock } from "@/docs/components/CodeBlock";
 import { TokenReference, type TokenRow } from "@/docs/components/TokenReference";
 import { Guidance } from "@/docs/components/ProseBlock";
 import { PropsTable, type PropDefinition } from "@/docs/components/PropsTable";
-import { WexFloatLabel } from "@/components/wex";
-import { Mail, Lock, Search, User, Eye, EyeOff } from "lucide-react";
+import { WexFloatLabel, WexInputNumber } from "@/components/wex";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Eye, EyeOff } from "lucide-react";
 
-// Props documentation for WexFloatLabel
+// Props documentation for WexFloatLabel wrapper
 const floatLabelProps: PropDefinition[] = [
-  { name: "label", type: "string", required: true, description: "Label text that floats" },
-  { name: "size", type: '"sm" | "md" | "lg"', default: '"md"', description: "Input size variant" },
-  { name: "type", type: "string", default: '"text"', description: "HTML input type (email, password, etc.)" },
-  { name: "leftIcon", type: "ReactNode", description: "Icon displayed on the left" },
-  { name: "rightIcon", type: "ReactNode", description: "Icon displayed on the right" },
-  { name: "invalid", type: "boolean", default: "false", description: "Marks input as invalid" },
-  { name: "disabled", type: "boolean", default: "false", description: "Disables the input" },
-  { name: "containerClassName", type: "string", description: "Additional CSS classes for the container" },
-  { name: "value", type: "string", description: "Controlled value" },
-  { name: "onChange", type: "ChangeEventHandler", description: "Callback when value changes" },
+  { name: "size", type: '"sm" | "md" | "lg"', default: '"md"', description: "Size variant affecting label positioning" },
+  { name: "children", type: "ReactNode", required: true, description: "Should include WexFloatLabel.Input and WexFloatLabel.Label" },
+  { name: "className", type: "string", description: "Additional CSS classes for the container" },
+];
+
+const floatLabelInputProps: PropDefinition[] = [
+  { name: "children", type: "ReactElement", required: true, description: "Any input component (Input, InputNumber, Textarea, etc.)" },
+];
+
+const floatLabelLabelProps: PropDefinition[] = [
+  { name: "children", type: "ReactNode", required: true, description: "Label text" },
+  { name: "className", type: "string", description: "Additional CSS classes for the label" },
 ];
 
 // Token mappings for FloatLabel - Layer 3 component tokens
@@ -38,21 +42,88 @@ export default function FloatLabelPage() {
   return (
     <ComponentPage
       title="Float Label"
-      description="Input with a floating label that animates from inside the field to above it on focus or when containing a value."
+      description="A wrapper component that provides floating label functionality for any input - Input, InputNumber, Textarea, etc."
       status="stable"
       registryKey="float-label"
     >
       <Section title="Overview">
         <ExampleCard>
           <div className="w-full max-w-sm">
-            <WexFloatLabel label="Username" />
+            <WexFloatLabel>
+              <WexFloatLabel.Input>
+                <Input />
+              </WexFloatLabel.Input>
+              <WexFloatLabel.Label>Username</WexFloatLabel.Label>
+            </WexFloatLabel>
           </div>
         </ExampleCard>
         <Guidance>
-          FloatLabel provides a Material Design / PrimeNG-style floating label input.
-          The label appears centered inside the input when empty, then animates to float
-          above when the user focuses or enters text.
+          WexFloatLabel is a wrapper component that provides Material Design / PrimeNG-style 
+          floating label functionality for any input. The label appears inside the input when 
+          empty, then animates to float above when focused or containing a value.
         </Guidance>
+      </Section>
+
+      {/* ============================================================
+          WITH DIFFERENT INPUTS
+          ============================================================ */}
+      <Section title="With Different Inputs" description="Works with Input, InputNumber, Textarea, and more.">
+        <div className="grid md:grid-cols-2 gap-4">
+          <ExampleCard title="Text Input">
+            <WexFloatLabel>
+              <WexFloatLabel.Input>
+                <Input type="text" />
+              </WexFloatLabel.Input>
+              <WexFloatLabel.Label>Full Name</WexFloatLabel.Label>
+            </WexFloatLabel>
+          </ExampleCard>
+
+          <ExampleCard title="Email Input">
+            <WexFloatLabel>
+              <WexFloatLabel.Input>
+                <Input type="email" />
+              </WexFloatLabel.Input>
+              <WexFloatLabel.Label>Email Address</WexFloatLabel.Label>
+            </WexFloatLabel>
+          </ExampleCard>
+
+          <ExampleCard title="Input Number">
+            <WexFloatLabel>
+              <WexFloatLabel.Input>
+                <WexInputNumber floatLabel />
+              </WexFloatLabel.Input>
+              <WexFloatLabel.Label>Quantity</WexFloatLabel.Label>
+            </WexFloatLabel>
+          </ExampleCard>
+
+          <ExampleCard title="Currency Input">
+            <WexFloatLabel>
+              <WexFloatLabel.Input>
+                <WexInputNumber mode="currency" currency="USD" locale="en-US" floatLabel />
+              </WexFloatLabel.Input>
+              <WexFloatLabel.Label>Price</WexFloatLabel.Label>
+            </WexFloatLabel>
+          </ExampleCard>
+        </div>
+
+        <CodeBlock language="tsx" code={`import { WexFloatLabel, WexInputNumber } from "@/components/wex";
+import { Input } from "@/components/ui/input";
+
+// With text input
+<WexFloatLabel>
+  <WexFloatLabel.Input>
+    <Input type="text" />
+  </WexFloatLabel.Input>
+  <WexFloatLabel.Label>Full Name</WexFloatLabel.Label>
+</WexFloatLabel>
+
+// With InputNumber (add floatLabel prop for proper height)
+<WexFloatLabel>
+  <WexFloatLabel.Input>
+    <WexInputNumber mode="currency" currency="USD" floatLabel />
+  </WexFloatLabel.Input>
+  <WexFloatLabel.Label>Price</WexFloatLabel.Label>
+</WexFloatLabel>`} />
       </Section>
 
       {/* ============================================================
@@ -61,139 +132,192 @@ export default function FloatLabelPage() {
       <Section title="Sizes" description="Three sizes for different contexts.">
         <ExampleCard title="All Sizes">
           <div className="w-full max-w-sm space-y-6">
-            <WexFloatLabel label="Small" size="sm" />
-            <WexFloatLabel label="Medium (Default)" size="md" />
-            <WexFloatLabel label="Large" size="lg" />
+            <WexFloatLabel size="sm">
+              <WexFloatLabel.Input>
+                <Input />
+              </WexFloatLabel.Input>
+              <WexFloatLabel.Label>Small</WexFloatLabel.Label>
+            </WexFloatLabel>
+
+            <WexFloatLabel size="md">
+              <WexFloatLabel.Input>
+                <Input />
+              </WexFloatLabel.Input>
+              <WexFloatLabel.Label>Medium (Default)</WexFloatLabel.Label>
+            </WexFloatLabel>
+
+            <WexFloatLabel size="lg">
+              <WexFloatLabel.Input>
+                <Input />
+              </WexFloatLabel.Input>
+              <WexFloatLabel.Label>Large</WexFloatLabel.Label>
+            </WexFloatLabel>
           </div>
         </ExampleCard>
-        <CodeBlock language="tsx" code={`<WexFloatLabel label="Small" size="sm" />
-<WexFloatLabel label="Medium (Default)" size="md" />
-<WexFloatLabel label="Large" size="lg" />`} />
+        <CodeBlock language="tsx" code={`<WexFloatLabel size="sm">
+  <WexFloatLabel.Input><Input /></WexFloatLabel.Input>
+  <WexFloatLabel.Label>Small</WexFloatLabel.Label>
+</WexFloatLabel>
+
+<WexFloatLabel size="md">
+  <WexFloatLabel.Input><Input /></WexFloatLabel.Input>
+  <WexFloatLabel.Label>Medium (Default)</WexFloatLabel.Label>
+</WexFloatLabel>
+
+<WexFloatLabel size="lg">
+  <WexFloatLabel.Input><Input /></WexFloatLabel.Input>
+  <WexFloatLabel.Label>Large</WexFloatLabel.Label>
+</WexFloatLabel>`} />
       </Section>
 
       {/* ============================================================
-          INPUT TYPES
+          INPUT NUMBER EXAMPLES
           ============================================================ */}
-      <Section title="Input Types" description="Works with various HTML input types.">
-        <ExampleCard title="Email">
-          <WexFloatLabel label="Email Address" type="email" className="max-w-sm" />
-        </ExampleCard>
+      <Section title="InputNumber Examples" description="Float label with various InputNumber configurations.">
+        <div className="grid md:grid-cols-2 gap-4">
+          <ExampleCard title="Basic Number">
+            <WexFloatLabel>
+              <WexFloatLabel.Input>
+                <WexInputNumber defaultValue={100} floatLabel />
+              </WexFloatLabel.Input>
+              <WexFloatLabel.Label>Amount</WexFloatLabel.Label>
+            </WexFloatLabel>
+          </ExampleCard>
 
-        <ExampleCard title="Password">
-          <WexFloatLabel label="Password" type="password" className="max-w-sm" />
-        </ExampleCard>
+          <ExampleCard title="With Buttons (Min 0, Max 99)">
+            <WexFloatLabel>
+              <WexFloatLabel.Input>
+                <WexInputNumber defaultValue={5} showButtons buttonLayout="stacked" min={0} max={99} floatLabel />
+              </WexFloatLabel.Input>
+              <WexFloatLabel.Label>Quantity</WexFloatLabel.Label>
+            </WexFloatLabel>
+          </ExampleCard>
 
-        <ExampleCard title="Number">
-          <WexFloatLabel label="Amount" type="number" className="max-w-sm" />
-        </ExampleCard>
+          <ExampleCard title="Percentage">
+            
+            <WexFloatLabel>
+              <WexFloatLabel.Input>
+                <WexInputNumber defaultValue={25} suffix="%" floatLabel />
+              </WexFloatLabel.Input>
+              <WexFloatLabel.Label>Discount</WexFloatLabel.Label>
+            </WexFloatLabel>
+          </ExampleCard>
 
-        <CodeBlock language="tsx" code={`<WexFloatLabel label="Email Address" type="email" />
-<WexFloatLabel label="Password" type="password" />
-<WexFloatLabel label="Amount" type="number" />`} />
+          <ExampleCard title="Currency">
+            <WexFloatLabel>
+              <WexFloatLabel.Input>
+                <WexInputNumber defaultValue={1500} mode="currency" currency="EUR" locale="de-DE" floatLabel />
+              </WexFloatLabel.Input>
+              <WexFloatLabel.Label>Total Price</WexFloatLabel.Label>
+            </WexFloatLabel>
+          </ExampleCard>
+        </div>
       </Section>
 
       {/* ============================================================
-          ICONS
+          TEXTAREA
           ============================================================ */}
-      <Section title="With Icons" description="Left and right icons for visual context.">
-        <ExampleCard title="Left Icon">
-          <WexFloatLabel 
-            label="Email Address" 
-            type="email" 
-            leftIcon={<Mail className="h-4 w-4" />} 
-            containerClassName="max-w-sm" 
-          />
+      <Section title="With Textarea" description="Float label works with textarea too.">
+        <ExampleCard title="Textarea">
+          <div className="w-full max-w-md">
+            <WexFloatLabel>
+              <WexFloatLabel.Input>
+                <Textarea className="h-14 pt-5 pb-2 min-h-[100px] resize-none" />
+              </WexFloatLabel.Input>
+              <WexFloatLabel.Label>Description</WexFloatLabel.Label>
+            </WexFloatLabel>
+          </div>
         </ExampleCard>
+        <CodeBlock language="tsx" code={`<WexFloatLabel>
+  <WexFloatLabel.Input>
+    <Textarea className="h-14 pt-5 pb-2 min-h-[100px] resize-none" />
+  </WexFloatLabel.Input>
+  <WexFloatLabel.Label>Description</WexFloatLabel.Label>
+</WexFloatLabel>`} />
+      </Section>
 
-        <ExampleCard title="Right Icon">
-          <WexFloatLabel 
-            label="Search" 
-            rightIcon={<Search className="h-4 w-4" />} 
-            containerClassName="max-w-sm" 
-          />
-        </ExampleCard>
-
-        <ExampleCard title="Both Icons">
-          <WexFloatLabel 
-            label="Username" 
-            leftIcon={<User className="h-4 w-4" />}
-            rightIcon={<Search className="h-4 w-4" />}
-            containerClassName="max-w-sm" 
-          />
-        </ExampleCard>
-
+      {/* ============================================================
+          PASSWORD WITH TOGGLE
+          ============================================================ */}
+      <Section title="Password with Toggle" description="Example with icon buttons.">
         <PasswordWithToggle />
+        <CodeBlock language="tsx" code={`const [show, setShow] = React.useState(false);
 
-        <CodeBlock language="tsx" code={`import { Mail, Lock, Eye, EyeOff } from "lucide-react";
-
-// Left icon
-<WexFloatLabel 
-  label="Email Address" 
-  type="email" 
-  leftIcon={<Mail className="h-4 w-4" />} 
-/>
-
-// Both icons (password with toggle)
-const [show, setShow] = useState(false);
-<WexFloatLabel 
-  label="Password" 
-  type={show ? "text" : "password"} 
-  leftIcon={<Lock className="h-4 w-4" />}
-  rightIcon={
-    <button onClick={() => setShow(!show)}>
-      {show ? <EyeOff /> : <Eye />}
-    </button>
-  }
-/>`} />
+<WexFloatLabel>
+  <WexFloatLabel.Input>
+    <Input 
+      type={show ? "text" : "password"} 
+      className="pr-10"
+    />
+  </WexFloatLabel.Input>
+  <WexFloatLabel.Label>Password</WexFloatLabel.Label>
+  <button 
+    type="button"
+    className="absolute right-3 top-1/2 -translate-y-1/2"
+    onClick={() => setShow(!show)}
+  >
+    {show ? <EyeOff /> : <Eye />}
+  </button>
+</WexFloatLabel>`} />
       </Section>
 
       {/* ============================================================
-          VALIDATION
+          CONTROLLED EXAMPLE
           ============================================================ */}
-      <Section title="Validation" description="Invalid state for form validation.">
-        <ExampleCard title="Invalid State">
-          <div className="w-full max-w-sm space-y-6">
-            <WexFloatLabel label="Email" type="email" invalid />
-            <WexFloatLabel label="Username" invalid defaultValue="x" />
-          </div>
-        </ExampleCard>
-        <CodeBlock language="tsx" code={`<WexFloatLabel label="Email" type="email" invalid />
-<WexFloatLabel label="Username" invalid defaultValue="x" />`} />
-      </Section>
-
-      {/* ============================================================
-          DISABLED
-          ============================================================ */}
-      <Section title="Disabled" description="Disabled state for non-interactive inputs.">
-        <ExampleCard title="Disabled">
-          <div className="w-full max-w-sm space-y-6">
-            <WexFloatLabel label="Disabled Empty" disabled />
-            <WexFloatLabel label="Disabled With Value" disabled defaultValue="Readonly value" />
-          </div>
-        </ExampleCard>
-        <CodeBlock language="tsx" code={`<WexFloatLabel label="Disabled Empty" disabled />
-<WexFloatLabel label="Disabled With Value" disabled defaultValue="Readonly value" />`} />
-      </Section>
-
-      {/* ============================================================
-          CONTROLLED
-          ============================================================ */}
-      <Section title="Controlled" description="Works as a controlled component.">
+      <Section title="Controlled" description="Works with controlled inputs.">
         <ControlledExample />
         <CodeBlock language="tsx" code={`const [value, setValue] = React.useState("");
 
-<WexFloatLabel
-  label="Controlled Input"
-  value={value}
-  onChange={(e) => setValue(e.target.value)}
-/>`} />
+<WexFloatLabel>
+  <WexFloatLabel.Input>
+    <Input 
+      value={value} 
+      onChange={(e) => setValue(e.target.value)} 
+    />
+  </WexFloatLabel.Input>
+  <WexFloatLabel.Label>Controlled Input</WexFloatLabel.Label>
+</WexFloatLabel>`} />
+      </Section>
+
+      {/* ============================================================
+          CONTROLLED NUMBER EXAMPLE
+          ============================================================ */}
+      <Section title="Controlled InputNumber" description="Works with controlled InputNumber.">
+        <ControlledNumberExample />
+        <CodeBlock language="tsx" code={`const [value, setValue] = React.useState<number | null>(100);
+
+<WexFloatLabel>
+  <WexFloatLabel.Input>
+    <WexInputNumber 
+      value={value} 
+      onValueChange={setValue}
+      mode="currency"
+      currency="USD"
+      floatLabel
+    />
+  </WexFloatLabel.Input>
+  <WexFloatLabel.Label>Amount</WexFloatLabel.Label>
+</WexFloatLabel>`} />
       </Section>
 
       {/* ============================================================
           API REFERENCE
           ============================================================ */}
       <Section title="API Reference">
-        <PropsTable props={floatLabelProps} />
+        <div className="space-y-6">
+          <div>
+            <h4 className="font-medium mb-2">WexFloatLabel (Wrapper)</h4>
+            <PropsTable props={floatLabelProps} />
+          </div>
+          <div>
+            <h4 className="font-medium mb-2">WexFloatLabel.Input</h4>
+            <PropsTable props={floatLabelInputProps} />
+          </div>
+          <div>
+            <h4 className="font-medium mb-2">WexFloatLabel.Label</h4>
+            <PropsTable props={floatLabelLabelProps} />
+          </div>
+        </div>
       </Section>
 
       {/* ============================================================
@@ -210,16 +334,20 @@ const [show, setShow] = useState(false);
         <Guidance>
           <ul className="list-disc list-inside space-y-2 text-sm">
             <li>
-              <strong>Accessibility:</strong> The label is properly associated with the input
-              via htmlFor/id attributes. Screen readers will announce the label.
+              <strong>Composable:</strong> WexFloatLabel works with any input component - 
+              Input, InputNumber, Textarea, Select, etc.
             </li>
             <li>
-              <strong>Placeholder:</strong> The component uses an invisible placeholder (" ")
-              internally to enable CSS-only state detection. Don't pass a placeholder prop.
+              <strong>Automatic State:</strong> The wrapper automatically tracks focus and 
+              value state from the child input.
             </li>
             <li>
-              <strong>PrimeNG Variant:</strong> This implements the "in" variant where the
-              label starts inside the input field.
+              <strong>Height Adjustment:</strong> Child inputs may need height/padding 
+              adjustments (e.g., <code className="bg-muted px-1 rounded">h-14 pt-5 pb-2</code>).
+            </li>
+            <li>
+              <strong>PrimeNG Pattern:</strong> This follows the PrimeNG compound component 
+              pattern where FloatLabel wraps any input.
             </li>
           </ul>
         </Guidance>
@@ -235,13 +363,45 @@ function ControlledExample() {
   return (
     <ExampleCard title="Controlled">
       <div className="w-full max-w-sm space-y-4">
-        <WexFloatLabel
-          label="Type something..."
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
-        />
+        <WexFloatLabel>
+          <WexFloatLabel.Input>
+            <Input 
+              value={value} 
+              onChange={(e) => setValue(e.target.value)} 
+            />
+          </WexFloatLabel.Input>
+          <WexFloatLabel.Label>Type something...</WexFloatLabel.Label>
+        </WexFloatLabel>
         <p className="text-sm text-muted-foreground">
           Current value: {value ? `"${value}"` : "(empty)"}
+        </p>
+      </div>
+    </ExampleCard>
+  );
+}
+
+// Controlled InputNumber example
+function ControlledNumberExample() {
+  const [value, setValue] = React.useState<number | null>(100);
+
+  return (
+    <ExampleCard title="Controlled InputNumber">
+      <div className="w-full max-w-sm space-y-4">
+        <WexFloatLabel>
+          <WexFloatLabel.Input>
+            <WexInputNumber 
+              value={value} 
+              onValueChange={setValue}
+              mode="currency"
+              currency="USD"
+              locale="en-US"
+              floatLabel
+            />
+          </WexFloatLabel.Input>
+          <WexFloatLabel.Label>Amount</WexFloatLabel.Label>
+        </WexFloatLabel>
+        <p className="text-sm text-muted-foreground">
+          Current value: {value !== null ? `$${value}` : "(empty)"}
         </p>
       </div>
     </ExampleCard>
@@ -254,22 +414,25 @@ function PasswordWithToggle() {
 
   return (
     <ExampleCard title="Password with Toggle">
-      <WexFloatLabel
-        label="Password"
-        type={showPassword ? "text" : "password"}
-        leftIcon={<Lock className="h-4 w-4" />}
-        rightIcon={
+      <div className="w-full max-w-sm">
+        <WexFloatLabel>
+          <WexFloatLabel.Input>
+            <Input 
+              type={showPassword ? "text" : "password"} 
+              className="pr-10"
+            />
+          </WexFloatLabel.Input>
+          <WexFloatLabel.Label>Password</WexFloatLabel.Label>
           <button
             type="button"
             onClick={() => setShowPassword(!showPassword)}
-            className="cursor-pointer hover:text-foreground transition-colors pointer-events-auto min-w-6 min-h-6 flex items-center justify-center -mr-1"
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors min-h-6 min-w-6 flex items-center justify-center"
             aria-label={showPassword ? "Hide password" : "Show password"}
           >
             {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
           </button>
-        }
-        containerClassName="max-w-sm"
-      />
+        </WexFloatLabel>
+      </div>
     </ExampleCard>
   );
 }
