@@ -59,7 +59,7 @@ jobs:
   publish-tokens:
     needs: check-changes
     if: needs.check-changes.outputs.changed == 'true'
-    runs-on: ubuntu-latest
+    runs-on: fabric-dev
     
     steps:
       - name: Checkout Repository
