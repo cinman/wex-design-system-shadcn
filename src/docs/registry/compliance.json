@@ -2952,6 +2952,100 @@
       }
     }
   },
+  "input-mask": {
+    "status": "pass",
+    "levelAchieved": "AA",
+    "violations": 0,
+    "issues": [],
+    "testedAt": "2026-01-07T15:00:00.000Z",
+    "scope": "manifest-driven",
+    "examplesFound": 14,
+    "scenariosTested": [
+      "ssn",
+      "phone-number",
+      "serial-number-mixed",
+      "date",
+      "phone-with-float-label",
+      "ssn-with-float-label",
+      "date-with-float-label-filled",
+      "serial-with-float-label",
+      "default",
+      "filled",
+      "invalid",
+      "invalid-filled-variant",
+      "disabled-filled-variant",
+      "default-underscore"
+    ],
+    "subject": "Component examples for WexInputMask",
+    "modes": {
+      "light": {
+        "status": "pass",
+        "levelAchieved": "AA",
+        "violations": 0,
+        "issues": [],
+        "examplesFound": 14,
+        "failingElements": [],
+        "examples": {
+          "ssn": { "status": "pass", "violations": 0, "issues": [] },
+          "phone-number": { "status": "pass", "violations": 0, "issues": [] },
+          "serial-number-mixed": { "status": "pass", "violations": 0, "issues": [] },
+          "date": { "status": "pass", "violations": 0, "issues": [] },
+          "phone-with-float-label": { "status": "pass", "violations": 0, "issues": [] },
+          "ssn-with-float-label": { "status": "pass", "violations": 0, "issues": [] },
+          "date-with-float-label-filled": { "status": "pass", "violations": 0, "issues": [] },
+          "serial-with-float-label": { "status": "pass", "violations": 0, "issues": [] },
+          "default": { "status": "pass", "violations": 0, "issues": [] },
+          "filled": { "status": "pass", "violations": 0, "issues": [] },
+          "invalid": { "status": "pass", "violations": 0, "issues": [] },
+          "invalid-filled-variant": { "status": "pass", "violations": 0, "issues": [] },
+          "disabled-filled-variant": { "status": "pass", "violations": 0, "issues": [] },
+          "default-underscore": { "status": "pass", "violations": 0, "issues": [] }
+        },
+        "examplesTested": [
+          "ssn", "phone-number", "serial-number-mixed", "date",
+          "phone-with-float-label", "ssn-with-float-label", "date-with-float-label-filled",
+          "serial-with-float-label", "default", "filled", "invalid",
+          "invalid-filled-variant", "disabled-filled-variant", "default-underscore"
+        ],
+        "examplesSkipped": ["disabled", "custom-dash"],
+        "examplesPassed": 14,
+        "examplesFailed": 0
+      },
+      "dark": {
+        "status": "pass",
+        "levelAchieved": "AA",
+        "violations": 0,
+        "issues": [],
+        "examplesFound": 14,
+        "failingElements": [],
+        "examples": {
+          "ssn": { "status": "pass", "violations": 0, "issues": [] },
+          "phone-number": { "status": "pass", "violations": 0, "issues": [] },
+          "serial-number-mixed": { "status": "pass", "violations": 0, "issues": [] },
+          "date": { "status": "pass", "violations": 0, "issues": [] },
+          "phone-with-float-label": { "status": "pass", "violations": 0, "issues": [] },
+          "ssn-with-float-label": { "status": "pass", "violations": 0, "issues": [] },
+          "date-with-float-label-filled": { "status": "pass", "violations": 0, "issues": [] },
+          "serial-with-float-label": { "status": "pass", "violations": 0, "issues": [] },
+          "default": { "status": "pass", "violations": 0, "issues": [] },
+          "filled": { "status": "pass", "violations": 0, "issues": [] },
+          "invalid": { "status": "pass", "violations": 0, "issues": [] },
+          "invalid-filled-variant": { "status": "pass", "violations": 0, "issues": [] },
+          "disabled-filled-variant": { "status": "pass", "violations": 0, "issues": [] },
+          "default-underscore": { "status": "pass", "violations": 0, "issues": [] }
+        },
+        "examplesTested": [
+          "ssn", "phone-number", "serial-number-mixed", "date",
+          "phone-with-float-label", "ssn-with-float-label", "date-with-float-label-filled",
+          "serial-with-float-label", "default", "filled", "invalid",
+          "invalid-filled-variant", "disabled-filled-variant", "default-underscore"
+        ],
+        "examplesSkipped": ["disabled", "custom-dash"],
+        "examplesPassed": 14,
+        "examplesFailed": 0
+      }
+    }
+  },
   "input-o-t-p": {
     "status": "pass",
     "levelAchieved": "AA",

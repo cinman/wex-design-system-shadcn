@@ -132,6 +132,15 @@ export const componentRegistry: ComponentRegistryEntry[] = [
     tags: ["form", "input"],
   },
   {
+    name: "Input Mask",
+    route: "/components/input-mask",
+    importPath: "@/docs/pages/components/InputMaskPage",
+    description: "Masked input for formatted data entry (phone, SSN, dates)",
+    status: "stable",
+    category: "form-inputs",
+    tags: ["form", "input", "mask"],
+  },
+  {
     name: "Input Number",
     route: "/components/input-number",
     importPath: "@/docs/pages/components/InputNumberPage",

@@ -53,6 +53,7 @@ const InputPage = React.lazy(() => import("@/docs/pages/components/InputPage"));
 const FloatLabelPage = React.lazy(() => import("@/docs/pages/components/FloatLabelPage"));
 const InputGroupPage = React.lazy(() => import("@/docs/pages/components/InputGroupPage"));
 const InputOTPPage = React.lazy(() => import("@/docs/pages/components/InputOTPPage"));
+const InputMaskPage = React.lazy(() => import("@/docs/pages/components/InputMaskPage"));
 const InputNumberPage = React.lazy(() => import("@/docs/pages/components/InputNumberPage"));
 const ItemPage = React.lazy(() => import("@/docs/pages/components/ItemPage"));
 const KbdPage = React.lazy(() => import("@/docs/pages/components/KbdPage"));
@@ -157,6 +158,7 @@ export function DocsRoutes() {
           <Route path="components/float-label" element={<FloatLabelPage />} />
           <Route path="components/input-group" element={<InputGroupPage />} />
           <Route path="components/input-otp" element={<InputOTPPage />} />
+          <Route path="components/input-mask" element={<InputMaskPage />} />
           <Route path="components/input-number" element={<InputNumberPage />} />
           <Route path="components/item" element={<ItemPage />} />
           <Route path="components/kbd" element={<KbdPage />} />

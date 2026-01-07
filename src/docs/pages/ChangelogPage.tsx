@@ -16,6 +16,31 @@ export default function ChangelogPage() {
 
       <div className="space-y-8">
         <ChangelogEntry
+          version="1.3.0"
+          date="January 5, 2026"
+          title="InputMask Component"
+          changes={[
+            "Components: Added WexInputMask - masked input for formatted data entry",
+            "Components: InputMask supports mask patterns: 9 (digit), a (alpha), * (alphanumeric)",
+            "Components: InputMask handles phone numbers, SSN, dates, serial numbers, and custom patterns",
+            "Components: InputMask includes native cursor management and paste handling",
+            "Components: InputMask supports autoClear prop to clear incomplete values on blur",
+            "Components: InputMask includes sm/md/lg sizes and default/filled variants",
+            "Components: InputMask integrates with WexFloatLabel via floatLabel prop",
+            "Components: InputMask supports custom slotChar placeholder (default: _)",
+            "Components: InputMask provides onComplete callback when all slots are filled",
+            "A11y: Full keyboard support (type, delete, backspace, home, end, arrow keys)",
+            "A11y: Supports aria-label, aria-labelledby, and htmlFor/id label pairing",
+            "A11y: Invalid state sets aria-invalid with destructive border styling",
+            "Testing: Added 40+ unit tests covering rendering, mask patterns, keyboard navigation",
+            "Testing: Tests cover controlled/uncontrolled modes, edge cases, and accessibility",
+            "Docs: Added InputMask documentation page with comprehensive examples",
+            "Docs: Examples include basic, mask patterns, float label, sizes, invalid, disabled",
+            "Registry: Added InputMask to component registry",
+          ]}
+        />
+
+        <ChangelogEntry
           version="1.2.0"
           date="January 5, 2026"
           title="InputNumber Component"

@@ -1,15 +1,15 @@
 {
   "_meta": {
     "description": "A11y test manifest - defines which examples to test for color contrast",
-    "generatedAt": "2026-01-05T22:36:47.237Z",
-    "totalComponents": 59,
+    "generatedAt": "2026-01-07T14:48:29.641Z",
+    "totalComponents": 60,
     "howToUse": "Review this file, adjust 'test' flags as needed, then run tests"
   },
   "summary": {
-    "totalExamples": 296,
-    "toTest": 238,
-    "toSkip": 58,
-    "untitled": 83
+    "totalExamples": 312,
+    "toTest": 252,
+    "toSkip": 60,
+    "untitled": 85
   },
   "components": {
     "accordion": {
@@ -1206,6 +1206,113 @@
         }
       ],
       "testCount": 2,
+      "skipCount": 2
+    },
+    "input-mask": {
+      "name": "WexInputMask",
+      "key": "input-mask",
+      "route": "/components/input-mask",
+      "totalExamples": 18,
+      "untitledExamples": 2,
+      "examples": [
+        {
+          "id": "ssn",
+          "title": "SSN",
+          "test": true,
+          "reason": "Default (unknown pattern)"
+        },
+        {
+          "id": "phone-number",
+          "title": "Phone Number",
+          "test": true,
+          "reason": "Default (unknown pattern)"
+        },
+        {
+          "id": "serial-number-mixed",
+          "title": "Serial Number (Mixed)",
+          "test": true,
+          "reason": "Default (unknown pattern)"
+        },
+        {
+          "id": "date",
+          "title": "Date",
+          "test": true,
+          "reason": "Default (unknown pattern)"
+        },
+        {
+          "id": "phone-with-float-label",
+          "title": "Phone with Float Label",
+          "test": true,
+          "reason": "Default (unknown pattern)"
+        },
+        {
+          "id": "ssn-with-float-label",
+          "title": "SSN with Float Label",
+          "test": true,
+          "reason": "Default (unknown pattern)"
+        },
+        {
+          "id": "date-with-float-label-filled",
+          "title": "Date with Float Label (Filled)",
+          "test": true,
+          "reason": "Default (unknown pattern)"
+        },
+        {
+          "id": "serial-with-float-label",
+          "title": "Serial with Float Label",
+          "test": true,
+          "reason": "Default (unknown pattern)"
+        },
+        {
+          "id": "default",
+          "title": "Default",
+          "test": true,
+          "reason": "Color variant"
+        },
+        {
+          "id": "filled",
+          "title": "Filled",
+          "test": true,
+          "reason": "Default (unknown pattern)"
+        },
+        {
+          "id": "invalid",
+          "title": "Invalid",
+          "test": true,
+          "reason": "Default (unknown pattern)"
+        },
+        {
+          "id": "invalid-filled-variant",
+          "title": "Invalid (Filled Variant)",
+          "test": true,
+          "reason": "Color variant"
+        },
+        {
+          "id": "disabled",
+          "title": "Disabled",
+          "test": false,
+          "reason": "Duplicate (disabled)"
+        },
+        {
+          "id": "disabled-filled-variant",
+          "title": "Disabled (Filled Variant)",
+          "test": true,
+          "reason": "Color variant"
+        },
+        {
+          "id": "default-underscore",
+          "title": "Default (underscore)",
+          "test": true,
+          "reason": "Default (unknown pattern)"
+        },
+        {
+          "id": "custom-dash",
+          "title": "Custom (dash)",
+          "test": false,
+          "reason": "Duplicate (custom)"
+        }
+      ],
+      "testCount": 14,
       "skipCount": 2
     },
     "input-number": {

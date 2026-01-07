@@ -21,6 +21,7 @@ export { WexBadge, wexBadgeVariants, type WexBadgeProps } from "./wex-badge";
 // ===== FORM COMPONENTS =====
 export { WexInput } from "./wex-input";
 export { WexInputNumber, type WexInputNumberProps } from "./wex-input-number";
+export { WexInputMask, type WexInputMaskProps } from "./wex-input-mask";
 export { WexFloatLabel, WexFloatLabelInput, type WexFloatLabelProps, type WexFloatLabelInputProps } from "./wex-float-label";
 export { WexTextarea } from "./wex-textarea";
 export { WexCheckbox } from "./wex-checkbox";

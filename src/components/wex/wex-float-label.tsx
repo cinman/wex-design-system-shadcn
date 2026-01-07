@@ -127,11 +127,17 @@ function FloatLabelInput({ children }: FloatLabelInputProps) {
   const child = React.Children.only(children) as React.ReactElement<any>
   const childProps = child.props as Record<string, any>
   
-  // Check if this is a WexInputNumber
+  // Check component type by displayName or props
   const displayName = (child.type as any)?.displayName
+  
+  // WexInputNumber detection
   const isInputNumber = displayName === "WexInputNumber" || 
     childProps.showButtons !== undefined ||
     (childProps.mode === "currency" || childProps.mode === "decimal")
+  
+  // WexInputMask detection (has mask prop or displayName)
+  const isInputMask = displayName === "WexInputMask" || 
+    childProps.mask !== undefined
 
   // Height and padding classes for regular inputs (Input, Textarea)
   const regularInputSizeClasses = {
@@ -169,6 +175,15 @@ function FloatLabelInput({ children }: FloatLabelInputProps) {
     newProps.onValueChange = (value: number | null) => {
       setHasValue(value !== null && value !== undefined)
       childProps.onValueChange?.(value)
+    }
+    // Keep original className
+    newProps.className = childProps.className
+  } else if (isInputMask) {
+    // For InputMask: track value via onValueChange (string value)
+    // The floatLabel prop on InputMask handles its own height
+    newProps.onValueChange = (value: string, isComplete: boolean) => {
+      setHasValue(value !== null && value !== undefined && value !== "")
+      childProps.onValueChange?.(value, isComplete)
     }
     // Keep original className
     newProps.className = childProps.className
