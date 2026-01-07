@@ -1,13 +1,9 @@
 name: Publish Design Tokens
 
-# DISABLED: Workflow disabled temporarily - change to workflow_dispatch only to prevent auto-runs
-# To re-enable, uncomment the triggers below and remove workflow_dispatch
 on:
-  workflow_dispatch:  # Manual trigger only - workflow won't run automatically
+  workflow_dispatch:  # Manual trigger
+  push:  # Runs on any push to any branch
   # pull_request:
-  #   branches:
-  #     - main
-  # push:
   #   branches:
   #     - main
 
