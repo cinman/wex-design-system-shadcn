@@ -51,7 +51,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GH_TOKEN }}
 
       - name: Use Node.js Version 22
         uses: actions/setup-node@v4
@@ -95,7 +95,7 @@ jobs:
         if: github.event_name == 'push'
         uses: actions/create-release@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
         with:
           tag_name: "v${{ steps.package.outputs.version }}"
           release_name: Design Tokens Version ${{ steps.package.outputs.version }}
