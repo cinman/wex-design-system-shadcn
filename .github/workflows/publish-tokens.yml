@@ -25,9 +25,9 @@ jobs:
         run: |
           rm -rf .npmrc
           echo "registry=https://registry.npmjs.org/" > .npmrc
-          echo "@wex:registry=https://artifactory.wexinc.com/artifactory/api/npm/npm-local/" >> .npmrc
-          echo "//artifactory.wexinc.com/artifactory/api/npm/npm-local/:_authToken=${{ secrets.ARTIFACTORY_TOKEN }}" >> .npmrc
-          echo "//artifactory.wexinc.com/artifactory/api/npm/npm-local/:always-auth=true" >> .npmrc
+          echo "@wexinc:registry=https://usartifactorywexinc.jfrog.io/artifactory/api/npm/wex-npm-prod" >> .npmrc
+          echo "//usartifactorywexinc.jfrog.io/artifactory/api/npm/wex-npm-prod/:_authToken=${{ secrets.ARTIFACTORY_WEX_NPM_TOKEN }}" >> .npmrc
+          echo "//usartifactorywexinc.jfrog.io/artifactory/api/npm/wex-npm-prod/:always-auth=true" >> .npmrc
       
       - name: Check if version has changed
         id: filter
@@ -42,7 +42,7 @@ jobs:
             
             # Try to get published version from Artifactory
             # If package doesn't exist yet, npm view will fail - that's okay, we'll publish
-            PUBLISHED_VERSION=$(npm view @wex/design-tokens version --registry=https://artifactory.wexinc.com/artifactory/api/npm/npm-local/ 2>/dev/null || echo "")
+            PUBLISHED_VERSION=$(npm view @wex/design-tokens version --registry=https://usartifactorywexinc.jfrog.io/artifactory/api/npm/wex-npm-prod 2>/dev/null || echo "")
             
             if [ -z "$PUBLISHED_VERSION" ]; then
               echo "Package not found in Artifactory - will publish"
@@ -79,9 +79,9 @@ jobs:
         run: |
           rm -rf .npmrc
           echo "registry=https://registry.npmjs.org/" > .npmrc
-          echo "@wex:registry=https://artifactory.wexinc.com/artifactory/api/npm/npm-local/" >> .npmrc
-          echo "//artifactory.wexinc.com/artifactory/api/npm/npm-local/:_authToken=${{ secrets.ARTIFACTORY_TOKEN }}" >> .npmrc
-          echo "//artifactory.wexinc.com/artifactory/api/npm/npm-local/:always-auth=true" >> .npmrc
+          echo "@wexinc:registry=https://usartifactorywexinc.jfrog.io/artifactory/api/npm/wex-npm-prod" >> .npmrc
+          echo "//usartifactorywexinc.jfrog.io/artifactory/api/npm/wex-npm-prod/:_authToken=${{ secrets.ARTIFACTORY_WEX_NPM_TOKEN }}" >> .npmrc
+          echo "//usartifactorywexinc.jfrog.io/artifactory/api/npm/wex-npm-prod/:always-auth=true" >> .npmrc
 
       - name: Build Design Tokens
         run: node scripts/build-tokens.cjs
@@ -104,14 +104,3 @@ jobs:
             "${{ github.event.repository.name }}" \
             "${{ github.run_number }}" \
             "wex-npm-prod"
-
-      - name: Create GitHub Release
-        if: github.event_name == 'push'
-        uses: actions/create-release@v1
-        env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
-        with:
-          tag_name: "v${{ steps.package.outputs.version }}"
-          release_name: Design Tokens Version ${{ steps.package.outputs.version }}
-          draft: false
-          prerelease: false
