@@ -85,10 +85,12 @@ jobs:
             --interactive=false \
             server-id
           jf c use server-id
+          jf rt ping --server-id=server-id
 
       - name: Configure JFrog npm
         working-directory: packages/design-tokens
         run: |
+          jf c use server-id
           jf npm-config --repo-resolve=wex-npm-prod --repo-deploy=wex-npm-prod --server-id-resolve=server-id --server-id-deploy=server-id
 
       - name: Install Dependencies
