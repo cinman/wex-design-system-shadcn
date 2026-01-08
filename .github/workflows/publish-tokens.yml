@@ -2,7 +2,7 @@ name: Publish Design Tokens
 
 on:
   workflow_dispatch:  # Manual trigger
-  push:  # Runs on any push to any branch
+  push:  # Runs on any push to any branch - triggers on all pushes
   # pull_request:
   #   branches:
   #     - main
