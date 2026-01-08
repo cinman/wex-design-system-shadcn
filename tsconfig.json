@@ -9,7 +9,9 @@
     "paths": {
       "@/*": ["./src/*"],
       "@wex/design-tokens": ["./packages/design-tokens/design-tokens.json"],
-      "@wex/design-tokens/*": ["./packages/design-tokens/*"]
+      "@wex/design-tokens/*": ["./packages/design-tokens/*"],
+      "@wex/components": ["./packages/wex-components/src/index.ts"],
+      "@wex/components/*": ["./packages/wex-components/src/*"]
     }
   }
 }
