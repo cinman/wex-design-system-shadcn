@@ -26,7 +26,7 @@ jobs:
           rm -rf .npmrc
           echo "registry=https://registry.npmjs.org/" > .npmrc
           echo "@wex:registry=https://usartifactorywexinc.jfrog.io/artifactory/api/npm/wex-npm-prod" >> .npmrc
-          echo "//usartifactorywexinc.jfrog.io/artifactory/api/npm/wex-npm-prod/:_authToken=${{ secrets.ARTIFACTORY_WEX_NPM_TOKEN }}" >> .npmrc
+          echo "//usartifactorywexinc.jfrog.io/artifactory/api/npm/wex-npm-prod/:_authToken=${{ secrets.ARTIFACTORY_TOKEN }}" >> .npmrc
           echo "//usartifactorywexinc.jfrog.io/artifactory/api/npm/wex-npm-prod/:always-auth=true" >> .npmrc
       
       - name: Check if version has changed
@@ -83,7 +83,7 @@ jobs:
           rm -rf .npmrc
           echo "registry=https://registry.npmjs.org/" > .npmrc
           echo "@wex:registry=https://usartifactorywexinc.jfrog.io/artifactory/api/npm/wex-npm-prod" >> .npmrc
-          echo "//usartifactorywexinc.jfrog.io/artifactory/api/npm/wex-npm-prod/:_authToken=${{ secrets.ARTIFACTORY_WEX_NPM_TOKEN }}" >> .npmrc
+          echo "//usartifactorywexinc.jfrog.io/artifactory/api/npm/wex-npm-prod/:_authToken=${{ secrets.ARTIFACTORY_TOKEN }}" >> .npmrc
           echo "//usartifactorywexinc.jfrog.io/artifactory/api/npm/wex-npm-prod/:always-auth=true" >> .npmrc
 
       - name: Build Design Tokens
