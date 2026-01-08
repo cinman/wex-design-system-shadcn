@@ -138,8 +138,8 @@ jobs:
             --comment="Promoting build ${{ github.run_number }} from subprod to production" \
             "${{ github.event.repository.name }}" \
             "${{ github.run_number }}" \
-            "wex-npm-subprod" \
-            "wex-npm-prod"
+            "wex-npm-prod" \
+            "wex-npm-subprod"
 
   publish-components:
     needs: check-changes
@@ -211,6 +211,6 @@ jobs:
             --comment="Promoting build ${{ github.run_number }} from subprod to production" \
             "${{ github.event.repository.name }}" \
             "${{ github.run_number }}" \
-            "wex-npm-subprod" \
-            "wex-npm-prod"
+            "wex-npm-prod" \
+            "wex-npm-subprod"
 
