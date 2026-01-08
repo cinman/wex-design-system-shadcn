@@ -100,7 +100,7 @@ jobs:
         working-directory: packages/design-tokens
         run: |
           jf c use server-id
-          jf npm-config --repo-resolve=wex-npm-prod --repo-deploy=wex-npm-prod --server-id-resolve=server-id --server-id-deploy=server-id
+          jf npm-config --repo-resolve=wex-npm-prod --repo-deploy=wex-npm-subprod --server-id-resolve=server-id --server-id-deploy=server-id
 
       - name: Use Node.js Version 22
         uses: actions/setup-node@v4
@@ -125,19 +125,20 @@ jobs:
         id: package
         run: echo "version=$(node -p "require('./packages/design-tokens/package.json').version")" >> $GITHUB_OUTPUT
 
-      - name: Publish to Artifactory
+      - name: Publish to Artifactory (Subprod)
         working-directory: packages/design-tokens
         run: |
           jf npm publish --build-name=${{ github.event.repository.name }} --build-number=${{ github.run_number }}
           jf rt bp "${{ github.event.repository.name }}" "${{ github.run_number }}"
 
-      - name: Promote the Release to Production
+      - name: Promote from Subprod to Production
         run: |
           jf rt bpr \
             --status=promoted \
-            --comment="Promoting build ${{ github.run_number }} to production" \
+            --comment="Promoting build ${{ github.run_number }} from subprod to production" \
             "${{ github.event.repository.name }}" \
             "${{ github.run_number }}" \
+            "wex-npm-subprod" \
             "wex-npm-prod"
 
   publish-components:
@@ -168,7 +169,7 @@ jobs:
         working-directory: packages/wex-components
         run: |
           jf c use server-id
-          jf npm-config --repo-resolve=wex-npm-prod --repo-deploy=wex-npm-prod --server-id-resolve=server-id --server-id-deploy=server-id
+          jf npm-config --repo-resolve=wex-npm-prod --repo-deploy=wex-npm-subprod --server-id-resolve=server-id --server-id-deploy=server-id
 
       - name: Use Node.js Version 22
         uses: actions/setup-node@v4
@@ -197,18 +198,19 @@ jobs:
         id: package
         run: echo "version=$(node -p "require('./packages/wex-components/package.json').version")" >> $GITHUB_OUTPUT
 
-      - name: Publish to Artifactory
+      - name: Publish to Artifactory (Subprod)
         working-directory: packages/wex-components
         run: |
           jf npm publish --build-name=${{ github.event.repository.name }} --build-number=${{ github.run_number }}
           jf rt bp "${{ github.event.repository.name }}" "${{ github.run_number }}"
 
-      - name: Promote the Release to Production
+      - name: Promote from Subprod to Production
         run: |
           jf rt bpr \
             --status=promoted \
-            --comment="Promoting build ${{ github.run_number }} to production" \
+            --comment="Promoting build ${{ github.run_number }} from subprod to production" \
             "${{ github.event.repository.name }}" \
             "${{ github.run_number }}" \
+            "wex-npm-subprod" \
             "wex-npm-prod"
 
