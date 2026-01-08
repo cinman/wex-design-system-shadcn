@@ -159,6 +159,15 @@ export const componentRegistry: ComponentRegistryEntry[] = [
     tags: ["form", "input"],
   },
   {
+    name: "Listbox",
+    route: "/components/listbox",
+    importPath: "@/docs/pages/components/ListboxPage",
+    description: "List selection component for choosing from options",
+    status: "stable",
+    category: "form-inputs",
+    tags: ["form", "input", "selection"],
+  },
+  {
     name: "Radio Group",
     route: "/components/radio-group",
     importPath: "@/docs/pages/components/RadioGroupPage",

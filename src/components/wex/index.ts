@@ -37,6 +37,7 @@ export { WexInputOTP } from "./wex-input-otp";
 export { WexCalendar } from "./wex-calendar";
 export { WexCombobox, type ComboboxProps, type ComboboxOption } from "./wex-combobox";
 export { WexDatePicker, type DatePickerProps, type DatePickerWithInputProps } from "./wex-date-picker";
+export { WexListbox, type ListboxOptionData } from "./wex-listbox";
 
 // ===== OVERLAY COMPONENTS =====
 export { WexDialog } from "./wex-dialog";

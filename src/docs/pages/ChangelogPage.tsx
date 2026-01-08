@@ -16,6 +16,51 @@ export default function ChangelogPage() {
 
       <div className="space-y-8">
         <ChangelogEntry
+          version="1.4.1"
+          date="January 8, 2026"
+          title="Listbox Keyboard Focus & A11y"
+          changes={[
+            "Fix: Keyboard focus outline now shows immediately when tabbing into listbox (first item is visually focused)",
+            "Fix: Focus detection now uses :focus-visible to correctly distinguish keyboard vs mouse focus",
+            "Fix: Invalid state error message uses dark:text-red-400 for better contrast in dark mode",
+            "A11y: Added WexListbox to Accessibility Dashboard - all tests pass in both light and dark modes",
+            "Testing: Updated a11y-test-manifest.json with listbox test configuration",
+            "Testing: Updated compliance.json with WexListbox accessibility results (6 examples, 0 violations)",
+          ]}
+        />
+
+        <ChangelogEntry
+          version="1.4.0"
+          date="January 7, 2026"
+          title="Listbox Component"
+          changes={[
+            "Components: Added WexListbox - list selection component with PrimeReact parity",
+            "Components: Listbox supports single and multiple selection modes",
+            "Components: Listbox includes filter/search with WexListbox.Filter sub-component",
+            "Components: Listbox supports grouped options via group property on options",
+            "Components: Listbox includes checkbox mode for multiple selection",
+            "Components: Listbox supports checkmark indicator for selected items",
+            "Components: Listbox includes WexListbox.SelectAll sub-component for select all functionality",
+            "Components: SelectAll shows indeterminate state when some (but not all) options are selected",
+            "Components: Listbox includes disabled state (listbox-level and option-level)",
+            "Components: Listbox supports invalid state styling with destructive border",
+            "Components: Listbox supports manual options with uKey prop",
+            "Components: Checkbox updated to support indeterminate state with minus icon",
+            "Fix: Selected state now uses primary/15 background to differentiate from hover state",
+            "Fix: Disabled options no longer show hover/focus state styling",
+            "A11y: Full keyboard navigation (Arrow keys, Home, End, Enter, Space, type-ahead)",
+            "A11y: Roving tabindex for proper focus management",
+            "A11y: ARIA compliant (listbox role, option role, aria-selected, aria-multiselectable)",
+            "A11y: Supports aria-label and aria-labelledby for labeling",
+            "Testing: Added 31 unit tests covering selection, keyboard, states, a11y",
+            "Docs: Added Listbox documentation page with comprehensive examples",
+            "Docs: Examples include single/multiple selection, select all, filter, grouped options, states",
+            "Docs: Added indeterminate checkbox demo to CheckboxPage",
+            "Registry: Added Listbox to component registry",
+          ]}
+        />
+
+        <ChangelogEntry
           version="1.3.0"
           date="January 5, 2026"
           title="InputMask Component"

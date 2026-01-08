@@ -1,15 +1,15 @@
 {
   "_meta": {
     "description": "A11y test manifest - defines which examples to test for color contrast",
-    "generatedAt": "2026-01-07T14:48:29.641Z",
-    "totalComponents": 60,
+    "generatedAt": "2026-01-08T09:00:00.000Z",
+    "totalComponents": 61,
     "howToUse": "Review this file, adjust 'test' flags as needed, then run tests"
   },
   "summary": {
-    "totalExamples": 312,
-    "toTest": 252,
-    "toSkip": 60,
-    "untitled": 85
+    "totalExamples": 322,
+    "toTest": 260,
+    "toSkip": 61,
+    "untitled": 86
   },
   "components": {
     "accordion": {
@@ -1692,6 +1692,71 @@
       ],
       "testCount": 2,
       "skipCount": 0
+    },
+    "listbox": {
+      "name": "WexListbox",
+      "key": "listbox",
+      "route": "/components/listbox",
+      "totalExamples": 10,
+      "untitledExamples": 1,
+      "examples": [
+        {
+          "id": "single-selection",
+          "title": "Single Selection",
+          "test": true,
+          "reason": "Default (unknown pattern)"
+        },
+        {
+          "id": "single-with-checkmark",
+          "title": "Single with Checkmark",
+          "test": true,
+          "reason": "Default (unknown pattern)"
+        },
+        {
+          "id": "multiple-selection",
+          "title": "Multiple Selection",
+          "test": true,
+          "reason": "Default (unknown pattern)"
+        },
+        {
+          "id": "multiple-with-checkboxes",
+          "title": "Multiple with Checkboxes",
+          "test": true,
+          "reason": "Default (unknown pattern)"
+        },
+        {
+          "id": "multiple-with-select-all",
+          "title": "Multiple with Select All",
+          "test": true,
+          "reason": "Default (unknown pattern)"
+        },
+        {
+          "id": "with-filter",
+          "title": "With Filter",
+          "test": true,
+          "reason": "Default (unknown pattern)"
+        },
+        {
+          "id": "grouped-options",
+          "title": "Grouped Options",
+          "test": true,
+          "reason": "Default (unknown pattern)"
+        },
+        {
+          "id": "disabled-options",
+          "title": "Disabled Options",
+          "test": false,
+          "reason": "Duplicate (disabled)"
+        },
+        {
+          "id": "invalid-state",
+          "title": "Invalid State",
+          "test": true,
+          "reason": "Color variant"
+        }
+      ],
+      "testCount": 8,
+      "skipCount": 1
     },
     "menubar": {
       "name": "WexMenubar",

@@ -58,6 +58,7 @@ const InputNumberPage = React.lazy(() => import("@/docs/pages/components/InputNu
 const ItemPage = React.lazy(() => import("@/docs/pages/components/ItemPage"));
 const KbdPage = React.lazy(() => import("@/docs/pages/components/KbdPage"));
 const LabelPage = React.lazy(() => import("@/docs/pages/components/LabelPage"));
+const ListboxPage = React.lazy(() => import("@/docs/pages/components/ListboxPage"));
 const MenubarPage = React.lazy(() => import("@/docs/pages/components/MenubarPage"));
 const NavigationMenuPage = React.lazy(() => import("@/docs/pages/components/NavigationMenuPage"));
 const PaginationPage = React.lazy(() => import("@/docs/pages/components/PaginationPage"));
@@ -163,6 +164,7 @@ export function DocsRoutes() {
           <Route path="components/item" element={<ItemPage />} />
           <Route path="components/kbd" element={<KbdPage />} />
           <Route path="components/label" element={<LabelPage />} />
+          <Route path="components/listbox" element={<ListboxPage />} />
           <Route path="components/menubar" element={<MenubarPage />} />
           <Route path="components/navigation-menu" element={<NavigationMenuPage />} />
           <Route path="components/pagination" element={<PaginationPage />} />

@@ -8,8 +8,8 @@
       "light",
       "dark"
     ],
-    "lastUpdated": "2026-01-06T01:34:05.459Z",
-    "totalComponents": 58
+    "lastUpdated": "2026-01-08T15:52:19.113Z",
+    "totalComponents": 59
   },
   "accordion": {
     "status": "pass",
@@ -3520,6 +3520,128 @@
         ],
         "examplesSkipped": [],
         "examplesPassed": 2,
+        "examplesFailed": 0
+      }
+    }
+  },
+  "listbox": {
+    "status": "pass",
+    "levelAchieved": "AA",
+    "violations": 0,
+    "issues": [],
+    "testedAt": "2026-01-08T16:15:00.000Z",
+    "scope": "manifest-driven",
+    "examplesFound": 6,
+    "scenariosTested": [
+      "single-selection",
+      "single-with-checkmark",
+      "multiple-selection",
+      "multiple-with-checkboxes",
+      "multiple-with-select-all",
+      "invalid-state"
+    ],
+    "subject": "Component examples for WexListbox",
+    "modes": {
+      "light": {
+        "status": "pass",
+        "levelAchieved": "AA",
+        "violations": 0,
+        "issues": [],
+        "examplesFound": 6,
+        "failingElements": [],
+        "examples": {
+          "single-selection": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "single-with-checkmark": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "multiple-selection": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "multiple-with-checkboxes": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "multiple-with-select-all": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "invalid-state": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          }
+        },
+        "examplesTested": [
+          "single-selection",
+          "single-with-checkmark",
+          "multiple-selection",
+          "multiple-with-checkboxes",
+          "multiple-with-select-all",
+          "invalid-state"
+        ],
+        "examplesSkipped": ["disabled-options"],
+        "examplesPassed": 6,
+        "examplesFailed": 0
+      },
+      "dark": {
+        "status": "pass",
+        "levelAchieved": "AA",
+        "violations": 0,
+        "issues": [],
+        "examplesFound": 6,
+        "failingElements": [],
+        "examples": {
+          "single-selection": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "single-with-checkmark": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "multiple-selection": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "multiple-with-checkboxes": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "multiple-with-select-all": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "invalid-state": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          }
+        },
+        "examplesTested": [
+          "single-selection",
+          "single-with-checkmark",
+          "multiple-selection",
+          "multiple-with-checkboxes",
+          "multiple-with-select-all",
+          "invalid-state"
+        ],
+        "examplesSkipped": ["disabled-options"],
+        "examplesPassed": 6,
         "examplesFailed": 0
       }
     }
