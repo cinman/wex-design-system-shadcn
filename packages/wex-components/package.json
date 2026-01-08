@@ -25,7 +25,7 @@
     "README.md"
   ],
   "scripts": {
-    "build": "tsup",
+    "build": "cd ../.. && node scripts/build-tokens.cjs && cd packages/wex-components && tsup",
     "dev": "tsup --watch",
     "typecheck": "tsc --noEmit",
     "prepublishOnly": "npm run build"
