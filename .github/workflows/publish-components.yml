@@ -67,8 +67,24 @@ jobs:
         with:
           token: ${{ secrets.GH_TOKEN }}
 
-      - name: Setup the Environment
-        uses: wexinc/fabric-action-setup-env@v1
+      - name: Setup JFrog CLI
+        uses: jfrog/setup-jfrog-cli@v3
+        with:
+          version: latest
+
+      - name: Configure JFrog CLI
+        run: |
+          jf c add --artifactory-url=https://usartifactorywexinc.jfrog.io/artifactory \
+            --access-token=${{ secrets.ARTIFACTORY_TOKEN }} \
+            --interactive=false \
+            server-id
+          jf c use server-id
+
+      - name: Configure JFrog npm
+        working-directory: packages/wex-components
+        run: |
+          jf c use server-id
+          jf npm-config --repo-resolve=wex-npm-prod --repo-deploy=wex-npm-prod --server-id-resolve=server-id --server-id-deploy=server-id
 
       - name: Use Node.js Version 22
         uses: actions/setup-node@v4
