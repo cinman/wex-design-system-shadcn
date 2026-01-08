@@ -81,16 +81,10 @@ jobs:
         run: |
           jf c add --artifactory-url=https://usartifactorywexinc.jfrog.io/artifactory \
             --user=${{ secrets.ARTIFACTORY_USER }} \
-            --access-token=${{ secrets.ARTIFACTORY_TOKEN }} \
+            --password=${{ secrets.ARTIFACTORY_TOKEN }} \
             --interactive=false \
             server-id
           jf c use server-id
-
-      - name: List available repositories
-        run: |
-          jf c use server-id
-          echo "Listing npm repositories..."
-          jf rt repo-list --type=npm || echo "Could not list repositories (may be permission issue)"
 
       - name: Configure JFrog npm
         working-directory: packages/design-tokens
