@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as LucideIcons from "lucide-react";
-import { WexInput, WexButton, WexSelect, WexCard, WexDialog, WexPagination } from "@/components/wex";
-import { Search, ChevronLeft, ChevronRight } from "lucide-react";
+import { WexInput, WexButton, WexSelect, WexCard, WexDialog, WexPagination, WexBadge } from "@/components/wex";
+import { Search, ChevronLeft, ChevronRight, Copy, Check } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { IconGrid, type IconItem } from "@/docs/components/IconGrid";
 import { CodeBlock } from "@/docs/components/CodeBlock";
@@ -61,7 +61,7 @@ function getAllIcons(): IconItem[] {
           seenNames.add(iconName);
         } catch (error) {
           // Skip icons that cause errors during categorization
-          console.warn(`Skipping icon ${name}:`, error);
+          // Silently skip invalid icons
         }
       }
     }
@@ -82,7 +82,63 @@ function IconDetailModal({
   open: boolean;
   onOpenChange: (open: boolean) => void;
 }) {
-  if (!icon) return null;
+  const [svgCopied, setSvgCopied] = React.useState(false);
+  const [svgString, setSvgString] = React.useState<string | null>(null);
+  const svgContainerRef = React.useRef<HTMLDivElement>(null);
+
+  // Extract SVG when modal opens or icon changes
+  React.useEffect(() => {
+    if (!open || !icon) {
+      setSvgString(null);
+      return;
+    }
+
+    // Small delay to ensure React has rendered the icon
+    const timer = setTimeout(() => {
+      if (!svgContainerRef.current) {
+        setSvgString(null);
+        return;
+      }
+
+      const svgElement = svgContainerRef.current.querySelector('svg');
+      if (!svgElement) {
+        setSvgString(null);
+        return;
+      }
+
+      // Clone to avoid mutating the original
+      const svgClone = svgElement.cloneNode(true) as SVGElement;
+
+      // Clean for Figma - remove React-specific attributes
+      svgClone.removeAttribute('class');
+      svgClone.removeAttribute('style');
+      
+      // Get original viewBox or set default
+      const viewBox = svgElement.getAttribute('viewBox') || '0 0 24 24';
+      
+      // Set standard attributes for Figma compatibility
+      svgClone.setAttribute('width', '24');
+      svgClone.setAttribute('height', '24');
+      svgClone.setAttribute('viewBox', viewBox);
+      svgClone.setAttribute('fill', 'none');
+      svgClone.setAttribute('stroke', 'currentColor');
+      svgClone.setAttribute('stroke-width', '2');
+      svgClone.setAttribute('stroke-linecap', 'round');
+      svgClone.setAttribute('stroke-linejoin', 'round');
+      svgClone.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+
+      // Serialize to string
+      const serializer = new XMLSerializer();
+      setSvgString(serializer.serializeToString(svgClone));
+    }, 150);
+
+    return () => clearTimeout(timer);
+  }, [open, icon]);
+
+  // Early return AFTER all hooks
+  if (!icon) {
+    return null;
+  }
 
   const IconComponent = icon.component;
   const sizes = [
@@ -95,14 +151,36 @@ function IconDetailModal({
   const importCode = `import { ${icon.name} } from "lucide-react";`;
   const categoryLabel = iconCategories.find((c) => c.id === icon.category)?.label || "Uncategorized";
 
+  // Copy SVG to clipboard
+  const copyAsSVG = async () => {
+    if (!svgString) return;
+
+    try {
+      await navigator.clipboard.writeText(svgString);
+      setSvgCopied(true);
+      setTimeout(() => setSvgCopied(false), 2000);
+    } catch (err) {
+      // Silently fail - user can try again
+    }
+  };
+
   return (
     <WexDialog open={open} onOpenChange={onOpenChange}>
       <WexDialog.Content size="xl" className="max-w-5xl">
-        <WexDialog.Header className="pb-4 border-b">
-          <WexDialog.Title className="text-2xl">{icon.name}</WexDialog.Title>
-          <WexDialog.Description className="mt-1">{categoryLabel} icon</WexDialog.Description>
+        <WexDialog.Header className="pb-3 border-b">
+          <div className="flex items-center gap-3">
+            <WexDialog.Title className="text-2xl">{icon.name}</WexDialog.Title>
+            <WexBadge intent="default" size="sm">
+              {categoryLabel}
+            </WexBadge>
+          </div>
         </WexDialog.Header>
         
+        {/* Hidden container for SVG extraction */}
+        <div ref={svgContainerRef} className="sr-only" aria-hidden="true">
+          <IconComponent className="h-6 w-6" />
+        </div>
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-6">
           {/* Left Panel - Icon Display */}
           <div className="flex flex-col items-center justify-center p-12 bg-muted/30 rounded-lg border border-border">
@@ -141,6 +219,33 @@ function IconDetailModal({
               <h3 className="text-sm font-semibold text-foreground mb-3">Import Code</h3>
               <CodeBlock language="tsx" code={importCode} />
             </div>
+
+            {/* Copy as SVG Button */}
+            <div>
+              <WexButton
+                intent="secondary"
+                variant="solid"
+                size="lg"
+                onClick={copyAsSVG}
+                className="w-full gap-2"
+                disabled={!svgString}
+              >
+                {svgCopied ? (
+                  <>
+                    <Check className="h-4 w-4" />
+                    SVG Copied!
+                  </>
+                ) : (
+                  <>
+                    <Copy className="h-4 w-4" />
+                    Copy as SVG
+                  </>
+                )}
+              </WexButton>
+              <p className="text-xs text-muted-foreground mt-2">
+                Copy clean SVG markup for use in Figma or other design tools
+              </p>
+            </div>
           </div>
         </div>
       </WexDialog.Content>
@@ -149,6 +254,61 @@ function IconDetailModal({
 }
 
 const ICONS_PER_PAGE = 200;
+
+/**
+ * Generate pagination page numbers with ellipsis
+ */
+function generatePaginationPages(currentPage: number, totalPages: number): (number | "ellipsis")[] {
+  const pages: (number | "ellipsis")[] = [];
+  
+  // Always show first page
+  pages.push(1);
+  
+  // Add ellipsis if needed before current range
+  if (currentPage > 3) {
+    pages.push("ellipsis");
+  }
+  
+  // Add pages around current
+  const start = Math.max(2, currentPage - 1);
+  const end = Math.min(totalPages - 1, currentPage + 1);
+  
+  for (let i = start; i <= end; i++) {
+    if (i !== 1 && i !== totalPages) {
+      pages.push(i);
+    }
+  }
+  
+  // Add ellipsis if needed after current range
+  if (currentPage < totalPages - 2) {
+    pages.push("ellipsis");
+  }
+  
+  // Always show last page (if more than 1 page)
+  if (totalPages > 1) {
+    pages.push(totalPages);
+  }
+  
+  // Remove duplicates and filter consecutive ellipsis
+  const uniquePages: (number | "ellipsis")[] = [];
+  let lastWasEllipsis = false;
+  
+  pages.forEach((page) => {
+    if (page === "ellipsis") {
+      if (!lastWasEllipsis) {
+        uniquePages.push(page);
+        lastWasEllipsis = true;
+      }
+    } else {
+      if (!uniquePages.includes(page)) {
+        uniquePages.push(page);
+      }
+      lastWasEllipsis = false;
+    }
+  });
+  
+  return uniquePages;
+}
 
 export default function IconsPage() {
   const [allIcons] = React.useState(() => getAllIcons());
@@ -310,56 +470,7 @@ export default function IconsPage() {
                 </WexButton>
               </WexPagination.Item>
               
-              {(() => {
-                const pages: (number | "ellipsis")[] = [];
-                
-                // Always show first page
-                pages.push(1);
-                
-                // Add ellipsis if needed before current range
-                if (currentPage > 3) {
-                  pages.push("ellipsis");
-                }
-                
-                // Add pages around current
-                const start = Math.max(2, currentPage - 1);
-                const end = Math.min(totalPages - 1, currentPage + 1);
-                
-                for (let i = start; i <= end; i++) {
-                  if (i !== 1 && i !== totalPages) {
-                    pages.push(i);
-                  }
-                }
-                
-                // Add ellipsis if needed after current range
-                if (currentPage < totalPages - 2) {
-                  pages.push("ellipsis");
-                }
-                
-                // Always show last page (if more than 1 page)
-                if (totalPages > 1) {
-                  pages.push(totalPages);
-                }
-                
-                // Remove duplicates and filter
-                const uniquePages: (number | "ellipsis")[] = [];
-                let lastWasEllipsis = false;
-                
-                pages.forEach((page) => {
-                  if (page === "ellipsis") {
-                    if (!lastWasEllipsis) {
-                      uniquePages.push(page);
-                      lastWasEllipsis = true;
-                    }
-                  } else {
-                    if (!uniquePages.includes(page)) {
-                      uniquePages.push(page);
-                    }
-                    lastWasEllipsis = false;
-                  }
-                });
-                
-                return uniquePages.map((page, index) => {
+              {generatePaginationPages(currentPage, totalPages).map((page, index) => {
                   if (page === "ellipsis") {
                     return (
                       <WexPagination.Item key={`ellipsis-${index}`}>
@@ -381,8 +492,7 @@ export default function IconsPage() {
                       </WexButton>
                     </WexPagination.Item>
                   );
-                });
-              })()}
+                })}
               
               <WexPagination.Item>
                 <WexButton
