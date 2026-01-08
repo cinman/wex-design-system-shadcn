@@ -80,8 +80,7 @@ jobs:
       - name: Configure JFrog CLI
         run: |
           jf c add --artifactory-url=https://usartifactorywexinc.jfrog.io/artifactory \
-            --user=${{ secrets.ARTIFACTORY_USER }} \
-            --password=${{ secrets.ARTIFACTORY_TOKEN }} \
+            --access-token=${{ secrets.ARTIFACTORY_TOKEN }} \
             --interactive=false \
             server-id
           jf c use server-id
