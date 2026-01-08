@@ -85,7 +85,6 @@ jobs:
             --interactive=false \
             server-id
           jf c use server-id
-          jf rt ping --server-id=server-id
 
       - name: Configure JFrog npm
         working-directory: packages/design-tokens
