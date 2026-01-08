@@ -12,11 +12,17 @@ export default defineConfig({
   server: {
     port: 5174,
     strictPort: true, // Fail if port is already in use
+    watch: {
+      // Explicitly watch packages directory for HMR
+      ignored: ['!**/packages/**'],
+    },
   },
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
       "@wex/design-tokens/tailwind-preset": path.resolve(__dirname, "./packages/design-tokens/tailwind-preset.js"),
+      "@wex/components": path.resolve(__dirname, "./packages/wex-components/src/index.ts"),
+      "@wex/components/*": path.resolve(__dirname, "./packages/wex-components/src/*"),
     },
   },
 })
