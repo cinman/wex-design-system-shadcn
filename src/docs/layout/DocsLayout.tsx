@@ -290,7 +290,7 @@ export function DocsLayout({ onContentRendered, contentVisible = true }: DocsLay
             </>
           )}
           
-          {/* Footer - positioned below everything, spans full width */}
+          {/* Footer - positioned below everything, aligned with main content */}
           <div
             className="relative z-40 w-full"
             style={{
@@ -298,7 +298,13 @@ export function DocsLayout({ onContentRendered, contentVisible = true }: DocsLay
               margin: '0 auto'
             }}
           >
-            <Footer />
+            {!isHome ? (
+              <div style={{ marginLeft: '17rem' }}>
+                <Footer />
+              </div>
+            ) : (
+              <Footer />
+            )}
           </div>
         </>
       )}
