@@ -19,7 +19,7 @@ export default function OverviewPage() {
   const glassCard = "relative overflow-hidden bg-white/10 dark:bg-white/[0.03] backdrop-blur-2xl border border-white/30 dark:border-white/10 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] transition-all duration-500 hover:bg-white/20 dark:hover:bg-white/[0.06] hover:border-white/50 hover:shadow-[0_8px_32px_0_rgba(31,38,135,0.15)] hover:-translate-y-1 group/card";
 
   return (
-    <article className="relative pb-20">
+    <article className="relative pb-20 max-w-[1200px] mx-auto">
       <div className="space-y-24">
         {/* Hero Section: Clean, Airy, and Professional */}
         <header className="relative pt-10 pb-16">
