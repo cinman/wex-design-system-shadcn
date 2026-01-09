@@ -11,7 +11,7 @@ initializeTheme()
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename="/react">
       <App />
     </BrowserRouter>
   </StrictMode>,

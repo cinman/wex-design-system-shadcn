@@ -5,6 +5,7 @@ import { tokensCSSPlugin } from './vite-plugins/tokens-css'
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: '/react/',
   plugins: [
     react(),
     tokensCSSPlugin(), // Generate CSS from JSON at build time
