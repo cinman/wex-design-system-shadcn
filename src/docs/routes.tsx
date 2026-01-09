@@ -1,6 +1,7 @@
 import * as React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { DocsLayout } from "./layout/DocsLayout";
+import { WexSpinner } from "@/components/wex/wex-spinner";
 
 // Lazy load pages for code splitting
 const OverviewPage = React.lazy(() => import("@/docs/pages/OverviewPage"));
@@ -91,8 +92,39 @@ const TooltipPage = React.lazy(() => import("@/docs/pages/components/TooltipPage
  */
 function PageLoader() {
   return (
-    <div className="flex items-center justify-center min-h-[200px]">
-      <div className="text-muted-foreground">Loading...</div>
+    <div className="fixed inset-0 flex items-center justify-center bg-background z-50">
+      <WexSpinner className="h-12 w-12" />
+    </div>
+  );
+}
+
+/**
+ * Fade-in wrapper for content once loaded
+ */
+function FadeInContent({ children }: { children: React.ReactNode }) {
+  const location = useLocation();
+  const [isVisible, setIsVisible] = React.useState(false);
+
+  React.useEffect(() => {
+    // Reset visibility on route change
+    setIsVisible(false);
+    
+    // Trigger fade-in after a brief delay to ensure content is rendered
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 10);
+
+    return () => clearTimeout(timer);
+  }, [location.pathname]);
+
+  return (
+    <div
+      className="transition-opacity duration-500 ease-out"
+      style={{
+        opacity: isVisible ? 1 : 0,
+      }}
+    >
+      {children}
     </div>
   );
 }
@@ -104,8 +136,9 @@ function PageLoader() {
 export function DocsRoutes() {
   return (
     <React.Suspense fallback={<PageLoader />}>
-      <Routes>
-        <Route element={<DocsLayout />}>
+      <FadeInContent>
+        <Routes>
+          <Route element={<DocsLayout />}>
           {/* Static pages */}
           <Route index element={<OverviewPage />} />
           <Route path="getting-started" element={<GettingStartedPage />} />
@@ -196,6 +229,7 @@ export function DocsRoutes() {
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
+      </FadeInContent>
     </React.Suspense>
   );
 }
