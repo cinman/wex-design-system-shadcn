@@ -1,8 +1,9 @@
 name: Publish Packages
 
 on:
-  workflow_dispatch:  # Manual trigger
-  push:  # Runs on any push to any branch
+  # Temporarily disabled - only manual trigger available
+  workflow_dispatch:  # Manual trigger only
+  # push:  # Runs on any push to any branch - DISABLED
   # pull_request:
   #   branches:
   #     - main
