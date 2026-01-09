@@ -25,6 +25,8 @@ jobs:
         run: node scripts/build-tokens.cjs
 
       - name: Build the Site
+        env:
+          VITE_BASE_PATH: /react/
         run: npm run build
 
       - name: Deploy to the Pagely Server
