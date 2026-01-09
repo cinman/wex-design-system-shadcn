@@ -168,6 +168,15 @@ export const componentRegistry: ComponentRegistryEntry[] = [
     tags: ["form", "input", "selection"],
   },
   {
+    name: "Multi Select",
+    route: "/components/multi-select",
+    importPath: "@/docs/pages/components/MultiSelectPage",
+    description: "Dropdown component for selecting multiple options",
+    status: "stable",
+    category: "form-inputs",
+    tags: ["form", "input", "selection", "multi"],
+  },
+  {
     name: "Radio Group",
     route: "/components/radio-group",
     importPath: "@/docs/pages/components/RadioGroupPage",

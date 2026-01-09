@@ -38,6 +38,7 @@ export { WexCalendar } from "./wex-calendar";
 export { WexCombobox, type ComboboxProps, type ComboboxOption } from "./wex-combobox";
 export { WexDatePicker, type DatePickerProps, type DatePickerWithInputProps } from "./wex-date-picker";
 export { WexListbox, type ListboxOptionData } from "./wex-listbox";
+export { WexMultiSelect, multiSelectTriggerVariants, multiSelectOptionVariants, type MultiSelectOption } from "./wex-multiselect";
 
 // ===== OVERLAY COMPONENTS =====
 export { WexDialog } from "./wex-dialog";
