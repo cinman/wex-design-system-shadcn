@@ -11,12 +11,11 @@ jobs:
   deploy:
     name: Deploy to the Pagely Server
     runs-on: ubuntu-latest
-    # Only run on push if commit message contains [deploy] or [trigger-deploy]
+    # Only run on push if commit message contains [deploy]
     if: |
       github.event_name == 'pull_request' ||
       github.event_name == 'workflow_dispatch' ||
-      contains(github.event.head_commit.message, '[deploy]') ||
-      contains(github.event.head_commit.message, '[trigger-deploy]')
+      contains(github.event.head_commit.message, '[deploy]')
     env:      
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
