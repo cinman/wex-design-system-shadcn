@@ -125,9 +125,12 @@ Object.entries(allData).forEach(([key, value]) => {
 });
 
 // Get registry key from component route
+// Also handles key normalization (e.g., "input-o-t-p" -> "input-otp")
 function getRegistryKeyFromRoute(route: string): string {
   const match = route.match(/\/components\/(.+)$/);
-  return match ? match[1] : route.replace(/\//g, "-");
+  const key = match ? match[1] : route.replace(/\//g, "-");
+  // Normalize keys: "input-o-t-p" -> "input-otp" to match registry
+  return key.replace(/-o-t-p$/, "-otp");
 }
 
 // Build a map of registryKey -> component info
@@ -159,7 +162,14 @@ export default function AccessibilityPage() {
     let variantsPassing = 0;
     let variantsFailing = 0;
 
-    Object.values(componentData).forEach((entry) => {
+    // Normalize component data keys (e.g., "input-o-t-p" -> "input-otp")
+    const normalizedComponentData: Record<string, ComplianceEntry> = {};
+    Object.entries(componentData).forEach(([key, entry]) => {
+      const normalizedKey = key.replace(/-o-t-p$/, "-otp");
+      normalizedComponentData[normalizedKey] = entry as ComplianceEntry;
+    });
+
+    Object.values(normalizedComponentData).forEach((entry) => {
       if (entry.status === "pass") pass++;
       else if (entry.status === "partial") partial++;
       else if (entry.status === "fail") fail++;
@@ -206,7 +216,7 @@ export default function AccessibilityPage() {
 
     return { 
       pass, partial, fail, noExamples, 
-      total: Object.keys(componentData).length, 
+      total: Object.keys(normalizedComponentData).length, 
       topIssues,
       // Variant-level stats
       totalVariantsTested,
@@ -215,14 +225,41 @@ export default function AccessibilityPage() {
     };
   }, []);
 
-  // Filter and sort components
+  // Filter and sort components - include ALL components from registry
   const filteredComponents = React.useMemo(() => {
-    let components = Object.entries(componentData).map(([key, data]) => ({
-      key,
-      ...data,
-      name: componentMap.get(key)?.name || key,
-      route: componentMap.get(key)?.route || `/components/${key}`,
-    }));
+    // Start with all components from registry, merge with compliance data
+    const allComponents = componentRegistry.map((comp) => {
+      const key = getRegistryKeyFromRoute(comp.route);
+      // Try both normalized key and original key formats
+      const complianceEntry = componentData[key] || componentData[key.replace(/-otp$/, "-o-t-p")];
+      
+      // If compliance data exists, use it; otherwise create a "no_examples" entry
+      if (complianceEntry) {
+        return {
+          key,
+          ...complianceEntry,
+          name: comp.name,
+          route: comp.route,
+        };
+      } else {
+        return {
+          key,
+          status: "no_examples" as const,
+          levelAchieved: null,
+          violations: 0,
+          issues: [],
+          testedAt: "",
+          scope: "",
+          examplesFound: 0,
+          subject: `Component examples for ${comp.name}`,
+          modes: undefined,
+          name: comp.name,
+          route: comp.route,
+        };
+      }
+    });
+
+    let components = allComponents;
 
     if (searchQuery) {
       const query = searchQuery.toLowerCase();

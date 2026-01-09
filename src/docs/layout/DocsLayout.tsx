@@ -223,7 +223,7 @@ export function DocsLayout({ onContentRendered, contentVisible = true }: DocsLay
           <TokenMapModal open={tokenMapOpen} onOpenChange={setTokenMapOpen} />
           
           {/* Theme Builder manages its own layout - fixed height, no page scroll */}
-          <main className="relative z-10 h-[calc(100vh-3.5rem)] overflow-hidden">
+          <main className="relative z-10 pt-[3.625rem] h-[calc(100vh-3.625rem)] overflow-hidden">
             <Outlet />
           </main>
         </ThemeBuilderProvider>
@@ -234,7 +234,7 @@ export function DocsLayout({ onContentRendered, contentVisible = true }: DocsLay
             // Home page - no sidebar, just fade content
             // Wait for spinner to completely fade out before showing content
             <div
-              className="relative z-10 min-h-[calc(100vh-3.5rem)] overflow-x-hidden"
+              className="relative z-10 pt-[3.625rem] min-h-[calc(100vh-3.625rem)] overflow-x-hidden"
               style={{
                 maxWidth: '1700px',
                 margin: '0 auto'
@@ -253,7 +253,7 @@ export function DocsLayout({ onContentRendered, contentVisible = true }: DocsLay
                 <SidebarNav />
               </Sidebar>
               <div
-                className="relative z-10 min-h-[calc(100vh-3.5rem)] overflow-x-hidden"
+                className="relative z-10 pt-[3.625rem] min-h-[calc(100vh-3.625rem)] overflow-x-hidden"
                 style={{
                   maxWidth: '1700px',
                   margin: '0 auto'
@@ -273,7 +273,7 @@ export function DocsLayout({ onContentRendered, contentVisible = true }: DocsLay
                 <SidebarNav />
               </Sidebar>
               <div
-                className="relative z-10 min-h-[calc(100vh-3.5rem)] overflow-x-hidden"
+                className="relative z-10 pt-[3.625rem] min-h-[calc(100vh-3.625rem)] overflow-x-hidden"
                 style={{
                   maxWidth: '1700px',
                   margin: '0 auto'
@@ -290,7 +290,7 @@ export function DocsLayout({ onContentRendered, contentVisible = true }: DocsLay
             </>
           )}
           
-          {/* Footer - positioned below everything, spans full width */}
+          {/* Footer - positioned below everything, aligned with main content */}
           <div
             className="relative z-40 w-full"
             style={{
@@ -298,7 +298,13 @@ export function DocsLayout({ onContentRendered, contentVisible = true }: DocsLay
               margin: '0 auto'
             }}
           >
-            <Footer />
+            {!isHome ? (
+              <div style={{ marginLeft: '17rem' }}>
+                <Footer />
+              </div>
+            ) : (
+              <Footer />
+            )}
           </div>
         </>
       )}

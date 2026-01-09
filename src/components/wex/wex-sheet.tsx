@@ -33,34 +33,50 @@ import {
  */
 
 import * as React from "react";
+import { cn } from "@/lib/utils";
 
 // Create a wrapper component that renders Sheet but with namespace properties
 // IMPORTANT: Do NOT use Object.assign on Sheet directly - it shares the same
 // Radix primitive as Dialog, causing Content to be overwritten.
-const WexSheetRoot: typeof Sheet & {
+const WexSheetRoot = React.forwardRef<
+  React.ElementRef<typeof Sheet>,
+  React.ComponentProps<typeof Sheet>
+>((props, ref) => <Sheet ref={ref} {...props} />);
+WexSheetRoot.displayName = "WexSheet";
+
+const WexSheetContent = React.forwardRef<
+  React.ElementRef<typeof SheetContent>,
+  React.ComponentPropsWithoutRef<typeof SheetContent>
+>(({ className, ...props }, ref) => (
+  <SheetContent
+    ref={ref}
+    className={cn("wex-sheet-content", className)}
+    {...props}
+  />
+));
+WexSheetContent.displayName = "WexSheet.Content";
+
+const WexSheetRootWithNamespace: typeof WexSheetRoot & {
   Portal: typeof SheetPortal;
   Overlay: typeof SheetOverlay;
   Trigger: typeof SheetTrigger;
   Close: typeof SheetClose;
-  Content: typeof SheetContent;
+  Content: typeof WexSheetContent;
   Header: typeof SheetHeader;
   Footer: typeof SheetFooter;
   Title: typeof SheetTitle;
   Description: typeof SheetDescription;
-} = Object.assign(
-  ((props: React.ComponentProps<typeof Sheet>) => <Sheet {...props} />) as typeof Sheet,
-  {
-    Portal: SheetPortal,
-    Overlay: SheetOverlay,
-    Trigger: SheetTrigger,
-    Close: SheetClose,
-    Content: SheetContent,
-    Header: SheetHeader,
-    Footer: SheetFooter,
-    Title: SheetTitle,
-    Description: SheetDescription,
-  }
-);
+} = Object.assign(WexSheetRoot, {
+  Portal: SheetPortal,
+  Overlay: SheetOverlay,
+  Trigger: SheetTrigger,
+  Close: SheetClose,
+  Content: WexSheetContent,
+  Header: SheetHeader,
+  Footer: SheetFooter,
+  Title: SheetTitle,
+  Description: SheetDescription,
+});
 
-export const WexSheet = WexSheetRoot;
+export const WexSheet = WexSheetRootWithNamespace;
 

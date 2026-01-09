@@ -1,5 +1,6 @@
+import * as React from "react";
 import {
-  Field,
+  Field as FieldRoot,
   FieldLabel,
   FieldDescription,
   FieldError,
@@ -10,6 +11,7 @@ import {
   FieldContent,
   FieldTitle,
 } from "@/components/ui/field";
+import { cn } from "@/lib/utils";
 
 /**
  * WexField - WEX Design System Field Component
@@ -26,7 +28,19 @@ import {
  * </WexField>
  */
 
-export const WexField = Object.assign(Field, {
+const WexFieldRoot = React.forwardRef<
+  HTMLDivElement,
+  React.ComponentPropsWithoutRef<typeof FieldRoot>
+>(({ className, ...props }, ref) => (
+  <FieldRoot
+    ref={ref}
+    className={cn("wex-field", className)}
+    {...props}
+  />
+));
+WexFieldRoot.displayName = "WexField";
+
+export const WexField = Object.assign(WexFieldRoot, {
   Label: FieldLabel,
   Description: FieldDescription,
   Error: FieldError,

@@ -1,5 +1,7 @@
-import { Combobox } from "@/components/ui/combobox";
+import * as React from "react";
+import { Combobox as ComboboxRoot } from "@/components/ui/combobox";
 import type { ComboboxProps, ComboboxOption } from "@/components/ui/combobox";
+import { cn } from "@/lib/utils";
 
 /**
  * WexCombobox - WEX Design System Combobox Component
@@ -21,6 +23,16 @@ import type { ComboboxProps, ComboboxOption } from "@/components/ui/combobox";
  * />
  */
 
-export const WexCombobox = Combobox;
+export const WexCombobox = React.forwardRef<
+  HTMLButtonElement,
+  ComboboxProps
+>(({ className, ...props }, ref) => (
+  <ComboboxRoot
+    ref={ref}
+    className={cn("wex-combobox", className)}
+    {...props}
+  />
+));
+WexCombobox.displayName = "WexCombobox";
 export type { ComboboxProps, ComboboxOption };
 

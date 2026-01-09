@@ -8,8 +8,8 @@
       "light",
       "dark"
     ],
-    "lastUpdated": "2026-01-08T15:52:19.113Z",
-    "totalComponents": 59
+    "lastUpdated": "2026-01-09T19:39:00.158Z",
+    "totalComponents": 62
   },
   "accordion": {
     "status": "pass",
@@ -2986,28 +2986,97 @@
         "examplesFound": 14,
         "failingElements": [],
         "examples": {
-          "ssn": { "status": "pass", "violations": 0, "issues": [] },
-          "phone-number": { "status": "pass", "violations": 0, "issues": [] },
-          "serial-number-mixed": { "status": "pass", "violations": 0, "issues": [] },
-          "date": { "status": "pass", "violations": 0, "issues": [] },
-          "phone-with-float-label": { "status": "pass", "violations": 0, "issues": [] },
-          "ssn-with-float-label": { "status": "pass", "violations": 0, "issues": [] },
-          "date-with-float-label-filled": { "status": "pass", "violations": 0, "issues": [] },
-          "serial-with-float-label": { "status": "pass", "violations": 0, "issues": [] },
-          "default": { "status": "pass", "violations": 0, "issues": [] },
-          "filled": { "status": "pass", "violations": 0, "issues": [] },
-          "invalid": { "status": "pass", "violations": 0, "issues": [] },
-          "invalid-filled-variant": { "status": "pass", "violations": 0, "issues": [] },
-          "disabled-filled-variant": { "status": "pass", "violations": 0, "issues": [] },
-          "default-underscore": { "status": "pass", "violations": 0, "issues": [] }
+          "ssn": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "phone-number": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "serial-number-mixed": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "date": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "phone-with-float-label": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "ssn-with-float-label": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "date-with-float-label-filled": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "serial-with-float-label": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "default": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "filled": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "invalid": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "invalid-filled-variant": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "disabled-filled-variant": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "default-underscore": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          }
         },
         "examplesTested": [
-          "ssn", "phone-number", "serial-number-mixed", "date",
-          "phone-with-float-label", "ssn-with-float-label", "date-with-float-label-filled",
-          "serial-with-float-label", "default", "filled", "invalid",
-          "invalid-filled-variant", "disabled-filled-variant", "default-underscore"
+          "ssn",
+          "phone-number",
+          "serial-number-mixed",
+          "date",
+          "phone-with-float-label",
+          "ssn-with-float-label",
+          "date-with-float-label-filled",
+          "serial-with-float-label",
+          "default",
+          "filled",
+          "invalid",
+          "invalid-filled-variant",
+          "disabled-filled-variant",
+          "default-underscore"
         ],
-        "examplesSkipped": ["disabled", "custom-dash"],
+        "examplesSkipped": [
+          "disabled",
+          "custom-dash"
+        ],
         "examplesPassed": 14,
         "examplesFailed": 0
       },
@@ -3019,28 +3088,97 @@
         "examplesFound": 14,
         "failingElements": [],
         "examples": {
-          "ssn": { "status": "pass", "violations": 0, "issues": [] },
-          "phone-number": { "status": "pass", "violations": 0, "issues": [] },
-          "serial-number-mixed": { "status": "pass", "violations": 0, "issues": [] },
-          "date": { "status": "pass", "violations": 0, "issues": [] },
-          "phone-with-float-label": { "status": "pass", "violations": 0, "issues": [] },
-          "ssn-with-float-label": { "status": "pass", "violations": 0, "issues": [] },
-          "date-with-float-label-filled": { "status": "pass", "violations": 0, "issues": [] },
-          "serial-with-float-label": { "status": "pass", "violations": 0, "issues": [] },
-          "default": { "status": "pass", "violations": 0, "issues": [] },
-          "filled": { "status": "pass", "violations": 0, "issues": [] },
-          "invalid": { "status": "pass", "violations": 0, "issues": [] },
-          "invalid-filled-variant": { "status": "pass", "violations": 0, "issues": [] },
-          "disabled-filled-variant": { "status": "pass", "violations": 0, "issues": [] },
-          "default-underscore": { "status": "pass", "violations": 0, "issues": [] }
+          "ssn": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "phone-number": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "serial-number-mixed": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "date": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "phone-with-float-label": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "ssn-with-float-label": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "date-with-float-label-filled": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "serial-with-float-label": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "default": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "filled": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "invalid": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "invalid-filled-variant": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "disabled-filled-variant": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "default-underscore": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          }
         },
         "examplesTested": [
-          "ssn", "phone-number", "serial-number-mixed", "date",
-          "phone-with-float-label", "ssn-with-float-label", "date-with-float-label-filled",
-          "serial-with-float-label", "default", "filled", "invalid",
-          "invalid-filled-variant", "disabled-filled-variant", "default-underscore"
+          "ssn",
+          "phone-number",
+          "serial-number-mixed",
+          "date",
+          "phone-with-float-label",
+          "ssn-with-float-label",
+          "date-with-float-label-filled",
+          "serial-with-float-label",
+          "default",
+          "filled",
+          "invalid",
+          "invalid-filled-variant",
+          "disabled-filled-variant",
+          "default-underscore"
         ],
-        "examplesSkipped": ["disabled", "custom-dash"],
+        "examplesSkipped": [
+          "disabled",
+          "custom-dash"
+        ],
         "examplesPassed": 14,
         "examplesFailed": 0
       }
@@ -3589,7 +3727,9 @@
           "multiple-with-select-all",
           "invalid-state"
         ],
-        "examplesSkipped": ["disabled-options"],
+        "examplesSkipped": [
+          "disabled-options"
+        ],
         "examplesPassed": 6,
         "examplesFailed": 0
       },
@@ -3640,7 +3780,9 @@
           "multiple-with-select-all",
           "invalid-state"
         ],
-        "examplesSkipped": ["disabled-options"],
+        "examplesSkipped": [
+          "disabled-options"
+        ],
         "examplesPassed": 6,
         "examplesFailed": 0
       }
@@ -6135,6 +6277,347 @@
           "disabled"
         ],
         "examplesFound": 25
+      }
+    }
+  },
+  "multi-select": {
+    "status": "pass",
+    "levelAchieved": "AA",
+    "violations": 0,
+    "issues": [],
+    "testedAt": "2026-01-09T16:50:00.000Z",
+    "scope": "manifest-driven",
+    "examplesFound": 17,
+    "scenariosTested": [
+      "comma-default",
+      "chips",
+      "maxselectedlabels-behavior",
+      "with-filter",
+      "with-select-all",
+      "with-filter-and-select-all",
+      "default-variant",
+      "filled-variant",
+      "float-label",
+      "sizes",
+      "disabled",
+      "disabled-options",
+      "invalid-state",
+      "invalid-filled",
+      "grouped-options"
+    ],
+    "subject": "Component examples for WexMultiSelect",
+    "modes": {
+      "light": {
+        "status": "pass",
+        "levelAchieved": "AA",
+        "violations": 0,
+        "issues": [],
+        "examplesFound": 17,
+        "failingElements": [],
+        "examples": {
+          "comma-default": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "chips": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "maxselectedlabels-behavior": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "with-filter": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "with-select-all": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "with-filter-and-select-all": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "default-variant": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "filled-variant": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "float-label": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "sizes": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "disabled": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "disabled-options": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "invalid-state": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "invalid-filled": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "grouped-options": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          }
+        },
+        "examplesTested": [
+          "comma-default",
+          "chips",
+          "maxselectedlabels-behavior",
+          "with-filter",
+          "with-select-all",
+          "with-filter-and-select-all",
+          "default-variant",
+          "filled-variant",
+          "float-label",
+          "sizes",
+          "disabled",
+          "disabled-options",
+          "invalid-state",
+          "invalid-filled",
+          "grouped-options"
+        ],
+        "examplesSkipped": [
+          "(untitled-0)",
+          "(untitled-1)"
+        ],
+        "examplesPassed": 15,
+        "examplesFailed": 0
+      },
+      "dark": {
+        "status": "pass",
+        "levelAchieved": "AA",
+        "violations": 0,
+        "issues": [],
+        "examplesFound": 17,
+        "failingElements": [],
+        "examples": {
+          "comma-default": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "chips": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "maxselectedlabels-behavior": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "with-filter": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "with-select-all": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "with-filter-and-select-all": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "default-variant": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "filled-variant": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "float-label": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "sizes": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "disabled": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "disabled-options": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "invalid-state": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "invalid-filled": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "grouped-options": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          }
+        },
+        "examplesTested": [
+          "comma-default",
+          "chips",
+          "maxselectedlabels-behavior",
+          "with-filter",
+          "with-select-all",
+          "with-filter-and-select-all",
+          "default-variant",
+          "filled-variant",
+          "float-label",
+          "sizes",
+          "disabled",
+          "disabled-options",
+          "invalid-state",
+          "invalid-filled",
+          "grouped-options"
+        ],
+        "examplesSkipped": [
+          "(untitled-0)",
+          "(untitled-1)"
+        ],
+        "examplesPassed": 15,
+        "examplesFailed": 0
+      }
+    }
+  },
+  "aspect-ratio": {
+    "status": "pass",
+    "levelAchieved": "AA",
+    "violations": 0,
+    "issues": [],
+    "testedAt": "2026-01-09T19:39:00.155Z",
+    "scope": "manifest-driven",
+    "examplesFound": 4,
+    "scenariosTested": [
+      "image-container",
+      "16-9",
+      "4-3",
+      "1-1"
+    ],
+    "subject": "Component examples for WexAspectRatio",
+    "modes": {
+      "light": {
+        "status": "pass",
+        "levelAchieved": "AA",
+        "violations": 0,
+        "issues": [],
+        "examplesFound": 4,
+        "failingElements": [],
+        "examples": {
+          "image-container": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "16-9": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "4-3": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "1-1": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          }
+        },
+        "examplesTested": [
+          "image-container",
+          "16-9",
+          "4-3",
+          "1-1"
+        ],
+        "examplesSkipped": [],
+        "examplesPassed": 4,
+        "examplesFailed": 0
+      },
+      "dark": {
+        "status": "pass",
+        "levelAchieved": "AA",
+        "violations": 0,
+        "issues": [],
+        "examplesFound": 4,
+        "failingElements": [],
+        "examples": {
+          "image-container": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "16-9": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "4-3": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "1-1": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          }
+        },
+        "examplesTested": [
+          "image-container",
+          "16-9",
+          "4-3",
+          "1-1"
+        ],
+        "examplesSkipped": [],
+        "examplesPassed": 4,
+        "examplesFailed": 0
       }
     }
   }

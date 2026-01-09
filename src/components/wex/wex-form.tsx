@@ -1,6 +1,7 @@
+import * as React from "react";
 import {
   useFormField,
-  Form,
+  Form as FormRoot,
   FormItem,
   FormLabel,
   FormControl,
@@ -8,6 +9,7 @@ import {
   FormMessage,
   FormField,
 } from "@/components/ui/form";
+import { cn } from "@/lib/utils";
 
 /**
  * WexForm - WEX Design System Form Component
@@ -36,7 +38,19 @@ import {
  * </WexForm>
  */
 
-export const WexForm = Object.assign(Form, {
+const WexFormRoot = React.forwardRef<
+  HTMLDivElement,
+  React.ComponentPropsWithoutRef<typeof FormRoot>
+>(({ className, ...props }, ref) => (
+  <FormRoot
+    ref={ref}
+    className={cn("wex-form", className)}
+    {...props}
+  />
+));
+WexFormRoot.displayName = "WexForm";
+
+export const WexForm = Object.assign(WexFormRoot, {
   Item: FormItem,
   Label: FormLabel,
   Control: FormControl,

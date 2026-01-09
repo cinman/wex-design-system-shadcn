@@ -83,7 +83,7 @@ export interface WexBadgeProps
 function WexBadge({ className, intent, size, pill, ...props }: WexBadgeProps) {
   return (
     <div 
-      className={cn(wexBadgeVariants({ intent, size, pill }), className)} 
+      className={"wex-badge " + cn(wexBadgeVariants({ intent, size, pill }), className)} 
       style={pill ? undefined : { borderRadius: 'var(--wex-component-badge-radius)' }}
       {...props} 
     />

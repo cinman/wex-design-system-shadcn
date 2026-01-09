@@ -1,11 +1,13 @@
+import * as React from "react";
 import {
-  Card,
+  Card as CardRoot,
   CardHeader,
   CardFooter,
   CardTitle,
   CardDescription,
   CardContent,
 } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
 
 /**
  * WexCard - WEX Design System Card Component
@@ -26,8 +28,20 @@ import {
  * </WexCard>
  */
 
+const WexCardRoot = React.forwardRef<
+  React.ElementRef<typeof CardRoot>,
+  React.ComponentPropsWithoutRef<typeof CardRoot>
+>(({ className, ...props }, ref) => (
+  <CardRoot
+    ref={ref}
+    className={cn("wex-card", className)}
+    {...props}
+  />
+));
+WexCardRoot.displayName = "WexCard";
+
 // Namespace pattern
-export const WexCard = Object.assign(Card, {
+export const WexCard = Object.assign(WexCardRoot, {
   Header: CardHeader,
   Footer: CardFooter,
   Title: CardTitle,

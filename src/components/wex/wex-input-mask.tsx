@@ -653,7 +653,7 @@ const WexInputMask = React.forwardRef<HTMLInputElement, WexInputMaskProps>(
         placeholder={
           floatLabel ? placeholder : (placeholder ?? formatValue("", slots, slotChar))
         }
-        className={cn(floatLabelClasses, className)}
+        className={"wex-input-mask " + cn(floatLabelClasses, className)}
       />
     );
   }

@@ -1,4 +1,6 @@
-import { Skeleton, SkeletonCard, SkeletonList } from "@/components/ui/skeleton";
+import * as React from "react";
+import { Skeleton as SkeletonRoot, SkeletonCard, SkeletonList } from "@/components/ui/skeleton";
+import { cn } from "@/lib/utils";
 
 /**
  * WexSkeleton - WEX Design System Skeleton Component
@@ -13,7 +15,19 @@ import { Skeleton, SkeletonCard, SkeletonList } from "@/components/ui/skeleton";
  * <WexSkeleton.List count={3} />
  */
 
-export const WexSkeleton = Object.assign(Skeleton, {
+const WexSkeletonRoot = React.forwardRef<
+  React.ElementRef<typeof SkeletonRoot>,
+  React.ComponentPropsWithoutRef<typeof SkeletonRoot>
+>(({ className, ...props }, ref) => (
+  <SkeletonRoot
+    ref={ref}
+    className={cn("wex-skeleton", className)}
+    {...props}
+  />
+));
+WexSkeletonRoot.displayName = "WexSkeleton";
+
+export const WexSkeleton = Object.assign(WexSkeletonRoot, {
   Card: SkeletonCard,
   List: SkeletonList,
 });

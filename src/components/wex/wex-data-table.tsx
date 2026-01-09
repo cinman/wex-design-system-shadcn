@@ -1,10 +1,13 @@
+import * as React from "react";
 import {
-  DataTable,
+  DataTable as DataTableRoot,
   DataTableColumnHeader,
   DataTableViewOptions,
   DataTablePagination,
   DataTableRowActions,
 } from "@/components/ui/data-table";
+import type { DataTableProps } from "@/components/ui/data-table";
+import { cn } from "@/lib/utils";
 
 /**
  * WexDataTable - WEX Design System Data Table Component
@@ -25,9 +28,17 @@ import {
  * <WexDataTable columns={columns} data={data} searchKey="name" />
  */
 
-export const WexDataTable = DataTable;
+export function WexDataTable<TData, TValue>({
+  className,
+  ...props
+}: DataTableProps<TData, TValue> & { className?: string }) {
+  return (
+    <div className={cn("wex-data-table", className)}>
+      <DataTableRoot {...props} />
+    </div>
+  );
+}
 export const WexDataTableColumnHeader = DataTableColumnHeader;
-export const WexDataTableViewOptions = DataTableViewOptions;
 export const WexDataTablePagination = DataTablePagination;
+export const WexDataTableViewOptions = DataTableViewOptions;
 export const WexDataTableRowActions = DataTableRowActions;
-

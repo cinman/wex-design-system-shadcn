@@ -1,11 +1,13 @@
+import * as React from "react";
 import {
-  InputGroup,
+  InputGroup as InputGroupRoot,
   InputGroupAddon,
   InputGroupButton,
   InputGroupText,
   InputGroupInput,
   InputGroupTextarea,
 } from "@/components/ui/input-group";
+import { cn } from "@/lib/utils";
 
 /**
  * WexInputGroup - WEX Design System Input Group Component
@@ -25,7 +27,19 @@ import {
  * </WexInputGroup>
  */
 
-export const WexInputGroup = Object.assign(InputGroup, {
+const WexInputGroupRoot = React.forwardRef<
+  HTMLDivElement,
+  React.ComponentPropsWithoutRef<typeof InputGroupRoot>
+>(({ className, ...props }, ref) => (
+  <InputGroupRoot
+    ref={ref}
+    className={cn("wex-input-group", className)}
+    {...props}
+  />
+));
+WexInputGroupRoot.displayName = "WexInputGroup";
+
+export const WexInputGroup = Object.assign(WexInputGroupRoot, {
   Addon: InputGroupAddon,
   Button: InputGroupButton,
   Text: InputGroupText,

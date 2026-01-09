@@ -1,4 +1,6 @@
-import { Progress } from "@/components/ui/progress";
+import * as React from "react";
+import { Progress as ProgressRoot } from "@/components/ui/progress";
+import { cn } from "@/lib/utils";
 
 /**
  * WexProgress - WEX Design System Progress Component
@@ -10,5 +12,15 @@ import { Progress } from "@/components/ui/progress";
  * <WexProgress value={33} />
  */
 
-export const WexProgress = Progress;
+export const WexProgress = React.forwardRef<
+  React.ElementRef<typeof ProgressRoot>,
+  React.ComponentPropsWithoutRef<typeof ProgressRoot>
+>(({ className, ...props }, ref) => (
+  <ProgressRoot
+    ref={ref}
+    className={cn("wex-progress", className)}
+    {...props}
+  />
+));
+WexProgress.displayName = "WexProgress";
 

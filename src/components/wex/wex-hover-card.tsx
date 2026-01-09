@@ -1,8 +1,10 @@
+import * as React from "react";
 import {
-  HoverCard,
+  HoverCard as HoverCardRoot,
   HoverCardTrigger,
-  HoverCardContent,
+  HoverCardContent as HoverCardContentRoot,
 } from "@/components/ui/hover-card";
+import { cn } from "@/lib/utils";
 
 /**
  * WexHoverCard - WEX Design System Hover Card Component
@@ -21,8 +23,26 @@ import {
  * </WexHoverCard>
  */
 
-export const WexHoverCard = Object.assign(HoverCard, {
+const WexHoverCardRoot = React.forwardRef<
+  React.ElementRef<typeof HoverCardRoot>,
+  React.ComponentPropsWithoutRef<typeof HoverCardRoot>
+>((props, ref) => <HoverCardRoot ref={ref} {...props} />);
+WexHoverCardRoot.displayName = "WexHoverCard";
+
+const WexHoverCardContent = React.forwardRef<
+  React.ElementRef<typeof HoverCardContentRoot>,
+  React.ComponentPropsWithoutRef<typeof HoverCardContentRoot>
+>(({ className, ...props }, ref) => (
+  <HoverCardContentRoot
+    ref={ref}
+    className={cn("wex-hover-card-content", className)}
+    {...props}
+  />
+));
+WexHoverCardContent.displayName = "WexHoverCard.Content";
+
+export const WexHoverCard = Object.assign(WexHoverCardRoot, {
   Trigger: HoverCardTrigger,
-  Content: HoverCardContent,
+  Content: WexHoverCardContent,
 });
 

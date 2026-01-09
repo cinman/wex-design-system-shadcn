@@ -1,5 +1,6 @@
+import * as React from "react";
 import {
-  Table,
+  Table as TableRoot,
   TableHeader,
   TableBody,
   TableFooter,
@@ -8,6 +9,7 @@ import {
   TableCell,
   TableCaption,
 } from "@/components/ui/table";
+import { cn } from "@/lib/utils";
 
 /**
  * WexTable - WEX Design System Table Component
@@ -33,7 +35,19 @@ import {
  * </WexTable>
  */
 
-export const WexTable = Object.assign(Table, {
+const WexTableRoot = React.forwardRef<
+  React.ElementRef<typeof TableRoot>,
+  React.ComponentPropsWithoutRef<typeof TableRoot>
+>(({ className, ...props }, ref) => (
+  <TableRoot
+    ref={ref}
+    className={cn("wex-table", className)}
+    {...props}
+  />
+));
+WexTableRoot.displayName = "WexTable";
+
+export const WexTable = Object.assign(WexTableRoot, {
   Header: TableHeader,
   Body: TableBody,
   Footer: TableFooter,

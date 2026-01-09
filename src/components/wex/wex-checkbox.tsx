@@ -1,4 +1,6 @@
-import { Checkbox } from "@/components/ui/checkbox";
+import * as React from "react";
+import { Checkbox as CheckboxRoot } from "@/components/ui/checkbox";
+import { cn } from "@/lib/utils";
 
 /**
  * WexCheckbox - WEX Design System Checkbox Component
@@ -13,5 +15,15 @@ import { Checkbox } from "@/components/ui/checkbox";
  * </div>
  */
 
-export const WexCheckbox = Checkbox;
+export const WexCheckbox = React.forwardRef<
+  React.ElementRef<typeof CheckboxRoot>,
+  React.ComponentPropsWithoutRef<typeof CheckboxRoot>
+>(({ className, ...props }, ref) => (
+  <CheckboxRoot
+    ref={ref}
+    className={cn("wex-checkbox", className)}
+    {...props}
+  />
+));
+WexCheckbox.displayName = "WexCheckbox";
 

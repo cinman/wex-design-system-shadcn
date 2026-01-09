@@ -1,5 +1,6 @@
+import * as React from "react";
 import {
-  NavigationMenu,
+  NavigationMenu as NavigationMenuRoot,
   NavigationMenuList,
   NavigationMenuItem,
   NavigationMenuContent,
@@ -9,6 +10,7 @@ import {
   NavigationMenuViewport,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
+import { cn } from "@/lib/utils";
 
 /**
  * WexNavigationMenu - WEX Design System Navigation Menu Component
@@ -29,7 +31,19 @@ import {
  * </WexNavigationMenu>
  */
 
-export const WexNavigationMenu = Object.assign(NavigationMenu, {
+const WexNavigationMenuRoot = React.forwardRef<
+  React.ElementRef<typeof NavigationMenuRoot>,
+  React.ComponentPropsWithoutRef<typeof NavigationMenuRoot>
+>(({ className, ...props }, ref) => (
+  <NavigationMenuRoot
+    ref={ref}
+    className={cn("wex-navigation-menu", className)}
+    {...props}
+  />
+));
+WexNavigationMenuRoot.displayName = "WexNavigationMenu";
+
+export const WexNavigationMenu = Object.assign(WexNavigationMenuRoot, {
   List: NavigationMenuList,
   Item: NavigationMenuItem,
   Content: NavigationMenuContent,

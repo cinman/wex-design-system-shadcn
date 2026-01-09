@@ -1,5 +1,6 @@
+import * as React from "react";
 import {
-  Menubar,
+  Menubar as MenubarRoot,
   MenubarMenu,
   MenubarTrigger,
   MenubarContent,
@@ -16,6 +17,7 @@ import {
   MenubarSub,
   MenubarShortcut,
 } from "@/components/ui/menubar";
+import { cn } from "@/lib/utils";
 
 /**
  * WexMenubar - WEX Design System Menubar Component
@@ -37,7 +39,19 @@ import {
  * </WexMenubar>
  */
 
-export const WexMenubar = Object.assign(Menubar, {
+const WexMenubarRoot = React.forwardRef<
+  React.ElementRef<typeof MenubarRoot>,
+  React.ComponentPropsWithoutRef<typeof MenubarRoot>
+>(({ className, ...props }, ref) => (
+  <MenubarRoot
+    ref={ref}
+    className={cn("wex-menubar", className)}
+    {...props}
+  />
+));
+WexMenubarRoot.displayName = "WexMenubar";
+
+export const WexMenubar = Object.assign(WexMenubarRoot, {
   Menu: MenubarMenu,
   Trigger: MenubarTrigger,
   Content: MenubarContent,

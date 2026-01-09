@@ -1,6 +1,7 @@
+import * as React from "react";
 import {
-  Pagination,
-  PaginationContent,
+  Pagination as PaginationRoot,
+  PaginationContent as PaginationContentRoot,
   PaginationEllipsis,
   PaginationItem,
   PaginationLink,
@@ -12,6 +13,7 @@ import {
   PageReport,
   JumpToPage,
 } from "@/components/ui/pagination";
+import { cn } from "@/lib/utils";
 
 /**
  * WexPagination - WEX Design System Pagination Component
@@ -38,8 +40,26 @@ import {
  * </WexPagination>
  */
 
-export const WexPagination = Object.assign(Pagination, {
-  Content: PaginationContent,
+const WexPaginationRoot = React.forwardRef<
+  React.ElementRef<typeof PaginationRoot>,
+  React.ComponentPropsWithoutRef<typeof PaginationRoot>
+>((props, ref) => <PaginationRoot ref={ref} {...props} />);
+WexPaginationRoot.displayName = "WexPagination";
+
+const WexPaginationContent = React.forwardRef<
+  React.ElementRef<typeof PaginationContentRoot>,
+  React.ComponentPropsWithoutRef<typeof PaginationContentRoot>
+>(({ className, ...props }, ref) => (
+  <PaginationContentRoot
+    ref={ref}
+    className={cn("wex-pagination-content", className)}
+    {...props}
+  />
+));
+WexPaginationContent.displayName = "WexPagination.Content";
+
+export const WexPagination = Object.assign(WexPaginationRoot, {
+  Content: WexPaginationContent,
   Ellipsis: PaginationEllipsis,
   Item: PaginationItem,
   Link: PaginationLink,

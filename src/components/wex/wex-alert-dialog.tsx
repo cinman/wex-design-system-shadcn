@@ -1,9 +1,10 @@
+import * as React from "react";
 import {
-  AlertDialog,
+  AlertDialog as AlertDialogRoot,
   AlertDialogPortal,
   AlertDialogOverlay,
   AlertDialogTrigger,
-  AlertDialogContent,
+  AlertDialogContent as AlertDialogContentRoot,
   AlertDialogHeader,
   AlertDialogFooter,
   AlertDialogTitle,
@@ -11,6 +12,7 @@ import {
   AlertDialogAction,
   AlertDialogCancel,
 } from "@/components/ui/alert-dialog";
+import { cn } from "@/lib/utils";
 
 /**
  * WexAlertDialog - WEX Design System Alert Dialog Component
@@ -36,11 +38,29 @@ import {
  * </WexAlertDialog>
  */
 
-export const WexAlertDialog = Object.assign(AlertDialog, {
+const WexAlertDialogRoot = React.forwardRef<
+  React.ElementRef<typeof AlertDialogRoot>,
+  React.ComponentPropsWithoutRef<typeof AlertDialogRoot>
+>((props, ref) => <AlertDialogRoot ref={ref} {...props} />);
+WexAlertDialogRoot.displayName = "WexAlertDialog";
+
+const WexAlertDialogContent = React.forwardRef<
+  React.ElementRef<typeof AlertDialogContentRoot>,
+  React.ComponentPropsWithoutRef<typeof AlertDialogContentRoot>
+>(({ className, ...props }, ref) => (
+  <AlertDialogContentRoot
+    ref={ref}
+    className={cn("wex-alert-dialog-content", className)}
+    {...props}
+  />
+));
+WexAlertDialogContent.displayName = "WexAlertDialog.Content";
+
+export const WexAlertDialog = Object.assign(WexAlertDialogRoot, {
   Portal: AlertDialogPortal,
   Overlay: AlertDialogOverlay,
   Trigger: AlertDialogTrigger,
-  Content: AlertDialogContent,
+  Content: WexAlertDialogContent,
   Header: AlertDialogHeader,
   Footer: AlertDialogFooter,
   Title: AlertDialogTitle,

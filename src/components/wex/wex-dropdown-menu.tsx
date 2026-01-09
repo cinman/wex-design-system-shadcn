@@ -1,7 +1,8 @@
+import * as React from "react";
 import {
-  DropdownMenu,
+  DropdownMenu as DropdownMenuRoot,
   DropdownMenuTrigger,
-  DropdownMenuContent,
+  DropdownMenuContent as DropdownMenuContentRoot,
   DropdownMenuItem,
   DropdownMenuCheckboxItem,
   DropdownMenuRadioItem,
@@ -15,6 +16,7 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuRadioGroup,
 } from "@/components/ui/dropdown-menu";
+import { cn } from "@/lib/utils";
 
 /**
  * WexDropdownMenu - WEX Design System Dropdown Menu Component
@@ -36,9 +38,27 @@ import {
  * </WexDropdownMenu>
  */
 
-export const WexDropdownMenu = Object.assign(DropdownMenu, {
+const WexDropdownMenuRoot = React.forwardRef<
+  React.ElementRef<typeof DropdownMenuRoot>,
+  React.ComponentPropsWithoutRef<typeof DropdownMenuRoot>
+>((props, ref) => <DropdownMenuRoot ref={ref} {...props} />);
+WexDropdownMenuRoot.displayName = "WexDropdownMenu";
+
+const WexDropdownMenuContent = React.forwardRef<
+  React.ElementRef<typeof DropdownMenuContentRoot>,
+  React.ComponentPropsWithoutRef<typeof DropdownMenuContentRoot>
+>(({ className, ...props }, ref) => (
+  <DropdownMenuContentRoot
+    ref={ref}
+    className={cn("wex-dropdown-menu-content", className)}
+    {...props}
+  />
+));
+WexDropdownMenuContent.displayName = "WexDropdownMenu.Content";
+
+export const WexDropdownMenu = Object.assign(WexDropdownMenuRoot, {
   Trigger: DropdownMenuTrigger,
-  Content: DropdownMenuContent,
+  Content: WexDropdownMenuContent,
   Item: DropdownMenuItem,
   CheckboxItem: DropdownMenuCheckboxItem,
   RadioItem: DropdownMenuRadioItem,

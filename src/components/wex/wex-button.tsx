@@ -336,10 +336,10 @@ const WexButton = React.forwardRef<HTMLButtonElement, WexButtonProps>(
     
     return (
       <Comp
-        className={cn(wexButtonVariants({ intent, variant, size, rounded, className }))}
+        className={"wex-button " + cn(wexButtonVariants({ intent, variant, size, rounded, className }))}
         ref={ref}
         disabled={isDisabled}
-        aria-busy={loading}
+        aria-busy={loading}        
         {...props}
       >
         {renderChildren()}

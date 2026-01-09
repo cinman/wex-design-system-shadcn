@@ -16,6 +16,102 @@ export default function ChangelogPage() {
 
       <div className="space-y-8">
         <ChangelogEntry
+          version="1.5.5"
+          date="January 9, 2026"
+          title="MultiSelect Focus Refinement & A11y Dashboard"
+          changes={[
+            "Fix: Focus ring outline now only appears for keyboard navigation, not mouse hover",
+            "Fix: Mouse hover shows background color change without outline ring",
+            "A11y: Added MultiSelect to compliance report with 15 examples (30 tests for light/dark)",
+            "A11y: Accessibility Dashboard now shows 568 passing tests across 60 components",
+          ]}
+        />
+
+        <ChangelogEntry
+          version="1.5.4"
+          date="January 9, 2026"
+          title="MultiSelect A11y & Keyboard Navigation"
+          changes={[
+            "Fix: Keyboard navigation outline now uses ring-2 ring-primary ring-inset for better visibility",
+            "Fix: Chip remove button now meets WCAG 2.5.5 target size (24x24px minimum)",
+            "A11y: Added MultiSelect to a11y test manifest with 17 examples",
+            "A11y: All 14 testable examples pass in both light and dark modes",
+            "A11y: Updated compliance.json with WexMultiSelect accessibility results",
+            "Docs: Accessibility Dashboard now includes WexMultiSelect test results",
+          ]}
+        />
+
+        <ChangelogEntry
+          version="1.5.3"
+          date="January 9, 2026"
+          title="MultiSelect Keyboard & Float Label Fixes"
+          changes={[
+            "Fix: Keyboard navigation now shows visible outline on focused options",
+            "Fix: Float label chevron now vertically centered (uses absolute positioning)",
+            "Fix: Float label properly resets on keyboard blur (Tab away)",
+            "Fix: Added onFocus/onBlur props to MultiSelect for float label integration",
+            "Docs: Regenerated unit test report - MultiSelect tests now visible in Unit Tests page",
+          ]}
+        />
+
+        <ChangelogEntry
+          version="1.5.2"
+          date="January 9, 2026"
+          title="MultiSelect Polish & Parity Updates"
+          changes={[
+            "Fix: Chips display now uses PrimeNG-style pill shape with primary color (no border)",
+            "Fix: Float label correctly detects MultiSelect value (label only floats when value exists)",
+            "Fix: Option hover states now properly maintain selected background color",
+            "Fix: Sizes demo container has fixed width to prevent layout shifts",
+            "Docs: Updated PrimeNG Parity page - added InputNumber, InputMask, Listbox, MultiSelect as complete",
+          ]}
+        />
+
+        <ChangelogEntry
+          version="1.5.1"
+          date="January 8, 2026"
+          title="MultiSelect Improvements"
+          changes={[
+            "Fix: Each demo section now uses separate state (no cross-section interference)",
+            "Fix: Comma mode text overflow properly truncates with ellipsis",
+            "Fix: maxSelectedLabels now triggers 'X items selected' display when exceeded (replaces count mode)",
+            "Fix: Float label variant no longer shows placeholder (label acts as placeholder)",
+            "Fix: All demos (Sizes, Variants, States) now have proper state management and are functional",
+            "Breaking: Removed display='count' variant - use maxSelectedLabels prop instead",
+            "Testing: Updated 35 unit tests for new maxSelectedLabels behavior",
+          ]}
+        />
+
+        <ChangelogEntry
+          version="1.5.0"
+          date="January 8, 2026"
+          title="MultiSelect Component"
+          changes={[
+            "Components: Added WexMultiSelect - dropdown component for selecting multiple options",
+            "Components: MultiSelect supports two display modes: comma and chips",
+            "Components: Comma mode shows selected items as 'Item1, Item2, Item3'",
+            "Components: Chips mode shows selected items as removable badge chips",
+            "Components: maxSelectedLabels prop controls when to show 'X items selected' summary",
+            "Components: MultiSelect includes optional filter/search input",
+            "Components: MultiSelect includes optional select all checkbox with indeterminate state",
+            "Components: MultiSelect supports grouped options via group property on options",
+            "Components: MultiSelect includes sm/md/lg sizes and default/filled variants",
+            "Components: MultiSelect integrates with WexFloatLabel via floatLabel prop",
+            "Components: MultiSelect supports disabled state (component-level and option-level)",
+            "Components: MultiSelect supports invalid state with destructive border styling",
+            "A11y: Full keyboard navigation (Enter/Space to open, Escape to close, Arrow keys to navigate)",
+            "A11y: Uses combobox role on trigger, listbox role on dropdown, option role on items",
+            "A11y: Supports aria-label and aria-labelledby for labeling",
+            "A11y: aria-selected indicates selection state on each option",
+            "Testing: Added 35 unit tests covering rendering, selection, display modes, keyboard navigation",
+            "Testing: Tests cover select all, filter, states, float label, and accessibility",
+            "Docs: Added MultiSelect documentation page with comprehensive examples",
+            "Docs: Examples include display modes, filter, select all, float label, sizes, states, grouped options",
+            "Registry: Added MultiSelect to component registry",
+          ]}
+        />
+
+        <ChangelogEntry
           version="1.4.1"
           date="January 8, 2026"
           title="Listbox Keyboard Focus & A11y"

@@ -1,5 +1,6 @@
+import * as React from "react";
 import {
-  Command,
+  Command as CommandRoot,
   CommandDialog,
   CommandInput,
   CommandList,
@@ -9,6 +10,7 @@ import {
   CommandShortcut,
   CommandSeparator,
 } from "@/components/ui/command";
+import { cn } from "@/lib/utils";
 
 /**
  * WexCommand - WEX Design System Command Component
@@ -29,7 +31,19 @@ import {
  * </WexCommand>
  */
 
-export const WexCommand = Object.assign(Command, {
+const WexCommandRoot = React.forwardRef<
+  React.ElementRef<typeof CommandRoot>,
+  React.ComponentPropsWithoutRef<typeof CommandRoot>
+>(({ className, ...props }, ref) => (
+  <CommandRoot
+    ref={ref}
+    className={cn("wex-command", className)}
+    {...props}
+  />
+));
+WexCommandRoot.displayName = "WexCommand";
+
+export const WexCommand = Object.assign(WexCommandRoot, {
   Dialog: CommandDialog,
   Input: CommandInput,
   List: CommandList,

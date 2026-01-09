@@ -11,7 +11,7 @@ interface SidebarProps {
 export function Sidebar({ children }: SidebarProps) {
   return (
     <aside 
-      className="fixed top-14 z-40 h-[calc(100vh-3.5rem)] w-64 border-r border-border bg-background overflow-y-auto"
+      className="fixed top-[3.625rem] z-40 h-[calc(100vh-3.625rem)] w-64 border-r border-border bg-background overflow-y-auto"
       style={{
         left: 'max(0px, calc((100vw - 1700px) / 2))'
       }}

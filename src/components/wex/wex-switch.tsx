@@ -1,4 +1,6 @@
-import { Switch } from "@/components/ui/switch";
+import * as React from "react";
+import { Switch as SwitchRoot } from "@/components/ui/switch";
+import { cn } from "@/lib/utils";
 
 /**
  * WexSwitch - WEX Design System Switch Component
@@ -13,5 +15,15 @@ import { Switch } from "@/components/ui/switch";
  * </div>
  */
 
-export const WexSwitch = Switch;
+export const WexSwitch = React.forwardRef<
+  React.ElementRef<typeof SwitchRoot>,
+  React.ComponentPropsWithoutRef<typeof SwitchRoot>
+>(({ className, ...props }, ref) => (
+  <SwitchRoot
+    ref={ref}
+    className={cn("wex-switch", className)}
+    {...props}
+  />
+));
+WexSwitch.displayName = "WexSwitch";
 

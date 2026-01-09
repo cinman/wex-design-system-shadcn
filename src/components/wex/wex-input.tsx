@@ -1,4 +1,6 @@
-import { Input, inputVariants, type InputProps } from "@/components/ui/input";
+import * as React from "react";
+import { Input as InputRoot, inputVariants, type InputProps } from "@/components/ui/input";
+import { cn } from "@/lib/utils";
 
 /**
  * WexInput - WEX Design System Input Component
@@ -25,5 +27,16 @@ import { Input, inputVariants, type InputProps } from "@/components/ui/input";
  * <WexInput invalid placeholder="Invalid input" />
  */
 
-export { Input as WexInput, inputVariants };
+const WexInput = React.forwardRef<HTMLInputElement, InputProps>(
+  ({ className, ...props }, ref) => (
+    <InputRoot
+      ref={ref}
+      className={cn("wex-input", className)}
+      {...props}
+    />
+  )
+);
+WexInput.displayName = "WexInput";
+
+export { WexInput, inputVariants };
 export type { InputProps as WexInputProps };

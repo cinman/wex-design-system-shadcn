@@ -555,7 +555,7 @@ const WexMultiSelect = React.forwardRef<HTMLDivElement, WexMultiSelectProps>(
             aria-invalid={invalid || undefined}
             aria-disabled={disabled || undefined}
             disabled={disabled}
-            className={cn(
+            className={"wex-multiselect " + cn(
               multiSelectTriggerVariants({ variant, size, invalid, disabled }),
               floatLabelClasses,
               className

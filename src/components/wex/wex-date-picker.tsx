@@ -1,11 +1,13 @@
+import * as React from "react";
 import {
-  DatePicker,
-  DatePickerWithInput,
+  DatePicker as DatePickerRoot,
+  DatePickerWithInput as DatePickerWithInputRoot,
 } from "@/components/ui/date-picker";
 import type {
   DatePickerProps,
   DatePickerWithInputProps,
 } from "@/components/ui/date-picker";
+import { cn } from "@/lib/utils";
 
 /**
  * WexDatePicker - WEX Design System Date Picker Component
@@ -28,8 +30,28 @@ import type {
  * />
  */
 
-export const WexDatePicker = Object.assign(DatePicker, {
-  WithInput: DatePickerWithInput,
+const WexDatePickerRoot = React.forwardRef<
+  HTMLDivElement,
+  DatePickerProps
+>(({ className, ...props }, ref) => (
+  <div ref={ref} className={cn("wex-date-picker", className)}>
+    <DatePickerRoot {...props} />
+  </div>
+));
+WexDatePickerRoot.displayName = "WexDatePicker";
+
+const WexDatePickerWithInput = React.forwardRef<
+  HTMLDivElement,
+  DatePickerWithInputProps
+>(({ className, ...props }, ref) => (
+  <div ref={ref} className={cn("wex-date-picker", className)}>
+    <DatePickerWithInputRoot {...props} />
+  </div>
+));
+WexDatePickerWithInput.displayName = "WexDatePicker.WithInput";
+
+export const WexDatePicker = Object.assign(WexDatePickerRoot, {
+  WithInput: WexDatePickerWithInput,
 });
 
 export type { DatePickerProps, DatePickerWithInputProps };

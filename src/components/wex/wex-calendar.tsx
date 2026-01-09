@@ -1,4 +1,6 @@
-import { Calendar } from "@/components/ui/calendar";
+import * as React from "react";
+import { Calendar as CalendarRoot } from "@/components/ui/calendar";
+import { cn } from "@/lib/utils";
 
 /**
  * WexCalendar - WEX Design System Calendar Component
@@ -16,5 +18,15 @@ import { Calendar } from "@/components/ui/calendar";
  * />
  */
 
-export const WexCalendar = Calendar;
+export const WexCalendar = React.forwardRef<
+  React.ElementRef<typeof CalendarRoot>,
+  React.ComponentPropsWithoutRef<typeof CalendarRoot>
+>(({ className, ...props }, ref) => (
+  <CalendarRoot
+    ref={ref}
+    className={cn("wex-calendar", className)}
+    {...props}
+  />
+));
+WexCalendar.displayName = "WexCalendar";
 

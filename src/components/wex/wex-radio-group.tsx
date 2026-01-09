@@ -1,4 +1,6 @@
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import * as React from "react";
+import { RadioGroup as RadioGroupRoot, RadioGroupItem } from "@/components/ui/radio-group";
+import { cn } from "@/lib/utils";
 
 /**
  * WexRadioGroup - WEX Design System Radio Group Component
@@ -19,7 +21,19 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
  * </WexRadioGroup>
  */
 
-export const WexRadioGroup = Object.assign(RadioGroup, {
+const WexRadioGroupRoot = React.forwardRef<
+  React.ElementRef<typeof RadioGroupRoot>,
+  React.ComponentPropsWithoutRef<typeof RadioGroupRoot>
+>(({ className, ...props }, ref) => (
+  <RadioGroupRoot
+    ref={ref}
+    className={cn("wex-radio-group", className)}
+    {...props}
+  />
+));
+WexRadioGroupRoot.displayName = "WexRadioGroup";
+
+export const WexRadioGroup = Object.assign(WexRadioGroupRoot, {
   Item: RadioGroupItem,
 });
 

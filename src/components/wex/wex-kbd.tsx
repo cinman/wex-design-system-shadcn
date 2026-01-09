@@ -1,4 +1,6 @@
-import { Kbd, KbdGroup } from "@/components/ui/kbd";
+import * as React from "react";
+import { Kbd as KbdRoot, KbdGroup } from "@/components/ui/kbd";
+import { cn } from "@/lib/utils";
 
 /**
  * WexKbd - WEX Design System Keyboard Key Component
@@ -14,7 +16,19 @@ import { Kbd, KbdGroup } from "@/components/ui/kbd";
  * </WexKbd.Group>
  */
 
-export const WexKbd = Object.assign(Kbd, {
+const WexKbdRoot = React.forwardRef<
+  HTMLElement,
+  React.ComponentPropsWithoutRef<typeof KbdRoot>
+>(({ className, ...props }, ref) => (
+  <KbdRoot
+    ref={ref}
+    className={cn("wex-kbd", className)}
+    {...props}
+  />
+));
+WexKbdRoot.displayName = "WexKbd";
+
+export const WexKbd = Object.assign(WexKbdRoot, {
   Group: KbdGroup,
 });
 

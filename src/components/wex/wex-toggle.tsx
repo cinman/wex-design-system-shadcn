@@ -1,4 +1,6 @@
-import { Toggle } from "@/components/ui/toggle";
+import * as React from "react";
+import { Toggle as ToggleRoot } from "@/components/ui/toggle";
+import { cn } from "@/lib/utils";
 
 /**
  * WexToggle - WEX Design System Toggle Component
@@ -12,5 +14,15 @@ import { Toggle } from "@/components/ui/toggle";
  * </WexToggle>
  */
 
-export const WexToggle = Toggle;
+export const WexToggle = React.forwardRef<
+  React.ElementRef<typeof ToggleRoot>,
+  React.ComponentPropsWithoutRef<typeof ToggleRoot>
+>(({ className, ...props }, ref) => (
+  <ToggleRoot
+    ref={ref}
+    className={cn("wex-toggle", className)}
+    {...props}
+  />
+));
+WexToggle.displayName = "WexToggle";
 

@@ -1,9 +1,11 @@
+import * as React from "react";
 import {
-  Popover,
+  Popover as PopoverRoot,
   PopoverTrigger,
-  PopoverContent,
+  PopoverContent as PopoverContentRoot,
   PopoverAnchor,
 } from "@/components/ui/popover";
+import { cn } from "@/lib/utils";
 
 /**
  * WexPopover - WEX Design System Popover Component
@@ -22,9 +24,27 @@ import {
  * </WexPopover>
  */
 
-export const WexPopover = Object.assign(Popover, {
+const WexPopoverRoot = React.forwardRef<
+  React.ElementRef<typeof PopoverRoot>,
+  React.ComponentPropsWithoutRef<typeof PopoverRoot>
+>((props, ref) => <PopoverRoot ref={ref} {...props} />);
+WexPopoverRoot.displayName = "WexPopover";
+
+const WexPopoverContent = React.forwardRef<
+  React.ElementRef<typeof PopoverContentRoot>,
+  React.ComponentPropsWithoutRef<typeof PopoverContentRoot>
+>(({ className, ...props }, ref) => (
+  <PopoverContentRoot
+    ref={ref}
+    className={cn("wex-popover-content", className)}
+    {...props}
+  />
+));
+WexPopoverContent.displayName = "WexPopover.Content";
+
+export const WexPopover = Object.assign(WexPopoverRoot, {
   Trigger: PopoverTrigger,
-  Content: PopoverContent,
+  Content: WexPopoverContent,
   Anchor: PopoverAnchor,
 });
 

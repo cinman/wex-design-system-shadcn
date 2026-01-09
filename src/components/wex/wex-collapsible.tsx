@@ -1,8 +1,10 @@
+import * as React from "react";
 import {
-  Collapsible,
+  Collapsible as CollapsibleRoot,
   CollapsibleTrigger,
   CollapsibleContent,
 } from "@/components/ui/collapsible";
+import { cn } from "@/lib/utils";
 
 /**
  * WexCollapsible - WEX Design System Collapsible Component
@@ -19,7 +21,19 @@ import {
  * </WexCollapsible>
  */
 
-export const WexCollapsible = Object.assign(Collapsible, {
+const WexCollapsibleRoot = React.forwardRef<
+  React.ElementRef<typeof CollapsibleRoot>,
+  React.ComponentPropsWithoutRef<typeof CollapsibleRoot>
+>(({ className, ...props }, ref) => (
+  <CollapsibleRoot
+    ref={ref}
+    className={cn("wex-collapsible", className)}
+    {...props}
+  />
+));
+WexCollapsibleRoot.displayName = "WexCollapsible";
+
+export const WexCollapsible = Object.assign(WexCollapsibleRoot, {
   Trigger: CollapsibleTrigger,
   Content: CollapsibleContent,
 });
