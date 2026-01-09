@@ -1,15 +1,15 @@
 {
   "_meta": {
     "description": "A11y test manifest - defines which examples to test for color contrast",
-    "generatedAt": "2026-01-08T09:00:00.000Z",
-    "totalComponents": 61,
+    "generatedAt": "2026-01-09T18:57:09.098Z",
+    "totalComponents": 62,
     "howToUse": "Review this file, adjust 'test' flags as needed, then run tests"
   },
   "summary": {
-    "totalExamples": 322,
-    "toTest": 260,
-    "toSkip": 61,
-    "untitled": 86
+    "totalExamples": 341,
+    "toTest": 275,
+    "toSkip": 66,
+    "untitled": 88
   },
   "components": {
     "accordion": {
@@ -638,7 +638,7 @@
       "name": "WexCheckbox",
       "key": "checkbox",
       "route": "/components/checkbox",
-      "totalExamples": 8,
+      "totalExamples": 9,
       "untitledExamples": 2,
       "examples": [
         {
@@ -666,6 +666,12 @@
           "reason": "Duplicate (disabled)"
         },
         {
+          "id": "indeterminate",
+          "title": "Indeterminate",
+          "test": true,
+          "reason": "Default (unknown pattern)"
+        },
+        {
           "id": "vertical-group",
           "title": "Vertical Group",
           "test": true,
@@ -678,7 +684,7 @@
           "reason": "Default (unknown pattern)"
         }
       ],
-      "testCount": 4,
+      "testCount": 5,
       "skipCount": 2
     },
     "collapsible": {
@@ -1697,7 +1703,7 @@
       "name": "WexListbox",
       "key": "listbox",
       "route": "/components/listbox",
-      "totalExamples": 10,
+      "totalExamples": 12,
       "untitledExamples": 1,
       "examples": [
         {
@@ -1731,16 +1737,16 @@
           "reason": "Default (unknown pattern)"
         },
         {
-          "id": "with-filter",
-          "title": "With Filter",
+          "id": "with-search-filter",
+          "title": "With Search Filter",
           "test": true,
           "reason": "Default (unknown pattern)"
         },
         {
-          "id": "grouped-options",
-          "title": "Grouped Options",
-          "test": true,
-          "reason": "Default (unknown pattern)"
+          "id": "grouped-by-region",
+          "title": "Grouped by Region",
+          "test": false,
+          "reason": "Duplicate (grouped)"
         },
         {
           "id": "disabled-options",
@@ -1749,14 +1755,26 @@
           "reason": "Duplicate (disabled)"
         },
         {
+          "id": "disabled-listbox",
+          "title": "Disabled Listbox",
+          "test": false,
+          "reason": "Duplicate (disabled)"
+        },
+        {
           "id": "invalid-state",
           "title": "Invalid State",
           "test": true,
-          "reason": "Color variant"
+          "reason": "Default (unknown pattern)"
+        },
+        {
+          "id": "manual-options",
+          "title": "Manual Options",
+          "test": true,
+          "reason": "Default (unknown pattern)"
         }
       ],
       "testCount": 8,
-      "skipCount": 1
+      "skipCount": 3
     },
     "menubar": {
       "name": "WexMenubar",
@@ -1767,6 +1785,119 @@
       "examples": [],
       "testCount": 0,
       "skipCount": 0
+    },
+    "multi-select": {
+      "name": "WexMultiSelect",
+      "key": "multi-select",
+      "route": "/components/multi-select",
+      "totalExamples": 19,
+      "untitledExamples": 2,
+      "examples": [
+        {
+          "id": "comma-default",
+          "title": "Comma (Default)",
+          "test": true,
+          "reason": "Default (unknown pattern)"
+        },
+        {
+          "id": "chips",
+          "title": "Chips",
+          "test": true,
+          "reason": "Default (unknown pattern)"
+        },
+        {
+          "id": "maxselectedlabels-behavior",
+          "title": "maxSelectedLabels Behavior",
+          "test": true,
+          "reason": "Default (unknown pattern)"
+        },
+        {
+          "id": "with-filter",
+          "title": "With Filter",
+          "test": true,
+          "reason": "Default (unknown pattern)"
+        },
+        {
+          "id": "with-select-all",
+          "title": "With Select All",
+          "test": true,
+          "reason": "Default (unknown pattern)"
+        },
+        {
+          "id": "with-filter-and-select-all",
+          "title": "With Filter and Select All",
+          "test": true,
+          "reason": "Default (unknown pattern)"
+        },
+        {
+          "id": "default-variant",
+          "title": "Default Variant",
+          "test": true,
+          "reason": "Color variant"
+        },
+        {
+          "id": "filled-variant",
+          "title": "Filled Variant",
+          "test": true,
+          "reason": "Color variant"
+        },
+        {
+          "id": "with-chips",
+          "title": "With Chips",
+          "test": true,
+          "reason": "Default (unknown pattern)"
+        },
+        {
+          "id": "with-filter",
+          "title": "With Filter",
+          "test": true,
+          "reason": "Default (unknown pattern)"
+        },
+        {
+          "id": "default",
+          "title": "Default",
+          "test": true,
+          "reason": "Color variant"
+        },
+        {
+          "id": "filled",
+          "title": "Filled",
+          "test": true,
+          "reason": "Default (unknown pattern)"
+        },
+        {
+          "id": "invalid",
+          "title": "Invalid",
+          "test": true,
+          "reason": "Default (unknown pattern)"
+        },
+        {
+          "id": "invalid-filled-variant",
+          "title": "Invalid (Filled Variant)",
+          "test": true,
+          "reason": "Color variant"
+        },
+        {
+          "id": "disabled",
+          "title": "Disabled",
+          "test": false,
+          "reason": "Duplicate (disabled)"
+        },
+        {
+          "id": "disabled-options",
+          "title": "Disabled Options",
+          "test": false,
+          "reason": "Duplicate (disabled)"
+        },
+        {
+          "id": "grouped-by-region",
+          "title": "Grouped by Region",
+          "test": false,
+          "reason": "Duplicate (grouped)"
+        }
+      ],
+      "testCount": 14,
+      "skipCount": 3
     },
     "navigation-menu": {
       "name": "WexNavigationMenu",
