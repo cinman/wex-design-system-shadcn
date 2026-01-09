@@ -86,11 +86,18 @@ export function DocsLayout() {
           )}
           
           <main 
-            className={`relative z-10 min-h-[calc(100vh-3.5rem)] overflow-x-hidden ${
-              isHome ? "ml-0 p-8" : "ml-64 p-8"
-            }`}
+            className="relative z-10 min-h-[calc(100vh-3.5rem)] overflow-x-hidden p-8"
+            style={{
+              maxWidth: '1600px',
+              margin: '0 auto'
+            }}
           >
-            <div className={isHome ? "mx-auto max-w-6xl" : "mx-auto max-w-4xl"}>
+            <div 
+              className={isHome ? "" : ""}
+              style={!isHome ? { 
+                marginLeft: '17rem'
+              } : {}}
+            >
               <Outlet />
             </div>
           </main>
