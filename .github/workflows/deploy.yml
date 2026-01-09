@@ -7,6 +7,10 @@ on:
   push:  # Listen to pushes on all branches
   workflow_dispatch:  # Manual trigger from GitHub UI
 
+concurrency:
+  group: deploy-${{ github.ref }}-${{ github.event.head_commit.id || github.sha }}
+  cancel-in-progress: true
+
 jobs:
   deploy:
     name: Deploy to the Pagely Server
