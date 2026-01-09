@@ -4,9 +4,7 @@ on:
   pull_request:
     branches:
       - main
-  push:
-    branches:
-      - main
+  push:  # Listen to pushes on all branches
   workflow_dispatch:  # Manual trigger from GitHub UI
 
 jobs:
