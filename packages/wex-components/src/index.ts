@@ -41,6 +41,8 @@ export { WexInputOTP } from "./components/wex/wex-input-otp";
 export { WexCalendar } from "./components/wex/wex-calendar";
 export { WexCombobox, type ComboboxProps, type ComboboxOption } from "./components/wex/wex-combobox";
 export { WexDatePicker, type DatePickerProps, type DatePickerWithInputProps } from "./components/wex/wex-date-picker";
+export { WexListbox, type ListboxOptionData, type ListboxRootProps, type ListboxHeaderProps, type ListboxFilterProps, type ListboxSelectAllProps, type ListboxOptionsProps, type ListboxOptionProps, type ListboxGroupProps, type ListboxEmptyProps } from "./components/wex/wex-listbox";
+export { WexMultiSelect, multiSelectTriggerVariants, multiSelectOptionVariants, type MultiSelectOption } from "./components/wex/wex-multiselect";
 
 // ===== OVERLAY COMPONENTS =====
 export { WexDialog } from "./components/wex/wex-dialog";

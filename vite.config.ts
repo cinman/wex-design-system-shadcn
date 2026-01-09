@@ -19,11 +19,11 @@ export default defineConfig({
     },
   },
   resolve: {
-    alias: {
-      "@": path.resolve(__dirname, "./src"),
-      "@wex/design-tokens/tailwind-preset": path.resolve(__dirname, "./packages/design-tokens/tailwind-preset.js"),
-      "@wex/components": path.resolve(__dirname, "./packages/wex-components/src/index.ts"),
-      "@wex/components/*": path.resolve(__dirname, "./packages/wex-components/src/*"),
-    },
+    alias: [
+      { find: "@", replacement: path.resolve(__dirname, "./src") },
+      { find: "@wex/design-tokens/tailwind-preset", replacement: path.resolve(__dirname, "./packages/design-tokens/tailwind-preset.js") },
+      { find: /^@wex\/components$/, replacement: path.resolve(__dirname, "./packages/wex-components/src/index.ts") },
+      { find: /^@wex\/components\/(.*)$/, replacement: path.resolve(__dirname, "./packages/wex-components/src/$1") },
+    ],
   },
 })

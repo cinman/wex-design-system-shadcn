@@ -1,6 +1,6 @@
 import * as React from "react";
-import { cn } from "@/lib/utils";
-import { Input, type InputProps } from "@/components/ui/input";
+import { cn } from "@wex/components";
+import { Input, type InputProps } from "../ui/input";
 
 /**
  * WexInputMask - WEX Design System InputMask Component

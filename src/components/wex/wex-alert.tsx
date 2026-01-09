@@ -1,6 +1,6 @@
 import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
-import { cn } from "@/lib/utils";
+import { cn } from "@wex/components";
 
 // Context to pass intent to child components
 const AlertContext = React.createContext<{ intent?: "default" | "destructive" | "success" | "warning" | "info" }>({});

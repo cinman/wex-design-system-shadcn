@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { cva, type VariantProps } from "class-variance-authority"
-import { cn } from "@/lib/utils"
+import { cn } from "@wex/components"
 
 /**
  * WexFloatLabel - WEX Design System Floating Label Wrapper
@@ -264,5 +264,5 @@ export type { FloatLabelInputProps, FloatLabelLabelProps }
 // Legacy: Keep the original self-contained FloatLabel for backwards compat
 // ============================================================================
 
-export { FloatLabel as WexFloatLabelInput } from "@/components/ui/float-label"
-export type { FloatLabelProps as WexFloatLabelInputProps } from "@/components/ui/float-label"
+export { FloatLabel as WexFloatLabelInput } from "../ui/float-label"
+export type { FloatLabelProps as WexFloatLabelInputProps } from "../ui/float-label"
