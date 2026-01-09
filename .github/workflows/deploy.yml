@@ -1,0 +1,39 @@
+name: Deploy
+
+on:
+  push:  # Runs on any push to any branch
+
+jobs:
+  deploy:
+    name: Deploy to Production Server
+    runs-on: ubuntu-latest
+    env:      
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - name: Check Out the ${{ github.repository }} Repository
+        uses: actions/checkout@v4       
+      
+      - name: Use Node.js Version 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install the Dependencies
+        run: npm ci
+
+      - name: Build the Design Tokens
+        run: node scripts/build-tokens.cjs
+
+      - name: Build the Site
+        run: npm run build
+
+      - name: Deploy to the Server
+        uses: godaddy-wordpress/pagely-deploy-action@v1
+        with:
+          PAGELY_DEPLOY_SRC: "dist"
+          PAGELY_WORKING_DIR: "/github/workspace/dist"
+          PAGELY_DEPLOY_DEST: "/httpdocs/react"
+          PAGELY_INTEGRATION_ID: ${{secrets.PAGELY_INTEGRATION_ID}}
+          PAGELY_INTEGRATION_SECRET: ${{secrets.PAGELY_INTEGRATION_SECRET}}
+          PAGELY_APP_ID: "46170"
+
