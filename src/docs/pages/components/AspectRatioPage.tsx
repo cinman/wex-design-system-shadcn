@@ -27,12 +27,14 @@ export default function AspectRatioPage() {
       registryKey="aspect-ratio"
     >
       <Section title="Overview">
-        <ExampleCard>
+        <ExampleCard title="Image Container">
           <div className="w-full max-w-md">
-            <WexAspectRatio ratio={16 / 9} className="bg-muted rounded-md">
-              <div className="flex items-center justify-center h-full text-muted-foreground">
-                16:9 Aspect Ratio
-              </div>
+            <WexAspectRatio ratio={16 / 9} className="bg-muted rounded-md overflow-hidden">
+              <img 
+                src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=450&fit=crop" 
+                alt="Mountain landscape in 16:9 aspect ratio"
+                className="w-full h-full object-cover"
+              />
             </WexAspectRatio>
           </div>
         </ExampleCard>
@@ -42,30 +44,36 @@ export default function AspectRatioPage() {
         <div className="space-y-4">
           <ExampleCard title="16:9" description="Standard widescreen video format.">
             <div className="w-48">
-              <WexAspectRatio ratio={16 / 9} className="bg-muted rounded-md">
-                <div className="flex items-center justify-center h-full text-muted-foreground text-sm">
-                  16:9
-                </div>
+              <WexAspectRatio ratio={16 / 9} className="bg-muted rounded-md overflow-hidden">
+                <img 
+                  src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=225&fit=crop" 
+                  alt="Example image in 16:9 aspect ratio"
+                  className="w-full h-full object-cover"
+                />
               </WexAspectRatio>
             </div>
           </ExampleCard>
 
           <ExampleCard title="4:3" description="Traditional screen format.">
             <div className="w-48">
-              <WexAspectRatio ratio={4 / 3} className="bg-muted rounded-md">
-                <div className="flex items-center justify-center h-full text-muted-foreground text-sm">
-                  4:3
-                </div>
+              <WexAspectRatio ratio={4 / 3} className="bg-muted rounded-md overflow-hidden">
+                <img 
+                  src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop" 
+                  alt="Example image in 4:3 aspect ratio"
+                  className="w-full h-full object-cover"
+                />
               </WexAspectRatio>
             </div>
           </ExampleCard>
 
           <ExampleCard title="1:1" description="Square format for avatars and thumbnails.">
             <div className="w-48">
-              <WexAspectRatio ratio={1} className="bg-muted rounded-md">
-                <div className="flex items-center justify-center h-full text-muted-foreground text-sm">
-                  1:1
-                </div>
+              <WexAspectRatio ratio={1} className="bg-muted rounded-md overflow-hidden">
+                <img 
+                  src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=400&fit=crop" 
+                  alt="Example image in 1:1 square aspect ratio"
+                  className="w-full h-full object-cover"
+                />
               </WexAspectRatio>
             </div>
           </ExampleCard>

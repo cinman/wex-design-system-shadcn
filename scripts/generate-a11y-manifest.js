@@ -24,7 +24,7 @@ const outputPath = path.join(__dirname, "..", "tests", "a11y", "a11y-test-manife
 
 // Components to exclude from testing (non-semantic/layout-only components)
 const EXCLUDED_COMPONENTS = [
-  "AspectRatioPage.tsx", // Layout utility, not a semantic component
+  // AspectRatioPage.tsx - Now included in tests with accessible examples
 ];
 
 /**

@@ -1,13 +1,13 @@
 {
   "_meta": {
     "description": "A11y test manifest - defines which examples to test for color contrast",
-    "generatedAt": "2026-01-09T18:57:09.098Z",
+    "generatedAt": "2026-01-09T19:33:46.147Z",
     "totalComponents": 62,
     "howToUse": "Review this file, adjust 'test' flags as needed, then run tests"
   },
   "summary": {
-    "totalExamples": 341,
-    "toTest": 275,
+    "totalExamples": 345,
+    "toTest": 279,
     "toSkip": 66,
     "untitled": 88
   },
@@ -110,6 +110,41 @@
       ],
       "testCount": 5,
       "skipCount": 2
+    },
+    "aspect-ratio": {
+      "name": "WexAspectRatio",
+      "key": "aspect-ratio",
+      "route": "/components/aspect-ratio",
+      "totalExamples": 4,
+      "untitledExamples": 0,
+      "examples": [
+        {
+          "id": "image-container",
+          "title": "Image Container",
+          "test": true,
+          "reason": "Default (unknown pattern)"
+        },
+        {
+          "id": "16-9",
+          "title": "16:9",
+          "test": true,
+          "reason": "Default (unknown pattern)"
+        },
+        {
+          "id": "4-3",
+          "title": "4:3",
+          "test": true,
+          "reason": "Default (unknown pattern)"
+        },
+        {
+          "id": "1-1",
+          "title": "1:1",
+          "test": true,
+          "reason": "Default (unknown pattern)"
+        }
+      ],
+      "testCount": 4,
+      "skipCount": 0
     },
     "avatar": {
       "name": "WexAvatar",

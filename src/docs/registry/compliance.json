@@ -8,8 +8,8 @@
       "light",
       "dark"
     ],
-    "lastUpdated": "2026-01-09T19:25:17.660Z",
-    "totalComponents": 61
+    "lastUpdated": "2026-01-09T19:39:00.158Z",
+    "totalComponents": 62
   },
   "accordion": {
     "status": "pass",
@@ -6521,6 +6521,102 @@
           "(untitled-1)"
         ],
         "examplesPassed": 15,
+        "examplesFailed": 0
+      }
+    }
+  },
+  "aspect-ratio": {
+    "status": "pass",
+    "levelAchieved": "AA",
+    "violations": 0,
+    "issues": [],
+    "testedAt": "2026-01-09T19:39:00.155Z",
+    "scope": "manifest-driven",
+    "examplesFound": 4,
+    "scenariosTested": [
+      "image-container",
+      "16-9",
+      "4-3",
+      "1-1"
+    ],
+    "subject": "Component examples for WexAspectRatio",
+    "modes": {
+      "light": {
+        "status": "pass",
+        "levelAchieved": "AA",
+        "violations": 0,
+        "issues": [],
+        "examplesFound": 4,
+        "failingElements": [],
+        "examples": {
+          "image-container": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "16-9": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "4-3": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "1-1": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          }
+        },
+        "examplesTested": [
+          "image-container",
+          "16-9",
+          "4-3",
+          "1-1"
+        ],
+        "examplesSkipped": [],
+        "examplesPassed": 4,
+        "examplesFailed": 0
+      },
+      "dark": {
+        "status": "pass",
+        "levelAchieved": "AA",
+        "violations": 0,
+        "issues": [],
+        "examplesFound": 4,
+        "failingElements": [],
+        "examples": {
+          "image-container": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "16-9": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "4-3": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          },
+          "1-1": {
+            "status": "pass",
+            "violations": 0,
+            "issues": []
+          }
+        },
+        "examplesTested": [
+          "image-container",
+          "16-9",
+          "4-3",
+          "1-1"
+        ],
+        "examplesSkipped": [],
+        "examplesPassed": 4,
         "examplesFailed": 0
       }
     }
