@@ -113,11 +113,12 @@ function FadeInContent({
   children: React.ReactNode;
   onContentRendered?: () => void;
 }) {
+  const location = useLocation();
   const [isVisible, setIsVisible] = React.useState(false);
   const hasRenderedRef = React.useRef(false);
 
   React.useEffect(() => {
-    // Always start invisible, then fade in
+    // Reset visibility on route change
     setIsVisible(false);
     
     // Use requestAnimationFrame for smoother timing - ensures DOM is ready
@@ -136,7 +137,7 @@ function FadeInContent({
     return () => {
       cancelAnimationFrame(frame1);
     };
-  }, [onContentRendered]);
+  }, [location.pathname, onContentRendered]);
 
   return (
     <div
