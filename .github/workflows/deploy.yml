@@ -5,7 +5,7 @@ on:
 
 jobs:
   deploy:
-    name: Deploy to Production Server
+    name: Deploy to the Pagely Server
     runs-on: ubuntu-latest
     env:      
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -27,7 +27,7 @@ jobs:
       - name: Build the Site
         run: npm run build
 
-      - name: Deploy to the Server
+      - name: Deploy to the Pagely Server
         uses: godaddy-wordpress/pagely-deploy-action@v1
         with:
           PAGELY_DEPLOY_SRC: "dist"
