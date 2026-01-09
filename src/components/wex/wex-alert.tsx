@@ -71,7 +71,7 @@ export interface WexAlertProps
 
 const WexAlertRoot = React.forwardRef<HTMLDivElement, WexAlertProps>(
   ({ className, intent, ...props }, ref) => (
-    <AlertContext.Provider value={{ intent }}>
+    <AlertContext.Provider value={{ intent: intent ?? undefined }}>
       <div
         ref={ref}
         role="alert"
