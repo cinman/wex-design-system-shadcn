@@ -13,42 +13,32 @@ import { ThemeBuilderProvider } from "@/docs/context/ThemeBuilderContext";
  */
 function FadeInContent({ 
   children, 
-  onContentRendered 
+  onContentRendered,
+  contentVisible = true
 }: { 
   children: React.ReactNode;
   onContentRendered?: () => void;
+  contentVisible?: boolean;
 }) {
   const location = useLocation();
-  const [isVisible, setIsVisible] = React.useState(false);
   const hasRenderedRef = React.useRef(false);
 
   React.useEffect(() => {
-    // Reset visibility on route change
-    setIsVisible(false);
+    // Reset render flag on route change
+    hasRenderedRef.current = false;
     
-    // Use requestAnimationFrame for smoother timing - ensures DOM is ready
-    const frame1 = requestAnimationFrame(() => {
-      const frame2 = requestAnimationFrame(() => {
-        setIsVisible(true);
-        
-        // Notify parent that content has rendered (for initial load detection)
-        if (!hasRenderedRef.current && onContentRendered) {
-          hasRenderedRef.current = true;
-          onContentRendered();
-        }
-      });
-    });
-
-    return () => {
-      cancelAnimationFrame(frame1);
-    };
+    // Notify parent that content has rendered (triggers spinner to fade out)
+    if (onContentRendered && !hasRenderedRef.current) {
+      onContentRendered();
+      hasRenderedRef.current = true;
+    }
   }, [location.pathname, onContentRendered]);
 
   return (
     <div
-      className="transition-opacity duration-500 ease-out"
+      className="transition-opacity duration-[625ms] ease-out"
       style={{
-        opacity: isVisible ? 1 : 0,
+        opacity: contentVisible ? 1 : 0,
         willChange: 'opacity',
       }}
     >
@@ -88,7 +78,7 @@ function ArticleFadeWrapper({ children }: { children: React.ReactNode }) {
       if (wrapperRef.current) {
         const articles = wrapperRef.current.querySelectorAll('article');
         articles.forEach((article) => {
-          article.style.transition = 'opacity 500ms ease-out';
+          article.style.transition = 'opacity 625ms ease-out';
           article.style.opacity = isVisible ? '1' : '0';
           article.style.willChange = 'opacity';
         });
@@ -129,9 +119,10 @@ function ArticleFadeWrapper({ children }: { children: React.ReactNode }) {
  */
 interface DocsLayoutProps {
   onContentRendered?: () => void;
+  contentVisible?: boolean;
 }
 
-export function DocsLayout({ onContentRendered }: DocsLayoutProps) {
+export function DocsLayout({ onContentRendered, contentVisible = true }: DocsLayoutProps) {
   const location = useLocation();
   const isHome = location.pathname === "/";
   const isThemeBuilder = location.pathname === "/theme-builder";
@@ -169,11 +160,12 @@ export function DocsLayout({ onContentRendered }: DocsLayoutProps) {
       setUseFullPageFade(true);
     } else if (!isThemeBuilder) {
       // Sidebar page - use full fade if:
-      // 1. Initial load (direct URL or refresh)
+      // 1. Initial load (prevPath is null OR isInitialMountRef is true - means first page load)
       // 2. Coming from home page (prevPath === "/" OR flag was set)
       // Otherwise use article fade (navigating between sidebar pages)
+      const isFirstLoad = prevPath === null || isInitialLoad;
       const comingFromHome = prevPath === "/" || wasOnHomePageFlag;
-      setUseFullPageFade(isInitialLoad || comingFromHome);
+      setUseFullPageFade(isFirstLoad || comingFromHome);
       
       // Clear the flag after checking (we're no longer on home)
       if (wasOnHomePageFlag && typeof window !== 'undefined') {
@@ -238,44 +230,65 @@ export function DocsLayout({ onContentRendered }: DocsLayoutProps) {
       ) : (
         <>
           {/* Regular pages */}
-          {!isHome && (
-            <Sidebar>
-              <SidebarNav />
-            </Sidebar>
-          )}
-          
-          <div
-            className="relative z-10 min-h-[calc(100vh-3.5rem)] overflow-x-hidden"
-            style={{
-              maxWidth: '1700px',
-              margin: '0 auto'
-            }}
-          >
-            <main className="p-8">
-              <div 
-                className={isHome ? "" : ""}
-                style={!isHome ? { 
-                  marginLeft: '17rem'
-                } : {}}
+          {isHome ? (
+            // Home page - no sidebar, just fade content
+            // Wait for spinner to completely fade out before showing content
+            <div
+              className="relative z-10 min-h-[calc(100vh-3.5rem)] overflow-x-hidden"
+              style={{
+                maxWidth: '1700px',
+                margin: '0 auto'
+              }}
+            >
+              <main className="p-8">
+                <FadeInContent key="home" onContentRendered={onContentRendered} contentVisible={contentVisible}>
+                  <Outlet />
+                </FadeInContent>
+              </main>
+            </div>
+          ) : useFullPageFade ? (
+            // Full-page fade: wrap both sidebar and main content
+            <FadeInContent key={`full-${location.pathname}`} contentVisible={contentVisible}>
+              <Sidebar>
+                <SidebarNav />
+              </Sidebar>
+              <div
+                className="relative z-10 min-h-[calc(100vh-3.5rem)] overflow-x-hidden"
+                style={{
+                  maxWidth: '1700px',
+                  margin: '0 auto'
+                }}
               >
-                {isHome ? (
-                  <FadeInContent key="home" onContentRendered={onContentRendered}>
+                <main className="p-8">
+                  <div style={{ marginLeft: '17rem' }}>
                     <Outlet />
-                  </FadeInContent>
-                ) : useFullPageFade ? (
-                  // Full fade when coming from home or initial load
-                  <FadeInContent key={`full-${location.pathname}`}>
-                    <Outlet />
-                  </FadeInContent>
-                ) : (
-                  // Article-level fade for sidebar page transitions
-                  <ArticleFadeWrapper key={`article-${location.pathname}`}>
-                    <Outlet />
-                  </ArticleFadeWrapper>
-                )}
+                  </div>
+                </main>
               </div>
-            </main>
-          </div>
+            </FadeInContent>
+          ) : (
+            // Article-level fade: sidebar stays visible, only article fades
+            <>
+              <Sidebar>
+                <SidebarNav />
+              </Sidebar>
+              <div
+                className="relative z-10 min-h-[calc(100vh-3.5rem)] overflow-x-hidden"
+                style={{
+                  maxWidth: '1700px',
+                  margin: '0 auto'
+                }}
+              >
+                <main className="p-8">
+                  <div style={{ marginLeft: '17rem' }}>
+                    <ArticleFadeWrapper key={`article-${location.pathname}`}>
+                      <Outlet />
+                    </ArticleFadeWrapper>
+                  </div>
+                </main>
+              </div>
+            </>
+          )}
           
           {/* Footer - positioned below everything, spans full width */}
           <div

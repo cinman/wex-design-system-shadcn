@@ -92,12 +92,12 @@ const TooltipPage = React.lazy(() => import("@/docs/pages/components/TooltipPage
  * Only shows spinner on initial load, not on route transitions
  */
 function PageLoader({ showSpinner }: { showSpinner: boolean }) {
-  if (!showSpinner) {
-    return null;
-  }
-
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-background z-50">
+    <div 
+      className={`fixed inset-0 flex items-center justify-center bg-background z-50 transition-opacity duration-300 ${
+        showSpinner ? 'opacity-100' : 'opacity-0 pointer-events-none'
+      }`}
+    >
       <WexSpinner className="h-12 w-12" />
     </div>
   );
@@ -118,30 +118,47 @@ function FadeInContent({
   const hasRenderedRef = React.useRef(false);
 
   React.useEffect(() => {
-    // Reset visibility on route change
+    // Reset visibility and render flag on route change
     setIsVisible(false);
+    hasRenderedRef.current = false;
     
-    // Use requestAnimationFrame for smoother timing - ensures DOM is ready
-    const frame1 = requestAnimationFrame(() => {
-      const frame2 = requestAnimationFrame(() => {
-        setIsVisible(true);
-        
-        // Notify parent that content has rendered (for initial load detection)
-        if (!hasRenderedRef.current && onContentRendered) {
-          hasRenderedRef.current = true;
-          onContentRendered();
-        }
+    // Wait for content to actually be in the DOM before starting fade
+    const waitForContent = () => {
+      // Use multiple requestAnimationFrame calls to ensure DOM is ready
+      const frame1 = requestAnimationFrame(() => {
+        const frame2 = requestAnimationFrame(() => {
+          // Additional delay to ensure all async content (images, etc.) has started loading
+          setTimeout(() => {
+            // Notify parent that content has rendered (for initial load detection)
+            // This triggers spinner to fade out
+            if (onContentRendered && !hasRenderedRef.current) {
+              onContentRendered();
+              hasRenderedRef.current = true;
+            }
+            
+            // Wait for spinner fade-out (300ms) plus buffer, then start content fade-in
+            setTimeout(() => {
+              setIsVisible(true);
+            }, 350);
+          }, 100);
+        });
       });
-    });
+      
+      return frame1;
+    };
+
+    const frameId = waitForContent();
 
     return () => {
-      cancelAnimationFrame(frame1);
+      if (frameId) {
+        cancelAnimationFrame(frameId);
+      }
     };
   }, [location.pathname, onContentRendered]);
 
   return (
     <div
-      className="transition-opacity duration-500 ease-out"
+      className="transition-opacity duration-[625ms] ease-out"
       style={{
         opacity: isVisible ? 1 : 0,
         willChange: 'opacity', // Optimize for animation
@@ -157,17 +174,34 @@ function FadeInContent({
  * All routes wrapped in DocsLayout for consistent shell
  */
 export function DocsRoutes() {
+  const location = useLocation();
   const [showSpinner, setShowSpinner] = React.useState(true);
+  const [contentVisible, setContentVisible] = React.useState(false);
+
+  // Reset content visibility on route change only if spinner is showing
+  React.useEffect(() => {
+    if (showSpinner) {
+      setContentVisible(false);
+    } else {
+      // If spinner is not showing (subsequent navigations), show content immediately
+      setContentVisible(true);
+    }
+  }, [location.pathname, showSpinner]);
 
   const handleContentRendered = React.useCallback(() => {
-    // Once content has rendered, don't show spinner on subsequent loads
+    // Once content has rendered, trigger spinner to fade out
     setShowSpinner(false);
+    
+    // After spinner fade-out completes (300ms), fade in content
+    setTimeout(() => {
+      setContentVisible(true);
+    }, 350);
   }, []);
 
   return (
     <React.Suspense fallback={<PageLoader showSpinner={showSpinner} />}>
       <Routes>
-        <Route element={<DocsLayout onContentRendered={handleContentRendered} />}>
+        <Route element={<DocsLayout onContentRendered={handleContentRendered} contentVisible={contentVisible} />}>
           {/* Static pages */}
           <Route index element={<OverviewPage />} />
           <Route path="getting-started" element={<GettingStartedPage />} />
