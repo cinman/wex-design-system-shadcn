@@ -1,4 +1,6 @@
-import { Avatar, AvatarImage, AvatarFallback, AvatarGroup, AvatarBadge } from "@/components/ui/avatar";
+import * as React from "react";
+import { Avatar as AvatarRoot, AvatarImage, AvatarFallback, AvatarGroup, AvatarBadge } from "@/components/ui/avatar";
+import { cn } from "@/lib/utils";
 
 /**
  * WexAvatar - WEX Design System Avatar Component
@@ -26,7 +28,19 @@ import { Avatar, AvatarImage, AvatarFallback, AvatarGroup, AvatarBadge } from "@
  * </WexAvatar.Group>
  */
 
-export const WexAvatar = Object.assign(Avatar, {
+const WexAvatarRoot = React.forwardRef<
+  React.ElementRef<typeof AvatarRoot>,
+  React.ComponentPropsWithoutRef<typeof AvatarRoot>
+>(({ className, ...props }, ref) => (
+  <AvatarRoot
+    ref={ref}
+    className={cn("wex-avatar", className)}
+    {...props}
+  />
+));
+WexAvatarRoot.displayName = "WexAvatar";
+
+export const WexAvatar = Object.assign(WexAvatarRoot, {
   Image: AvatarImage,
   Fallback: AvatarFallback,
   Group: AvatarGroup,

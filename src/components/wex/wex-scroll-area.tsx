@@ -1,5 +1,6 @@
 import * as React from "react";
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+import { ScrollArea as ScrollAreaRoot, ScrollBar } from "@/components/ui/scroll-area";
+import { cn } from "@/lib/utils";
 
 /**
  * WexScrollArea - WEX Design System Scroll Area Component
@@ -16,14 +17,18 @@ import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
  * </WexScrollArea>
  */
 
-// Create wrapper to avoid mutating shared primitives
-const WexScrollAreaRoot: typeof ScrollArea & {
-  Bar: typeof ScrollBar;
-} = Object.assign(
-  ((props: React.ComponentProps<typeof ScrollArea>) => <ScrollArea {...props} />) as typeof ScrollArea,
-  {
-    Bar: ScrollBar,
-  }
-);
+const WexScrollAreaRoot = React.forwardRef<
+  React.ElementRef<typeof ScrollAreaRoot>,
+  React.ComponentPropsWithoutRef<typeof ScrollAreaRoot>
+>(({ className, ...props }, ref) => (
+  <ScrollAreaRoot
+    ref={ref}
+    className={cn("wex-scroll-area", className)}
+    {...props}
+  />
+));
+WexScrollAreaRoot.displayName = "WexScrollArea";
 
-export const WexScrollArea = WexScrollAreaRoot;
+export const WexScrollArea = Object.assign(WexScrollAreaRoot, {
+  Bar: ScrollBar,
+});

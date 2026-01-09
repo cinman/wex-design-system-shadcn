@@ -75,7 +75,7 @@ const WexAlertRoot = React.forwardRef<HTMLDivElement, WexAlertProps>(
       <div
         ref={ref}
         role="alert"
-        className={cn(wexAlertVariants({ intent }), className)}
+        className={"wex-alert " + cn(wexAlertVariants({ intent }), className)}
         {...props}
       />
     </AlertContext.Provider>

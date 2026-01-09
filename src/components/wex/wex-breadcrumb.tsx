@@ -1,5 +1,6 @@
+import * as React from "react";
 import {
-  Breadcrumb,
+  Breadcrumb as BreadcrumbRoot,
   BreadcrumbList,
   BreadcrumbItem,
   BreadcrumbLink,
@@ -7,6 +8,7 @@ import {
   BreadcrumbSeparator,
   BreadcrumbEllipsis,
 } from "@/components/ui/breadcrumb";
+import { cn } from "@/lib/utils";
 
 /**
  * WexBreadcrumb - WEX Design System Breadcrumb Component
@@ -28,7 +30,19 @@ import {
  * </WexBreadcrumb>
  */
 
-export const WexBreadcrumb = Object.assign(Breadcrumb, {
+const WexBreadcrumbRoot = React.forwardRef<
+  React.ElementRef<typeof BreadcrumbRoot>,
+  React.ComponentPropsWithoutRef<typeof BreadcrumbRoot>
+>(({ className, ...props }, ref) => (
+  <BreadcrumbRoot
+    ref={ref}
+    className={cn("wex-breadcrumb", className)}
+    {...props}
+  />
+));
+WexBreadcrumbRoot.displayName = "WexBreadcrumb";
+
+export const WexBreadcrumb = Object.assign(WexBreadcrumbRoot, {
   List: BreadcrumbList,
   Item: BreadcrumbItem,
   Link: BreadcrumbLink,

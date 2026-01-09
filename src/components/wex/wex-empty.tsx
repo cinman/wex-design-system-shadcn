@@ -1,11 +1,13 @@
+import * as React from "react";
 import {
-  Empty,
+  Empty as EmptyRoot,
   EmptyHeader,
   EmptyTitle,
   EmptyDescription,
   EmptyContent,
   EmptyMedia,
 } from "@/components/ui/empty";
+import { cn } from "@/lib/utils";
 
 /**
  * WexEmpty - WEX Design System Empty State Component
@@ -28,7 +30,19 @@ import {
  * </WexEmpty>
  */
 
-export const WexEmpty = Object.assign(Empty, {
+const WexEmptyRoot = React.forwardRef<
+  HTMLDivElement,
+  React.ComponentPropsWithoutRef<typeof EmptyRoot>
+>(({ className, ...props }, ref) => (
+  <EmptyRoot
+    ref={ref}
+    className={cn("wex-empty", className)}
+    {...props}
+  />
+));
+WexEmptyRoot.displayName = "WexEmpty";
+
+export const WexEmpty = Object.assign(WexEmptyRoot, {
   Header: EmptyHeader,
   Title: EmptyTitle,
   Description: EmptyDescription,

@@ -1,9 +1,11 @@
+import * as React from "react";
 import {
-  Tooltip,
+  Tooltip as TooltipRoot,
   TooltipTrigger,
-  TooltipContent,
+  TooltipContent as TooltipContentRoot,
   TooltipProvider,
 } from "@/components/ui/tooltip";
+import { cn } from "@/lib/utils";
 
 /**
  * WexTooltip - WEX Design System Tooltip Component
@@ -24,9 +26,27 @@ import {
  * </WexTooltip.Provider>
  */
 
-export const WexTooltip = Object.assign(Tooltip, {
+const WexTooltipRoot = React.forwardRef<
+  React.ElementRef<typeof TooltipRoot>,
+  React.ComponentPropsWithoutRef<typeof TooltipRoot>
+>((props, ref) => <TooltipRoot ref={ref} {...props} />);
+WexTooltipRoot.displayName = "WexTooltip";
+
+const WexTooltipContent = React.forwardRef<
+  React.ElementRef<typeof TooltipContentRoot>,
+  React.ComponentPropsWithoutRef<typeof TooltipContentRoot>
+>(({ className, ...props }, ref) => (
+  <TooltipContentRoot
+    ref={ref}
+    className={cn("wex-tooltip-content", className)}
+    {...props}
+  />
+));
+WexTooltipContent.displayName = "WexTooltip.Content";
+
+export const WexTooltip = Object.assign(WexTooltipRoot, {
   Trigger: TooltipTrigger,
-  Content: TooltipContent,
+  Content: WexTooltipContent,
   Provider: TooltipProvider,
 });
 

@@ -1,8 +1,10 @@
+import * as React from "react";
 import {
-  ResizablePanelGroup,
+  ResizablePanelGroup as ResizablePanelGroupRoot,
   ResizablePanel,
   ResizableHandle,
 } from "@/components/ui/resizable";
+import { cn } from "@/lib/utils";
 
 /**
  * WexResizable - WEX Design System Resizable Component
@@ -22,9 +24,21 @@ import {
  * </WexResizable.Group>
  */
 
+const WexResizablePanelGroup = React.forwardRef<
+  React.ElementRef<typeof ResizablePanelGroupRoot>,
+  React.ComponentPropsWithoutRef<typeof ResizablePanelGroupRoot>
+>(({ className, ...props }, ref) => (
+  <ResizablePanelGroupRoot
+    ref={ref}
+    className={cn("wex-resizable-group", className)}
+    {...props}
+  />
+));
+WexResizablePanelGroup.displayName = "WexResizable.Group";
+
 // Create a namespace object for resizable components
 export const WexResizable = {
-  Group: ResizablePanelGroup,
+  Group: WexResizablePanelGroup,
   Panel: ResizablePanel,
   Handle: ResizableHandle,
 };

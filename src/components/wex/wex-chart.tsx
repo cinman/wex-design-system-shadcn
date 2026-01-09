@@ -1,5 +1,6 @@
+import * as React from "react";
 import {
-  ChartContainer,
+  ChartContainer as ChartContainerRoot,
   ChartTooltip,
   ChartTooltipContent,
   ChartLegend,
@@ -7,6 +8,7 @@ import {
   ChartStyle,
 } from "@/components/ui/chart";
 import type { ChartConfig } from "@/components/ui/chart";
+import { cn } from "@/lib/utils";
 
 /**
  * WexChart - WEX Design System Chart Component
@@ -27,8 +29,20 @@ import type { ChartConfig } from "@/components/ui/chart";
  * </WexChart.Container>
  */
 
+const WexChartContainer = React.forwardRef<
+  React.ElementRef<typeof ChartContainerRoot>,
+  React.ComponentPropsWithoutRef<typeof ChartContainerRoot>
+>(({ className, ...props }, ref) => (
+  <ChartContainerRoot
+    ref={ref}
+    className={cn("wex-chart-container", className)}
+    {...props}
+  />
+));
+WexChartContainer.displayName = "WexChart.Container";
+
 export const WexChart = {
-  Container: ChartContainer,
+  Container: WexChartContainer,
   Tooltip: ChartTooltip,
   TooltipContent: ChartTooltipContent,
   Legend: ChartLegend,

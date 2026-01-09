@@ -53,6 +53,7 @@
  * </WexListbox>
  */
 
+import * as React from "react";
 import {
   Listbox,
   ListboxRoot,
@@ -75,9 +76,30 @@ import {
   type ListboxGroupProps,
   type ListboxEmptyProps,
 } from "../ui/listbox";
+import { cn } from "@/lib/utils";
+
+const WexListboxRoot = React.forwardRef<
+  React.ElementRef<typeof ListboxRoot>,
+  ListboxRootProps
+>(({ className, ...props }, ref) => (
+  <ListboxRoot
+    ref={ref}
+    className={cn("wex-listbox", className)}
+    {...props}
+  />
+));
+WexListboxRoot.displayName = "WexListbox";
 
 // Re-export the compound component with Wex prefix
-const WexListbox = Listbox;
+const WexListbox = Object.assign(WexListboxRoot, {
+  Header: ListboxHeader,
+  Filter: ListboxFilter,
+  SelectAll: ListboxSelectAll,
+  Options: ListboxOptions,
+  Option: ListboxOption,
+  Group: ListboxGroup,
+  Empty: ListboxEmpty,
+});
 
 // Re-export all sub-components and types
 export {

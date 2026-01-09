@@ -1,10 +1,12 @@
+import * as React from "react";
 import {
-  Carousel,
+  Carousel as CarouselRoot,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { cn } from "@/lib/utils";
 
 /**
  * WexCarousel - WEX Design System Carousel Component
@@ -24,7 +26,19 @@ import {
  * </WexCarousel>
  */
 
-export const WexCarousel = Object.assign(Carousel, {
+const WexCarouselRoot = React.forwardRef<
+  React.ElementRef<typeof CarouselRoot>,
+  React.ComponentPropsWithoutRef<typeof CarouselRoot>
+>(({ className, ...props }, ref) => (
+  <CarouselRoot
+    ref={ref}
+    className={cn("wex-carousel", className)}
+    {...props}
+  />
+));
+WexCarouselRoot.displayName = "WexCarousel";
+
+export const WexCarousel = Object.assign(WexCarouselRoot, {
   Content: CarouselContent,
   Item: CarouselItem,
   Next: CarouselNext,

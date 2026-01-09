@@ -1,8 +1,10 @@
+import * as React from "react";
 import {
-  ButtonGroup,
+  ButtonGroup as ButtonGroupRoot,
   ButtonGroupSeparator,
   ButtonGroupText,
 } from "@/components/ui/button-group";
+import { cn } from "@/lib/utils";
 
 /**
  * WexButtonGroup - WEX Design System Button Group Component
@@ -18,7 +20,19 @@ import {
  * </WexButtonGroup>
  */
 
-export const WexButtonGroup = Object.assign(ButtonGroup, {
+const WexButtonGroupRoot = React.forwardRef<
+  React.ElementRef<typeof ButtonGroupRoot>,
+  React.ComponentPropsWithoutRef<typeof ButtonGroupRoot>
+>(({ className, ...props }, ref) => (
+  <ButtonGroupRoot
+    ref={ref}
+    className={cn("wex-button-group", className)}
+    {...props}
+  />
+));
+WexButtonGroupRoot.displayName = "WexButtonGroup";
+
+export const WexButtonGroup = Object.assign(WexButtonGroupRoot, {
   Separator: ButtonGroupSeparator,
   Text: ButtonGroupText,
 });

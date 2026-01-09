@@ -649,7 +649,7 @@ const WexInputNumber = React.forwardRef<HTMLInputElement, WexInputNumberProps>(
 
     return (
       <div
-        className={cn(
+        className={"wex-input-number " + cn(
           inputNumberContainerVariants({ buttonLayout: effectiveButtonLayout }),
           !fluid && "w-auto",
           floatLabelConfig?.containerHeight,

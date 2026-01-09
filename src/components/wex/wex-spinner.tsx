@@ -1,4 +1,6 @@
-import { Spinner } from "@/components/ui/spinner";
+import * as React from "react";
+import { Spinner as SpinnerRoot } from "@/components/ui/spinner";
+import { cn } from "@/lib/utils";
 
 /**
  * WexSpinner - WEX Design System Spinner Component
@@ -14,5 +16,15 @@ import { Spinner } from "@/components/ui/spinner";
  * </WexButton>
  */
 
-export const WexSpinner = Spinner;
+export const WexSpinner = React.forwardRef<
+  React.ElementRef<typeof SpinnerRoot>,
+  React.ComponentPropsWithoutRef<typeof SpinnerRoot>
+>(({ className, ...props }, ref) => (
+  <SpinnerRoot
+    ref={ref}
+    className={cn("wex-spinner", className)}
+    {...props}
+  />
+));
+WexSpinner.displayName = "WexSpinner";
 

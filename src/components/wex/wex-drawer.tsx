@@ -1,15 +1,17 @@
+import * as React from "react";
 import {
-  Drawer,
+  Drawer as DrawerRoot,
   DrawerPortal,
   DrawerOverlay,
   DrawerTrigger,
   DrawerClose,
-  DrawerContent,
+  DrawerContent as DrawerContentRoot,
   DrawerHeader,
   DrawerFooter,
   DrawerTitle,
   DrawerDescription,
 } from "@/components/ui/drawer";
+import { cn } from "@/lib/utils";
 
 /**
  * WexDrawer - WEX Design System Drawer Component
@@ -32,12 +34,30 @@ import {
  * </WexDrawer>
  */
 
-export const WexDrawer = Object.assign(Drawer, {
+const WexDrawerRoot = React.forwardRef<
+  React.ElementRef<typeof DrawerRoot>,
+  React.ComponentPropsWithoutRef<typeof DrawerRoot>
+>((props, ref) => <DrawerRoot ref={ref} {...props} />);
+WexDrawerRoot.displayName = "WexDrawer";
+
+const WexDrawerContent = React.forwardRef<
+  React.ElementRef<typeof DrawerContentRoot>,
+  React.ComponentPropsWithoutRef<typeof DrawerContentRoot>
+>(({ className, ...props }, ref) => (
+  <DrawerContentRoot
+    ref={ref}
+    className={cn("wex-drawer-content", className)}
+    {...props}
+  />
+));
+WexDrawerContent.displayName = "WexDrawer.Content";
+
+export const WexDrawer = Object.assign(WexDrawerRoot, {
   Portal: DrawerPortal,
   Overlay: DrawerOverlay,
   Trigger: DrawerTrigger,
   Close: DrawerClose,
-  Content: DrawerContent,
+  Content: WexDrawerContent,
   Header: DrawerHeader,
   Footer: DrawerFooter,
   Title: DrawerTitle,

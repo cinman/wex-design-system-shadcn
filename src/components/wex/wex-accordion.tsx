@@ -1,9 +1,11 @@
+import * as React from "react";
 import {
-  Accordion,
-  AccordionItem,
+  Accordion as AccordionRoot,
+  AccordionItem as AccordionItemRoot,
   AccordionTrigger,
   AccordionContent,
 } from "@/components/ui/accordion";
+import { cn } from "@/lib/utils";
 
 /**
  * WexAccordion - WEX Design System Accordion Component
@@ -20,8 +22,26 @@ import {
  * </WexAccordion>
  */
 
-export const WexAccordion = Object.assign(Accordion, {
-  Item: AccordionItem,
+const WexAccordionRoot = React.forwardRef<
+  React.ElementRef<typeof AccordionRoot>,
+  React.ComponentPropsWithoutRef<typeof AccordionRoot>
+>((props, ref) => <AccordionRoot ref={ref} {...props} />);
+WexAccordionRoot.displayName = "WexAccordion";
+
+const WexAccordionItem = React.forwardRef<
+  React.ElementRef<typeof AccordionItemRoot>,
+  React.ComponentPropsWithoutRef<typeof AccordionItemRoot>
+>(({ className, ...props }, ref) => (
+  <AccordionItemRoot
+    ref={ref}
+    className={cn("wex-accordion-item", className)}
+    {...props}
+  />
+));
+WexAccordionItem.displayName = "WexAccordion.Item";
+
+export const WexAccordion = Object.assign(WexAccordionRoot, {
+  Item: WexAccordionItem,
   Trigger: AccordionTrigger,
   Content: AccordionContent,
 });

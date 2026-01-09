@@ -1,7 +1,8 @@
+import * as React from "react";
 import {
-  ContextMenu,
+  ContextMenu as ContextMenuRoot,
   ContextMenuTrigger,
-  ContextMenuContent,
+  ContextMenuContent as ContextMenuContentRoot,
   ContextMenuItem,
   ContextMenuCheckboxItem,
   ContextMenuRadioItem,
@@ -15,6 +16,7 @@ import {
   ContextMenuSubTrigger,
   ContextMenuRadioGroup,
 } from "@/components/ui/context-menu";
+import { cn } from "@/lib/utils";
 
 /**
  * WexContextMenu - WEX Design System Context Menu Component
@@ -32,9 +34,27 @@ import {
  * </WexContextMenu>
  */
 
-export const WexContextMenu = Object.assign(ContextMenu, {
+const WexContextMenuRoot = React.forwardRef<
+  React.ElementRef<typeof ContextMenuRoot>,
+  React.ComponentPropsWithoutRef<typeof ContextMenuRoot>
+>((props, ref) => <ContextMenuRoot ref={ref} {...props} />);
+WexContextMenuRoot.displayName = "WexContextMenu";
+
+const WexContextMenuContent = React.forwardRef<
+  React.ElementRef<typeof ContextMenuContentRoot>,
+  React.ComponentPropsWithoutRef<typeof ContextMenuContentRoot>
+>(({ className, ...props }, ref) => (
+  <ContextMenuContentRoot
+    ref={ref}
+    className={cn("wex-context-menu-content", className)}
+    {...props}
+  />
+));
+WexContextMenuContent.displayName = "WexContextMenu.Content";
+
+export const WexContextMenu = Object.assign(WexContextMenuRoot, {
   Trigger: ContextMenuTrigger,
-  Content: ContextMenuContent,
+  Content: WexContextMenuContent,
   Item: ContextMenuItem,
   CheckboxItem: ContextMenuCheckboxItem,
   RadioItem: ContextMenuRadioItem,

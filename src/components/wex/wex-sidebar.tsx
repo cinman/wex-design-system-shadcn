@@ -1,5 +1,6 @@
+import * as React from "react";
 import {
-  Sidebar,
+  Sidebar as SidebarRoot,
   SidebarContent,
   SidebarFooter,
   SidebarGroup,
@@ -24,6 +25,7 @@ import {
   SidebarTrigger,
   useSidebar,
 } from "@/components/ui/sidebar";
+import { cn } from "@/lib/utils";
 
 /**
  * WexSidebar - WEX Design System Sidebar Component
@@ -47,7 +49,19 @@ import {
  * </WexSidebar.Provider>
  */
 
-export const WexSidebar = Object.assign(Sidebar, {
+const WexSidebarRoot = React.forwardRef<
+  React.ElementRef<typeof SidebarRoot>,
+  React.ComponentPropsWithoutRef<typeof SidebarRoot>
+>(({ className, ...props }, ref) => (
+  <SidebarRoot
+    ref={ref}
+    className={cn("wex-sidebar", className)}
+    {...props}
+  />
+));
+WexSidebarRoot.displayName = "WexSidebar";
+
+export const WexSidebar = Object.assign(WexSidebarRoot, {
   Content: SidebarContent,
   Footer: SidebarFooter,
   Group: SidebarGroup,

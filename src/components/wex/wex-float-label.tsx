@@ -102,7 +102,7 @@ const WexFloatLabelRoot = React.forwardRef<HTMLDivElement, WexFloatLabelProps>(
       <FloatLabelContext.Provider value={contextValue}>
         <div
           ref={ref}
-          className={cn(floatLabelWrapperVariants({ size }), className)}
+          className={"wex-float-label " + cn(floatLabelWrapperVariants({ size }), className)}
           {...props}
         >
           {children}

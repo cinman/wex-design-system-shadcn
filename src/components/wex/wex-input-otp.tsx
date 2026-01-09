@@ -1,9 +1,11 @@
+import * as React from "react";
 import {
-  InputOTP,
+  InputOTP as InputOTPRoot,
   InputOTPGroup,
   InputOTPSlot,
   InputOTPSeparator,
 } from "@/components/ui/input-otp";
+import { cn } from "@/lib/utils";
 
 /**
  * WexInputOTP - WEX Design System One-Time Password Input Component
@@ -27,7 +29,19 @@ import {
  * </WexInputOTP>
  */
 
-export const WexInputOTP = Object.assign(InputOTP, {
+const WexInputOTPRoot = React.forwardRef<
+  React.ElementRef<typeof InputOTPRoot>,
+  React.ComponentPropsWithoutRef<typeof InputOTPRoot>
+>(({ className, ...props }, ref) => (
+  <InputOTPRoot
+    ref={ref}
+    className={cn("wex-input-otp", className)}
+    {...props}
+  />
+));
+WexInputOTPRoot.displayName = "WexInputOTP";
+
+export const WexInputOTP = Object.assign(WexInputOTPRoot, {
   Group: InputOTPGroup,
   Slot: InputOTPSlot,
   Separator: InputOTPSeparator,

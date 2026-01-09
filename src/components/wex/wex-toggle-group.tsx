@@ -1,4 +1,6 @@
-import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+import * as React from "react";
+import { ToggleGroup as ToggleGroupRoot, ToggleGroupItem } from "@/components/ui/toggle-group";
+import { cn } from "@/lib/utils";
 
 /**
  * WexToggleGroup - WEX Design System Toggle Group Component
@@ -17,7 +19,19 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
  * </WexToggleGroup>
  */
 
-export const WexToggleGroup = Object.assign(ToggleGroup, {
+const WexToggleGroupRoot = React.forwardRef<
+  React.ElementRef<typeof ToggleGroupRoot>,
+  React.ComponentPropsWithoutRef<typeof ToggleGroupRoot>
+>(({ className, ...props }, ref) => (
+  <ToggleGroupRoot
+    ref={ref}
+    className={cn("wex-toggle-group", className)}
+    {...props}
+  />
+));
+WexToggleGroupRoot.displayName = "WexToggleGroup";
+
+export const WexToggleGroup = Object.assign(WexToggleGroupRoot, {
   Item: ToggleGroupItem,
 });
 
