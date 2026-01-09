@@ -4,7 +4,6 @@ on:
   pull_request:
     branches:
       - main
-  push:  # Listen to pushes on all branches
   workflow_dispatch:  # Manual trigger from GitHub UI
 
 concurrency:
@@ -15,18 +14,11 @@ jobs:
   deploy:
     name: Deploy to the Pagely Server
     runs-on: ubuntu-latest
-    # Only run on push if commit message contains [deploy]
-    if: |
-      github.event_name == 'pull_request' ||
-      github.event_name == 'workflow_dispatch' ||
-      contains(github.event.head_commit.message, '[deploy]')
     env:      
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - name: Check Out the ${{ github.repository }} Repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0  # Need full history to check commit messages       
+        uses: actions/checkout@v4       
       
       - name: Use Node.js Version 22
         uses: actions/setup-node@v4
