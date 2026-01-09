@@ -11,6 +11,8 @@ node_modules
 dist
 dist-ssr
 
+.npmrc
+
 # Design tokens generated files (not committed)
 packages/design-tokens/dist/
 packages/design-tokens/css/
@@ -41,4 +43,4 @@ playwright/.cache
 *.sw?
 
 # Temporary test scripts
-test-artifactory-token.sh
+test-package-publish.sh

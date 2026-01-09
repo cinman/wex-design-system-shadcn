@@ -1,0 +1,8 @@
+version: 1
+type: npm
+resolver:
+    repo: wex-npm-prod
+    serverId: test-server
+deployer:
+    repo: wex-npm-subprod
+    serverId: test-server
