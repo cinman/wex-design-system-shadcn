@@ -1,6 +1,6 @@
 import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
-import { cn } from "@/lib/utils";
+import { cn } from "@wex/components";
 
 /**
  * WexBadge - WEX Design System Badge Component
@@ -65,7 +65,7 @@ const wexBadgeVariants = cva(
       },
       pill: {
         true: "rounded-full",
-        false: "rounded-md",
+        false: "",
       },
     },
     defaultVariants: {
@@ -82,7 +82,11 @@ export interface WexBadgeProps
 
 function WexBadge({ className, intent, size, pill, ...props }: WexBadgeProps) {
   return (
-    <div className={cn(wexBadgeVariants({ intent, size, pill }), className)} {...props} />
+    <div 
+      className={cn(wexBadgeVariants({ intent, size, pill }), className)} 
+      style={pill ? undefined : { borderRadius: 'var(--wex-component-badge-radius)' }}
+      {...props} 
+    />
   );
 }
 

@@ -1,6 +1,7 @@
 import * as React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { DocsLayout } from "./layout/DocsLayout";
+import { WexSpinner } from "@/components/wex/wex-spinner";
 
 // Lazy load pages for code splitting
 const OverviewPage = React.lazy(() => import("@/docs/pages/OverviewPage"));
@@ -53,9 +54,13 @@ const InputPage = React.lazy(() => import("@/docs/pages/components/InputPage"));
 const FloatLabelPage = React.lazy(() => import("@/docs/pages/components/FloatLabelPage"));
 const InputGroupPage = React.lazy(() => import("@/docs/pages/components/InputGroupPage"));
 const InputOTPPage = React.lazy(() => import("@/docs/pages/components/InputOTPPage"));
+const InputMaskPage = React.lazy(() => import("@/docs/pages/components/InputMaskPage"));
+const InputNumberPage = React.lazy(() => import("@/docs/pages/components/InputNumberPage"));
 const ItemPage = React.lazy(() => import("@/docs/pages/components/ItemPage"));
 const KbdPage = React.lazy(() => import("@/docs/pages/components/KbdPage"));
 const LabelPage = React.lazy(() => import("@/docs/pages/components/LabelPage"));
+const ListboxPage = React.lazy(() => import("@/docs/pages/components/ListboxPage"));
+const MultiSelectPage = React.lazy(() => import("@/docs/pages/components/MultiSelectPage"));
 const MenubarPage = React.lazy(() => import("@/docs/pages/components/MenubarPage"));
 const NavigationMenuPage = React.lazy(() => import("@/docs/pages/components/NavigationMenuPage"));
 const PaginationPage = React.lazy(() => import("@/docs/pages/components/PaginationPage"));
@@ -85,11 +90,16 @@ const TooltipPage = React.lazy(() => import("@/docs/pages/components/TooltipPage
 
 /**
  * Loading fallback for lazy-loaded pages
+ * Only shows spinner on initial load, not on route transitions
  */
-function PageLoader() {
+function PageLoader({ showSpinner }: { showSpinner: boolean }) {
   return (
-    <div className="flex items-center justify-center min-h-[200px]">
-      <div className="text-muted-foreground">Loading...</div>
+    <div 
+      className={`fixed inset-0 flex items-center justify-center bg-background z-50 transition-opacity duration-300 ${
+        showSpinner ? 'opacity-100' : 'opacity-0 pointer-events-none'
+      }`}
+    >
+      <WexSpinner className="h-12 w-12" />
     </div>
   );
 }
@@ -99,10 +109,34 @@ function PageLoader() {
  * All routes wrapped in DocsLayout for consistent shell
  */
 export function DocsRoutes() {
+  const location = useLocation();
+  const [showSpinner, setShowSpinner] = React.useState(true);
+  const [contentVisible, setContentVisible] = React.useState(false);
+
+  // Reset content visibility on route change only if spinner is showing
+  React.useEffect(() => {
+    if (showSpinner) {
+      setContentVisible(false);
+    } else {
+      // If spinner is not showing (subsequent navigations), show content immediately
+      setContentVisible(true);
+    }
+  }, [location.pathname, showSpinner]);
+
+  const handleContentRendered = React.useCallback(() => {
+    // Once content has rendered, trigger spinner to fade out
+    setShowSpinner(false);
+    
+    // After spinner fade-out completes (300ms), fade in content
+    setTimeout(() => {
+      setContentVisible(true);
+    }, 350);
+  }, []);
+
   return (
-    <React.Suspense fallback={<PageLoader />}>
+    <React.Suspense fallback={<PageLoader showSpinner={showSpinner} />}>
       <Routes>
-        <Route element={<DocsLayout />}>
+        <Route element={<DocsLayout onContentRendered={handleContentRendered} contentVisible={contentVisible} />}>
           {/* Static pages */}
           <Route index element={<OverviewPage />} />
           <Route path="getting-started" element={<GettingStartedPage />} />
@@ -156,9 +190,13 @@ export function DocsRoutes() {
           <Route path="components/float-label" element={<FloatLabelPage />} />
           <Route path="components/input-group" element={<InputGroupPage />} />
           <Route path="components/input-otp" element={<InputOTPPage />} />
+          <Route path="components/input-mask" element={<InputMaskPage />} />
+          <Route path="components/input-number" element={<InputNumberPage />} />
           <Route path="components/item" element={<ItemPage />} />
           <Route path="components/kbd" element={<KbdPage />} />
           <Route path="components/label" element={<LabelPage />} />
+          <Route path="components/listbox" element={<ListboxPage />} />
+          <Route path="components/multi-select" element={<MultiSelectPage />} />
           <Route path="components/menubar" element={<MenubarPage />} />
           <Route path="components/navigation-menu" element={<NavigationMenuPage />} />
           <Route path="components/pagination" element={<PaginationPage />} />

@@ -1,15 +1,15 @@
 {
   "_meta": {
     "description": "A11y test manifest - defines which examples to test for color contrast",
-    "generatedAt": "2025-12-30T19:45:41.957Z",
-    "totalComponents": 58,
+    "generatedAt": "2026-01-08T09:00:00.000Z",
+    "totalComponents": 61,
     "howToUse": "Review this file, adjust 'test' flags as needed, then run tests"
   },
   "summary": {
-    "totalExamples": 268,
-    "toTest": 211,
-    "toSkip": 57,
-    "untitled": 81
+    "totalExamples": 322,
+    "toTest": 260,
+    "toSkip": 61,
+    "untitled": 86
   },
   "components": {
     "accordion": {
@@ -946,9 +946,33 @@
       "name": "WexFloatLabel",
       "key": "float-label",
       "route": "/components/float-label",
-      "totalExamples": 12,
+      "totalExamples": 14,
       "untitledExamples": 1,
       "examples": [
+        {
+          "id": "text-input",
+          "title": "Text Input",
+          "test": true,
+          "reason": "Default (unknown pattern)"
+        },
+        {
+          "id": "email-input",
+          "title": "Email Input",
+          "test": true,
+          "reason": "Default (unknown pattern)"
+        },
+        {
+          "id": "input-number",
+          "title": "Input Number",
+          "test": true,
+          "reason": "Default (unknown pattern)"
+        },
+        {
+          "id": "currency-input",
+          "title": "Currency Input",
+          "test": true,
+          "reason": "Default (unknown pattern)"
+        },
         {
           "id": "all-sizes",
           "title": "All Sizes",
@@ -956,56 +980,44 @@
           "reason": "Duplicate (sizes?)"
         },
         {
-          "id": "email",
-          "title": "Email",
+          "id": "basic-number",
+          "title": "Basic Number",
           "test": true,
           "reason": "Default (unknown pattern)"
         },
         {
-          "id": "password",
-          "title": "Password",
+          "id": "with-buttons-min-0-max-99",
+          "title": "With Buttons (Min 0, Max 99)",
           "test": true,
           "reason": "Default (unknown pattern)"
         },
         {
-          "id": "number",
-          "title": "Number",
+          "id": "percentage",
+          "title": "Percentage",
           "test": true,
           "reason": "Default (unknown pattern)"
         },
         {
-          "id": "left-icon",
-          "title": "Left Icon",
+          "id": "currency",
+          "title": "Currency",
           "test": true,
           "reason": "Default (unknown pattern)"
         },
         {
-          "id": "right-icon",
-          "title": "Right Icon",
+          "id": "textarea",
+          "title": "Textarea",
           "test": true,
           "reason": "Default (unknown pattern)"
-        },
-        {
-          "id": "both-icons",
-          "title": "Both Icons",
-          "test": true,
-          "reason": "Default (unknown pattern)"
-        },
-        {
-          "id": "invalid-state",
-          "title": "Invalid State",
-          "test": true,
-          "reason": "Default (unknown pattern)"
-        },
-        {
-          "id": "disabled",
-          "title": "Disabled",
-          "test": false,
-          "reason": "Duplicate (disabled)"
         },
         {
           "id": "controlled",
           "title": "Controlled",
+          "test": false,
+          "reason": "Duplicate (controlled)"
+        },
+        {
+          "id": "controlled-inputnumber",
+          "title": "Controlled InputNumber",
           "test": false,
           "reason": "Duplicate (controlled)"
         },
@@ -1016,7 +1028,7 @@
           "reason": "Default (unknown pattern)"
         }
       ],
-      "testCount": 8,
+      "testCount": 10,
       "skipCount": 3
     },
     "form": {
@@ -1195,6 +1207,280 @@
       ],
       "testCount": 2,
       "skipCount": 2
+    },
+    "input-mask": {
+      "name": "WexInputMask",
+      "key": "input-mask",
+      "route": "/components/input-mask",
+      "totalExamples": 18,
+      "untitledExamples": 2,
+      "examples": [
+        {
+          "id": "ssn",
+          "title": "SSN",
+          "test": true,
+          "reason": "Default (unknown pattern)"
+        },
+        {
+          "id": "phone-number",
+          "title": "Phone Number",
+          "test": true,
+          "reason": "Default (unknown pattern)"
+        },
+        {
+          "id": "serial-number-mixed",
+          "title": "Serial Number (Mixed)",
+          "test": true,
+          "reason": "Default (unknown pattern)"
+        },
+        {
+          "id": "date",
+          "title": "Date",
+          "test": true,
+          "reason": "Default (unknown pattern)"
+        },
+        {
+          "id": "phone-with-float-label",
+          "title": "Phone with Float Label",
+          "test": true,
+          "reason": "Default (unknown pattern)"
+        },
+        {
+          "id": "ssn-with-float-label",
+          "title": "SSN with Float Label",
+          "test": true,
+          "reason": "Default (unknown pattern)"
+        },
+        {
+          "id": "date-with-float-label-filled",
+          "title": "Date with Float Label (Filled)",
+          "test": true,
+          "reason": "Default (unknown pattern)"
+        },
+        {
+          "id": "serial-with-float-label",
+          "title": "Serial with Float Label",
+          "test": true,
+          "reason": "Default (unknown pattern)"
+        },
+        {
+          "id": "default",
+          "title": "Default",
+          "test": true,
+          "reason": "Color variant"
+        },
+        {
+          "id": "filled",
+          "title": "Filled",
+          "test": true,
+          "reason": "Default (unknown pattern)"
+        },
+        {
+          "id": "invalid",
+          "title": "Invalid",
+          "test": true,
+          "reason": "Default (unknown pattern)"
+        },
+        {
+          "id": "invalid-filled-variant",
+          "title": "Invalid (Filled Variant)",
+          "test": true,
+          "reason": "Color variant"
+        },
+        {
+          "id": "disabled",
+          "title": "Disabled",
+          "test": false,
+          "reason": "Duplicate (disabled)"
+        },
+        {
+          "id": "disabled-filled-variant",
+          "title": "Disabled (Filled Variant)",
+          "test": true,
+          "reason": "Color variant"
+        },
+        {
+          "id": "default-underscore",
+          "title": "Default (underscore)",
+          "test": true,
+          "reason": "Default (unknown pattern)"
+        },
+        {
+          "id": "custom-dash",
+          "title": "Custom (dash)",
+          "test": false,
+          "reason": "Duplicate (custom)"
+        }
+      ],
+      "testCount": 14,
+      "skipCount": 2
+    },
+    "input-number": {
+      "name": "WexInputNumber",
+      "key": "input-number",
+      "route": "/components/input-number",
+      "totalExamples": 28,
+      "untitledExamples": 2,
+      "examples": [
+        {
+          "id": "integer-only",
+          "title": "Integer Only",
+          "test": true,
+          "reason": "Default (unknown pattern)"
+        },
+        {
+          "id": "without-grouping",
+          "title": "Without Grouping",
+          "test": true,
+          "reason": "Default (unknown pattern)"
+        },
+        {
+          "id": "fraction-digits",
+          "title": "Fraction Digits",
+          "test": true,
+          "reason": "Default (unknown pattern)"
+        },
+        {
+          "id": "min-max-boundaries",
+          "title": "Min-Max Boundaries",
+          "test": true,
+          "reason": "Default (unknown pattern)"
+        },
+        {
+          "id": "us-dollars",
+          "title": "US Dollars",
+          "test": true,
+          "reason": "Default (unknown pattern)"
+        },
+        {
+          "id": "euros",
+          "title": "Euros",
+          "test": true,
+          "reason": "Default (unknown pattern)"
+        },
+        {
+          "id": "currency-code-display",
+          "title": "Currency Code Display",
+          "test": true,
+          "reason": "Default (unknown pattern)"
+        },
+        {
+          "id": "japanese-yen",
+          "title": "Japanese Yen",
+          "test": true,
+          "reason": "Default (unknown pattern)"
+        },
+        {
+          "id": "prefix-currency-symbol",
+          "title": "Prefix - Currency Symbol",
+          "test": true,
+          "reason": "Default (unknown pattern)"
+        },
+        {
+          "id": "suffix-distance",
+          "title": "Suffix - Distance",
+          "test": true,
+          "reason": "Default (unknown pattern)"
+        },
+        {
+          "id": "suffix-percentage",
+          "title": "Suffix - Percentage",
+          "test": true,
+          "reason": "Default (unknown pattern)"
+        },
+        {
+          "id": "suffix-duration",
+          "title": "Suffix - Duration",
+          "test": true,
+          "reason": "Default (unknown pattern)"
+        },
+        {
+          "id": "both-prefix-suffix",
+          "title": "Both Prefix & Suffix",
+          "test": true,
+          "reason": "Default (unknown pattern)"
+        },
+        {
+          "id": "suffix-weight",
+          "title": "Suffix - Weight",
+          "test": true,
+          "reason": "Default (unknown pattern)"
+        },
+        {
+          "id": "stacked-buttons",
+          "title": "Stacked Buttons",
+          "test": true,
+          "reason": "Default (unknown pattern)"
+        },
+        {
+          "id": "horizontal-buttons",
+          "title": "Horizontal Buttons",
+          "test": true,
+          "reason": "Default (unknown pattern)"
+        },
+        {
+          "id": "with-step",
+          "title": "With Step",
+          "test": true,
+          "reason": "Default (unknown pattern)"
+        },
+        {
+          "id": "currency-with-buttons",
+          "title": "Currency with Buttons",
+          "test": true,
+          "reason": "Default (unknown pattern)"
+        },
+        {
+          "id": "default",
+          "title": "Default",
+          "test": true,
+          "reason": "Color variant"
+        },
+        {
+          "id": "filled",
+          "title": "Filled",
+          "test": true,
+          "reason": "Default (unknown pattern)"
+        },
+        {
+          "id": "basic-float-label",
+          "title": "Basic Float Label",
+          "test": true,
+          "reason": "Default (unknown pattern)"
+        },
+        {
+          "id": "with-buttons-min-1-max-99",
+          "title": "With Buttons (Min 1, Max 99)",
+          "test": true,
+          "reason": "Default (unknown pattern)"
+        },
+        {
+          "id": "currency-float-label",
+          "title": "Currency Float Label",
+          "test": true,
+          "reason": "Default (unknown pattern)"
+        },
+        {
+          "id": "filled-variant",
+          "title": "Filled Variant",
+          "test": true,
+          "reason": "Color variant"
+        },
+        {
+          "id": "invalid",
+          "title": "Invalid",
+          "test": true,
+          "reason": "Default (unknown pattern)"
+        },
+        {
+          "id": "disabled",
+          "title": "Disabled",
+          "test": false,
+          "reason": "Duplicate (disabled)"
+        }
+      ],
+      "testCount": 25,
+      "skipCount": 1
     },
     "input-o-t-p": {
       "name": "WexInputOTP",
@@ -1406,6 +1692,71 @@
       ],
       "testCount": 2,
       "skipCount": 0
+    },
+    "listbox": {
+      "name": "WexListbox",
+      "key": "listbox",
+      "route": "/components/listbox",
+      "totalExamples": 10,
+      "untitledExamples": 1,
+      "examples": [
+        {
+          "id": "single-selection",
+          "title": "Single Selection",
+          "test": true,
+          "reason": "Default (unknown pattern)"
+        },
+        {
+          "id": "single-with-checkmark",
+          "title": "Single with Checkmark",
+          "test": true,
+          "reason": "Default (unknown pattern)"
+        },
+        {
+          "id": "multiple-selection",
+          "title": "Multiple Selection",
+          "test": true,
+          "reason": "Default (unknown pattern)"
+        },
+        {
+          "id": "multiple-with-checkboxes",
+          "title": "Multiple with Checkboxes",
+          "test": true,
+          "reason": "Default (unknown pattern)"
+        },
+        {
+          "id": "multiple-with-select-all",
+          "title": "Multiple with Select All",
+          "test": true,
+          "reason": "Default (unknown pattern)"
+        },
+        {
+          "id": "with-filter",
+          "title": "With Filter",
+          "test": true,
+          "reason": "Default (unknown pattern)"
+        },
+        {
+          "id": "grouped-options",
+          "title": "Grouped Options",
+          "test": true,
+          "reason": "Default (unknown pattern)"
+        },
+        {
+          "id": "disabled-options",
+          "title": "Disabled Options",
+          "test": false,
+          "reason": "Duplicate (disabled)"
+        },
+        {
+          "id": "invalid-state",
+          "title": "Invalid State",
+          "test": true,
+          "reason": "Color variant"
+        }
+      ],
+      "testCount": 8,
+      "skipCount": 1
     },
     "menubar": {
       "name": "WexMenubar",

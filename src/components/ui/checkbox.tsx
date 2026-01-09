@@ -1,6 +1,6 @@
 import * as React from "react"
 import * as CheckboxPrimitive from "@radix-ui/react-checkbox"
-import { Check } from "lucide-react"
+import { Check, Minus } from "lucide-react"
 import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
@@ -11,6 +11,7 @@ const checkboxVariants = cva(
     "focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-wex-checkbox-focus-ring",
     "disabled:cursor-not-allowed disabled:opacity-[var(--wex-component-checkbox-disabled-opacity)]",
     "data-[state=checked]:bg-wex-checkbox-checked-bg data-[state=checked]:text-wex-checkbox-checked-fg",
+    "data-[state=indeterminate]:bg-wex-checkbox-checked-bg data-[state=indeterminate]:text-wex-checkbox-checked-fg",
   ],
   {
     variants: {
@@ -39,16 +40,21 @@ export interface CheckboxProps
 const Checkbox = React.forwardRef<
   React.ElementRef<typeof CheckboxPrimitive.Root>,
   CheckboxProps
->(({ className, checkboxSize, ...props }, ref) => (
+>(({ className, checkboxSize, checked, ...props }, ref) => (
   <CheckboxPrimitive.Root
     ref={ref}
+    checked={checked}
     className={cn(checkboxVariants({ checkboxSize }), className)}
     {...props}
   >
     <CheckboxPrimitive.Indicator
       className={cn("grid place-content-center text-current")}
     >
-      <Check className={checkIconSizes[checkboxSize || "md"]} />
+      {checked === "indeterminate" ? (
+        <Minus className={checkIconSizes[checkboxSize || "md"]} />
+      ) : (
+        <Check className={checkIconSizes[checkboxSize || "md"]} />
+      )}
     </CheckboxPrimitive.Indicator>
   </CheckboxPrimitive.Root>
 ))

@@ -20,7 +20,9 @@ export { WexBadge, wexBadgeVariants, type WexBadgeProps } from "./wex-badge";
 
 // ===== FORM COMPONENTS =====
 export { WexInput } from "./wex-input";
-export { WexFloatLabel, type WexFloatLabelProps } from "./wex-float-label";
+export { WexInputNumber, type WexInputNumberProps } from "./wex-input-number";
+export { WexInputMask, type WexInputMaskProps } from "./wex-input-mask";
+export { WexFloatLabel, WexFloatLabelInput, type WexFloatLabelProps, type WexFloatLabelInputProps } from "./wex-float-label";
 export { WexTextarea } from "./wex-textarea";
 export { WexCheckbox } from "./wex-checkbox";
 export { WexSwitch } from "./wex-switch";
@@ -35,6 +37,8 @@ export { WexInputOTP } from "./wex-input-otp";
 export { WexCalendar } from "./wex-calendar";
 export { WexCombobox, type ComboboxProps, type ComboboxOption } from "./wex-combobox";
 export { WexDatePicker, type DatePickerProps, type DatePickerWithInputProps } from "./wex-date-picker";
+export { WexListbox, type ListboxOptionData } from "./wex-listbox";
+export { WexMultiSelect, multiSelectTriggerVariants, multiSelectOptionVariants, type MultiSelectOption } from "./wex-multiselect";
 
 // ===== OVERLAY COMPONENTS =====
 export { WexDialog } from "./wex-dialog";

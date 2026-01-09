@@ -1,3 +1,4 @@
+import * as React from "react";
 import { ComponentPage } from "@/docs/components/ComponentPage";
 import { Section } from "@/docs/components/Section";
 import { ExampleCard } from "@/docs/components/ExampleCard";
@@ -5,6 +6,78 @@ import { CodeBlock } from "@/docs/components/CodeBlock";
 import { TokenReference, type TokenRow } from "@/docs/components/TokenReference";
 import { PropsTable, type PropDefinition } from "@/docs/components/PropsTable";
 import { WexCheckbox, WexLabel } from "@/components/wex";
+
+// Interactive Indeterminate Demo Component
+function IndeterminateDemo() {
+  const [itemsChecked, setItemsChecked] = React.useState([true, false, true]);
+
+  // Calculate parent state
+  const allChecked = itemsChecked.every(Boolean);
+  const noneChecked = itemsChecked.every((v) => !v);
+  const parentState: boolean | "indeterminate" = allChecked
+    ? true
+    : noneChecked
+    ? false
+    : "indeterminate";
+
+  // Handle parent checkbox change
+  const handleParentChange = (checked: boolean | "indeterminate") => {
+    // When parent is clicked, toggle all items on or off
+    const newValue = checked === true;
+    setItemsChecked([newValue, newValue, newValue]);
+  };
+
+  // Handle child checkbox change
+  const handleItemChange = (index: number, checked: boolean) => {
+    setItemsChecked((prev) => {
+      const next = [...prev];
+      next[index] = checked;
+      return next;
+    });
+  };
+
+  return (
+    <div className="space-y-3">
+      <p className="text-sm text-muted-foreground">
+        Click the parent checkbox or individual items to see the indeterminate state in action.
+      </p>
+      <div className="flex items-center space-x-2">
+        <WexCheckbox
+          id="select-all"
+          checked={parentState}
+          onCheckedChange={handleParentChange}
+        />
+        <WexLabel htmlFor="select-all">Select all items</WexLabel>
+      </div>
+      <div className="ml-6 space-y-2">
+        <div className="flex items-center space-x-2">
+          <WexCheckbox
+            id="item1"
+            checked={itemsChecked[0]}
+            onCheckedChange={(checked) => handleItemChange(0, checked === true)}
+          />
+          <WexLabel htmlFor="item1">Item 1</WexLabel>
+        </div>
+        <div className="flex items-center space-x-2">
+          <WexCheckbox
+            id="item2"
+            checked={itemsChecked[1]}
+            onCheckedChange={(checked) => handleItemChange(1, checked === true)}
+          />
+          <WexLabel htmlFor="item2">Item 2</WexLabel>
+        </div>
+        <div className="flex items-center space-x-2">
+          <WexCheckbox
+            id="item3"
+            checked={itemsChecked[2]}
+            onCheckedChange={(checked) => handleItemChange(2, checked === true)}
+          />
+          <WexLabel htmlFor="item3">Item 3</WexLabel>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 // Props documentation for WexCheckbox
 const checkboxProps: PropDefinition[] = [
@@ -81,6 +154,10 @@ export default function CheckboxPage() {
                 Locked selection
               </WexLabel>
             </div>
+          </ExampleCard>
+
+          <ExampleCard title="Indeterminate">
+            <IndeterminateDemo />
           </ExampleCard>
         </div>
       </Section>
@@ -180,6 +257,20 @@ const [checked, setChecked] = useState(false);
 <WexCheckbox 
   checked={checked} 
   onCheckedChange={setChecked} 
+/>
+
+// Indeterminate (for "select all" patterns)
+const [items, setItems] = useState([true, false, true]);
+const allChecked = items.every(Boolean);
+const noneChecked = items.every((v) => !v);
+const parentState = allChecked ? true : noneChecked ? false : "indeterminate";
+
+<WexCheckbox 
+  checked={parentState}
+  onCheckedChange={(checked) => {
+    // Toggle all items when parent is clicked
+    setItems([checked === true, checked === true, checked === true]);
+  }} 
 />`}
         />
       </Section>

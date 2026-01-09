@@ -4,7 +4,6 @@ import { cn } from "@/lib/utils"
 
 const cardVariants = cva(
   [
-    "rounded-xl",
     "bg-wex-card-bg text-wex-card-fg border border-wex-card-border",
   ],
   {
@@ -31,6 +30,7 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
     <div
       ref={ref}
       className={cn(cardVariants({ variant }), className)}
+      style={{ borderRadius: 'var(--wex-component-card-radius)' }}
       {...props}
     />
   )

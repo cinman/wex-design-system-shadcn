@@ -1,4 +1,5 @@
 import { defineConfig } from 'tsup';
+import path from 'path';
 
 export default defineConfig({
   entry: ['src/index.ts'],
@@ -12,6 +13,10 @@ export default defineConfig({
   minify: false,
   esbuildOptions(options) {
     options.jsx = 'automatic';
+    // Resolve @wex/components to source files during build to avoid circular dependency
+    options.alias = {
+      '@wex/components': path.resolve(__dirname, './src/index.ts'),
+    };
   },
 });
 

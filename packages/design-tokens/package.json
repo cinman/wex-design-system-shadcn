@@ -1,6 +1,6 @@
 {
   "name": "@wex/design-tokens",
-  "version": "1.0.0",
+  "version": "1.0.0-rc.0",
   "description": "WEX Design System tokens - CSS variables and Tailwind preset for React and Angular applications",
   "main": "./css/index.css",
   "exports": {
@@ -55,14 +55,5 @@
   ],
   "author": "WEX Design System Team",
   "license": "UNLICENSED",
-  "private": false,
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/wex-inc/wex-brand.git",
-    "directory": "packages/design-tokens"
-  },
-  "publishConfig": {
-    "@wex:registry": "https://artifactory.wexinc.com/artifactory/api/npm/npm-local/"
-  }
+  "private": false
 }
-

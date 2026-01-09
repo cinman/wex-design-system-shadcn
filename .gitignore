@@ -11,6 +11,8 @@ node_modules
 dist
 dist-ssr
 
+.npmrc
+
 # Design tokens generated files (not committed)
 packages/design-tokens/dist/
 packages/design-tokens/css/
@@ -39,3 +41,6 @@ playwright/.cache
 *.njsproj
 *.sln
 *.sw?
+
+# Temporary test scripts
+test-package-publish.sh

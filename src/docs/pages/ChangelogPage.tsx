@@ -16,6 +16,104 @@ export default function ChangelogPage() {
 
       <div className="space-y-8">
         <ChangelogEntry
+          version="1.4.1"
+          date="January 8, 2026"
+          title="Listbox Keyboard Focus & A11y"
+          changes={[
+            "Fix: Keyboard focus outline now shows immediately when tabbing into listbox (first item is visually focused)",
+            "Fix: Focus detection now uses :focus-visible to correctly distinguish keyboard vs mouse focus",
+            "Fix: Invalid state error message uses dark:text-red-400 for better contrast in dark mode",
+            "A11y: Added WexListbox to Accessibility Dashboard - all tests pass in both light and dark modes",
+            "Testing: Updated a11y-test-manifest.json with listbox test configuration",
+            "Testing: Updated compliance.json with WexListbox accessibility results (6 examples, 0 violations)",
+          ]}
+        />
+
+        <ChangelogEntry
+          version="1.4.0"
+          date="January 7, 2026"
+          title="Listbox Component"
+          changes={[
+            "Components: Added WexListbox - list selection component with PrimeReact parity",
+            "Components: Listbox supports single and multiple selection modes",
+            "Components: Listbox includes filter/search with WexListbox.Filter sub-component",
+            "Components: Listbox supports grouped options via group property on options",
+            "Components: Listbox includes checkbox mode for multiple selection",
+            "Components: Listbox supports checkmark indicator for selected items",
+            "Components: Listbox includes WexListbox.SelectAll sub-component for select all functionality",
+            "Components: SelectAll shows indeterminate state when some (but not all) options are selected",
+            "Components: Listbox includes disabled state (listbox-level and option-level)",
+            "Components: Listbox supports invalid state styling with destructive border",
+            "Components: Listbox supports manual options with uKey prop",
+            "Components: Checkbox updated to support indeterminate state with minus icon",
+            "Fix: Selected state now uses primary/15 background to differentiate from hover state",
+            "Fix: Disabled options no longer show hover/focus state styling",
+            "A11y: Full keyboard navigation (Arrow keys, Home, End, Enter, Space, type-ahead)",
+            "A11y: Roving tabindex for proper focus management",
+            "A11y: ARIA compliant (listbox role, option role, aria-selected, aria-multiselectable)",
+            "A11y: Supports aria-label and aria-labelledby for labeling",
+            "Testing: Added 31 unit tests covering selection, keyboard, states, a11y",
+            "Docs: Added Listbox documentation page with comprehensive examples",
+            "Docs: Examples include single/multiple selection, select all, filter, grouped options, states",
+            "Docs: Added indeterminate checkbox demo to CheckboxPage",
+            "Registry: Added Listbox to component registry",
+          ]}
+        />
+
+        <ChangelogEntry
+          version="1.3.0"
+          date="January 5, 2026"
+          title="InputMask Component"
+          changes={[
+            "Components: Added WexInputMask - masked input for formatted data entry",
+            "Components: InputMask supports mask patterns: 9 (digit), a (alpha), * (alphanumeric)",
+            "Components: InputMask handles phone numbers, SSN, dates, serial numbers, and custom patterns",
+            "Components: InputMask includes native cursor management and paste handling",
+            "Components: InputMask supports autoClear prop to clear incomplete values on blur",
+            "Components: InputMask includes sm/md/lg sizes and default/filled variants",
+            "Components: InputMask integrates with WexFloatLabel via floatLabel prop",
+            "Components: InputMask supports custom slotChar placeholder (default: _)",
+            "Components: InputMask provides onComplete callback when all slots are filled",
+            "A11y: Full keyboard support (type, delete, backspace, home, end, arrow keys)",
+            "A11y: Supports aria-label, aria-labelledby, and htmlFor/id label pairing",
+            "A11y: Invalid state sets aria-invalid with destructive border styling",
+            "Testing: Added 40+ unit tests covering rendering, mask patterns, keyboard navigation",
+            "Testing: Tests cover controlled/uncontrolled modes, edge cases, and accessibility",
+            "Docs: Added InputMask documentation page with comprehensive examples",
+            "Docs: Examples include basic, mask patterns, float label, sizes, invalid, disabled",
+            "Registry: Added InputMask to component registry",
+          ]}
+        />
+
+        <ChangelogEntry
+          version="1.2.0"
+          date="January 5, 2026"
+          title="InputNumber Component"
+          changes={[
+            "Components: Added WexInputNumber - numeric input with increment/decrement buttons",
+            "Components: InputNumber supports decimal and currency modes with locale formatting",
+            "Components: InputNumber includes stacked and horizontal button layouts",
+            "Components: InputNumber supports prefix/suffix, min/max boundaries, step increments",
+            "Components: InputNumber includes sm/md/lg sizes and default/filled variants",
+            "Components: InputNumber provides proper spinbutton role with aria-valuenow/min/max",
+            "Components: InputNumber integrates with WexFloatLabel via floatLabel prop",
+            "Fix: Stacked buttons now use self-stretch for consistent height in all flex contexts",
+            "Fix: Removed border-r from input when stacked, added border-l to button container",
+            "Fix: Numeric input validation - filters non-numeric characters automatically",
+            "Docs: Added prefix examples ($, ↑) alongside suffix examples (%, mi, °C, months, kg)",
+            "Docs: Invalid state demo now dynamically validates based on value",
+            "Docs: All InputNumber examples now have proper accessibility labels (htmlFor/id pairs + aria-label)",
+            "A11y: Keyboard support with Arrow Up/Down, Home/End keys",
+            "A11y: InputNumber passes all accessibility tests in light and dark modes",
+            "A11y: Fixed FloatLabel color-contrast - floating label now uses text-foreground for better dark mode contrast",
+            "Testing: Added 6 unit tests for floatLabel prop integration",
+            "Docs: Added InputNumber documentation page with comprehensive examples",
+            "Registry: Added InputNumber to component registry",
+            "Parity: Updated PrimeNG parity page - InputNumber marked as complete",
+          ]}
+        />
+
+        <ChangelogEntry
           version="1.1.0"
           date="December 30, 2025"
           title="Button Outline Variants & A11y Fixes"
