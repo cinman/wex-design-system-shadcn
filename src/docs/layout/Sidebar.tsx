@@ -13,13 +13,16 @@ export function Sidebar({ children }: SidebarProps) {
     <aside 
       className="fixed top-14 z-40 h-[calc(100vh-3.5rem)] w-64 border-r border-border bg-background overflow-y-auto"
       style={{
-        left: 'max(-3px, calc((100vw - 1600px) / 2 - 3px))'
+        left: 'max(0px, calc((100vw - 1700px) / 2))'
       }}
     >
       <nav
         role="navigation"
         aria-label="Documentation navigation"
         className="p-4"
+        style={{
+          marginLeft: 'calc(-3px - clamp(0px, (100vw - 1700px) / 2, 6px))'
+        }}
       >
         {children}
       </nav>

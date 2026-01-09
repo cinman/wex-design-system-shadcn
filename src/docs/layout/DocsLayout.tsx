@@ -88,7 +88,7 @@ export function DocsLayout() {
           <main 
             className="relative z-10 min-h-[calc(100vh-3.5rem)] overflow-x-hidden p-8"
             style={{
-              maxWidth: '1600px',
+              maxWidth: '1700px',
               margin: '0 auto'
             }}
           >
