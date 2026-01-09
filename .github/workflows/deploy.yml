@@ -1,7 +1,9 @@
 name: Deploy
 
 on:
-  push:  # Runs on any push to any branch
+  pull_request:
+    branches:
+      - main
 
 jobs:
   deploy:
