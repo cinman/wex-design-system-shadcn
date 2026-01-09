@@ -62,7 +62,7 @@ function ArticleFadeWrapper({ children }: { children: React.ReactNode }) {
     
     // Use requestAnimationFrame for smoother timing
     const frame1 = requestAnimationFrame(() => {
-      const frame2 = requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
         setIsVisible(true);
       });
     });
