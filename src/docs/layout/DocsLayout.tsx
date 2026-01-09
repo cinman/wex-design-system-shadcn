@@ -3,9 +3,59 @@ import { Outlet, useLocation } from "react-router-dom";
 import { Header } from "./Header";
 import { Sidebar } from "./Sidebar";
 import { SidebarNav } from "./SidebarNav";
+import { Footer } from "./Footer";
 import { ScrollToTop } from "@/docs/components/ScrollToTop";
 import { TokenMapModal } from "@/docs/components/TokenMapModal";
 import { ThemeBuilderProvider } from "@/docs/context/ThemeBuilderContext";
+
+/**
+ * Fade-in wrapper for content
+ */
+function FadeInContent({ 
+  children, 
+  onContentRendered 
+}: { 
+  children: React.ReactNode;
+  onContentRendered?: () => void;
+}) {
+  const location = useLocation();
+  const [isVisible, setIsVisible] = React.useState(false);
+  const hasRenderedRef = React.useRef(false);
+
+  React.useEffect(() => {
+    // Reset visibility on route change
+    setIsVisible(false);
+    
+    // Use requestAnimationFrame for smoother timing - ensures DOM is ready
+    const frame1 = requestAnimationFrame(() => {
+      const frame2 = requestAnimationFrame(() => {
+        setIsVisible(true);
+        
+        // Notify parent that content has rendered (for initial load detection)
+        if (!hasRenderedRef.current && onContentRendered) {
+          hasRenderedRef.current = true;
+          onContentRendered();
+        }
+      });
+    });
+
+    return () => {
+      cancelAnimationFrame(frame1);
+    };
+  }, [location.pathname, onContentRendered]);
+
+  return (
+    <div
+      className="transition-opacity duration-500 ease-out"
+      style={{
+        opacity: isVisible ? 1 : 0,
+        willChange: 'opacity',
+      }}
+    >
+      {children}
+    </div>
+  );
+}
 
 /**
  * Main layout shell for docs site
@@ -14,7 +64,11 @@ import { ThemeBuilderProvider } from "@/docs/context/ThemeBuilderContext";
  * - Scrollable main content area
  * - Theme Builder mode: replaces sidebar with ThemeBuilderNav
  */
-export function DocsLayout() {
+interface DocsLayoutProps {
+  onContentRendered?: () => void;
+}
+
+export function DocsLayout({ onContentRendered }: DocsLayoutProps) {
   const location = useLocation();
   const isHome = location.pathname === "/";
   const isThemeBuilder = location.pathname === "/theme-builder";
@@ -85,22 +139,43 @@ export function DocsLayout() {
             </Sidebar>
           )}
           
-          <main 
-            className="relative z-10 min-h-[calc(100vh-3.5rem)] overflow-x-hidden p-8"
+          <div
+            className="relative z-10 min-h-[calc(100vh-3.5rem)] overflow-x-hidden"
             style={{
               maxWidth: '1700px',
               margin: '0 auto'
             }}
           >
-            <div 
-              className={isHome ? "" : ""}
-              style={!isHome ? { 
-                marginLeft: '17rem'
-              } : {}}
-            >
-              <Outlet />
-            </div>
-          </main>
+            <main className="p-8">
+              <div 
+                className={isHome ? "" : ""}
+                style={!isHome ? { 
+                  marginLeft: '17rem'
+                } : {}}
+              >
+                {isHome ? (
+                  <FadeInContent onContentRendered={onContentRendered}>
+                    <Outlet />
+                  </FadeInContent>
+                ) : (
+                  <FadeInContent>
+                    <Outlet />
+                  </FadeInContent>
+                )}
+              </div>
+            </main>
+          </div>
+          
+          {/* Footer - positioned below everything, spans full width */}
+          <div
+            className="relative z-40 w-full"
+            style={{
+              maxWidth: '1700px',
+              margin: '0 auto'
+            }}
+          >
+            <Footer />
+          </div>
         </>
       )}
     </div>

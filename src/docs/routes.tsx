@@ -89,8 +89,13 @@ const TooltipPage = React.lazy(() => import("@/docs/pages/components/TooltipPage
 
 /**
  * Loading fallback for lazy-loaded pages
+ * Only shows spinner on initial load, not on route transitions
  */
-function PageLoader() {
+function PageLoader({ showSpinner }: { showSpinner: boolean }) {
+  if (!showSpinner) {
+    return null;
+  }
+
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-background z-50">
       <WexSpinner className="h-12 w-12" />
@@ -101,27 +106,44 @@ function PageLoader() {
 /**
  * Fade-in wrapper for content once loaded
  */
-function FadeInContent({ children }: { children: React.ReactNode }) {
-  const location = useLocation();
+function FadeInContent({ 
+  children, 
+  onContentRendered 
+}: { 
+  children: React.ReactNode;
+  onContentRendered?: () => void;
+}) {
   const [isVisible, setIsVisible] = React.useState(false);
+  const hasRenderedRef = React.useRef(false);
 
   React.useEffect(() => {
-    // Reset visibility on route change
+    // Always start invisible, then fade in
     setIsVisible(false);
     
-    // Trigger fade-in after a brief delay to ensure content is rendered
-    const timer = setTimeout(() => {
-      setIsVisible(true);
-    }, 10);
+    // Use requestAnimationFrame for smoother timing - ensures DOM is ready
+    const frame1 = requestAnimationFrame(() => {
+      const frame2 = requestAnimationFrame(() => {
+        setIsVisible(true);
+        
+        // Notify parent that content has rendered (for initial load detection)
+        if (!hasRenderedRef.current && onContentRendered) {
+          hasRenderedRef.current = true;
+          onContentRendered();
+        }
+      });
+    });
 
-    return () => clearTimeout(timer);
-  }, [location.pathname]);
+    return () => {
+      cancelAnimationFrame(frame1);
+    };
+  }, [onContentRendered]);
 
   return (
     <div
       className="transition-opacity duration-500 ease-out"
       style={{
         opacity: isVisible ? 1 : 0,
+        willChange: 'opacity', // Optimize for animation
       }}
     >
       {children}
@@ -134,11 +156,17 @@ function FadeInContent({ children }: { children: React.ReactNode }) {
  * All routes wrapped in DocsLayout for consistent shell
  */
 export function DocsRoutes() {
+  const [showSpinner, setShowSpinner] = React.useState(true);
+
+  const handleContentRendered = React.useCallback(() => {
+    // Once content has rendered, don't show spinner on subsequent loads
+    setShowSpinner(false);
+  }, []);
+
   return (
-    <React.Suspense fallback={<PageLoader />}>
-      <FadeInContent>
-        <Routes>
-          <Route element={<DocsLayout />}>
+    <React.Suspense fallback={<PageLoader showSpinner={showSpinner} />}>
+      <Routes>
+        <Route element={<DocsLayout onContentRendered={handleContentRendered} />}>
           {/* Static pages */}
           <Route index element={<OverviewPage />} />
           <Route path="getting-started" element={<GettingStartedPage />} />
@@ -229,7 +257,6 @@ export function DocsRoutes() {
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
-      </FadeInContent>
     </React.Suspense>
   );
 }
